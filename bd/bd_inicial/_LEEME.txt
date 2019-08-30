@@ -1,0 +1,7 @@
+El esquema para llevar el control y seguimiento de los articuos esta en el siguiente orden:
+
+LAS CATEGORIAS: esta arriba en el orden jerarquico, es decir, es el nivel de mayor abstraccion
+
+LAS CLASE: continuan debajo de las categorias, es decir, se agrupan por categorias, tienen un nivel de abstraccion menor
+
+EL ARTICULO: es el nivel mas atomico que pertenece a una clase o clasificacion

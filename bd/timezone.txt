@@ -1,0 +1,11 @@
+Solución al problema:
+Abrir archivo --> postgresql.conf
+Parámetro --> #timezone | Nota: El símbolo # indica que es un comentario.
+Valor por defecto --> 'unknown'
+Valor correcto --> 'America/Caracas'
+
+Antes de configurar:
+#timezone = 'unknown'
+
+Después de configurar:
+timezone = 'America/Caracas'

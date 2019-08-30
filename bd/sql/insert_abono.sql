@@ -1,0 +1,1 @@
+﻿copy t04_abono from 'c:/abc.csv' USING delimiters ';' ;

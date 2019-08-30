@@ -1,0 +1,1611 @@
+2016-02-14 14:46:22,226 WARN  [mondrian.rolap.RolapUtil] Mondrian: Warning: JDBC driver sun.jdbc.odbc.JdbcOdbcDriver not found
+2016-02-14 14:46:22,226 WARN  [mondrian.rolap.RolapUtil] Mondrian: Warning: JDBC driver oracle.jdbc.OracleDriver not found
+2016-02-14 14:47:15,365 DEBUG [org.saiku.web.service.SessionService] Logging in with [org.springframework.security.core.userdetails.User@586034f: Username: admin; Password: [PROTECTED]; Enabled: true; AccountNonExpired: true; credentialsNonExpired: true; AccountNonLocked: true; Granted Authorities: ROLE_ADMIN,ROLE_USER]
+2016-02-14 14:47:36,435 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/0D2055D7-C191-4BBA-8137-8D6405F836FE	POST	 xml:false
+2016-02-14 14:47:36,465 INFO  [org.saiku.olap.util.SaikuProperties] Saiku: properties loaded from 'file:/C:/wamp/www/siscamp_1.6/BI-saiku-server/tomcat/webapps/saiku/WEB-INF/classes/saiku.properties'
+2016-02-14 14:47:36,465 INFO  [org.saiku.olap.util.SaikuProperties] Saiku: loaded 0 system properties
+2016-02-14 14:48:13,248 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/0D2055D7-C191-4BBA-8137-8D6405F836FE/axis/ROWS/dimension/Proyecto/hierarchy/[Proyecto.Jerarquia]/[Proyecto.Jerarquia].[Proyecto]	POST
+2016-02-14 14:48:13,248 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 0D2055D7-C191-4BBA-8137-8D6405F836FE dimension Proyecto to axis ROWS  position0
+2016-02-14 14:48:16,372 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/0D2055D7-C191-4BBA-8137-8D6405F836FE/axis/COLUMNS/dimension/Measures/member/[Measures].[Ventas]	POST
+2016-02-14 14:48:16,372 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 0D2055D7-C191-4BBA-8137-8D6405F836FE dimension Measures to axis COLUMNS  position0
+2016-02-14 14:48:16,433 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/0D2055D7-C191-4BBA-8137-8D6405F836FE/resultflattened	GET
+2016-02-14 14:48:16,463 INFO  [org.saiku.service.olap.OlapQueryService] runId:0	Type:QM:
+SELECT
+NON EMPTY {[Measures].[Ventas]} ON COLUMNS,
+NON EMPTY {Hierarchize({[Proyecto.Jerarquia].[Proyecto].Members})} ON ROWS
+FROM [Movimientos]
+2016-02-14 14:48:17,244 INFO  [org.saiku.service.olap.OlapQueryService] runId:0	Size: 2/37	Execute:	741ms	Format:	60ms	 Total: 801ms
+2016-02-14 14:48:54,497 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/0D2055D7-C191-4BBA-8137-8D6405F836FE/axis/COLUMNS/dimension/Proyecto	POST
+2016-02-14 14:48:54,497 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 0D2055D7-C191-4BBA-8137-8D6405F836FE dimension Proyecto to axis COLUMNS  position0
+2016-02-14 14:48:55,809 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/0D2055D7-C191-4BBA-8137-8D6405F836FE/axis/ROWS/dimension/Measures	POST
+2016-02-14 14:48:55,809 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 0D2055D7-C191-4BBA-8137-8D6405F836FE dimension Measures to axis ROWS  position0
+2016-02-14 14:48:55,859 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/0D2055D7-C191-4BBA-8137-8D6405F836FE/resultflattened	GET
+2016-02-14 14:48:55,859 INFO  [org.saiku.service.olap.OlapQueryService] runId:1	Type:QM:
+SELECT
+NON EMPTY {Hierarchize({[Proyecto.Jerarquia].[Proyecto].Members})} ON COLUMNS,
+NON EMPTY {[Measures].[Ventas]} ON ROWS
+FROM [Movimientos]
+2016-02-14 14:48:55,869 INFO  [org.saiku.service.olap.OlapQueryService] runId:1	Size: 37/2	Execute:	10ms	Format:	0ms	 Total: 10ms
+2016-02-14 14:49:01,738 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/0D2055D7-C191-4BBA-8137-8D6405F836FE/swapaxes	PUT
+2016-02-14 14:49:01,838 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/0D2055D7-C191-4BBA-8137-8D6405F836FE/resultflattened	GET
+2016-02-14 14:49:01,838 INFO  [org.saiku.service.olap.OlapQueryService] runId:2	Type:QM:
+SELECT
+NON EMPTY {[Measures].[Ventas]} ON COLUMNS,
+NON EMPTY {Hierarchize({[Proyecto.Jerarquia].[Proyecto].Members})} ON ROWS
+FROM [Movimientos]
+2016-02-14 14:49:01,858 INFO  [org.saiku.service.olap.OlapQueryService] runId:2	Size: 2/37	Execute:	20ms	Format:	0ms	 Total: 20ms
+2016-02-14 14:49:04,422 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/0D2055D7-C191-4BBA-8137-8D6405F836FE/swapaxes	PUT
+2016-02-14 14:49:04,512 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/0D2055D7-C191-4BBA-8137-8D6405F836FE/resultflattened	GET
+2016-02-14 14:49:04,512 INFO  [org.saiku.service.olap.OlapQueryService] runId:3	Type:QM:
+SELECT
+NON EMPTY {Hierarchize({[Proyecto.Jerarquia].[Proyecto].Members})} ON COLUMNS,
+NON EMPTY {[Measures].[Ventas]} ON ROWS
+FROM [Movimientos]
+2016-02-14 14:49:04,532 INFO  [org.saiku.service.olap.OlapQueryService] runId:3	Size: 37/2	Execute:	20ms	Format:	0ms	 Total: 20ms
+2016-02-14 14:49:28,997 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/0D2055D7-C191-4BBA-8137-8D6405F836FE/swapaxes	PUT
+2016-02-14 14:49:29,117 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/0D2055D7-C191-4BBA-8137-8D6405F836FE/resultflattened	GET
+2016-02-14 14:49:29,117 INFO  [org.saiku.service.olap.OlapQueryService] runId:4	Type:QM:
+SELECT
+NON EMPTY {[Measures].[Ventas]} ON COLUMNS,
+NON EMPTY {Hierarchize({[Proyecto.Jerarquia].[Proyecto].Members})} ON ROWS
+FROM [Movimientos]
+2016-02-14 14:49:29,157 INFO  [org.saiku.service.olap.OlapQueryService] runId:4	Size: 2/37	Execute:	30ms	Format:	10ms	 Total: 40ms
+2016-02-14 14:49:38,761 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/0D2055D7-C191-4BBA-8137-8D6405F836FE/axis/ROWS/dimension/Proyecto/hierarchy/[Proyecto.Jerarquia]/[Proyecto.Jerarquia].[Proyecto]	DELETE
+2016-02-14 14:49:38,771 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 0D2055D7-C191-4BBA-8137-8D6405F836FE dimension Proyecto to axis UNUSED  position-1
+2016-02-14 14:49:49,156 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/0D2055D7-C191-4BBA-8137-8D6405F836FE/axis/ROWS/dimension/mes/hierarchy/[mes]/[mes].[mes]	POST
+2016-02-14 14:49:49,156 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 0D2055D7-C191-4BBA-8137-8D6405F836FE dimension mes to axis ROWS  position0
+2016-02-14 14:49:49,226 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/0D2055D7-C191-4BBA-8137-8D6405F836FE/resultflattened	GET
+2016-02-14 14:49:49,226 INFO  [org.saiku.service.olap.OlapQueryService] runId:5	Type:QM:
+SELECT
+NON EMPTY {[Measures].[Ventas]} ON COLUMNS,
+NON EMPTY {Hierarchize({[mes].[mes].Members})} ON ROWS
+FROM [Movimientos]
+2016-02-14 14:49:49,316 INFO  [org.saiku.service.olap.OlapQueryService] runId:5	Size: 2/13	Execute:	90ms	Format:	0ms	 Total: 90ms
+2016-02-14 14:50:00,733 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/0D2055D7-C191-4BBA-8137-8D6405F836FE/axis/COLUMNS/dimension/Measures/member/[Measures].[Gasto]	POST
+2016-02-14 14:50:00,733 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 0D2055D7-C191-4BBA-8137-8D6405F836FE dimension Measures to axis COLUMNS  position0
+2016-02-14 14:50:00,803 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/0D2055D7-C191-4BBA-8137-8D6405F836FE/resultflattened	GET
+2016-02-14 14:50:00,803 INFO  [org.saiku.service.olap.OlapQueryService] runId:6	Type:QM:
+SELECT
+NON EMPTY {[Measures].[Ventas], [Measures].[Gasto]} ON COLUMNS,
+NON EMPTY {Hierarchize({[mes].[mes].Members})} ON ROWS
+FROM [Movimientos]
+2016-02-14 14:50:00,813 INFO  [org.saiku.service.olap.OlapQueryService] runId:6	Size: 3/13	Execute:	10ms	Format:	0ms	 Total: 10ms
+2016-02-14 14:51:30,616 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/0D2055D7-C191-4BBA-8137-8D6405F836FE/axis/COLUMNS/dimension/Measures/member/[Measures].[Ventas]	DELETE
+2016-02-14 14:51:30,616 DEBUG [org.saiku.service.olap.OlapQueryService] query: 0D2055D7-C191-4BBA-8137-8D6405F836FE remove:MEMBER 2
+2016-02-14 14:51:30,696 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/0D2055D7-C191-4BBA-8137-8D6405F836FE/resultflattened	GET
+2016-02-14 14:51:30,696 INFO  [org.saiku.service.olap.OlapQueryService] runId:7	Type:QM:
+SELECT
+NON EMPTY {[Measures].[Gasto]} ON COLUMNS,
+NON EMPTY {Hierarchize({[mes].[mes].Members})} ON ROWS
+FROM [Movimientos]
+2016-02-14 14:51:30,706 INFO  [org.saiku.service.olap.OlapQueryService] runId:7	Size: 2/13	Execute:	10ms	Format:	0ms	 Total: 10ms
+2016-02-14 14:51:36,805 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/0D2055D7-C191-4BBA-8137-8D6405F836FE/axis/ROWS/dimension/mes/hierarchy/[mes]/[mes].[mes]	DELETE
+2016-02-14 14:51:36,805 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 0D2055D7-C191-4BBA-8137-8D6405F836FE dimension mes to axis UNUSED  position-1
+2016-02-14 14:51:39,419 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/0D2055D7-C191-4BBA-8137-8D6405F836FE/axis/ROWS/dimension/Clasificacion/hierarchy/[Clasificacion.Clases de Articulos]/[Clasificacion.Clases de Articulos].[Clasificacion]	POST
+2016-02-14 14:51:39,419 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 0D2055D7-C191-4BBA-8137-8D6405F836FE dimension Clasificacion to axis ROWS  position0
+2016-02-14 14:51:39,469 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/0D2055D7-C191-4BBA-8137-8D6405F836FE/resultflattened	GET
+2016-02-14 14:51:39,469 INFO  [org.saiku.service.olap.OlapQueryService] runId:8	Type:QM:
+SELECT
+NON EMPTY {[Measures].[Gasto]} ON COLUMNS,
+NON EMPTY {Hierarchize({[Clasificacion.Clases de Articulos].[Clasificacion].Members})} ON ROWS
+FROM [Movimientos]
+2016-02-14 14:51:39,619 INFO  [org.saiku.service.olap.OlapQueryService] runId:8	Size: 2/19	Execute:	150ms	Format:	0ms	 Total: 150ms
+2016-02-14 14:51:42,603 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/0D2055D7-C191-4BBA-8137-8D6405F836FE/swapaxes	PUT
+2016-02-14 14:51:42,703 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/0D2055D7-C191-4BBA-8137-8D6405F836FE/resultflattened	GET
+2016-02-14 14:51:42,703 INFO  [org.saiku.service.olap.OlapQueryService] runId:9	Type:QM:
+SELECT
+NON EMPTY {Hierarchize({[Clasificacion.Clases de Articulos].[Clasificacion].Members})} ON COLUMNS,
+NON EMPTY {[Measures].[Gasto]} ON ROWS
+FROM [Movimientos]
+2016-02-14 14:51:42,724 INFO  [org.saiku.service.olap.OlapQueryService] runId:9	Size: 19/2	Execute:	21ms	Format:	0ms	 Total: 21ms
+2016-02-14 14:51:45,888 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/0D2055D7-C191-4BBA-8137-8D6405F836FE/swapaxes	PUT
+2016-02-14 14:51:45,998 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/0D2055D7-C191-4BBA-8137-8D6405F836FE/resultflattened	GET
+2016-02-14 14:51:45,998 INFO  [org.saiku.service.olap.OlapQueryService] runId:10	Type:QM:
+SELECT
+NON EMPTY {[Measures].[Gasto]} ON COLUMNS,
+NON EMPTY {Hierarchize({[Clasificacion.Clases de Articulos].[Clasificacion].Members})} ON ROWS
+FROM [Movimientos]
+2016-02-14 14:51:46,008 INFO  [org.saiku.service.olap.OlapQueryService] runId:10	Size: 2/19	Execute:	10ms	Format:	0ms	 Total: 10ms
+2016-02-14 14:52:01,501 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/0D2055D7-C191-4BBA-8137-8D6405F836FE/axis/ROWS/dimension/Clasificacion/hierarchy/[Clasificacion.Clases de Articulos]/[Clasificacion.Clases de Articulos].[Clasificacion]	DELETE
+2016-02-14 14:52:01,501 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 0D2055D7-C191-4BBA-8137-8D6405F836FE dimension Clasificacion to axis UNUSED  position-1
+2016-02-14 14:52:05,697 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/0D2055D7-C191-4BBA-8137-8D6405F836FE/axis/ROWS/dimension/mes/hierarchy/[mes]/[mes].[mes]	POST
+2016-02-14 14:52:05,697 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 0D2055D7-C191-4BBA-8137-8D6405F836FE dimension mes to axis ROWS  position0
+2016-02-14 14:52:05,747 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/0D2055D7-C191-4BBA-8137-8D6405F836FE/resultflattened	GET
+2016-02-14 14:52:05,747 INFO  [org.saiku.service.olap.OlapQueryService] runId:11	Type:QM:
+SELECT
+NON EMPTY {[Measures].[Gasto]} ON COLUMNS,
+NON EMPTY {Hierarchize({[mes].[mes].Members})} ON ROWS
+FROM [Movimientos]
+2016-02-14 14:52:05,767 INFO  [org.saiku.service.olap.OlapQueryService] runId:11	Size: 2/13	Execute:	10ms	Format:	10ms	 Total: 20ms
+2016-02-14 14:52:11,417 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/0D2055D7-C191-4BBA-8137-8D6405F836FE/axis/COLUMNS/dimension/Measures/member/[Measures].[Ventas]	POST
+2016-02-14 14:52:11,417 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 0D2055D7-C191-4BBA-8137-8D6405F836FE dimension Measures to axis COLUMNS  position0
+2016-02-14 14:52:11,505 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/0D2055D7-C191-4BBA-8137-8D6405F836FE/resultflattened	GET
+2016-02-14 14:52:11,505 INFO  [org.saiku.service.olap.OlapQueryService] runId:12	Type:QM:
+SELECT
+NON EMPTY {[Measures].[Gasto], [Measures].[Ventas]} ON COLUMNS,
+NON EMPTY {Hierarchize({[mes].[mes].Members})} ON ROWS
+FROM [Movimientos]
+2016-02-14 14:52:11,516 INFO  [org.saiku.service.olap.OlapQueryService] runId:12	Size: 3/13	Execute:	11ms	Format:	0ms	 Total: 11ms
+2016-02-14 14:52:18,643 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/0D2055D7-C191-4BBA-8137-8D6405F836FE/axis/COLUMNS/dimension/Measures/member/[Measures].[Ganancias]	POST
+2016-02-14 14:52:18,643 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 0D2055D7-C191-4BBA-8137-8D6405F836FE dimension Measures to axis COLUMNS  position0
+2016-02-14 14:52:18,731 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/0D2055D7-C191-4BBA-8137-8D6405F836FE/resultflattened	GET
+2016-02-14 14:52:18,731 INFO  [org.saiku.service.olap.OlapQueryService] runId:13	Type:QM:
+SELECT
+NON EMPTY {[Measures].[Gasto], [Measures].[Ventas], [Measures].[Ganancias]} ON COLUMNS,
+NON EMPTY {Hierarchize({[mes].[mes].Members})} ON ROWS
+FROM [Movimientos]
+2016-02-14 14:52:18,786 INFO  [org.saiku.service.olap.OlapQueryService] runId:13	Size: 4/13	Execute:	55ms	Format:	0ms	 Total: 55ms
+2016-02-14 14:52:28,296 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/0D2055D7-C191-4BBA-8137-8D6405F836FE/swapaxes	PUT
+2016-02-14 14:52:28,376 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/0D2055D7-C191-4BBA-8137-8D6405F836FE/resultflattened	GET
+2016-02-14 14:52:28,386 INFO  [org.saiku.service.olap.OlapQueryService] runId:14	Type:QM:
+SELECT
+NON EMPTY {Hierarchize({[mes].[mes].Members})} ON COLUMNS,
+NON EMPTY {[Measures].[Gasto], [Measures].[Ventas], [Measures].[Ganancias]} ON ROWS
+FROM [Movimientos]
+2016-02-14 14:52:28,395 INFO  [org.saiku.service.olap.OlapQueryService] runId:14	Size: 13/4	Execute:	9ms	Format:	0ms	 Total: 9ms
+2016-02-14 14:54:18,962 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/0D2055D7-C191-4BBA-8137-8D6405F836FE/axis/ROWS/dimension/Measures/member/[Measures].[Ganancias]	DELETE
+2016-02-14 14:54:18,962 DEBUG [org.saiku.service.olap.OlapQueryService] query: 0D2055D7-C191-4BBA-8137-8D6405F836FE remove:MEMBER 2
+2016-02-14 14:54:19,042 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/0D2055D7-C191-4BBA-8137-8D6405F836FE/resultflattened	GET
+2016-02-14 14:54:19,042 INFO  [org.saiku.service.olap.OlapQueryService] runId:15	Type:QM:
+SELECT
+NON EMPTY {Hierarchize({[mes].[mes].Members})} ON COLUMNS,
+NON EMPTY {[Measures].[Gasto], [Measures].[Ventas]} ON ROWS
+FROM [Movimientos]
+2016-02-14 14:54:19,052 INFO  [org.saiku.service.olap.OlapQueryService] runId:15	Size: 13/3	Execute:	10ms	Format:	0ms	 Total: 10ms
+2016-02-14 14:54:23,008 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/0D2055D7-C191-4BBA-8137-8D6405F836FE/swapaxes	PUT
+2016-02-14 14:54:23,108 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/0D2055D7-C191-4BBA-8137-8D6405F836FE/resultflattened	GET
+2016-02-14 14:54:23,108 INFO  [org.saiku.service.olap.OlapQueryService] runId:16	Type:QM:
+SELECT
+NON EMPTY {[Measures].[Gasto], [Measures].[Ventas]} ON COLUMNS,
+NON EMPTY {Hierarchize({[mes].[mes].Members})} ON ROWS
+FROM [Movimientos]
+2016-02-14 14:54:23,128 INFO  [org.saiku.service.olap.OlapQueryService] runId:16	Size: 3/13	Execute:	10ms	Format:	10ms	 Total: 20ms
+2016-02-14 14:55:10,216 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/0D2055D7-C191-4BBA-8137-8D6405F836FE/axis/ROWS/dimension/mes	POST
+2016-02-14 14:55:10,216 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 0D2055D7-C191-4BBA-8137-8D6405F836FE dimension mes to axis ROWS  position0
+2016-02-14 14:55:10,296 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/0D2055D7-C191-4BBA-8137-8D6405F836FE/resultflattened	GET
+2016-02-14 14:55:10,296 INFO  [org.saiku.service.olap.OlapQueryService] runId:17	Type:QM:
+SELECT
+NON EMPTY {[Measures].[Gasto], [Measures].[Ventas]} ON COLUMNS,
+NON EMPTY {Hierarchize({[mes].[mes].Members})} ON ROWS
+FROM [Movimientos]
+2016-02-14 14:55:10,316 INFO  [org.saiku.service.olap.OlapQueryService] runId:17	Size: 3/13	Execute:	10ms	Format:	10ms	 Total: 20ms
+2016-02-14 14:55:11,818 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/0D2055D7-C191-4BBA-8137-8D6405F836FE/axis/ROWS/dimension/mes	POST
+2016-02-14 14:55:11,818 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 0D2055D7-C191-4BBA-8137-8D6405F836FE dimension mes to axis ROWS  position0
+2016-02-14 14:55:11,888 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/0D2055D7-C191-4BBA-8137-8D6405F836FE/resultflattened	GET
+2016-02-14 14:55:11,888 INFO  [org.saiku.service.olap.OlapQueryService] runId:18	Type:QM:
+SELECT
+NON EMPTY {[Measures].[Gasto], [Measures].[Ventas]} ON COLUMNS,
+NON EMPTY {Hierarchize({[mes].[mes].Members})} ON ROWS
+FROM [Movimientos]
+2016-02-14 14:55:11,918 INFO  [org.saiku.service.olap.OlapQueryService] runId:18	Size: 3/13	Execute:	20ms	Format:	10ms	 Total: 30ms
+2016-02-14 14:55:13,260 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/0D2055D7-C191-4BBA-8137-8D6405F836FE/axis/ROWS/dimension/mes	POST
+2016-02-14 14:55:13,260 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 0D2055D7-C191-4BBA-8137-8D6405F836FE dimension mes to axis ROWS  position0
+2016-02-14 14:55:13,340 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/0D2055D7-C191-4BBA-8137-8D6405F836FE/resultflattened	GET
+2016-02-14 14:55:13,340 INFO  [org.saiku.service.olap.OlapQueryService] runId:19	Type:QM:
+SELECT
+NON EMPTY {[Measures].[Gasto], [Measures].[Ventas]} ON COLUMNS,
+NON EMPTY {Hierarchize({[mes].[mes].Members})} ON ROWS
+FROM [Movimientos]
+2016-02-14 14:55:13,360 INFO  [org.saiku.service.olap.OlapQueryService] runId:19	Size: 3/13	Execute:	20ms	Format:	0ms	 Total: 20ms
+2016-02-14 14:56:13,237 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/3A783FF8-FD6F-CA13-89A0-75689AF4CF9D	POST	 xml:false
+2016-02-14 14:56:20,708 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/3A783FF8-FD6F-CA13-89A0-75689AF4CF9D/axis/COLUMNS/dimension/Proyecto/hierarchy/[Proyecto.Jerarquia]/[Proyecto.Jerarquia].[Proyecto]	POST
+2016-02-14 14:56:20,708 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 3A783FF8-FD6F-CA13-89A0-75689AF4CF9D dimension Proyecto to axis COLUMNS  position0
+2016-02-14 14:56:27,247 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/3A783FF8-FD6F-CA13-89A0-75689AF4CF9D/axis/ROWS/dimension/Measures/member/[Measures].[Ganancias]	POST
+2016-02-14 14:56:27,247 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 3A783FF8-FD6F-CA13-89A0-75689AF4CF9D dimension Measures to axis ROWS  position0
+2016-02-14 14:56:27,297 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/3A783FF8-FD6F-CA13-89A0-75689AF4CF9D/resultflattened	GET
+2016-02-14 14:56:27,297 INFO  [org.saiku.service.olap.OlapQueryService] runId:20	Type:QM:
+SELECT
+NON EMPTY {Hierarchize({[Proyecto.Jerarquia].[Proyecto].Members})} ON COLUMNS,
+NON EMPTY {[Measures].[Ganancias]} ON ROWS
+FROM [Movimientos]
+2016-02-14 14:56:27,367 INFO  [org.saiku.service.olap.OlapQueryService] runId:20	Size: 37/2	Execute:	70ms	Format:	0ms	 Total: 70ms
+2016-02-14 14:57:16,268 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/3A783FF8-FD6F-CA13-89A0-75689AF4CF9D/swapaxes	PUT
+2016-02-14 14:57:16,388 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/3A783FF8-FD6F-CA13-89A0-75689AF4CF9D/resultflattened	GET
+2016-02-14 14:57:16,388 INFO  [org.saiku.service.olap.OlapQueryService] runId:21	Type:QM:
+SELECT
+NON EMPTY {[Measures].[Ganancias]} ON COLUMNS,
+NON EMPTY {Hierarchize({[Proyecto.Jerarquia].[Proyecto].Members})} ON ROWS
+FROM [Movimientos]
+2016-02-14 14:57:16,448 INFO  [org.saiku.service.olap.OlapQueryService] runId:21	Size: 2/37	Execute:	60ms	Format:	0ms	 Total: 60ms
+2016-02-14 14:57:22,036 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/3A783FF8-FD6F-CA13-89A0-75689AF4CF9D/properties	POST
+2016-02-14 14:57:22,056 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/3A783FF8-FD6F-CA13-89A0-75689AF4CF9D/resultflattened	GET
+2016-02-14 14:57:22,056 INFO  [org.saiku.service.olap.OlapQueryService] runId:22	Type:QM:
+SELECT
+{[Measures].[Ganancias]} ON COLUMNS,
+{Hierarchize({[Proyecto.Jerarquia].[Proyecto].Members})} ON ROWS
+FROM [Movimientos]
+2016-02-14 14:57:22,106 INFO  [org.saiku.service.olap.OlapQueryService] runId:22	Size: 2/37	Execute:	50ms	Format:	0ms	 Total: 50ms
+2016-02-14 14:57:25,421 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/3A783FF8-FD6F-CA13-89A0-75689AF4CF9D/swapaxes	PUT
+2016-02-14 14:57:25,511 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/3A783FF8-FD6F-CA13-89A0-75689AF4CF9D/resultflattened	GET
+2016-02-14 14:57:25,511 INFO  [org.saiku.service.olap.OlapQueryService] runId:23	Type:QM:
+SELECT
+{Hierarchize({[Proyecto.Jerarquia].[Proyecto].Members})} ON COLUMNS,
+{[Measures].[Ganancias]} ON ROWS
+FROM [Movimientos]
+2016-02-14 14:57:25,531 INFO  [org.saiku.service.olap.OlapQueryService] runId:23	Size: 37/2	Execute:	10ms	Format:	10ms	 Total: 20ms
+2016-02-14 14:57:34,214 INFO  [org.saiku.service.olap.OlapQueryService] runId:24	Type:QM:
+SELECT
+{Hierarchize({[Proyecto.Jerarquia].[Proyecto].Members})} ON COLUMNS,
+{[Measures].[Ganancias]} ON ROWS
+FROM [Movimientos]
+2016-02-14 14:57:34,234 INFO  [org.saiku.service.olap.OlapQueryService] runId:24	Size: 37/2	Execute:	10ms	Format:	10ms	 Total: 20ms
+2016-02-14 14:58:04,367 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/85A6D0B3-27D6-E6B8-A667-F2E8638025AC	POST	 xml:false
+2016-02-14 14:58:13,180 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/85A6D0B3-27D6-E6B8-A667-F2E8638025AC/axis/FILTER/dimension/mes/hierarchy/[mes]/[mes].[mes]	POST
+2016-02-14 14:58:13,180 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 85A6D0B3-27D6-E6B8-A667-F2E8638025AC dimension mes to axis FILTER  position0
+2016-02-14 14:58:13,190 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/85A6D0B3-27D6-E6B8-A667-F2E8638025AC/result/metadata/dimensions/mes/hierarchies/[mes]/levels/[mes].[mes]	GET
+2016-02-14 14:58:13,250 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/85A6D0B3-27D6-E6B8-A667-F2E8638025AC/axis/FILTER/dimension/mes	GET
+2016-02-14 14:58:20,100 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/85A6D0B3-27D6-E6B8-A667-F2E8638025AC/axis/FILTER/dimension/mes	PUT	
+2016-02-14 14:58:20,200 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/85A6D0B3-27D6-E6B8-A667-F2E8638025AC/axis/FILTER/dimension/mes	GET
+2016-02-14 14:58:24,566 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/85A6D0B3-27D6-E6B8-A667-F2E8638025AC/axis/ROWS/dimension/Measures/member/[Measures].[Gasto]	POST
+2016-02-14 14:58:24,566 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 85A6D0B3-27D6-E6B8-A667-F2E8638025AC dimension Measures to axis ROWS  position0
+2016-02-14 14:58:27,290 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/85A6D0B3-27D6-E6B8-A667-F2E8638025AC/axis/COLUMNS/dimension/Measures	POST
+2016-02-14 14:58:27,290 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 85A6D0B3-27D6-E6B8-A667-F2E8638025AC dimension Measures to axis COLUMNS  position0
+2016-02-14 14:58:32,377 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/85A6D0B3-27D6-E6B8-A667-F2E8638025AC/axis/ROWS/dimension/Proyecto/hierarchy/[Proyecto.Jerarquia]/[Proyecto.Jerarquia].[Proyecto]	POST
+2016-02-14 14:58:32,377 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 85A6D0B3-27D6-E6B8-A667-F2E8638025AC dimension Proyecto to axis ROWS  position0
+2016-02-14 14:58:32,417 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/85A6D0B3-27D6-E6B8-A667-F2E8638025AC/resultflattened	GET
+2016-02-14 14:58:32,417 INFO  [org.saiku.service.olap.OlapQueryService] runId:25	Type:QM:
+SELECT
+NON EMPTY {[Measures].[Gasto]} ON COLUMNS,
+NON EMPTY {Hierarchize({[Proyecto.Jerarquia].[Proyecto].Members})} ON ROWS
+FROM [Movimientos]
+WHERE {[mes].[01]}
+2016-02-14 14:58:32,457 INFO  [org.saiku.service.olap.OlapQueryService] runId:25	Size: 2/22	Execute:	40ms	Format:	0ms	 Total: 40ms
+2016-02-14 14:58:40,018 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/85A6D0B3-27D6-E6B8-A667-F2E8638025AC/axis/FILTER/dimension/mes	POST
+2016-02-14 14:58:40,018 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 85A6D0B3-27D6-E6B8-A667-F2E8638025AC dimension mes to axis FILTER  position0
+2016-02-14 14:58:40,098 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/85A6D0B3-27D6-E6B8-A667-F2E8638025AC/resultflattened	GET
+2016-02-14 14:58:40,098 INFO  [org.saiku.service.olap.OlapQueryService] runId:26	Type:QM:
+SELECT
+NON EMPTY {[Measures].[Gasto]} ON COLUMNS,
+NON EMPTY {Hierarchize({[Proyecto.Jerarquia].[Proyecto].Members})} ON ROWS
+FROM [Movimientos]
+WHERE {[mes].[01]}
+2016-02-14 14:58:40,118 INFO  [org.saiku.service.olap.OlapQueryService] runId:26	Size: 2/22	Execute:	20ms	Format:	0ms	 Total: 20ms
+2016-02-14 14:59:03,709 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/85A6D0B3-27D6-E6B8-A667-F2E8638025AC/axis/FILTER/dimension/mes/hierarchy/[mes]/[mes].[mes]	DELETE
+2016-02-14 14:59:03,720 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 85A6D0B3-27D6-E6B8-A667-F2E8638025AC dimension mes to axis UNUSED  position-1
+2016-02-14 14:59:03,808 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/85A6D0B3-27D6-E6B8-A667-F2E8638025AC/resultflattened	GET
+2016-02-14 14:59:03,808 INFO  [org.saiku.service.olap.OlapQueryService] runId:27	Type:QM:
+SELECT
+NON EMPTY {[Measures].[Gasto]} ON COLUMNS,
+NON EMPTY {Hierarchize({[Proyecto.Jerarquia].[Proyecto].Members})} ON ROWS
+FROM [Movimientos]
+2016-02-14 14:59:03,830 INFO  [org.saiku.service.olap.OlapQueryService] runId:27	Size: 2/37	Execute:	22ms	Format:	0ms	 Total: 22ms
+2016-02-14 14:59:12,500 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/85A6D0B3-27D6-E6B8-A667-F2E8638025AC/axis/ROWS/dimension/Clasificacion/hierarchy/[Clasificacion.Clases de Articulos]/[Clasificacion.Clases de Articulos].[Clasificacion]	POST
+2016-02-14 14:59:12,500 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 85A6D0B3-27D6-E6B8-A667-F2E8638025AC dimension Clasificacion to axis ROWS  position1
+2016-02-14 14:59:12,566 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/85A6D0B3-27D6-E6B8-A667-F2E8638025AC/resultflattened	GET
+2016-02-14 14:59:12,566 INFO  [org.saiku.service.olap.OlapQueryService] runId:28	Type:QM:
+SELECT
+NON EMPTY {[Measures].[Gasto]} ON COLUMNS,
+NON EMPTY CrossJoin([Proyecto.Jerarquia].[Proyecto].Members, [Clasificacion.Clases de Articulos].[Clasificacion].Members) ON ROWS
+FROM [Movimientos]
+2016-02-14 14:59:12,731 INFO  [org.saiku.service.olap.OlapQueryService] runId:28	Size: 3/187	Execute:	143ms	Format:	22ms	 Total: 165ms
+2016-02-14 14:59:14,277 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/85A6D0B3-27D6-E6B8-A667-F2E8638025AC/axis/ROWS/dimension/Proyecto/hierarchy/[Proyecto.Jerarquia]/[Proyecto.Jerarquia].[Proyecto]	DELETE
+2016-02-14 14:59:14,287 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 85A6D0B3-27D6-E6B8-A667-F2E8638025AC dimension Proyecto to axis UNUSED  position-1
+2016-02-14 14:59:14,366 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/85A6D0B3-27D6-E6B8-A667-F2E8638025AC/resultflattened	GET
+2016-02-14 14:59:14,366 INFO  [org.saiku.service.olap.OlapQueryService] runId:29	Type:QM:
+SELECT
+NON EMPTY {[Measures].[Gasto]} ON COLUMNS,
+NON EMPTY {Hierarchize({[Clasificacion.Clases de Articulos].[Clasificacion].Members})} ON ROWS
+FROM [Movimientos]
+2016-02-14 14:59:14,386 INFO  [org.saiku.service.olap.OlapQueryService] runId:29	Size: 2/19	Execute:	10ms	Format:	10ms	 Total: 20ms
+2016-02-14 14:59:28,227 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/85A6D0B3-27D6-E6B8-A667-F2E8638025AC/swapaxes	PUT
+2016-02-14 14:59:28,307 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/85A6D0B3-27D6-E6B8-A667-F2E8638025AC/resultflattened	GET
+2016-02-14 14:59:28,307 INFO  [org.saiku.service.olap.OlapQueryService] runId:30	Type:QM:
+SELECT
+NON EMPTY {Hierarchize({[Clasificacion.Clases de Articulos].[Clasificacion].Members})} ON COLUMNS,
+NON EMPTY {[Measures].[Gasto]} ON ROWS
+FROM [Movimientos]
+2016-02-14 14:59:28,316 INFO  [org.saiku.service.olap.OlapQueryService] runId:30	Size: 19/2	Execute:	9ms	Format:	0ms	 Total: 9ms
+2016-02-14 15:20:42,260 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/3A783FF8-FD6F-CA13-89A0-75689AF4CF9D	DELETE
+2016-02-14 15:21:06,798 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/85A6D0B3-27D6-E6B8-A667-F2E8638025AC/properties	POST
+2016-02-14 15:21:43,898 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/85A6D0B3-27D6-E6B8-A667-F2E8638025AC/xml/	GET
+2016-02-14 15:22:10,892 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/85A6D0B3-27D6-E6B8-A667-F2E8638025AC	DELETE
+2016-02-14 15:22:20,115 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/A6DDF54C-A7B7-FA01-AE43-8985DEDDF583	POST	 xml:false
+2016-02-14 15:22:20,385 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/A6DDF54C-A7B7-FA01-AE43-8985DEDDF583/resultflattened	GET
+2016-02-14 15:22:20,385 INFO  [org.saiku.service.olap.OlapQueryService] runId:31	Type:QM:
+SELECT
+NON EMPTY {Hierarchize({[Clasificacion.Clases de Articulos].[Clasificacion].Members})} ON COLUMNS,
+NON EMPTY {[Measures].[Gasto]} ON ROWS
+FROM [Movimientos]
+2016-02-14 15:22:20,400 INFO  [org.saiku.service.olap.OlapQueryService] runId:31	Size: 19/2	Execute:	15ms	Format:	0ms	 Total: 15ms
+2016-02-14 15:22:38,952 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/A6DDF54C-A7B7-FA01-AE43-8985DEDDF583/properties	POST
+2016-02-14 15:22:48,626 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/A6DDF54C-A7B7-FA01-AE43-8985DEDDF583/xml/	GET
+2016-02-14 15:22:57,308 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/A6DDF54C-A7B7-FA01-AE43-8985DEDDF583	DELETE
+2016-02-14 15:23:04,023 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/28307C14-48C4-C64A-BDF6-C05A2F2514B6	POST	 xml:false
+2016-02-14 15:23:04,203 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/28307C14-48C4-C64A-BDF6-C05A2F2514B6/resultflattened	GET
+2016-02-14 15:23:04,203 INFO  [org.saiku.service.olap.OlapQueryService] runId:32	Type:QM:
+SELECT
+NON EMPTY {Hierarchize({[Clasificacion.Clases de Articulos].[Clasificacion].Members})} ON COLUMNS,
+NON EMPTY {[Measures].[Gasto]} ON ROWS
+FROM [Movimientos]
+2016-02-14 15:23:04,233 INFO  [org.saiku.service.olap.OlapQueryService] runId:32	Size: 19/2	Execute:	15ms	Format:	15ms	 Total: 30ms
+2016-02-14 15:23:46,189 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/28307C14-48C4-C64A-BDF6-C05A2F2514B6/axis/COLUMNS/dimension/Clasificacion/hierarchy/[Clasificacion.Clases de Articulos]/[Clasificacion.Clases de Articulos].[Articulo]	POST
+2016-02-14 15:23:46,189 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 28307C14-48C4-C64A-BDF6-C05A2F2514B6 dimension Clasificacion to axis COLUMNS  position0
+2016-02-14 15:23:46,294 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/28307C14-48C4-C64A-BDF6-C05A2F2514B6/resultflattened	GET
+2016-02-14 15:23:46,294 INFO  [org.saiku.service.olap.OlapQueryService] runId:33	Type:QM:
+SELECT
+NON EMPTY {Hierarchize({{[Clasificacion.Clases de Articulos].[Clasificacion].Members}, {[Clasificacion.Clases de Articulos].[Articulo].Members}})} ON COLUMNS,
+NON EMPTY {[Measures].[Gasto]} ON ROWS
+FROM [Movimientos]
+2016-02-14 15:23:46,489 INFO  [org.saiku.service.olap.OlapQueryService] runId:33	Size: 97/3	Execute:	180ms	Format:	15ms	 Total: 195ms
+2016-02-14 15:24:02,637 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/28307C14-48C4-C64A-BDF6-C05A2F2514B6/swapaxes	PUT
+2016-02-14 15:24:02,833 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/28307C14-48C4-C64A-BDF6-C05A2F2514B6/resultflattened	GET
+2016-02-14 15:24:02,833 INFO  [org.saiku.service.olap.OlapQueryService] runId:34	Type:QM:
+SELECT
+NON EMPTY {[Measures].[Gasto]} ON COLUMNS,
+NON EMPTY {Hierarchize({{[Clasificacion.Clases de Articulos].[Clasificacion].Members}, {[Clasificacion.Clases de Articulos].[Articulo].Members}})} ON ROWS
+FROM [Movimientos]
+2016-02-14 15:24:02,878 INFO  [org.saiku.service.olap.OlapQueryService] runId:34	Size: 3/97	Execute:	30ms	Format:	15ms	 Total: 45ms
+2016-02-14 15:24:44,653 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/28307C14-48C4-C64A-BDF6-C05A2F2514B6/swapaxes	PUT
+2016-02-14 15:24:44,863 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/28307C14-48C4-C64A-BDF6-C05A2F2514B6/resultflattened	GET
+2016-02-14 15:24:44,863 INFO  [org.saiku.service.olap.OlapQueryService] runId:35	Type:QM:
+SELECT
+NON EMPTY {Hierarchize({{[Clasificacion.Clases de Articulos].[Clasificacion].Members}, {[Clasificacion.Clases de Articulos].[Articulo].Members}})} ON COLUMNS,
+NON EMPTY {[Measures].[Gasto]} ON ROWS
+FROM [Movimientos]
+2016-02-14 15:24:44,923 INFO  [org.saiku.service.olap.OlapQueryService] runId:35	Size: 97/3	Execute:	45ms	Format:	15ms	 Total: 60ms
+2016-02-14 15:25:04,196 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/28307C14-48C4-C64A-BDF6-C05A2F2514B6/axis/ROWS/dimension/Clasificacion	POST
+2016-02-14 15:25:04,196 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 28307C14-48C4-C64A-BDF6-C05A2F2514B6 dimension Clasificacion to axis ROWS  position1
+2016-02-14 15:25:10,865 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/28307C14-48C4-C64A-BDF6-C05A2F2514B6/axis/FILTER/dimension/Measures	POST
+2016-02-14 15:25:10,865 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 28307C14-48C4-C64A-BDF6-C05A2F2514B6 dimension Measures to axis FILTER  position0
+2016-02-14 15:25:14,951 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/28307C14-48C4-C64A-BDF6-C05A2F2514B6/axis/COLUMNS/dimension/Clasificacion	POST
+2016-02-14 15:25:14,951 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 28307C14-48C4-C64A-BDF6-C05A2F2514B6 dimension Clasificacion to axis COLUMNS  position0
+2016-02-14 15:25:18,556 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/28307C14-48C4-C64A-BDF6-C05A2F2514B6/axis/ROWS/dimension/Measures	POST
+2016-02-14 15:25:18,556 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 28307C14-48C4-C64A-BDF6-C05A2F2514B6 dimension Measures to axis ROWS  position0
+2016-02-14 15:25:18,602 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/28307C14-48C4-C64A-BDF6-C05A2F2514B6/resultflattened	GET
+2016-02-14 15:25:18,602 INFO  [org.saiku.service.olap.OlapQueryService] runId:36	Type:QM:
+SELECT
+NON EMPTY {Hierarchize({{[Clasificacion.Clases de Articulos].[Clasificacion].Members}, {[Clasificacion.Clases de Articulos].[Articulo].Members}})} ON COLUMNS,
+NON EMPTY {[Measures].[Gasto]} ON ROWS
+FROM [Movimientos]
+2016-02-14 15:25:18,647 INFO  [org.saiku.service.olap.OlapQueryService] runId:36	Size: 97/3	Execute:	30ms	Format:	15ms	 Total: 45ms
+2016-02-14 15:25:22,793 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/28307C14-48C4-C64A-BDF6-C05A2F2514B6/swapaxes	PUT
+2016-02-14 15:25:22,973 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/28307C14-48C4-C64A-BDF6-C05A2F2514B6/resultflattened	GET
+2016-02-14 15:25:22,973 INFO  [org.saiku.service.olap.OlapQueryService] runId:37	Type:QM:
+SELECT
+NON EMPTY {[Measures].[Gasto]} ON COLUMNS,
+NON EMPTY {Hierarchize({{[Clasificacion.Clases de Articulos].[Clasificacion].Members}, {[Clasificacion.Clases de Articulos].[Articulo].Members}})} ON ROWS
+FROM [Movimientos]
+2016-02-14 15:25:23,078 INFO  [org.saiku.service.olap.OlapQueryService] runId:37	Size: 3/97	Execute:	90ms	Format:	15ms	 Total: 105ms
+2016-02-14 15:25:30,514 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/28307C14-48C4-C64A-BDF6-C05A2F2514B6/axis/ROWS/dimension/Clasificacion	POST
+2016-02-14 15:25:30,514 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 28307C14-48C4-C64A-BDF6-C05A2F2514B6 dimension Clasificacion to axis ROWS  position0
+2016-02-14 15:25:30,679 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/28307C14-48C4-C64A-BDF6-C05A2F2514B6/resultflattened	GET
+2016-02-14 15:25:30,679 INFO  [org.saiku.service.olap.OlapQueryService] runId:38	Type:QM:
+SELECT
+NON EMPTY {[Measures].[Gasto]} ON COLUMNS,
+NON EMPTY {Hierarchize({{[Clasificacion.Clases de Articulos].[Clasificacion].Members}, {[Clasificacion.Clases de Articulos].[Articulo].Members}})} ON ROWS
+FROM [Movimientos]
+2016-02-14 15:25:30,709 INFO  [org.saiku.service.olap.OlapQueryService] runId:38	Size: 3/97	Execute:	15ms	Format:	15ms	 Total: 30ms
+2016-02-14 15:25:39,632 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/28307C14-48C4-C64A-BDF6-C05A2F2514B6/axis/FILTER/dimension/Clasificacion	POST
+2016-02-14 15:25:39,632 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 28307C14-48C4-C64A-BDF6-C05A2F2514B6 dimension Clasificacion to axis FILTER  position0
+2016-02-14 15:25:43,132 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/28307C14-48C4-C64A-BDF6-C05A2F2514B6/axis/ROWS/dimension/Clasificacion	POST
+2016-02-14 15:25:43,132 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 28307C14-48C4-C64A-BDF6-C05A2F2514B6 dimension Clasificacion to axis ROWS  position0
+2016-02-14 15:25:43,237 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/28307C14-48C4-C64A-BDF6-C05A2F2514B6/resultflattened	GET
+2016-02-14 15:25:43,237 INFO  [org.saiku.service.olap.OlapQueryService] runId:39	Type:QM:
+SELECT
+NON EMPTY {[Measures].[Gasto]} ON COLUMNS,
+NON EMPTY {Hierarchize({{[Clasificacion.Clases de Articulos].[Clasificacion].Members}, {[Clasificacion.Clases de Articulos].[Articulo].Members}})} ON ROWS
+FROM [Movimientos]
+2016-02-14 15:25:43,282 INFO  [org.saiku.service.olap.OlapQueryService] runId:39	Size: 3/97	Execute:	30ms	Format:	15ms	 Total: 45ms
+2016-02-14 15:25:46,016 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/28307C14-48C4-C64A-BDF6-C05A2F2514B6/axis/ROWS/sort/BASC/[Clasificacion.Clases de Articulos].CurrentMember.Name	POST
+2016-02-14 15:25:46,271 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/28307C14-48C4-C64A-BDF6-C05A2F2514B6/resultflattened	GET
+2016-02-14 15:25:46,271 INFO  [org.saiku.service.olap.OlapQueryService] runId:40	Type:QM:
+SELECT
+NON EMPTY {[Measures].[Gasto]} ON COLUMNS,
+NON EMPTY Order({Hierarchize({{[Clasificacion.Clases de Articulos].[Clasificacion].Members}, {[Clasificacion.Clases de Articulos].[Articulo].Members}})}, [Clasificacion.Clases de Articulos].CurrentMember.Name, BASC) ON ROWS
+FROM [Movimientos]
+2016-02-14 15:25:46,361 INFO  [org.saiku.service.olap.OlapQueryService] runId:40	Size: 3/97	Execute:	90ms	Format:	0ms	 Total: 90ms
+2016-02-14 15:26:15,623 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/28307C14-48C4-C64A-BDF6-C05A2F2514B6/axis/FILTER/filter/	DELETE
+2016-02-14 15:26:15,804 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/28307C14-48C4-C64A-BDF6-C05A2F2514B6/resultflattened	GET
+2016-02-14 15:26:15,804 INFO  [org.saiku.service.olap.OlapQueryService] runId:41	Type:QM:
+SELECT
+NON EMPTY {[Measures].[Gasto]} ON COLUMNS,
+NON EMPTY Order({Hierarchize({{[Clasificacion.Clases de Articulos].[Clasificacion].Members}, {[Clasificacion.Clases de Articulos].[Articulo].Members}})}, [Clasificacion.Clases de Articulos].CurrentMember.Name, BASC) ON ROWS
+FROM [Movimientos]
+2016-02-14 15:26:15,864 INFO  [org.saiku.service.olap.OlapQueryService] runId:41	Size: 3/97	Execute:	60ms	Format:	0ms	 Total: 60ms
+2016-02-14 15:26:24,261 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/28307C14-48C4-C64A-BDF6-C05A2F2514B6/axis/ROWS/dimension/Clasificacion/hierarchy/[Clasificacion.Clases de Articulos]/[Clasificacion.Clases de Articulos].[Clasificacion]	DELETE
+2016-02-14 15:26:24,426 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/28307C14-48C4-C64A-BDF6-C05A2F2514B6/resultflattened	GET
+2016-02-14 15:26:24,426 INFO  [org.saiku.service.olap.OlapQueryService] runId:42	Type:QM:
+SELECT
+NON EMPTY {[Measures].[Gasto]} ON COLUMNS,
+NON EMPTY Order({Hierarchize({[Clasificacion.Clases de Articulos].[Articulo].Members})}, [Clasificacion.Clases de Articulos].CurrentMember.Name, BASC) ON ROWS
+FROM [Movimientos]
+2016-02-14 15:26:24,456 INFO  [org.saiku.service.olap.OlapQueryService] runId:42	Size: 2/97	Execute:	15ms	Format:	15ms	 Total: 30ms
+2016-02-14 15:26:29,398 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/28307C14-48C4-C64A-BDF6-C05A2F2514B6/axis/FILTER/dimension/Clasificacion/hierarchy/[Clasificacion.Clases de Articulos]/[Clasificacion.Clases de Articulos].[Clasificacion]	POST
+2016-02-14 15:26:29,398 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 28307C14-48C4-C64A-BDF6-C05A2F2514B6 dimension Clasificacion to axis FILTER  position0
+2016-02-14 15:26:29,413 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/28307C14-48C4-C64A-BDF6-C05A2F2514B6/result/metadata/dimensions/Clasificacion/hierarchies/[Clasificacion.Clases de Articulos]/levels/[Clasificacion.Clases de Articulos].[Clasificacion]	GET
+2016-02-14 15:26:29,549 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/28307C14-48C4-C64A-BDF6-C05A2F2514B6/axis/FILTER/dimension/Clasificacion	GET
+2016-02-14 15:26:43,248 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/28307C14-48C4-C64A-BDF6-C05A2F2514B6/axis/FILTER/dimension/Clasificacion	PUT	
+2016-02-14 15:26:43,248 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/28307C14-48C4-C64A-BDF6-C05A2F2514B6/axis/FILTER/dimension/Clasificacion	GET
+2016-02-14 15:26:52,787 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/28307C14-48C4-C64A-BDF6-C05A2F2514B6/axis/ROWS/dimension/Clasificacion	POST
+2016-02-14 15:26:52,787 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 28307C14-48C4-C64A-BDF6-C05A2F2514B6 dimension Clasificacion to axis ROWS  position0
+2016-02-14 15:26:52,877 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/28307C14-48C4-C64A-BDF6-C05A2F2514B6/resultflattened	GET
+2016-02-14 15:26:52,877 INFO  [org.saiku.service.olap.OlapQueryService] runId:43	Type:QM:
+SELECT
+NON EMPTY {[Measures].[Gasto]} ON COLUMNS,
+NON EMPTY {Hierarchize({{[Clasificacion.Clases de Articulos].[COMIDA]}, Filter({{[Clasificacion.Clases de Articulos].[Articulo].Members}}, (Exists(Ancestor([Clasificacion.Clases de Articulos].CurrentMember, [Clasificacion.Clases de Articulos].[Clasificacion]), {[Clasificacion.Clases de Articulos].[COMIDA]}).Count  > 0))})} ON ROWS
+FROM [Movimientos]
+2016-02-14 15:26:52,937 INFO  [org.saiku.service.olap.OlapQueryService] runId:43	Size: 3/9	Execute:	45ms	Format:	15ms	 Total: 60ms
+2016-02-14 15:28:22,060 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/28307C14-48C4-C64A-BDF6-C05A2F2514B6/axis/FILTER/dimension/Clasificacion	POST
+2016-02-14 15:28:22,060 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 28307C14-48C4-C64A-BDF6-C05A2F2514B6 dimension Clasificacion to axis FILTER  position0
+2016-02-14 15:28:23,773 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/28307C14-48C4-C64A-BDF6-C05A2F2514B6/result/metadata/dimensions/Clasificacion/hierarchies/[Clasificacion.Clases de Articulos]/levels/[Clasificacion.Clases de Articulos].[Clasificacion]	GET
+2016-02-14 15:28:23,818 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/28307C14-48C4-C64A-BDF6-C05A2F2514B6/axis/FILTER/dimension/Clasificacion	GET
+2016-02-14 15:28:38,930 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/28307C14-48C4-C64A-BDF6-C05A2F2514B6/axis/FILTER/dimension/Clasificacion	PUT	
+2016-02-14 15:28:38,945 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/28307C14-48C4-C64A-BDF6-C05A2F2514B6/axis/FILTER/dimension/Clasificacion	GET
+2016-02-14 15:28:46,831 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/28307C14-48C4-C64A-BDF6-C05A2F2514B6/axis/COLUMNS/dimension/Clasificacion	POST
+2016-02-14 15:28:46,831 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 28307C14-48C4-C64A-BDF6-C05A2F2514B6 dimension Clasificacion to axis COLUMNS  position1
+2016-02-14 15:28:50,857 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/28307C14-48C4-C64A-BDF6-C05A2F2514B6/axis/ROWS/dimension/Clasificacion	POST
+2016-02-14 15:28:50,857 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 28307C14-48C4-C64A-BDF6-C05A2F2514B6 dimension Clasificacion to axis ROWS  position0
+2016-02-14 15:28:50,962 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/28307C14-48C4-C64A-BDF6-C05A2F2514B6/resultflattened	GET
+2016-02-14 15:28:50,962 INFO  [org.saiku.service.olap.OlapQueryService] runId:44	Type:QM:
+SELECT
+NON EMPTY {[Measures].[Gasto]} ON COLUMNS,
+NON EMPTY {Hierarchize({{[Clasificacion.Clases de Articulos].[COMIDA]}, Filter({{[Clasificacion.Clases de Articulos].[Articulo].Members}}, (Exists(Ancestor([Clasificacion.Clases de Articulos].CurrentMember, [Clasificacion.Clases de Articulos].[Clasificacion]), {[Clasificacion.Clases de Articulos].[COMIDA]}).Count  > 0))})} ON ROWS
+FROM [Movimientos]
+2016-02-14 15:28:50,992 INFO  [org.saiku.service.olap.OlapQueryService] runId:44	Size: 3/9	Execute:	15ms	Format:	15ms	 Total: 30ms
+2016-02-14 15:29:05,503 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/28307C14-48C4-C64A-BDF6-C05A2F2514B6/axis/FILTER/dimension/Clasificacion	POST
+2016-02-14 15:29:05,503 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 28307C14-48C4-C64A-BDF6-C05A2F2514B6 dimension Clasificacion to axis FILTER  position0
+2016-02-14 15:29:09,168 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/28307C14-48C4-C64A-BDF6-C05A2F2514B6/axis/ROWS/dimension/Clasificacion	POST
+2016-02-14 15:29:09,168 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 28307C14-48C4-C64A-BDF6-C05A2F2514B6 dimension Clasificacion to axis ROWS  position0
+2016-02-14 15:29:09,288 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/28307C14-48C4-C64A-BDF6-C05A2F2514B6/resultflattened	GET
+2016-02-14 15:29:09,288 INFO  [org.saiku.service.olap.OlapQueryService] runId:45	Type:QM:
+SELECT
+NON EMPTY {[Measures].[Gasto]} ON COLUMNS,
+NON EMPTY {Hierarchize({{[Clasificacion.Clases de Articulos].[COMIDA]}, Filter({{[Clasificacion.Clases de Articulos].[Articulo].Members}}, (Exists(Ancestor([Clasificacion.Clases de Articulos].CurrentMember, [Clasificacion.Clases de Articulos].[Clasificacion]), {[Clasificacion.Clases de Articulos].[COMIDA]}).Count  > 0))})} ON ROWS
+FROM [Movimientos]
+2016-02-14 15:29:09,318 INFO  [org.saiku.service.olap.OlapQueryService] runId:45	Size: 3/9	Execute:	15ms	Format:	15ms	 Total: 30ms
+2016-02-14 16:16:40,211 DEBUG [org.saiku.web.service.SessionService] Logging in with [org.springframework.security.core.userdetails.User@586034f: Username: admin; Password: [PROTECTED]; Enabled: true; AccountNonExpired: true; credentialsNonExpired: true; AccountNonLocked: true; Granted Authorities: ROLE_ADMIN,ROLE_USER]
+2016-02-14 16:16:48,971 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3	POST	 xml:false
+2016-02-14 16:16:56,481 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/axis/COLUMNS/dimension/Measures/member/[Measures].[Ventas]	POST
+2016-02-14 16:16:56,481 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 686CC558-6705-D33A-ACE7-D4624905E9A3 dimension Measures to axis COLUMNS  position0
+2016-02-14 16:16:59,650 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/axis/COLUMNS/dimension/Measures/member/[Measures].[Gasto]	POST
+2016-02-14 16:16:59,650 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 686CC558-6705-D33A-ACE7-D4624905E9A3 dimension Measures to axis COLUMNS  position0
+2016-02-14 16:17:02,932 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/axis/ROWS/dimension/mes/hierarchy/[mes]/[mes].[(All)]	POST
+2016-02-14 16:17:02,932 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 686CC558-6705-D33A-ACE7-D4624905E9A3 dimension mes to axis ROWS  position0
+2016-02-14 16:17:02,987 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/resultflattened	GET
+2016-02-14 16:17:02,987 INFO  [org.saiku.service.olap.OlapQueryService] runId:46	Type:QM:
+SELECT
+NON EMPTY {[Measures].[Ventas], [Measures].[Gasto]} ON COLUMNS,
+NON EMPTY {Hierarchize({[mes].[mes]})} ON ROWS
+FROM [Movimientos]
+2016-02-14 16:17:03,056 INFO  [org.saiku.service.olap.OlapQueryService] runId:46	Exception: MondrianException: Mondrian Error:No function matches signature '{<Level>}'
+2016-02-14 16:17:03,056 ERROR [org.saiku.web.rest.resources.QueryResource] Cannot execute query (686CC558-6705-D33A-ACE7-D4624905E9A3)
+org.saiku.service.util.exception.SaikuServiceException: runId:46	Can't execute query: 686CC558-6705-D33A-ACE7-D4624905E9A3
+	at org.saiku.service.olap.OlapQueryService.execute(OlapQueryService.java:253)
+	at org.saiku.service.olap.OlapQueryService.execute(OlapQueryService.java:207)
+	at org.saiku.web.rest.resources.QueryResource.execute(QueryResource.java:717)
+	at org.saiku.web.rest.resources.QueryResource$$FastClassByCGLIB$$e130f1a0.invoke(<generated>)
+	at net.sf.cglib.proxy.MethodProxy.invoke(MethodProxy.java:191)
+	at org.springframework.aop.framework.Cglib2AopProxy$DynamicAdvisedInterceptor.intercept(Cglib2AopProxy.java:617)
+	at org.saiku.web.rest.resources.QueryResource$$EnhancerByCGLIB$$e19ca8a4.execute(<generated>)
+	at sun.reflect.GeneratedMethodAccessor54.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:483)
+	at com.sun.jersey.spi.container.JavaMethodInvokerFactory$1.invoke(JavaMethodInvokerFactory.java:60)
+	at com.sun.jersey.server.impl.model.method.dispatch.AbstractResourceMethodDispatchProvider$TypeOutInvoker._dispatch(AbstractResourceMethodDispatchProvider.java:185)
+	at com.sun.jersey.server.impl.model.method.dispatch.ResourceJavaMethodDispatcher.dispatch(ResourceJavaMethodDispatcher.java:75)
+	at com.sun.jersey.server.impl.uri.rules.HttpMethodRule.accept(HttpMethodRule.java:288)
+	at com.sun.jersey.server.impl.uri.rules.RightHandPathRule.accept(RightHandPathRule.java:147)
+	at com.sun.jersey.server.impl.uri.rules.ResourceClassRule.accept(ResourceClassRule.java:108)
+	at com.sun.jersey.server.impl.uri.rules.RightHandPathRule.accept(RightHandPathRule.java:147)
+	at com.sun.jersey.server.impl.uri.rules.RootResourceClassesRule.accept(RootResourceClassesRule.java:84)
+	at com.sun.jersey.server.impl.application.WebApplicationImpl._handleRequest(WebApplicationImpl.java:1469)
+	at com.sun.jersey.server.impl.application.WebApplicationImpl._handleRequest(WebApplicationImpl.java:1400)
+	at com.sun.jersey.server.impl.application.WebApplicationImpl.handleRequest(WebApplicationImpl.java:1349)
+	at com.sun.jersey.server.impl.application.WebApplicationImpl.handleRequest(WebApplicationImpl.java:1339)
+	at com.sun.jersey.spi.container.servlet.WebComponent.service(WebComponent.java:416)
+	at com.sun.jersey.spi.container.servlet.ServletContainer.service(ServletContainer.java:537)
+	at org.codehaus.enunciate.modules.jersey.EnunciateJerseyServletContainer.service(EnunciateJerseyServletContainer.java:248)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:717)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:290)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+	at org.codehaus.enunciate.webapp.HTTPRequestContextFilter.doFilter(HTTPRequestContextFilter.java:36)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:343)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:109)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:83)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:97)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:78)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:54)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:35)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.authentication.www.BasicAuthenticationFilter.doFilter(BasicAuthenticationFilter.java:177)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter.doFilter(DefaultLoginPageGeneratingFilter.java:91)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:187)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:105)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:79)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:149)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:237)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:167)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:233)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:191)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:127)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:102)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:109)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:298)
+	at org.apache.coyote.http11.Http11Processor.process(Http11Processor.java:852)
+	at org.apache.coyote.http11.Http11Protocol$Http11ConnectionHandler.process(Http11Protocol.java:588)
+	at org.apache.tomcat.util.net.JIoEndpoint$Worker.run(JIoEndpoint.java:489)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.olap4j.OlapException: mondrian gave exception while parsing query
+	at mondrian.olap4j.MondrianOlap4jConnection$Helper.createException(MondrianOlap4jConnection.java:827)
+	at mondrian.olap4j.MondrianOlap4jStatement.parseQuery(MondrianOlap4jStatement.java:375)
+	at mondrian.olap4j.MondrianOlap4jStatement.executeOlapQuery(MondrianOlap4jStatement.java:346)
+	at org.saiku.olap.query.OlapQuery.execute(OlapQuery.java:260)
+	at org.saiku.service.olap.OlapQueryService.execute(OlapQueryService.java:233)
+	... 69 more
+Caused by: mondrian.olap.MondrianException: Mondrian Error:Failed to parse query 'SELECT
+NON EMPTY {[Measures].[Ventas], [Measures].[Gasto]} ON COLUMNS,
+NON EMPTY {Hierarchize({[mes].[mes]})} ON ROWS
+FROM [Movimientos]'
+	at mondrian.resource.MondrianResource$_Def0.ex(MondrianResource.java:972)
+	at mondrian.olap.ConnectionBase.parseStatement(ConnectionBase.java:100)
+	at mondrian.olap4j.MondrianOlap4jStatement$1.execute(MondrianOlap4jStatement.java:362)
+	at mondrian.olap4j.MondrianOlap4jStatement$1.execute(MondrianOlap4jStatement.java:360)
+	at mondrian.server.Locus.execute(Locus.java:87)
+	at mondrian.server.Locus.execute(Locus.java:72)
+	at mondrian.olap4j.MondrianOlap4jStatement.parseQuery(MondrianOlap4jStatement.java:356)
+	... 72 more
+Caused by: mondrian.olap.MondrianException: Mondrian Error:No function matches signature '{<Level>}'
+	at mondrian.resource.MondrianResource$_Def0.ex(MondrianResource.java:969)
+	at mondrian.olap.ValidatorImpl.getDef(ValidatorImpl.java:205)
+	at mondrian.olap.fun.FunUtil.resolveFunArgs(FunUtil.java:2027)
+	at mondrian.mdx.UnresolvedFunCall.accept(UnresolvedFunCall.java:102)
+	at mondrian.olap.ValidatorImpl.validate(ValidatorImpl.java:79)
+	at mondrian.olap.fun.FunUtil.resolveFunArgs(FunUtil.java:2024)
+	at mondrian.mdx.UnresolvedFunCall.accept(UnresolvedFunCall.java:102)
+	at mondrian.olap.ValidatorImpl.validate(ValidatorImpl.java:79)
+	at mondrian.olap.fun.FunUtil.resolveFunArgs(FunUtil.java:2024)
+	at mondrian.mdx.UnresolvedFunCall.accept(UnresolvedFunCall.java:102)
+	at mondrian.olap.ValidatorImpl.validate(ValidatorImpl.java:79)
+	at mondrian.olap.QueryAxis.resolve(QueryAxis.java:213)
+	at mondrian.olap.ValidatorImpl.validate(ValidatorImpl.java:140)
+	at mondrian.olap.Query.resolve(Query.java:561)
+	at mondrian.olap.Query.resolve(Query.java:446)
+	at mondrian.olap.Query.<init>(Query.java:200)
+	at mondrian.olap.Query.<init>(Query.java:161)
+	at mondrian.olap.Parser$FactoryImpl.makeQuery(Parser.java:927)
+	at mondrian.parser.MdxParserImpl.selectStatement(MdxParserImpl.java:1241)
+	at mondrian.parser.MdxParserImpl.statement(MdxParserImpl.java:1074)
+	at mondrian.parser.MdxParserImpl.statementEof(MdxParserImpl.java:188)
+	at mondrian.parser.JavaccParserValidatorImpl.parseInternal(JavaccParserValidatorImpl.java:57)
+	at mondrian.olap.ConnectionBase.parseStatement(ConnectionBase.java:96)
+	... 77 more
+2016-02-14 16:17:19,946 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/axis/COLUMNS/dimension/Measures/member/[Measures].[Gasto]	DELETE
+2016-02-14 16:17:19,946 DEBUG [org.saiku.service.olap.OlapQueryService] query: 686CC558-6705-D33A-ACE7-D4624905E9A3 remove:MEMBER 2
+2016-02-14 16:17:20,051 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/resultflattened	GET
+2016-02-14 16:17:20,051 INFO  [org.saiku.service.olap.OlapQueryService] runId:47	Type:QM:
+SELECT
+NON EMPTY {[Measures].[Ventas]} ON COLUMNS,
+NON EMPTY {Hierarchize({[mes].[mes]})} ON ROWS
+FROM [Movimientos]
+2016-02-14 16:17:20,051 INFO  [org.saiku.service.olap.OlapQueryService] runId:47	Exception: MondrianException: Mondrian Error:No function matches signature '{<Level>}'
+2016-02-14 16:17:20,051 ERROR [org.saiku.web.rest.resources.QueryResource] Cannot execute query (686CC558-6705-D33A-ACE7-D4624905E9A3)
+org.saiku.service.util.exception.SaikuServiceException: runId:47	Can't execute query: 686CC558-6705-D33A-ACE7-D4624905E9A3
+	at org.saiku.service.olap.OlapQueryService.execute(OlapQueryService.java:253)
+	at org.saiku.service.olap.OlapQueryService.execute(OlapQueryService.java:207)
+	at org.saiku.web.rest.resources.QueryResource.execute(QueryResource.java:717)
+	at org.saiku.web.rest.resources.QueryResource$$FastClassByCGLIB$$e130f1a0.invoke(<generated>)
+	at net.sf.cglib.proxy.MethodProxy.invoke(MethodProxy.java:191)
+	at org.springframework.aop.framework.Cglib2AopProxy$DynamicAdvisedInterceptor.intercept(Cglib2AopProxy.java:617)
+	at org.saiku.web.rest.resources.QueryResource$$EnhancerByCGLIB$$e19ca8a4.execute(<generated>)
+	at sun.reflect.GeneratedMethodAccessor54.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:483)
+	at com.sun.jersey.spi.container.JavaMethodInvokerFactory$1.invoke(JavaMethodInvokerFactory.java:60)
+	at com.sun.jersey.server.impl.model.method.dispatch.AbstractResourceMethodDispatchProvider$TypeOutInvoker._dispatch(AbstractResourceMethodDispatchProvider.java:185)
+	at com.sun.jersey.server.impl.model.method.dispatch.ResourceJavaMethodDispatcher.dispatch(ResourceJavaMethodDispatcher.java:75)
+	at com.sun.jersey.server.impl.uri.rules.HttpMethodRule.accept(HttpMethodRule.java:288)
+	at com.sun.jersey.server.impl.uri.rules.RightHandPathRule.accept(RightHandPathRule.java:147)
+	at com.sun.jersey.server.impl.uri.rules.ResourceClassRule.accept(ResourceClassRule.java:108)
+	at com.sun.jersey.server.impl.uri.rules.RightHandPathRule.accept(RightHandPathRule.java:147)
+	at com.sun.jersey.server.impl.uri.rules.RootResourceClassesRule.accept(RootResourceClassesRule.java:84)
+	at com.sun.jersey.server.impl.application.WebApplicationImpl._handleRequest(WebApplicationImpl.java:1469)
+	at com.sun.jersey.server.impl.application.WebApplicationImpl._handleRequest(WebApplicationImpl.java:1400)
+	at com.sun.jersey.server.impl.application.WebApplicationImpl.handleRequest(WebApplicationImpl.java:1349)
+	at com.sun.jersey.server.impl.application.WebApplicationImpl.handleRequest(WebApplicationImpl.java:1339)
+	at com.sun.jersey.spi.container.servlet.WebComponent.service(WebComponent.java:416)
+	at com.sun.jersey.spi.container.servlet.ServletContainer.service(ServletContainer.java:537)
+	at org.codehaus.enunciate.modules.jersey.EnunciateJerseyServletContainer.service(EnunciateJerseyServletContainer.java:248)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:717)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:290)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+	at org.codehaus.enunciate.webapp.HTTPRequestContextFilter.doFilter(HTTPRequestContextFilter.java:36)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:343)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:109)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:83)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:97)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:78)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:54)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:35)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.authentication.www.BasicAuthenticationFilter.doFilter(BasicAuthenticationFilter.java:177)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter.doFilter(DefaultLoginPageGeneratingFilter.java:91)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:187)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:105)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:79)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:149)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:237)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:167)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:233)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:191)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:127)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:102)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:109)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:298)
+	at org.apache.coyote.http11.Http11Processor.process(Http11Processor.java:852)
+	at org.apache.coyote.http11.Http11Protocol$Http11ConnectionHandler.process(Http11Protocol.java:588)
+	at org.apache.tomcat.util.net.JIoEndpoint$Worker.run(JIoEndpoint.java:489)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.olap4j.OlapException: mondrian gave exception while parsing query
+	at mondrian.olap4j.MondrianOlap4jConnection$Helper.createException(MondrianOlap4jConnection.java:827)
+	at mondrian.olap4j.MondrianOlap4jStatement.parseQuery(MondrianOlap4jStatement.java:375)
+	at mondrian.olap4j.MondrianOlap4jStatement.executeOlapQuery(MondrianOlap4jStatement.java:346)
+	at org.saiku.olap.query.OlapQuery.execute(OlapQuery.java:260)
+	at org.saiku.service.olap.OlapQueryService.execute(OlapQueryService.java:233)
+	... 69 more
+Caused by: mondrian.olap.MondrianException: Mondrian Error:Failed to parse query 'SELECT
+NON EMPTY {[Measures].[Ventas]} ON COLUMNS,
+NON EMPTY {Hierarchize({[mes].[mes]})} ON ROWS
+FROM [Movimientos]'
+	at mondrian.resource.MondrianResource$_Def0.ex(MondrianResource.java:972)
+	at mondrian.olap.ConnectionBase.parseStatement(ConnectionBase.java:100)
+	at mondrian.olap4j.MondrianOlap4jStatement$1.execute(MondrianOlap4jStatement.java:362)
+	at mondrian.olap4j.MondrianOlap4jStatement$1.execute(MondrianOlap4jStatement.java:360)
+	at mondrian.server.Locus.execute(Locus.java:87)
+	at mondrian.server.Locus.execute(Locus.java:72)
+	at mondrian.olap4j.MondrianOlap4jStatement.parseQuery(MondrianOlap4jStatement.java:356)
+	... 72 more
+Caused by: mondrian.olap.MondrianException: Mondrian Error:No function matches signature '{<Level>}'
+	at mondrian.resource.MondrianResource$_Def0.ex(MondrianResource.java:969)
+	at mondrian.olap.ValidatorImpl.getDef(ValidatorImpl.java:205)
+	at mondrian.olap.fun.FunUtil.resolveFunArgs(FunUtil.java:2027)
+	at mondrian.mdx.UnresolvedFunCall.accept(UnresolvedFunCall.java:102)
+	at mondrian.olap.ValidatorImpl.validate(ValidatorImpl.java:79)
+	at mondrian.olap.fun.FunUtil.resolveFunArgs(FunUtil.java:2024)
+	at mondrian.mdx.UnresolvedFunCall.accept(UnresolvedFunCall.java:102)
+	at mondrian.olap.ValidatorImpl.validate(ValidatorImpl.java:79)
+	at mondrian.olap.fun.FunUtil.resolveFunArgs(FunUtil.java:2024)
+	at mondrian.mdx.UnresolvedFunCall.accept(UnresolvedFunCall.java:102)
+	at mondrian.olap.ValidatorImpl.validate(ValidatorImpl.java:79)
+	at mondrian.olap.QueryAxis.resolve(QueryAxis.java:213)
+	at mondrian.olap.ValidatorImpl.validate(ValidatorImpl.java:140)
+	at mondrian.olap.Query.resolve(Query.java:561)
+	at mondrian.olap.Query.resolve(Query.java:446)
+	at mondrian.olap.Query.<init>(Query.java:200)
+	at mondrian.olap.Query.<init>(Query.java:161)
+	at mondrian.olap.Parser$FactoryImpl.makeQuery(Parser.java:927)
+	at mondrian.parser.MdxParserImpl.selectStatement(MdxParserImpl.java:1241)
+	at mondrian.parser.MdxParserImpl.statement(MdxParserImpl.java:1074)
+	at mondrian.parser.MdxParserImpl.statementEof(MdxParserImpl.java:188)
+	at mondrian.parser.JavaccParserValidatorImpl.parseInternal(JavaccParserValidatorImpl.java:57)
+	at mondrian.olap.ConnectionBase.parseStatement(ConnectionBase.java:96)
+	... 77 more
+2016-02-14 16:17:41,336 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/axis/ROWS/dimension/mes	POST
+2016-02-14 16:17:41,336 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 686CC558-6705-D33A-ACE7-D4624905E9A3 dimension mes to axis ROWS  position0
+2016-02-14 16:17:41,472 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/resultflattened	GET
+2016-02-14 16:17:41,472 INFO  [org.saiku.service.olap.OlapQueryService] runId:48	Type:QM:
+SELECT
+NON EMPTY {[Measures].[Ventas]} ON COLUMNS,
+NON EMPTY {Hierarchize({[mes].[mes]})} ON ROWS
+FROM [Movimientos]
+2016-02-14 16:17:41,472 INFO  [org.saiku.service.olap.OlapQueryService] runId:48	Exception: MondrianException: Mondrian Error:No function matches signature '{<Level>}'
+2016-02-14 16:17:41,472 ERROR [org.saiku.web.rest.resources.QueryResource] Cannot execute query (686CC558-6705-D33A-ACE7-D4624905E9A3)
+org.saiku.service.util.exception.SaikuServiceException: runId:48	Can't execute query: 686CC558-6705-D33A-ACE7-D4624905E9A3
+	at org.saiku.service.olap.OlapQueryService.execute(OlapQueryService.java:253)
+	at org.saiku.service.olap.OlapQueryService.execute(OlapQueryService.java:207)
+	at org.saiku.web.rest.resources.QueryResource.execute(QueryResource.java:717)
+	at org.saiku.web.rest.resources.QueryResource$$FastClassByCGLIB$$e130f1a0.invoke(<generated>)
+	at net.sf.cglib.proxy.MethodProxy.invoke(MethodProxy.java:191)
+	at org.springframework.aop.framework.Cglib2AopProxy$DynamicAdvisedInterceptor.intercept(Cglib2AopProxy.java:617)
+	at org.saiku.web.rest.resources.QueryResource$$EnhancerByCGLIB$$e19ca8a4.execute(<generated>)
+	at sun.reflect.GeneratedMethodAccessor54.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:483)
+	at com.sun.jersey.spi.container.JavaMethodInvokerFactory$1.invoke(JavaMethodInvokerFactory.java:60)
+	at com.sun.jersey.server.impl.model.method.dispatch.AbstractResourceMethodDispatchProvider$TypeOutInvoker._dispatch(AbstractResourceMethodDispatchProvider.java:185)
+	at com.sun.jersey.server.impl.model.method.dispatch.ResourceJavaMethodDispatcher.dispatch(ResourceJavaMethodDispatcher.java:75)
+	at com.sun.jersey.server.impl.uri.rules.HttpMethodRule.accept(HttpMethodRule.java:288)
+	at com.sun.jersey.server.impl.uri.rules.RightHandPathRule.accept(RightHandPathRule.java:147)
+	at com.sun.jersey.server.impl.uri.rules.ResourceClassRule.accept(ResourceClassRule.java:108)
+	at com.sun.jersey.server.impl.uri.rules.RightHandPathRule.accept(RightHandPathRule.java:147)
+	at com.sun.jersey.server.impl.uri.rules.RootResourceClassesRule.accept(RootResourceClassesRule.java:84)
+	at com.sun.jersey.server.impl.application.WebApplicationImpl._handleRequest(WebApplicationImpl.java:1469)
+	at com.sun.jersey.server.impl.application.WebApplicationImpl._handleRequest(WebApplicationImpl.java:1400)
+	at com.sun.jersey.server.impl.application.WebApplicationImpl.handleRequest(WebApplicationImpl.java:1349)
+	at com.sun.jersey.server.impl.application.WebApplicationImpl.handleRequest(WebApplicationImpl.java:1339)
+	at com.sun.jersey.spi.container.servlet.WebComponent.service(WebComponent.java:416)
+	at com.sun.jersey.spi.container.servlet.ServletContainer.service(ServletContainer.java:537)
+	at org.codehaus.enunciate.modules.jersey.EnunciateJerseyServletContainer.service(EnunciateJerseyServletContainer.java:248)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:717)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:290)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+	at org.codehaus.enunciate.webapp.HTTPRequestContextFilter.doFilter(HTTPRequestContextFilter.java:36)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:343)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:109)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:83)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:97)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:78)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:54)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:35)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.authentication.www.BasicAuthenticationFilter.doFilter(BasicAuthenticationFilter.java:177)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter.doFilter(DefaultLoginPageGeneratingFilter.java:91)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:187)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:105)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:79)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:149)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:237)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:167)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:233)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:191)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:127)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:102)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:109)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:298)
+	at org.apache.coyote.http11.Http11Processor.process(Http11Processor.java:852)
+	at org.apache.coyote.http11.Http11Protocol$Http11ConnectionHandler.process(Http11Protocol.java:588)
+	at org.apache.tomcat.util.net.JIoEndpoint$Worker.run(JIoEndpoint.java:489)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.olap4j.OlapException: mondrian gave exception while parsing query
+	at mondrian.olap4j.MondrianOlap4jConnection$Helper.createException(MondrianOlap4jConnection.java:827)
+	at mondrian.olap4j.MondrianOlap4jStatement.parseQuery(MondrianOlap4jStatement.java:375)
+	at mondrian.olap4j.MondrianOlap4jStatement.executeOlapQuery(MondrianOlap4jStatement.java:346)
+	at org.saiku.olap.query.OlapQuery.execute(OlapQuery.java:260)
+	at org.saiku.service.olap.OlapQueryService.execute(OlapQueryService.java:233)
+	... 69 more
+Caused by: mondrian.olap.MondrianException: Mondrian Error:Failed to parse query 'SELECT
+NON EMPTY {[Measures].[Ventas]} ON COLUMNS,
+NON EMPTY {Hierarchize({[mes].[mes]})} ON ROWS
+FROM [Movimientos]'
+	at mondrian.resource.MondrianResource$_Def0.ex(MondrianResource.java:972)
+	at mondrian.olap.ConnectionBase.parseStatement(ConnectionBase.java:100)
+	at mondrian.olap4j.MondrianOlap4jStatement$1.execute(MondrianOlap4jStatement.java:362)
+	at mondrian.olap4j.MondrianOlap4jStatement$1.execute(MondrianOlap4jStatement.java:360)
+	at mondrian.server.Locus.execute(Locus.java:87)
+	at mondrian.server.Locus.execute(Locus.java:72)
+	at mondrian.olap4j.MondrianOlap4jStatement.parseQuery(MondrianOlap4jStatement.java:356)
+	... 72 more
+Caused by: mondrian.olap.MondrianException: Mondrian Error:No function matches signature '{<Level>}'
+	at mondrian.resource.MondrianResource$_Def0.ex(MondrianResource.java:969)
+	at mondrian.olap.ValidatorImpl.getDef(ValidatorImpl.java:205)
+	at mondrian.olap.fun.FunUtil.resolveFunArgs(FunUtil.java:2027)
+	at mondrian.mdx.UnresolvedFunCall.accept(UnresolvedFunCall.java:102)
+	at mondrian.olap.ValidatorImpl.validate(ValidatorImpl.java:79)
+	at mondrian.olap.fun.FunUtil.resolveFunArgs(FunUtil.java:2024)
+	at mondrian.mdx.UnresolvedFunCall.accept(UnresolvedFunCall.java:102)
+	at mondrian.olap.ValidatorImpl.validate(ValidatorImpl.java:79)
+	at mondrian.olap.fun.FunUtil.resolveFunArgs(FunUtil.java:2024)
+	at mondrian.mdx.UnresolvedFunCall.accept(UnresolvedFunCall.java:102)
+	at mondrian.olap.ValidatorImpl.validate(ValidatorImpl.java:79)
+	at mondrian.olap.QueryAxis.resolve(QueryAxis.java:213)
+	at mondrian.olap.ValidatorImpl.validate(ValidatorImpl.java:140)
+	at mondrian.olap.Query.resolve(Query.java:561)
+	at mondrian.olap.Query.resolve(Query.java:446)
+	at mondrian.olap.Query.<init>(Query.java:200)
+	at mondrian.olap.Query.<init>(Query.java:161)
+	at mondrian.olap.Parser$FactoryImpl.makeQuery(Parser.java:927)
+	at mondrian.parser.MdxParserImpl.selectStatement(MdxParserImpl.java:1241)
+	at mondrian.parser.MdxParserImpl.statement(MdxParserImpl.java:1074)
+	at mondrian.parser.MdxParserImpl.statementEof(MdxParserImpl.java:188)
+	at mondrian.parser.JavaccParserValidatorImpl.parseInternal(JavaccParserValidatorImpl.java:57)
+	at mondrian.olap.ConnectionBase.parseStatement(ConnectionBase.java:96)
+	... 77 more
+2016-02-14 16:17:49,637 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/axis/ROWS/dimension/mes/hierarchy/[mes]/[mes].[(All)]	DELETE
+2016-02-14 16:17:49,637 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 686CC558-6705-D33A-ACE7-D4624905E9A3 dimension mes to axis UNUSED  position-1
+2016-02-14 16:17:52,814 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/axis/ROWS/dimension/Proyecto/hierarchy/[Proyecto.Jerarquia]/[Proyecto.Jerarquia].[(All)]	POST
+2016-02-14 16:17:52,814 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 686CC558-6705-D33A-ACE7-D4624905E9A3 dimension Proyecto to axis ROWS  position0
+2016-02-14 16:17:52,882 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/resultflattened	GET
+2016-02-14 16:17:52,882 INFO  [org.saiku.service.olap.OlapQueryService] runId:49	Type:QM:
+SELECT
+NON EMPTY {[Measures].[Ventas]} ON COLUMNS,
+NON EMPTY {Hierarchize({[Proyecto.Jerarquia].[All Proyecto.Jerarquias]})} ON ROWS
+FROM [Movimientos]
+2016-02-14 16:17:52,909 INFO  [org.saiku.service.olap.OlapQueryService] runId:49	Size: 2/2	Execute:	27ms	Format:	0ms	 Total: 27ms
+2016-02-14 16:18:12,621 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/axis/COLUMNS/dimension/Measures/member/[Measures].[Gasto]	POST
+2016-02-14 16:18:12,621 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 686CC558-6705-D33A-ACE7-D4624905E9A3 dimension Measures to axis COLUMNS  position0
+2016-02-14 16:18:12,676 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/resultflattened	GET
+2016-02-14 16:18:12,676 INFO  [org.saiku.service.olap.OlapQueryService] runId:50	Type:QM:
+SELECT
+NON EMPTY {[Measures].[Ventas], [Measures].[Gasto]} ON COLUMNS,
+NON EMPTY {Hierarchize({[Proyecto.Jerarquia].[All Proyecto.Jerarquias]})} ON ROWS
+FROM [Movimientos]
+2016-02-14 16:18:12,687 INFO  [org.saiku.service.olap.OlapQueryService] runId:50	Size: 3/2	Execute:	11ms	Format:	0ms	 Total: 11ms
+2016-02-14 16:18:15,578 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/resultflat	GET
+2016-02-14 16:18:15,578 INFO  [org.saiku.service.olap.OlapQueryService] runId:51	Type:QM:
+SELECT
+NON EMPTY {[Measures].[Ventas], [Measures].[Gasto]} ON COLUMNS,
+NON EMPTY {Hierarchize({[Proyecto.Jerarquia].[All Proyecto.Jerarquias]})} ON ROWS
+FROM [Movimientos]
+2016-02-14 16:18:15,589 INFO  [org.saiku.service.olap.OlapQueryService] runId:51	Size: 3/2	Execute:	0ms	Format:	11ms	 Total: 11ms
+2016-02-14 16:18:33,043 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/swapaxes	PUT
+2016-02-14 16:18:33,131 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/resultflat	GET
+2016-02-14 16:18:33,131 INFO  [org.saiku.service.olap.OlapQueryService] runId:52	Type:QM:
+SELECT
+NON EMPTY {Hierarchize({[Proyecto.Jerarquia].[All Proyecto.Jerarquias]})} ON COLUMNS,
+NON EMPTY {[Measures].[Ventas], [Measures].[Gasto]} ON ROWS
+FROM [Movimientos]
+2016-02-14 16:18:33,140 INFO  [org.saiku.service.olap.OlapQueryService] runId:52	Size: 2/3	Execute:	9ms	Format:	0ms	 Total: 9ms
+2016-02-14 16:18:47,928 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/axis/ROWS/dimension/Measures/member/[Measures].[Ganancias]	POST
+2016-02-14 16:18:47,928 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 686CC558-6705-D33A-ACE7-D4624905E9A3 dimension Measures to axis ROWS  position0
+2016-02-14 16:18:47,978 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/resultflat	GET
+2016-02-14 16:18:47,978 INFO  [org.saiku.service.olap.OlapQueryService] runId:53	Type:QM:
+SELECT
+NON EMPTY {Hierarchize({[Proyecto.Jerarquia].[All Proyecto.Jerarquias]})} ON COLUMNS,
+NON EMPTY {[Measures].[Ventas], [Measures].[Gasto], [Measures].[Ganancias]} ON ROWS
+FROM [Movimientos]
+2016-02-14 16:18:47,985 INFO  [org.saiku.service.olap.OlapQueryService] runId:53	Size: 2/4	Execute:	7ms	Format:	0ms	 Total: 7ms
+2016-02-14 16:19:08,405 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/axis/FILTER/dimension/Proyecto	POST
+2016-02-14 16:19:08,405 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 686CC558-6705-D33A-ACE7-D4624905E9A3 dimension Proyecto to axis FILTER  position0
+2016-02-14 16:19:10,620 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/axis/COLUMNS/dimension/Proyecto	POST
+2016-02-14 16:19:10,620 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 686CC558-6705-D33A-ACE7-D4624905E9A3 dimension Proyecto to axis COLUMNS  position0
+2016-02-14 16:19:10,659 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/resultflat	GET
+2016-02-14 16:19:10,659 INFO  [org.saiku.service.olap.OlapQueryService] runId:54	Type:QM:
+SELECT
+NON EMPTY {Hierarchize({[Proyecto.Jerarquia].[All Proyecto.Jerarquias]})} ON COLUMNS,
+NON EMPTY {[Measures].[Ventas], [Measures].[Gasto], [Measures].[Ganancias]} ON ROWS
+FROM [Movimientos]
+2016-02-14 16:19:10,667 INFO  [org.saiku.service.olap.OlapQueryService] runId:54	Size: 2/4	Execute:	8ms	Format:	0ms	 Total: 8ms
+2016-02-14 16:19:14,321 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/axis/FILTER/dimension/Proyecto/hierarchy/[Proyecto.Jerarquia]/[Proyecto.Jerarquia].[Proyecto]	POST
+2016-02-14 16:19:14,321 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 686CC558-6705-D33A-ACE7-D4624905E9A3 dimension Proyecto to axis FILTER  position0
+2016-02-14 16:19:14,329 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/result/metadata/dimensions/Proyecto/hierarchies/[Proyecto.Jerarquia]/levels/[Proyecto.Jerarquia].[Proyecto]	GET
+2016-02-14 16:19:14,375 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/axis/FILTER/dimension/Proyecto	GET
+2016-02-14 16:19:25,996 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/axis/FILTER/dimension/Proyecto	PUT	
+2016-02-14 16:19:26,024 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/axis/FILTER/dimension/Proyecto	GET
+2016-02-14 16:19:31,610 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/axis/COLUMNS/dimension/Proyecto	POST
+2016-02-14 16:19:31,610 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 686CC558-6705-D33A-ACE7-D4624905E9A3 dimension Proyecto to axis COLUMNS  position0
+2016-02-14 16:19:31,676 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/resultflat	GET
+2016-02-14 16:19:31,676 INFO  [org.saiku.service.olap.OlapQueryService] runId:55	Type:QM:
+SELECT
+NON EMPTY {Hierarchize({{[Proyecto.Jerarquia].[All Proyecto.Jerarquias]}, {[Proyecto.Jerarquia].[CERDO].[COCHINO_#1]}})} ON COLUMNS,
+NON EMPTY {[Measures].[Ventas], [Measures].[Gasto], [Measures].[Ganancias]} ON ROWS
+FROM [Movimientos]
+2016-02-14 16:19:31,676 INFO  [org.saiku.service.olap.OlapQueryService] runId:55	Size: 3/5	Execute:	0ms	Format:	0ms	 Total: 0ms
+2016-02-14 16:19:38,532 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/axis/COLUMNS/dimension/Proyecto/hierarchy/[Proyecto.Jerarquia]/[Proyecto.Jerarquia].[Proyecto]	DELETE
+2016-02-14 16:19:38,626 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/resultflat	GET
+2016-02-14 16:19:38,626 INFO  [org.saiku.service.olap.OlapQueryService] runId:56	Type:QM:
+SELECT
+NON EMPTY {Hierarchize({[Proyecto.Jerarquia].[All Proyecto.Jerarquias]})} ON COLUMNS,
+NON EMPTY {[Measures].[Ventas], [Measures].[Gasto], [Measures].[Ganancias]} ON ROWS
+FROM [Movimientos]
+2016-02-14 16:19:38,636 INFO  [org.saiku.service.olap.OlapQueryService] runId:56	Size: 2/4	Execute:	0ms	Format:	10ms	 Total: 10ms
+2016-02-14 16:20:36,378 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/axis/FILTER/dimension/Proyecto/hierarchy/[Proyecto.Jerarquia]/[Proyecto.Jerarquia].[Proyecto]	POST
+2016-02-14 16:20:36,378 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 686CC558-6705-D33A-ACE7-D4624905E9A3 dimension Proyecto to axis FILTER  position0
+2016-02-14 16:20:36,378 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/result/metadata/dimensions/Proyecto/hierarchies/[Proyecto.Jerarquia]/levels/[Proyecto.Jerarquia].[Proyecto]	GET
+2016-02-14 16:20:36,411 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/axis/FILTER/dimension/Proyecto	GET
+2016-02-14 16:20:42,048 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/axis/FILTER/dimension/Proyecto	PUT	
+2016-02-14 16:20:42,059 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/axis/FILTER/dimension/Proyecto	GET
+2016-02-14 16:20:47,272 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/axis/COLUMNS/dimension/Proyecto	POST
+2016-02-14 16:20:47,272 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 686CC558-6705-D33A-ACE7-D4624905E9A3 dimension Proyecto to axis COLUMNS  position0
+2016-02-14 16:20:47,322 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/resultflat	GET
+2016-02-14 16:20:47,322 INFO  [org.saiku.service.olap.OlapQueryService] runId:57	Type:QM:
+SELECT
+NON EMPTY {Hierarchize({{[Proyecto.Jerarquia].[All Proyecto.Jerarquias]}, {[Proyecto.Jerarquia].[CERDO].[COCHINO_#1]}})} ON COLUMNS,
+NON EMPTY {[Measures].[Ventas], [Measures].[Gasto], [Measures].[Ganancias]} ON ROWS
+FROM [Movimientos]
+2016-02-14 16:20:47,333 INFO  [org.saiku.service.olap.OlapQueryService] runId:57	Size: 3/5	Execute:	11ms	Format:	0ms	 Total: 11ms
+2016-02-14 16:21:01,752 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/axis/COLUMNS/dimension/Proyecto/hierarchy/[Proyecto.Jerarquia]/[Proyecto.Jerarquia].[(All)]	DELETE
+2016-02-14 16:21:01,807 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/resultflat	GET
+2016-02-14 16:21:01,807 INFO  [org.saiku.service.olap.OlapQueryService] runId:58	Type:QM:
+SELECT
+NON EMPTY {Hierarchize({[Proyecto.Jerarquia].[CERDO].[COCHINO_#1]})} ON COLUMNS,
+NON EMPTY {[Measures].[Ventas], [Measures].[Gasto], [Measures].[Ganancias]} ON ROWS
+FROM [Movimientos]
+2016-02-14 16:21:01,834 INFO  [org.saiku.service.olap.OlapQueryService] runId:58	Size: 2/4	Execute:	18ms	Format:	9ms	 Total: 27ms
+2016-02-14 16:21:28,096 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/axis/FILTER/dimension/Proyecto	POST
+2016-02-14 16:21:28,096 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 686CC558-6705-D33A-ACE7-D4624905E9A3 dimension Proyecto to axis FILTER  position0
+2016-02-14 16:21:34,496 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/axis/COLUMNS/dimension/Proyecto	POST
+2016-02-14 16:21:34,496 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 686CC558-6705-D33A-ACE7-D4624905E9A3 dimension Proyecto to axis COLUMNS  position0
+2016-02-14 16:21:34,549 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/resultflat	GET
+2016-02-14 16:21:34,549 INFO  [org.saiku.service.olap.OlapQueryService] runId:59	Type:QM:
+SELECT
+NON EMPTY {Hierarchize({[Proyecto.Jerarquia].[CERDO].[COCHINO_#1]})} ON COLUMNS,
+NON EMPTY {[Measures].[Ventas], [Measures].[Gasto], [Measures].[Ganancias]} ON ROWS
+FROM [Movimientos]
+2016-02-14 16:21:34,558 INFO  [org.saiku.service.olap.OlapQueryService] runId:59	Size: 2/4	Execute:	9ms	Format:	0ms	 Total: 9ms
+2016-02-14 16:21:53,054 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/result/metadata/dimensions/Proyecto/hierarchies/[Proyecto.Jerarquia]/levels/[Proyecto.Jerarquia].[Proyecto]	GET
+2016-02-14 16:21:53,054 DEBUG [org.saiku.service.olap.OlapQueryService] Found hierarchy in the result: [Proyecto.Jerarquia]
+2016-02-14 16:21:53,086 DEBUG [org.saiku.service.olap.OlapQueryService] Found members in the result: 1
+2016-02-14 16:21:53,107 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/axis/COLUMNS/dimension/Proyecto	GET
+2016-02-14 16:22:16,988 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/axis/COLUMNS/dimension/Proyecto	PUT	
+2016-02-14 16:22:17,080 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/axis/COLUMNS/dimension/Proyecto	GET
+2016-02-14 16:22:17,184 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/resultflat	GET
+2016-02-14 16:22:17,184 INFO  [org.saiku.service.olap.OlapQueryService] runId:60	Type:QM:
+SELECT
+NON EMPTY {Hierarchize({{[Proyecto.Jerarquia].[CERDO].[COCHINO_#1], [Proyecto.Jerarquia].[POLLO ENGORDE].[POLLO_24/10/14], [Proyecto.Jerarquia].[VARIOS].[SIEMBRA DE AJI]}})} ON COLUMNS,
+NON EMPTY {[Measures].[Ventas], [Measures].[Gasto], [Measures].[Ganancias]} ON ROWS
+FROM [Movimientos]
+2016-02-14 16:22:17,197 INFO  [org.saiku.service.olap.OlapQueryService] runId:60	Size: 4/4	Execute:	13ms	Format:	0ms	 Total: 13ms
+2016-02-14 16:22:24,744 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/axis/COLUMNS/sort/BASC/[Proyecto.Jerarquia].CurrentMember.Name	POST
+2016-02-14 16:22:24,838 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/resultflat	GET
+2016-02-14 16:22:24,838 INFO  [org.saiku.service.olap.OlapQueryService] runId:61	Type:QM:
+SELECT
+NON EMPTY Order({Hierarchize({{[Proyecto.Jerarquia].[CERDO].[COCHINO_#1], [Proyecto.Jerarquia].[POLLO ENGORDE].[POLLO_24/10/14], [Proyecto.Jerarquia].[VARIOS].[SIEMBRA DE AJI]}})}, [Proyecto.Jerarquia].CurrentMember.Name, BASC) ON COLUMNS,
+NON EMPTY {[Measures].[Ventas], [Measures].[Gasto], [Measures].[Ganancias]} ON ROWS
+FROM [Movimientos]
+2016-02-14 16:22:24,850 INFO  [org.saiku.service.olap.OlapQueryService] runId:61	Size: 4/4	Execute:	12ms	Format:	0ms	 Total: 12ms
+2016-02-14 16:22:26,811 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/axis/COLUMNS/dimension/Proyecto	POST
+2016-02-14 16:22:26,811 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 686CC558-6705-D33A-ACE7-D4624905E9A3 dimension Proyecto to axis COLUMNS  position0
+2016-02-14 16:22:26,870 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/resultflat	GET
+2016-02-14 16:22:26,870 INFO  [org.saiku.service.olap.OlapQueryService] runId:62	Type:QM:
+SELECT
+NON EMPTY Order({Hierarchize({{[Proyecto.Jerarquia].[CERDO].[COCHINO_#1], [Proyecto.Jerarquia].[POLLO ENGORDE].[POLLO_24/10/14], [Proyecto.Jerarquia].[VARIOS].[SIEMBRA DE AJI]}})}, [Proyecto.Jerarquia].CurrentMember.Name, BASC) ON COLUMNS,
+NON EMPTY {[Measures].[Ventas], [Measures].[Gasto], [Measures].[Ganancias]} ON ROWS
+FROM [Movimientos]
+2016-02-14 16:22:26,917 INFO  [org.saiku.service.olap.OlapQueryService] runId:62	Size: 4/4	Execute:	47ms	Format:	0ms	 Total: 47ms
+2016-02-14 16:22:28,044 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/axis/COLUMNS/dimension/Proyecto	POST
+2016-02-14 16:22:28,044 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 686CC558-6705-D33A-ACE7-D4624905E9A3 dimension Proyecto to axis COLUMNS  position0
+2016-02-14 16:22:28,138 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/resultflat	GET
+2016-02-14 16:22:28,138 INFO  [org.saiku.service.olap.OlapQueryService] runId:63	Type:QM:
+SELECT
+NON EMPTY Order({Hierarchize({{[Proyecto.Jerarquia].[CERDO].[COCHINO_#1], [Proyecto.Jerarquia].[POLLO ENGORDE].[POLLO_24/10/14], [Proyecto.Jerarquia].[VARIOS].[SIEMBRA DE AJI]}})}, [Proyecto.Jerarquia].CurrentMember.Name, BASC) ON COLUMNS,
+NON EMPTY {[Measures].[Ventas], [Measures].[Gasto], [Measures].[Ganancias]} ON ROWS
+FROM [Movimientos]
+2016-02-14 16:22:28,150 INFO  [org.saiku.service.olap.OlapQueryService] runId:63	Size: 4/4	Execute:	0ms	Format:	12ms	 Total: 12ms
+2016-02-14 16:22:31,603 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/axis/COLUMNS/dimension/Proyecto	POST
+2016-02-14 16:22:31,603 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 686CC558-6705-D33A-ACE7-D4624905E9A3 dimension Proyecto to axis COLUMNS  position0
+2016-02-14 16:22:31,709 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/resultflat	GET
+2016-02-14 16:22:31,709 INFO  [org.saiku.service.olap.OlapQueryService] runId:64	Type:QM:
+SELECT
+NON EMPTY Order({Hierarchize({{[Proyecto.Jerarquia].[CERDO].[COCHINO_#1], [Proyecto.Jerarquia].[POLLO ENGORDE].[POLLO_24/10/14], [Proyecto.Jerarquia].[VARIOS].[SIEMBRA DE AJI]}})}, [Proyecto.Jerarquia].CurrentMember.Name, BASC) ON COLUMNS,
+NON EMPTY {[Measures].[Ventas], [Measures].[Gasto], [Measures].[Ganancias]} ON ROWS
+FROM [Movimientos]
+2016-02-14 16:22:31,720 INFO  [org.saiku.service.olap.OlapQueryService] runId:64	Size: 4/4	Execute:	11ms	Format:	0ms	 Total: 11ms
+2016-02-14 16:22:34,715 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/result/metadata/dimensions/Proyecto/hierarchies/[Proyecto.Jerarquia]/levels/[Proyecto.Jerarquia].[Proyecto]	GET
+2016-02-14 16:22:34,715 DEBUG [org.saiku.service.olap.OlapQueryService] Found hierarchy in the result: [Proyecto.Jerarquia]
+2016-02-14 16:22:34,715 DEBUG [org.saiku.service.olap.OlapQueryService] Found members in the result: 3
+2016-02-14 16:22:34,758 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/axis/COLUMNS/dimension/Proyecto	GET
+2016-02-14 16:22:48,638 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/axis/COLUMNS/dimension/Proyecto	PUT	
+2016-02-14 16:22:48,704 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/axis/COLUMNS/dimension/Proyecto	GET
+2016-02-14 16:22:48,771 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/resultflat	GET
+2016-02-14 16:22:48,771 INFO  [org.saiku.service.olap.OlapQueryService] runId:65	Type:QM:
+SELECT
+NON EMPTY Order({Hierarchize({{[Proyecto.Jerarquia].[CERDO].[COCHINO_#1], [Proyecto.Jerarquia].[POLLO ENGORDE].[POLLO_24/10/14], [Proyecto.Jerarquia].[VARIOS].[SIEMBRA DE AJI], [Proyecto.Jerarquia].[GANADO].[GANADO_#0], [Proyecto.Jerarquia].[GANADO].[GANADO_#1], [Proyecto.Jerarquia].[NOMINA].[NOMINA], [Proyecto.Jerarquia].[POLLO ENGORDE].[POLLO_05/04/14], [Proyecto.Jerarquia].[POLLO ENGORDE].[POLLO_08/05/14], [Proyecto.Jerarquia].[POLLO ENGORDE].[POLLO_13/06/14], [Proyecto.Jerarquia].[POLLO ENGORDE].[POLLO_15/08/14], [Proyecto.Jerarquia].[POLLO ENGORDE].[POLLO_21/02/14], [Proyecto.Jerarquia].[POLLO ENGORDE].[POLLO_26/11/13], [Proyecto.Jerarquia].[POLLO ENGORDE].[POLLO_27/10/13], [Proyecto.Jerarquia].[POLLO ENGORDE].[POLLO_28/01/14], [Proyecto.Jerarquia].[POLLO ENGORDE].[POLLO_#0], [Proyecto.Jerarquia].[POLLO ENGORDE].[POLLO_21/11/14], [Proyecto.Jerarquia].[POLLO ENGORDE].[POLLO_22/11/14], [Proyecto.Jerarquia].[POLLO ENGORDE].[POLLO_20/12/14], [Proyecto.Jerarquia].[POLLO ENGORDE].[POLLO_31/01/15], [Proyecto.Jerarquia].[POLLO ENGORDE].[POLLO_06/02/15], [Proyecto.Jerarquia].[POLLO ENGORDE].[POLLO_20/02/15], [Proyecto.Jerarquia].[POLLO ENGORDE].[POLLO_30/05/15], [Proyecto.Jerarquia].[POLLO ENGORDE].[POLLO_24/10/15], [Proyecto.Jerarquia].[PONEDORA].[PONEDORA_#1], [Proyecto.Jerarquia].[VARIOS].[CABALLO], [Proyecto.Jerarquia].[VARIOS].[CAMION_FUSO], [Proyecto.Jerarquia].[VARIOS].[CAMIONETA], [Proyecto.Jerarquia].[VARIOS].[CERCADO], [Proyecto.Jerarquia].[VARIOS].[COCHINERA], [Proyecto.Jerarquia].[VARIOS].[FINCA], [Proyecto.Jerarquia].[VARIOS].[MTTO. GALPON  1], [Proyecto.Jerarquia].[VARIOS].[MTTO. GALPON  2], [Proyecto.Jerarquia].[VARIOS].[PECES_#1], [Proyecto.Jerarquia].[VARIOS].[PONEDO_BB_#1], [Proyecto.Jerarquia].[VARIOS].[FAC. VIEJAS], [Proyecto.Jerarquia].[VARIOS].[AMPL. GALP 1-2-4]}})}, [Proyecto.Jerarquia].CurrentMember.Name, BASC) ON COLUMNS,
+NON EMPTY {[Measures].[Ventas], [Measures].[Gasto], [Measures].[Ganancias]} ON ROWS
+FROM [Movimientos]
+2016-02-14 16:22:48,800 INFO  [org.saiku.service.olap.OlapQueryService] runId:65	Size: 37/4	Execute:	29ms	Format:	0ms	 Total: 29ms
+2016-02-14 16:23:07,554 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/axis/ROWS/dimension/Measures/member/[Measures].[Ganancias]	DELETE
+2016-02-14 16:23:07,554 DEBUG [org.saiku.service.olap.OlapQueryService] query: 686CC558-6705-D33A-ACE7-D4624905E9A3 remove:MEMBER 2
+2016-02-14 16:23:07,639 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/resultflat	GET
+2016-02-14 16:23:07,646 INFO  [org.saiku.service.olap.OlapQueryService] runId:66	Type:QM:
+SELECT
+NON EMPTY Order({Hierarchize({{[Proyecto.Jerarquia].[CERDO].[COCHINO_#1], [Proyecto.Jerarquia].[POLLO ENGORDE].[POLLO_24/10/14], [Proyecto.Jerarquia].[VARIOS].[SIEMBRA DE AJI], [Proyecto.Jerarquia].[GANADO].[GANADO_#0], [Proyecto.Jerarquia].[GANADO].[GANADO_#1], [Proyecto.Jerarquia].[NOMINA].[NOMINA], [Proyecto.Jerarquia].[POLLO ENGORDE].[POLLO_05/04/14], [Proyecto.Jerarquia].[POLLO ENGORDE].[POLLO_08/05/14], [Proyecto.Jerarquia].[POLLO ENGORDE].[POLLO_13/06/14], [Proyecto.Jerarquia].[POLLO ENGORDE].[POLLO_15/08/14], [Proyecto.Jerarquia].[POLLO ENGORDE].[POLLO_21/02/14], [Proyecto.Jerarquia].[POLLO ENGORDE].[POLLO_26/11/13], [Proyecto.Jerarquia].[POLLO ENGORDE].[POLLO_27/10/13], [Proyecto.Jerarquia].[POLLO ENGORDE].[POLLO_28/01/14], [Proyecto.Jerarquia].[POLLO ENGORDE].[POLLO_#0], [Proyecto.Jerarquia].[POLLO ENGORDE].[POLLO_21/11/14], [Proyecto.Jerarquia].[POLLO ENGORDE].[POLLO_22/11/14], [Proyecto.Jerarquia].[POLLO ENGORDE].[POLLO_20/12/14], [Proyecto.Jerarquia].[POLLO ENGORDE].[POLLO_31/01/15], [Proyecto.Jerarquia].[POLLO ENGORDE].[POLLO_06/02/15], [Proyecto.Jerarquia].[POLLO ENGORDE].[POLLO_20/02/15], [Proyecto.Jerarquia].[POLLO ENGORDE].[POLLO_30/05/15], [Proyecto.Jerarquia].[POLLO ENGORDE].[POLLO_24/10/15], [Proyecto.Jerarquia].[PONEDORA].[PONEDORA_#1], [Proyecto.Jerarquia].[VARIOS].[CABALLO], [Proyecto.Jerarquia].[VARIOS].[CAMION_FUSO], [Proyecto.Jerarquia].[VARIOS].[CAMIONETA], [Proyecto.Jerarquia].[VARIOS].[CERCADO], [Proyecto.Jerarquia].[VARIOS].[COCHINERA], [Proyecto.Jerarquia].[VARIOS].[FINCA], [Proyecto.Jerarquia].[VARIOS].[MTTO. GALPON  1], [Proyecto.Jerarquia].[VARIOS].[MTTO. GALPON  2], [Proyecto.Jerarquia].[VARIOS].[PECES_#1], [Proyecto.Jerarquia].[VARIOS].[PONEDO_BB_#1], [Proyecto.Jerarquia].[VARIOS].[FAC. VIEJAS], [Proyecto.Jerarquia].[VARIOS].[AMPL. GALP 1-2-4]}})}, [Proyecto.Jerarquia].CurrentMember.Name, BASC) ON COLUMNS,
+NON EMPTY {[Measures].[Ventas], [Measures].[Gasto]} ON ROWS
+FROM [Movimientos]
+2016-02-14 16:23:07,670 INFO  [org.saiku.service.olap.OlapQueryService] runId:66	Size: 37/3	Execute:	23ms	Format:	8ms	 Total: 31ms
+2016-02-14 16:23:47,374 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/result/metadata/dimensions/Proyecto/hierarchies/[Proyecto.Jerarquia]/levels/[Proyecto.Jerarquia].[Proyecto]	GET
+2016-02-14 16:23:47,374 DEBUG [org.saiku.service.olap.OlapQueryService] Found hierarchy in the result: [Proyecto.Jerarquia]
+2016-02-14 16:23:47,374 DEBUG [org.saiku.service.olap.OlapQueryService] Found members in the result: 36
+2016-02-14 16:23:47,397 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/axis/COLUMNS/dimension/Proyecto	GET
+2016-02-14 16:24:02,970 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/axis/COLUMNS/dimension/Proyecto	PUT	
+2016-02-14 16:24:02,970 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/axis/COLUMNS/dimension/Proyecto	GET
+2016-02-14 16:24:03,081 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/resultflat	GET
+2016-02-14 16:24:03,081 INFO  [org.saiku.service.olap.OlapQueryService] runId:67	Type:QM:
+SELECT
+NON EMPTY Order({Hierarchize({[Proyecto.Jerarquia].[Proyecto].Members})}, [Proyecto.Jerarquia].CurrentMember.Name, BASC) ON COLUMNS,
+NON EMPTY {[Measures].[Ventas], [Measures].[Gasto]} ON ROWS
+FROM [Movimientos]
+2016-02-14 16:24:03,115 INFO  [org.saiku.service.olap.OlapQueryService] runId:67	Size: 37/3	Execute:	34ms	Format:	0ms	 Total: 34ms
+2016-02-14 16:24:09,772 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/axis/COLUMNS/dimension/Proyecto/hierarchy/[Proyecto.Jerarquia]/[Proyecto.Jerarquia].[Proyecto]	DELETE
+2016-02-14 16:24:09,772 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 686CC558-6705-D33A-ACE7-D4624905E9A3 dimension Proyecto to axis UNUSED  position-1
+2016-02-14 16:24:13,022 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/axis/COLUMNS/dimension/Proyecto/hierarchy/[Proyecto.Jerarquia]/[Proyecto.Jerarquia].[(All)]	POST
+2016-02-14 16:24:13,022 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 686CC558-6705-D33A-ACE7-D4624905E9A3 dimension Proyecto to axis COLUMNS  position0
+2016-02-14 16:24:13,123 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/resultflat	GET
+2016-02-14 16:24:13,123 INFO  [org.saiku.service.olap.OlapQueryService] runId:68	Type:QM:
+SELECT
+NON EMPTY {Hierarchize({[Proyecto.Jerarquia].[All Proyecto.Jerarquias]})} ON COLUMNS,
+NON EMPTY {[Measures].[Ventas], [Measures].[Gasto]} ON ROWS
+FROM [Movimientos]
+2016-02-14 16:24:13,134 INFO  [org.saiku.service.olap.OlapQueryService] runId:68	Size: 2/3	Execute:	11ms	Format:	0ms	 Total: 11ms
+2016-02-14 16:24:36,594 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/axis/ROWS/dimension/Measures/member/[Measures].[Ganancias]	POST
+2016-02-14 16:24:36,594 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 686CC558-6705-D33A-ACE7-D4624905E9A3 dimension Measures to axis ROWS  position0
+2016-02-14 16:24:36,651 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/resultflat	GET
+2016-02-14 16:24:36,651 INFO  [org.saiku.service.olap.OlapQueryService] runId:69	Type:QM:
+SELECT
+NON EMPTY {Hierarchize({[Proyecto.Jerarquia].[All Proyecto.Jerarquias]})} ON COLUMNS,
+NON EMPTY {[Measures].[Ventas], [Measures].[Gasto], [Measures].[Ganancias]} ON ROWS
+FROM [Movimientos]
+2016-02-14 16:24:36,659 INFO  [org.saiku.service.olap.OlapQueryService] runId:69	Size: 2/4	Execute:	8ms	Format:	0ms	 Total: 8ms
+2016-02-14 16:25:41,677 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/axis/COLUMNS/dimension/Proyecto/hierarchy/[Proyecto.Jerarquia]/[Proyecto.Jerarquia].[Clase]	POST
+2016-02-14 16:25:41,677 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 686CC558-6705-D33A-ACE7-D4624905E9A3 dimension Proyecto to axis COLUMNS  position0
+2016-02-14 16:25:41,744 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/686CC558-6705-D33A-ACE7-D4624905E9A3/resultflat	GET
+2016-02-14 16:25:41,744 INFO  [org.saiku.service.olap.OlapQueryService] runId:70	Type:QM:
+SELECT
+NON EMPTY {Hierarchize({{[Proyecto.Jerarquia].[All Proyecto.Jerarquias]}, {[Proyecto.Jerarquia].[Clase].Members}})} ON COLUMNS,
+NON EMPTY {[Measures].[Ventas], [Measures].[Gasto], [Measures].[Ganancias]} ON ROWS
+FROM [Movimientos]
+2016-02-14 16:25:41,812 INFO  [org.saiku.service.olap.OlapQueryService] runId:70	Size: 8/5	Execute:	68ms	Format:	0ms	 Total: 68ms
+2016-02-14 16:26:16,537 DEBUG [org.saiku.web.service.SessionService] Logging in with [org.springframework.security.core.userdetails.User@586034f: Username: admin; Password: [PROTECTED]; Enabled: true; AccountNonExpired: true; credentialsNonExpired: true; AccountNonLocked: true; Granted Authorities: ROLE_ADMIN,ROLE_USER]
+2016-02-14 16:26:20,979 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/D16D49CB-50A7-28E8-A31C-0FFB83661C0E	POST	 xml:false
+2016-02-14 16:26:26,145 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/D16D49CB-50A7-28E8-A31C-0FFB83661C0E/axis/COLUMNS/dimension/Proyecto/hierarchy/[Proyecto.Jerarquia]/[Proyecto.Jerarquia].[Clase]	POST
+2016-02-14 16:26:26,145 DEBUG [org.saiku.service.olap.OlapQueryService] move query: D16D49CB-50A7-28E8-A31C-0FFB83661C0E dimension Proyecto to axis COLUMNS  position0
+2016-02-14 16:26:30,007 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/D16D49CB-50A7-28E8-A31C-0FFB83661C0E/axis/ROWS/dimension/Measures/member/[Measures].[Ventas]	POST
+2016-02-14 16:26:30,007 DEBUG [org.saiku.service.olap.OlapQueryService] move query: D16D49CB-50A7-28E8-A31C-0FFB83661C0E dimension Measures to axis ROWS  position0
+2016-02-14 16:26:30,059 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/D16D49CB-50A7-28E8-A31C-0FFB83661C0E/resultflattened	GET
+2016-02-14 16:26:30,059 INFO  [org.saiku.service.olap.OlapQueryService] runId:71	Type:QM:
+SELECT
+NON EMPTY {Hierarchize({[Proyecto.Jerarquia].[Clase].Members})} ON COLUMNS,
+NON EMPTY {[Measures].[Ventas]} ON ROWS
+FROM [Movimientos]
+2016-02-14 16:26:30,059 INFO  [org.saiku.service.olap.OlapQueryService] runId:71	Size: 7/2	Execute:	0ms	Format:	0ms	 Total: 0ms
+2016-02-14 16:26:33,224 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/D16D49CB-50A7-28E8-A31C-0FFB83661C0E/axis/ROWS/dimension/Measures/member/[Measures].[Gasto]	POST
+2016-02-14 16:26:33,224 DEBUG [org.saiku.service.olap.OlapQueryService] move query: D16D49CB-50A7-28E8-A31C-0FFB83661C0E dimension Measures to axis ROWS  position0
+2016-02-14 16:26:33,286 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/D16D49CB-50A7-28E8-A31C-0FFB83661C0E/resultflattened	GET
+2016-02-14 16:26:33,286 INFO  [org.saiku.service.olap.OlapQueryService] runId:72	Type:QM:
+SELECT
+NON EMPTY {Hierarchize({[Proyecto.Jerarquia].[Clase].Members})} ON COLUMNS,
+NON EMPTY {[Measures].[Ventas], [Measures].[Gasto]} ON ROWS
+FROM [Movimientos]
+2016-02-14 16:26:33,296 INFO  [org.saiku.service.olap.OlapQueryService] runId:72	Size: 7/3	Execute:	0ms	Format:	10ms	 Total: 10ms
+2016-02-14 16:26:39,929 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/D16D49CB-50A7-28E8-A31C-0FFB83661C0E/axis/ROWS/dimension/Measures/member/[Measures].[Ganancias]	POST
+2016-02-14 16:26:39,929 DEBUG [org.saiku.service.olap.OlapQueryService] move query: D16D49CB-50A7-28E8-A31C-0FFB83661C0E dimension Measures to axis ROWS  position0
+2016-02-14 16:26:39,995 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/D16D49CB-50A7-28E8-A31C-0FFB83661C0E/resultflattened	GET
+2016-02-14 16:26:39,995 INFO  [org.saiku.service.olap.OlapQueryService] runId:73	Type:QM:
+SELECT
+NON EMPTY {Hierarchize({[Proyecto.Jerarquia].[Clase].Members})} ON COLUMNS,
+NON EMPTY {[Measures].[Ventas], [Measures].[Gasto], [Measures].[Ganancias]} ON ROWS
+FROM [Movimientos]
+2016-02-14 16:26:40,004 INFO  [org.saiku.service.olap.OlapQueryService] runId:73	Size: 7/4	Execute:	9ms	Format:	0ms	 Total: 9ms
+2016-02-14 16:27:47,046 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/D16D49CB-50A7-28E8-A31C-0FFB83661C0E/axis/ROWS/dimension/Measures/member/[Measures].[Gasto]	DELETE
+2016-02-14 16:27:47,046 DEBUG [org.saiku.service.olap.OlapQueryService] query: D16D49CB-50A7-28E8-A31C-0FFB83661C0E remove:MEMBER 2
+2016-02-14 16:27:47,116 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/D16D49CB-50A7-28E8-A31C-0FFB83661C0E/resultflattened	GET
+2016-02-14 16:27:47,116 INFO  [org.saiku.service.olap.OlapQueryService] runId:74	Type:QM:
+SELECT
+NON EMPTY {Hierarchize({[Proyecto.Jerarquia].[Clase].Members})} ON COLUMNS,
+NON EMPTY {[Measures].[Ventas], [Measures].[Ganancias]} ON ROWS
+FROM [Movimientos]
+2016-02-14 16:27:47,126 INFO  [org.saiku.service.olap.OlapQueryService] runId:74	Size: 7/3	Execute:	10ms	Format:	0ms	 Total: 10ms
+2016-02-14 16:27:48,986 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/D16D49CB-50A7-28E8-A31C-0FFB83661C0E/axis/ROWS/dimension/Measures/member/[Measures].[Ganancias]	DELETE
+2016-02-14 16:27:48,986 DEBUG [org.saiku.service.olap.OlapQueryService] query: D16D49CB-50A7-28E8-A31C-0FFB83661C0E remove:MEMBER 2
+2016-02-14 16:27:49,046 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/D16D49CB-50A7-28E8-A31C-0FFB83661C0E/resultflattened	GET
+2016-02-14 16:27:49,046 INFO  [org.saiku.service.olap.OlapQueryService] runId:75	Type:QM:
+SELECT
+NON EMPTY {Hierarchize({[Proyecto.Jerarquia].[Clase].Members})} ON COLUMNS,
+NON EMPTY {[Measures].[Ventas]} ON ROWS
+FROM [Movimientos]
+2016-02-14 16:27:49,056 INFO  [org.saiku.service.olap.OlapQueryService] runId:75	Size: 7/2	Execute:	10ms	Format:	0ms	 Total: 10ms
+2016-02-14 16:28:04,653 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/D16D49CB-50A7-28E8-A31C-0FFB83661C0E/axis/ROWS/dimension/Measures/member/[Measures].[Ganancias]	POST
+2016-02-14 16:28:04,653 DEBUG [org.saiku.service.olap.OlapQueryService] move query: D16D49CB-50A7-28E8-A31C-0FFB83661C0E dimension Measures to axis ROWS  position0
+2016-02-14 16:28:04,702 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/D16D49CB-50A7-28E8-A31C-0FFB83661C0E/resultflattened	GET
+2016-02-14 16:28:04,702 INFO  [org.saiku.service.olap.OlapQueryService] runId:76	Type:QM:
+SELECT
+NON EMPTY {Hierarchize({[Proyecto.Jerarquia].[Clase].Members})} ON COLUMNS,
+NON EMPTY {[Measures].[Ventas], [Measures].[Ganancias]} ON ROWS
+FROM [Movimientos]
+2016-02-14 16:28:04,702 INFO  [org.saiku.service.olap.OlapQueryService] runId:76	Size: 7/3	Execute:	0ms	Format:	0ms	 Total: 0ms
+2016-02-14 16:28:05,958 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/D16D49CB-50A7-28E8-A31C-0FFB83661C0E/axis/ROWS/dimension/Measures/member/[Measures].[Ventas]	DELETE
+2016-02-14 16:28:05,958 DEBUG [org.saiku.service.olap.OlapQueryService] query: D16D49CB-50A7-28E8-A31C-0FFB83661C0E remove:MEMBER 2
+2016-02-14 16:28:06,014 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/D16D49CB-50A7-28E8-A31C-0FFB83661C0E/resultflattened	GET
+2016-02-14 16:28:06,014 INFO  [org.saiku.service.olap.OlapQueryService] runId:77	Type:QM:
+SELECT
+NON EMPTY {Hierarchize({[Proyecto.Jerarquia].[Clase].Members})} ON COLUMNS,
+NON EMPTY {[Measures].[Ganancias]} ON ROWS
+FROM [Movimientos]
+2016-02-14 16:28:06,014 INFO  [org.saiku.service.olap.OlapQueryService] runId:77	Size: 7/2	Execute:	0ms	Format:	0ms	 Total: 0ms
+2016-02-14 17:48:47,049 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/D16D49CB-50A7-28E8-A31C-0FFB83661C0E/axis/COLUMNS/dimension/Proyecto/hierarchy/[Proyecto.Jerarquia]/[Proyecto.Jerarquia].[Clase]	DELETE
+2016-02-14 17:48:47,049 ERROR [org.saiku.web.rest.resources.QueryResource] Cannot include level of hierarchy [Proyecto.Jerarquia] for query (D16D49CB-50A7-28E8-A31C-0FFB83661C0E)
+org.saiku.service.util.exception.SaikuServiceException: No query found using name: D16D49CB-50A7-28E8-A31C-0FFB83661C0E
+	at org.saiku.service.olap.OlapQueryService.getIQuery(OlapQueryService.java:1015)
+	at org.saiku.service.olap.OlapQueryService.removeLevel(OlapQueryService.java:699)
+	at org.saiku.web.rest.resources.QueryResource.removeLevel(QueryResource.java:1161)
+	at org.saiku.web.rest.resources.QueryResource$$FastClassByCGLIB$$e130f1a0.invoke(<generated>)
+	at net.sf.cglib.proxy.MethodProxy.invoke(MethodProxy.java:191)
+	at org.springframework.aop.framework.Cglib2AopProxy$DynamicAdvisedInterceptor.intercept(Cglib2AopProxy.java:617)
+	at org.saiku.web.rest.resources.QueryResource$$EnhancerByCGLIB$$e19ca8a4.removeLevel(<generated>)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:483)
+	at com.sun.jersey.spi.container.JavaMethodInvokerFactory$1.invoke(JavaMethodInvokerFactory.java:60)
+	at com.sun.jersey.server.impl.model.method.dispatch.AbstractResourceMethodDispatchProvider$ResponseOutInvoker._dispatch(AbstractResourceMethodDispatchProvider.java:205)
+	at com.sun.jersey.server.impl.model.method.dispatch.ResourceJavaMethodDispatcher.dispatch(ResourceJavaMethodDispatcher.java:75)
+	at com.sun.jersey.server.impl.uri.rules.HttpMethodRule.accept(HttpMethodRule.java:288)
+	at com.sun.jersey.server.impl.uri.rules.RightHandPathRule.accept(RightHandPathRule.java:147)
+	at com.sun.jersey.server.impl.uri.rules.ResourceClassRule.accept(ResourceClassRule.java:108)
+	at com.sun.jersey.server.impl.uri.rules.RightHandPathRule.accept(RightHandPathRule.java:147)
+	at com.sun.jersey.server.impl.uri.rules.RootResourceClassesRule.accept(RootResourceClassesRule.java:84)
+	at com.sun.jersey.server.impl.application.WebApplicationImpl._handleRequest(WebApplicationImpl.java:1469)
+	at com.sun.jersey.server.impl.application.WebApplicationImpl._handleRequest(WebApplicationImpl.java:1400)
+	at com.sun.jersey.server.impl.application.WebApplicationImpl.handleRequest(WebApplicationImpl.java:1349)
+	at com.sun.jersey.server.impl.application.WebApplicationImpl.handleRequest(WebApplicationImpl.java:1339)
+	at com.sun.jersey.spi.container.servlet.WebComponent.service(WebComponent.java:416)
+	at com.sun.jersey.spi.container.servlet.ServletContainer.service(ServletContainer.java:537)
+	at org.codehaus.enunciate.modules.jersey.EnunciateJerseyServletContainer.service(EnunciateJerseyServletContainer.java:248)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:717)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:290)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+	at org.codehaus.enunciate.webapp.HTTPRequestContextFilter.doFilter(HTTPRequestContextFilter.java:36)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:343)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:109)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:83)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:97)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:78)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:54)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:35)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.authentication.www.BasicAuthenticationFilter.doFilter(BasicAuthenticationFilter.java:177)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter.doFilter(DefaultLoginPageGeneratingFilter.java:91)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:187)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:105)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:79)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:149)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:237)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:167)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:233)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:191)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:127)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:102)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:109)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:298)
+	at org.apache.coyote.http11.Http11Processor.process(Http11Processor.java:852)
+	at org.apache.coyote.http11.Http11Protocol$Http11ConnectionHandler.process(Http11Protocol.java:588)
+	at org.apache.tomcat.util.net.JIoEndpoint$Worker.run(JIoEndpoint.java:489)
+	at java.lang.Thread.run(Thread.java:745)
+2016-02-14 17:48:51,856 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/D16D49CB-50A7-28E8-A31C-0FFB83661C0E/axis/COLUMNS/dimension/Proyecto/hierarchy/[Proyecto.Jerarquia]/[Proyecto.Jerarquia].[(All)]	POST
+2016-02-14 17:48:51,856 DEBUG [org.saiku.service.olap.OlapQueryService] move query: D16D49CB-50A7-28E8-A31C-0FFB83661C0E dimension Proyecto to axis COLUMNS  position0
+2016-02-14 17:48:51,856 ERROR [org.saiku.web.rest.resources.QueryResource] Cannot include level of hierarchy [Proyecto.Jerarquia] for query (D16D49CB-50A7-28E8-A31C-0FFB83661C0E)
+org.saiku.service.util.exception.SaikuServiceException: Cannot move dimension:Proyecto to axis: COLUMNS
+	at org.saiku.service.olap.OlapQueryService.moveDimension(OlapQueryService.java:747)
+	at org.saiku.web.rest.resources.QueryResource.includeLevel(QueryResource.java:1134)
+	at org.saiku.web.rest.resources.QueryResource$$FastClassByCGLIB$$e130f1a0.invoke(<generated>)
+	at net.sf.cglib.proxy.MethodProxy.invoke(MethodProxy.java:191)
+	at org.springframework.aop.framework.Cglib2AopProxy$DynamicAdvisedInterceptor.intercept(Cglib2AopProxy.java:617)
+	at org.saiku.web.rest.resources.QueryResource$$EnhancerByCGLIB$$e19ca8a4.includeLevel(<generated>)
+	at sun.reflect.GeneratedMethodAccessor98.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:483)
+	at com.sun.jersey.spi.container.JavaMethodInvokerFactory$1.invoke(JavaMethodInvokerFactory.java:60)
+	at com.sun.jersey.server.impl.model.method.dispatch.AbstractResourceMethodDispatchProvider$ResponseOutInvoker._dispatch(AbstractResourceMethodDispatchProvider.java:205)
+	at com.sun.jersey.server.impl.model.method.dispatch.ResourceJavaMethodDispatcher.dispatch(ResourceJavaMethodDispatcher.java:75)
+	at com.sun.jersey.server.impl.uri.rules.HttpMethodRule.accept(HttpMethodRule.java:288)
+	at com.sun.jersey.server.impl.uri.rules.RightHandPathRule.accept(RightHandPathRule.java:147)
+	at com.sun.jersey.server.impl.uri.rules.ResourceClassRule.accept(ResourceClassRule.java:108)
+	at com.sun.jersey.server.impl.uri.rules.RightHandPathRule.accept(RightHandPathRule.java:147)
+	at com.sun.jersey.server.impl.uri.rules.RootResourceClassesRule.accept(RootResourceClassesRule.java:84)
+	at com.sun.jersey.server.impl.application.WebApplicationImpl._handleRequest(WebApplicationImpl.java:1469)
+	at com.sun.jersey.server.impl.application.WebApplicationImpl._handleRequest(WebApplicationImpl.java:1400)
+	at com.sun.jersey.server.impl.application.WebApplicationImpl.handleRequest(WebApplicationImpl.java:1349)
+	at com.sun.jersey.server.impl.application.WebApplicationImpl.handleRequest(WebApplicationImpl.java:1339)
+	at com.sun.jersey.spi.container.servlet.WebComponent.service(WebComponent.java:416)
+	at com.sun.jersey.spi.container.servlet.ServletContainer.service(ServletContainer.java:537)
+	at org.codehaus.enunciate.modules.jersey.EnunciateJerseyServletContainer.service(EnunciateJerseyServletContainer.java:248)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:717)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:290)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+	at org.codehaus.enunciate.webapp.HTTPRequestContextFilter.doFilter(HTTPRequestContextFilter.java:36)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:343)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:109)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:83)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:97)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:78)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:54)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:35)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.authentication.www.BasicAuthenticationFilter.doFilter(BasicAuthenticationFilter.java:177)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter.doFilter(DefaultLoginPageGeneratingFilter.java:91)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:187)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:105)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:79)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:149)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:237)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:167)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:233)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:191)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:127)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:102)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:109)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:298)
+	at org.apache.coyote.http11.Http11Processor.process(Http11Processor.java:852)
+	at org.apache.coyote.http11.Http11Protocol$Http11ConnectionHandler.process(Http11Protocol.java:588)
+	at org.apache.tomcat.util.net.JIoEndpoint$Worker.run(JIoEndpoint.java:489)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.saiku.service.util.exception.SaikuServiceException: No query found using name: D16D49CB-50A7-28E8-A31C-0FFB83661C0E
+	at org.saiku.service.olap.OlapQueryService.getIQuery(OlapQueryService.java:1015)
+	at org.saiku.service.olap.OlapQueryService.moveDimension(OlapQueryService.java:736)
+	... 68 more
+2016-02-14 17:49:03,963 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/D16D49CB-50A7-28E8-A31C-0FFB83661C0E/axis/ROWS/dimension/Measures/member/[Measures].[Ganancias]	DELETE
+2016-02-14 17:49:03,963 ERROR [org.saiku.web.rest.resources.QueryResource] Cannot remove member Measures for query (D16D49CB-50A7-28E8-A31C-0FFB83661C0E)
+org.saiku.service.util.exception.SaikuServiceException: No query found using name: D16D49CB-50A7-28E8-A31C-0FFB83661C0E
+	at org.saiku.service.olap.OlapQueryService.getIQuery(OlapQueryService.java:1015)
+	at org.saiku.service.olap.OlapQueryService.removeMember(OlapQueryService.java:661)
+	at org.saiku.web.rest.resources.QueryResource.removeMember(QueryResource.java:1047)
+	at org.saiku.web.rest.resources.QueryResource$$FastClassByCGLIB$$e130f1a0.invoke(<generated>)
+	at net.sf.cglib.proxy.MethodProxy.invoke(MethodProxy.java:191)
+	at org.springframework.aop.framework.Cglib2AopProxy$DynamicAdvisedInterceptor.intercept(Cglib2AopProxy.java:617)
+	at org.saiku.web.rest.resources.QueryResource$$EnhancerByCGLIB$$e19ca8a4.removeMember(<generated>)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:483)
+	at com.sun.jersey.spi.container.JavaMethodInvokerFactory$1.invoke(JavaMethodInvokerFactory.java:60)
+	at com.sun.jersey.server.impl.model.method.dispatch.AbstractResourceMethodDispatchProvider$ResponseOutInvoker._dispatch(AbstractResourceMethodDispatchProvider.java:205)
+	at com.sun.jersey.server.impl.model.method.dispatch.ResourceJavaMethodDispatcher.dispatch(ResourceJavaMethodDispatcher.java:75)
+	at com.sun.jersey.server.impl.uri.rules.HttpMethodRule.accept(HttpMethodRule.java:288)
+	at com.sun.jersey.server.impl.uri.rules.RightHandPathRule.accept(RightHandPathRule.java:147)
+	at com.sun.jersey.server.impl.uri.rules.ResourceClassRule.accept(ResourceClassRule.java:108)
+	at com.sun.jersey.server.impl.uri.rules.RightHandPathRule.accept(RightHandPathRule.java:147)
+	at com.sun.jersey.server.impl.uri.rules.RootResourceClassesRule.accept(RootResourceClassesRule.java:84)
+	at com.sun.jersey.server.impl.application.WebApplicationImpl._handleRequest(WebApplicationImpl.java:1469)
+	at com.sun.jersey.server.impl.application.WebApplicationImpl._handleRequest(WebApplicationImpl.java:1400)
+	at com.sun.jersey.server.impl.application.WebApplicationImpl.handleRequest(WebApplicationImpl.java:1349)
+	at com.sun.jersey.server.impl.application.WebApplicationImpl.handleRequest(WebApplicationImpl.java:1339)
+	at com.sun.jersey.spi.container.servlet.WebComponent.service(WebComponent.java:416)
+	at com.sun.jersey.spi.container.servlet.ServletContainer.service(ServletContainer.java:537)
+	at org.codehaus.enunciate.modules.jersey.EnunciateJerseyServletContainer.service(EnunciateJerseyServletContainer.java:248)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:717)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:290)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+	at org.codehaus.enunciate.webapp.HTTPRequestContextFilter.doFilter(HTTPRequestContextFilter.java:36)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:343)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:109)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:83)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:97)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:78)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:54)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:35)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.authentication.www.BasicAuthenticationFilter.doFilter(BasicAuthenticationFilter.java:177)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter.doFilter(DefaultLoginPageGeneratingFilter.java:91)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:187)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:105)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:79)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:149)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:237)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:167)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:233)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:191)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:127)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:102)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:109)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:298)
+	at org.apache.coyote.http11.Http11Processor.process(Http11Processor.java:852)
+	at org.apache.coyote.http11.Http11Protocol$Http11ConnectionHandler.process(Http11Protocol.java:588)
+	at org.apache.tomcat.util.net.JIoEndpoint$Worker.run(JIoEndpoint.java:489)
+	at java.lang.Thread.run(Thread.java:745)
+2016-02-14 17:49:06,146 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/D16D49CB-50A7-28E8-A31C-0FFB83661C0E/axis/ROWS/dimension/Measures/member/[Measures].[Ventas]	POST
+2016-02-14 17:49:06,146 DEBUG [org.saiku.service.olap.OlapQueryService] move query: D16D49CB-50A7-28E8-A31C-0FFB83661C0E dimension Measures to axis ROWS  position0
+2016-02-14 17:49:06,146 ERROR [org.saiku.web.rest.resources.QueryResource] Cannot include member Measures for query (D16D49CB-50A7-28E8-A31C-0FFB83661C0E)
+org.saiku.service.util.exception.SaikuServiceException: Cannot move dimension:Measures to axis: ROWS
+	at org.saiku.service.olap.OlapQueryService.moveDimension(OlapQueryService.java:747)
+	at org.saiku.web.rest.resources.QueryResource.includeMember(QueryResource.java:1017)
+	at org.saiku.web.rest.resources.QueryResource$$FastClassByCGLIB$$e130f1a0.invoke(<generated>)
+	at net.sf.cglib.proxy.MethodProxy.invoke(MethodProxy.java:191)
+	at org.springframework.aop.framework.Cglib2AopProxy$DynamicAdvisedInterceptor.intercept(Cglib2AopProxy.java:617)
+	at org.saiku.web.rest.resources.QueryResource$$EnhancerByCGLIB$$e19ca8a4.includeMember(<generated>)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:483)
+	at com.sun.jersey.spi.container.JavaMethodInvokerFactory$1.invoke(JavaMethodInvokerFactory.java:60)
+	at com.sun.jersey.server.impl.model.method.dispatch.AbstractResourceMethodDispatchProvider$ResponseOutInvoker._dispatch(AbstractResourceMethodDispatchProvider.java:205)
+	at com.sun.jersey.server.impl.model.method.dispatch.ResourceJavaMethodDispatcher.dispatch(ResourceJavaMethodDispatcher.java:75)
+	at com.sun.jersey.server.impl.uri.rules.HttpMethodRule.accept(HttpMethodRule.java:288)
+	at com.sun.jersey.server.impl.uri.rules.RightHandPathRule.accept(RightHandPathRule.java:147)
+	at com.sun.jersey.server.impl.uri.rules.ResourceClassRule.accept(ResourceClassRule.java:108)
+	at com.sun.jersey.server.impl.uri.rules.RightHandPathRule.accept(RightHandPathRule.java:147)
+	at com.sun.jersey.server.impl.uri.rules.RootResourceClassesRule.accept(RootResourceClassesRule.java:84)
+	at com.sun.jersey.server.impl.application.WebApplicationImpl._handleRequest(WebApplicationImpl.java:1469)
+	at com.sun.jersey.server.impl.application.WebApplicationImpl._handleRequest(WebApplicationImpl.java:1400)
+	at com.sun.jersey.server.impl.application.WebApplicationImpl.handleRequest(WebApplicationImpl.java:1349)
+	at com.sun.jersey.server.impl.application.WebApplicationImpl.handleRequest(WebApplicationImpl.java:1339)
+	at com.sun.jersey.spi.container.servlet.WebComponent.service(WebComponent.java:416)
+	at com.sun.jersey.spi.container.servlet.ServletContainer.service(ServletContainer.java:537)
+	at org.codehaus.enunciate.modules.jersey.EnunciateJerseyServletContainer.service(EnunciateJerseyServletContainer.java:248)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:717)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:290)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+	at org.codehaus.enunciate.webapp.HTTPRequestContextFilter.doFilter(HTTPRequestContextFilter.java:36)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:343)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:109)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:83)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:97)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:78)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:54)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:35)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.authentication.www.BasicAuthenticationFilter.doFilter(BasicAuthenticationFilter.java:177)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter.doFilter(DefaultLoginPageGeneratingFilter.java:91)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:187)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:105)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:79)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:355)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:149)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:237)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:167)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:233)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:191)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:127)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:102)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:109)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:298)
+	at org.apache.coyote.http11.Http11Processor.process(Http11Processor.java:852)
+	at org.apache.coyote.http11.Http11Protocol$Http11ConnectionHandler.process(Http11Protocol.java:588)
+	at org.apache.tomcat.util.net.JIoEndpoint$Worker.run(JIoEndpoint.java:489)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.saiku.service.util.exception.SaikuServiceException: No query found using name: D16D49CB-50A7-28E8-A31C-0FFB83661C0E
+	at org.saiku.service.olap.OlapQueryService.getIQuery(OlapQueryService.java:1015)
+	at org.saiku.service.olap.OlapQueryService.moveDimension(OlapQueryService.java:736)
+	... 69 more
+2016-02-14 17:49:13,397 DEBUG [org.saiku.web.service.SessionService] Logging in with [org.springframework.security.core.userdetails.User@586034f: Username: admin; Password: [PROTECTED]; Enabled: true; AccountNonExpired: true; credentialsNonExpired: true; AccountNonLocked: true; Granted Authorities: ROLE_ADMIN,ROLE_USER]
+2016-02-14 17:49:30,882 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/664AEB4C-E881-33D8-99E7-2C1A0D5E2B6E	POST	 xml:false
+2016-02-14 17:49:35,769 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/664AEB4C-E881-33D8-99E7-2C1A0D5E2B6E/axis/COLUMNS/dimension/Proyecto/hierarchy/[Proyecto.Jerarquia]/[Proyecto.Jerarquia].[(All)]	POST
+2016-02-14 17:49:35,769 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 664AEB4C-E881-33D8-99E7-2C1A0D5E2B6E dimension Proyecto to axis COLUMNS  position0
+2016-02-14 17:49:42,418 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/664AEB4C-E881-33D8-99E7-2C1A0D5E2B6E/axis/ROWS/dimension/Measures/member/[Measures].[Gasto]	POST
+2016-02-14 17:49:42,418 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 664AEB4C-E881-33D8-99E7-2C1A0D5E2B6E dimension Measures to axis ROWS  position0
+2016-02-14 17:49:42,459 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/664AEB4C-E881-33D8-99E7-2C1A0D5E2B6E/resultflattened	GET
+2016-02-14 17:49:42,459 INFO  [org.saiku.service.olap.OlapQueryService] runId:78	Type:QM:
+SELECT
+NON EMPTY {Hierarchize({[Proyecto.Jerarquia].[All Proyecto.Jerarquias]})} ON COLUMNS,
+NON EMPTY {[Measures].[Gasto]} ON ROWS
+FROM [Movimientos]
+2016-02-14 17:49:42,469 INFO  [org.saiku.service.olap.OlapQueryService] runId:78	Size: 2/2	Execute:	0ms	Format:	10ms	 Total: 10ms
+2016-02-14 17:49:49,919 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/664AEB4C-E881-33D8-99E7-2C1A0D5E2B6E/axis/COLUMNS/dimension/Proyecto/hierarchy/[Proyecto.Jerarquia]/[Proyecto.Jerarquia].[(All)]	DELETE
+2016-02-14 17:49:49,919 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 664AEB4C-E881-33D8-99E7-2C1A0D5E2B6E dimension Proyecto to axis UNUSED  position-1
+2016-02-14 17:49:51,652 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/664AEB4C-E881-33D8-99E7-2C1A0D5E2B6E/axis/COLUMNS/dimension/Proyecto/hierarchy/[Proyecto.Jerarquia]/[Proyecto.Jerarquia].[Proyecto]	POST
+2016-02-14 17:49:51,652 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 664AEB4C-E881-33D8-99E7-2C1A0D5E2B6E dimension Proyecto to axis COLUMNS  position0
+2016-02-14 17:49:51,692 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/664AEB4C-E881-33D8-99E7-2C1A0D5E2B6E/resultflattened	GET
+2016-02-14 17:49:51,692 INFO  [org.saiku.service.olap.OlapQueryService] runId:79	Type:QM:
+SELECT
+NON EMPTY {Hierarchize({[Proyecto.Jerarquia].[Proyecto].Members})} ON COLUMNS,
+NON EMPTY {[Measures].[Gasto]} ON ROWS
+FROM [Movimientos]
+2016-02-14 17:49:51,712 INFO  [org.saiku.service.olap.OlapQueryService] runId:79	Size: 37/2	Execute:	10ms	Format:	10ms	 Total: 20ms
+2016-02-14 17:50:09,207 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/664AEB4C-E881-33D8-99E7-2C1A0D5E2B6E/axis/ROWS/dimension/Measures/member/[Measures].[Ventas]	POST
+2016-02-14 17:50:09,207 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 664AEB4C-E881-33D8-99E7-2C1A0D5E2B6E dimension Measures to axis ROWS  position0
+2016-02-14 17:50:09,297 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/664AEB4C-E881-33D8-99E7-2C1A0D5E2B6E/resultflattened	GET
+2016-02-14 17:50:09,297 INFO  [org.saiku.service.olap.OlapQueryService] runId:80	Type:QM:
+SELECT
+NON EMPTY {Hierarchize({[Proyecto.Jerarquia].[Proyecto].Members})} ON COLUMNS,
+NON EMPTY {[Measures].[Gasto], [Measures].[Ventas]} ON ROWS
+FROM [Movimientos]
+2016-02-14 17:50:09,307 INFO  [org.saiku.service.olap.OlapQueryService] runId:80	Size: 37/3	Execute:	10ms	Format:	0ms	 Total: 10ms
+2016-02-14 17:50:35,865 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/664AEB4C-E881-33D8-99E7-2C1A0D5E2B6E/axis/ROWS/dimension/Measures	POST
+2016-02-14 17:50:35,865 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 664AEB4C-E881-33D8-99E7-2C1A0D5E2B6E dimension Measures to axis ROWS  position0
+2016-02-14 17:50:35,945 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/664AEB4C-E881-33D8-99E7-2C1A0D5E2B6E/resultflattened	GET
+2016-02-14 17:50:35,945 INFO  [org.saiku.service.olap.OlapQueryService] runId:81	Type:QM:
+SELECT
+NON EMPTY {Hierarchize({[Proyecto.Jerarquia].[Proyecto].Members})} ON COLUMNS,
+NON EMPTY {[Measures].[Gasto], [Measures].[Ventas]} ON ROWS
+FROM [Movimientos]
+2016-02-14 17:50:35,965 INFO  [org.saiku.service.olap.OlapQueryService] runId:81	Size: 37/3	Execute:	20ms	Format:	0ms	 Total: 20ms
+2016-02-14 17:50:38,058 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/664AEB4C-E881-33D8-99E7-2C1A0D5E2B6E/axis/ROWS/dimension/Measures	POST
+2016-02-14 17:50:38,058 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 664AEB4C-E881-33D8-99E7-2C1A0D5E2B6E dimension Measures to axis ROWS  position0
+2016-02-14 17:50:38,139 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/664AEB4C-E881-33D8-99E7-2C1A0D5E2B6E/resultflattened	GET
+2016-02-14 17:50:38,139 INFO  [org.saiku.service.olap.OlapQueryService] runId:82	Type:QM:
+SELECT
+NON EMPTY {Hierarchize({[Proyecto.Jerarquia].[Proyecto].Members})} ON COLUMNS,
+NON EMPTY {[Measures].[Gasto], [Measures].[Ventas]} ON ROWS
+FROM [Movimientos]
+2016-02-14 17:50:38,149 INFO  [org.saiku.service.olap.OlapQueryService] runId:82	Size: 37/3	Execute:	10ms	Format:	0ms	 Total: 10ms
+2016-02-14 17:50:50,316 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/664AEB4C-E881-33D8-99E7-2C1A0D5E2B6E/axis/ROWS/dimension/Measures	POST
+2016-02-14 17:50:50,316 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 664AEB4C-E881-33D8-99E7-2C1A0D5E2B6E dimension Measures to axis ROWS  position0
+2016-02-14 17:50:50,406 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/664AEB4C-E881-33D8-99E7-2C1A0D5E2B6E/resultflattened	GET
+2016-02-14 17:50:50,406 INFO  [org.saiku.service.olap.OlapQueryService] runId:83	Type:QM:
+SELECT
+NON EMPTY {Hierarchize({[Proyecto.Jerarquia].[Proyecto].Members})} ON COLUMNS,
+NON EMPTY {[Measures].[Gasto], [Measures].[Ventas]} ON ROWS
+FROM [Movimientos]
+2016-02-14 17:50:50,416 INFO  [org.saiku.service.olap.OlapQueryService] runId:83	Size: 37/3	Execute:	10ms	Format:	0ms	 Total: 10ms
+2016-02-14 17:50:55,353 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/664AEB4C-E881-33D8-99E7-2C1A0D5E2B6E/axis/ROWS/dimension/Measures	POST
+2016-02-14 17:50:55,353 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 664AEB4C-E881-33D8-99E7-2C1A0D5E2B6E dimension Measures to axis ROWS  position0
+2016-02-14 17:50:55,433 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/664AEB4C-E881-33D8-99E7-2C1A0D5E2B6E/resultflattened	GET
+2016-02-14 17:50:55,433 INFO  [org.saiku.service.olap.OlapQueryService] runId:84	Type:QM:
+SELECT
+NON EMPTY {Hierarchize({[Proyecto.Jerarquia].[Proyecto].Members})} ON COLUMNS,
+NON EMPTY {[Measures].[Gasto], [Measures].[Ventas]} ON ROWS
+FROM [Movimientos]
+2016-02-14 17:50:55,453 INFO  [org.saiku.service.olap.OlapQueryService] runId:84	Size: 37/3	Execute:	20ms	Format:	0ms	 Total: 20ms
+2016-02-14 17:50:57,927 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/664AEB4C-E881-33D8-99E7-2C1A0D5E2B6E/axis/ROWS/dimension/Measures	POST
+2016-02-14 17:50:57,927 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 664AEB4C-E881-33D8-99E7-2C1A0D5E2B6E dimension Measures to axis ROWS  position0
+2016-02-14 17:50:58,007 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/664AEB4C-E881-33D8-99E7-2C1A0D5E2B6E/resultflattened	GET
+2016-02-14 17:50:58,007 INFO  [org.saiku.service.olap.OlapQueryService] runId:85	Type:QM:
+SELECT
+NON EMPTY {Hierarchize({[Proyecto.Jerarquia].[Proyecto].Members})} ON COLUMNS,
+NON EMPTY {[Measures].[Gasto], [Measures].[Ventas]} ON ROWS
+FROM [Movimientos]
+2016-02-14 17:50:58,027 INFO  [org.saiku.service.olap.OlapQueryService] runId:85	Size: 37/3	Execute:	10ms	Format:	10ms	 Total: 20ms
+2016-02-14 17:51:00,621 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/664AEB4C-E881-33D8-99E7-2C1A0D5E2B6E/axis/ROWS/dimension/Measures	POST
+2016-02-14 17:51:00,621 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 664AEB4C-E881-33D8-99E7-2C1A0D5E2B6E dimension Measures to axis ROWS  position0
+2016-02-14 17:51:00,711 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/664AEB4C-E881-33D8-99E7-2C1A0D5E2B6E/resultflattened	GET
+2016-02-14 17:51:00,711 INFO  [org.saiku.service.olap.OlapQueryService] runId:86	Type:QM:
+SELECT
+NON EMPTY {Hierarchize({[Proyecto.Jerarquia].[Proyecto].Members})} ON COLUMNS,
+NON EMPTY {[Measures].[Gasto], [Measures].[Ventas]} ON ROWS
+FROM [Movimientos]
+2016-02-14 17:51:00,731 INFO  [org.saiku.service.olap.OlapQueryService] runId:86	Size: 37/3	Execute:	10ms	Format:	10ms	 Total: 20ms
+2016-02-14 17:51:50,433 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/664AEB4C-E881-33D8-99E7-2C1A0D5E2B6E/axis/ROWS/dimension/Measures/member/[Measures].[Ganancias]	POST
+2016-02-14 17:51:50,433 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 664AEB4C-E881-33D8-99E7-2C1A0D5E2B6E dimension Measures to axis ROWS  position0
+2016-02-14 17:51:50,523 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/664AEB4C-E881-33D8-99E7-2C1A0D5E2B6E/resultflattened	GET
+2016-02-14 17:51:50,523 INFO  [org.saiku.service.olap.OlapQueryService] runId:87	Type:QM:
+SELECT
+NON EMPTY {Hierarchize({[Proyecto.Jerarquia].[Proyecto].Members})} ON COLUMNS,
+NON EMPTY {[Measures].[Gasto], [Measures].[Ventas], [Measures].[Ganancias]} ON ROWS
+FROM [Movimientos]
+2016-02-14 17:51:50,533 INFO  [org.saiku.service.olap.OlapQueryService] runId:87	Size: 37/4	Execute:	10ms	Format:	0ms	 Total: 10ms
+2016-02-14 17:52:31,251 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/664AEB4C-E881-33D8-99E7-2C1A0D5E2B6E/axis/ROWS/dimension/Measures/member/[Measures].[Ventas]	DELETE
+2016-02-14 17:52:31,251 DEBUG [org.saiku.service.olap.OlapQueryService] query: 664AEB4C-E881-33D8-99E7-2C1A0D5E2B6E remove:MEMBER 2
+2016-02-14 17:52:31,341 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/664AEB4C-E881-33D8-99E7-2C1A0D5E2B6E/resultflattened	GET
+2016-02-14 17:52:31,341 INFO  [org.saiku.service.olap.OlapQueryService] runId:88	Type:QM:
+SELECT
+NON EMPTY {Hierarchize({[Proyecto.Jerarquia].[Proyecto].Members})} ON COLUMNS,
+NON EMPTY {[Measures].[Gasto], [Measures].[Ganancias]} ON ROWS
+FROM [Movimientos]
+2016-02-14 17:52:31,361 INFO  [org.saiku.service.olap.OlapQueryService] runId:88	Size: 37/3	Execute:	20ms	Format:	0ms	 Total: 20ms
+2016-02-14 17:43:43,085 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/664AEB4C-E881-33D8-99E7-2C1A0D5E2B6E/axis/ROWS/dimension/Measures/member/[Measures].[Ganancias]	DELETE
+2016-02-14 17:43:43,085 DEBUG [org.saiku.service.olap.OlapQueryService] query: 664AEB4C-E881-33D8-99E7-2C1A0D5E2B6E remove:MEMBER 2
+2016-02-14 17:43:43,235 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/664AEB4C-E881-33D8-99E7-2C1A0D5E2B6E/resultflattened	GET
+2016-02-14 17:43:43,235 INFO  [org.saiku.service.olap.OlapQueryService] runId:89	Type:QM:
+SELECT
+NON EMPTY {Hierarchize({[Proyecto.Jerarquia].[Proyecto].Members})} ON COLUMNS,
+NON EMPTY {[Measures].[Gasto]} ON ROWS
+FROM [Movimientos]
+2016-02-14 17:43:43,250 INFO  [org.saiku.service.olap.OlapQueryService] runId:89	Size: 37/2	Execute:	15ms	Format:	0ms	 Total: 15ms
+2016-02-14 17:48:23,719 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/664AEB4C-E881-33D8-99E7-2C1A0D5E2B6E/axis/ROWS/dimension/Measures/member/[Measures].[Ventas]	POST
+2016-02-14 17:48:23,719 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 664AEB4C-E881-33D8-99E7-2C1A0D5E2B6E dimension Measures to axis ROWS  position0
+2016-02-14 17:48:23,839 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/664AEB4C-E881-33D8-99E7-2C1A0D5E2B6E/resultflattened	GET
+2016-02-14 17:48:23,839 INFO  [org.saiku.service.olap.OlapQueryService] runId:90	Type:QM:
+SELECT
+NON EMPTY {Hierarchize({[Proyecto.Jerarquia].[Proyecto].Members})} ON COLUMNS,
+NON EMPTY {[Measures].[Gasto], [Measures].[Ventas]} ON ROWS
+FROM [Movimientos]
+2016-02-14 17:48:23,869 INFO  [org.saiku.service.olap.OlapQueryService] runId:90	Size: 37/3	Execute:	15ms	Format:	15ms	 Total: 30ms
+2016-02-14 17:51:03,353 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/664AEB4C-E881-33D8-99E7-2C1A0D5E2B6E/axis/ROWS/dimension/Measures/member/[Measures].[Ventas]	DELETE
+2016-02-14 17:51:03,353 DEBUG [org.saiku.service.olap.OlapQueryService] query: 664AEB4C-E881-33D8-99E7-2C1A0D5E2B6E remove:MEMBER 2
+2016-02-14 17:51:03,488 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/664AEB4C-E881-33D8-99E7-2C1A0D5E2B6E/resultflattened	GET
+2016-02-14 17:51:03,488 INFO  [org.saiku.service.olap.OlapQueryService] runId:91	Type:QM:
+SELECT
+NON EMPTY {Hierarchize({[Proyecto.Jerarquia].[Proyecto].Members})} ON COLUMNS,
+NON EMPTY {[Measures].[Gasto]} ON ROWS
+FROM [Movimientos]
+2016-02-14 17:51:03,518 INFO  [org.saiku.service.olap.OlapQueryService] runId:91	Size: 37/2	Execute:	30ms	Format:	0ms	 Total: 30ms
+2016-02-14 17:51:07,544 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/664AEB4C-E881-33D8-99E7-2C1A0D5E2B6E/axis/ROWS/dimension/Measures/member/[Measures].[Ganancias]	POST
+2016-02-14 17:51:07,544 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 664AEB4C-E881-33D8-99E7-2C1A0D5E2B6E dimension Measures to axis ROWS  position0
+2016-02-14 17:51:07,664 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/664AEB4C-E881-33D8-99E7-2C1A0D5E2B6E/resultflattened	GET
+2016-02-14 17:51:07,664 INFO  [org.saiku.service.olap.OlapQueryService] runId:92	Type:QM:
+SELECT
+NON EMPTY {Hierarchize({[Proyecto.Jerarquia].[Proyecto].Members})} ON COLUMNS,
+NON EMPTY {[Measures].[Gasto], [Measures].[Ganancias]} ON ROWS
+FROM [Movimientos]
+2016-02-14 17:51:07,694 INFO  [org.saiku.service.olap.OlapQueryService] runId:92	Size: 37/3	Execute:	15ms	Format:	15ms	 Total: 30ms
+2016-02-14 17:51:56,590 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/664AEB4C-E881-33D8-99E7-2C1A0D5E2B6E/axis/COLUMNS/dimension/Proyecto/hierarchy/[Proyecto.Jerarquia]/[Proyecto.Jerarquia].[Proyecto]	DELETE
+2016-02-14 17:51:56,590 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 664AEB4C-E881-33D8-99E7-2C1A0D5E2B6E dimension Proyecto to axis UNUSED  position-1
+2016-02-14 17:51:59,684 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/664AEB4C-E881-33D8-99E7-2C1A0D5E2B6E/axis/COLUMNS/dimension/Proyecto/hierarchy/[Proyecto.Jerarquia]/[Proyecto.Jerarquia].[Clase]	POST
+2016-02-14 17:51:59,684 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 664AEB4C-E881-33D8-99E7-2C1A0D5E2B6E dimension Proyecto to axis COLUMNS  position0
+2016-02-14 17:51:59,789 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/664AEB4C-E881-33D8-99E7-2C1A0D5E2B6E/resultflattened	GET
+2016-02-14 17:51:59,789 INFO  [org.saiku.service.olap.OlapQueryService] runId:93	Type:QM:
+SELECT
+NON EMPTY {Hierarchize({[Proyecto.Jerarquia].[Clase].Members})} ON COLUMNS,
+NON EMPTY {[Measures].[Gasto], [Measures].[Ganancias]} ON ROWS
+FROM [Movimientos]
+2016-02-14 17:51:59,864 INFO  [org.saiku.service.olap.OlapQueryService] runId:93	Size: 7/3	Execute:	75ms	Format:	0ms	 Total: 75ms
+2016-02-14 17:53:32,262 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/664AEB4C-E881-33D8-99E7-2C1A0D5E2B6E/properties	POST
+2016-02-14 17:54:04,829 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/664AEB4C-E881-33D8-99E7-2C1A0D5E2B6E/xml/	GET
+2016-02-14 17:57:09,835 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/664AEB4C-E881-33D8-99E7-2C1A0D5E2B6E/axis/ROWS/dimension/Measures/member/[Measures].[Ganancias]	DELETE
+2016-02-14 17:57:09,835 DEBUG [org.saiku.service.olap.OlapQueryService] query: 664AEB4C-E881-33D8-99E7-2C1A0D5E2B6E remove:MEMBER 2
+2016-02-14 17:57:09,940 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/664AEB4C-E881-33D8-99E7-2C1A0D5E2B6E/resultflattened	GET
+2016-02-14 17:57:09,940 INFO  [org.saiku.service.olap.OlapQueryService] runId:94	Type:QM:
+SELECT
+NON EMPTY {Hierarchize({[Proyecto.Jerarquia].[Clase].Members})} ON COLUMNS,
+NON EMPTY {[Measures].[Gasto]} ON ROWS
+FROM [Movimientos]
+2016-02-14 17:57:09,985 INFO  [org.saiku.service.olap.OlapQueryService] runId:94	Size: 7/2	Execute:	45ms	Format:	0ms	 Total: 45ms
+2016-02-14 17:57:36,513 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/664AEB4C-E881-33D8-99E7-2C1A0D5E2B6E/axis/COLUMNS/dimension/mes/hierarchy/[mes]/[mes].[mes]	POST
+2016-02-14 17:57:36,513 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 664AEB4C-E881-33D8-99E7-2C1A0D5E2B6E dimension mes to axis COLUMNS  position1
+2016-02-14 17:57:36,604 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/664AEB4C-E881-33D8-99E7-2C1A0D5E2B6E/resultflattened	GET
+2016-02-14 17:57:36,604 INFO  [org.saiku.service.olap.OlapQueryService] runId:95	Type:QM:
+SELECT
+NON EMPTY CrossJoin([Proyecto.Jerarquia].[Clase].Members, [mes].[mes].Members) ON COLUMNS,
+NON EMPTY {[Measures].[Gasto]} ON ROWS
+FROM [Movimientos]
+2016-02-14 17:57:36,724 INFO  [org.saiku.service.olap.OlapQueryService] runId:95	Size: 73/3	Execute:	105ms	Format:	15ms	 Total: 120ms
+2016-02-14 17:57:45,932 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/664AEB4C-E881-33D8-99E7-2C1A0D5E2B6E/axis/COLUMNS/dimension/mes/hierarchy/[mes]/[mes].[mes]	DELETE
+2016-02-14 17:57:45,932 DEBUG [org.saiku.service.olap.OlapQueryService] move query: 664AEB4C-E881-33D8-99E7-2C1A0D5E2B6E dimension mes to axis UNUSED  position-1
+2016-02-14 17:57:46,067 DEBUG [org.saiku.web.rest.resources.QueryResource] TRACK		/query/664AEB4C-E881-33D8-99E7-2C1A0D5E2B6E/resultflattened	GET
+2016-02-14 17:57:46,067 INFO  [org.saiku.service.olap.OlapQueryService] runId:96	Type:QM:
+SELECT
+NON EMPTY {Hierarchize({[Proyecto.Jerarquia].[Clase].Members})} ON COLUMNS,
+NON EMPTY {[Measures].[Gasto]} ON ROWS
+FROM [Movimientos]
+2016-02-14 17:57:46,067 INFO  [org.saiku.service.olap.OlapQueryService] runId:96	Size: 7/2	Execute:	0ms	Format:	0ms	 Total: 0ms

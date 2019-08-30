@@ -1,0 +1,42 @@
+<Schema name="New Schema1">
+  <Cube name="Movimientos" visible="true" cache="true" enabled="true">
+    <Table name="fact_factura" schema="public">
+    </Table>
+    <Dimension type="StandardDimension" visible="true" foreignKey="fk_proyecto" highCardinality="false" name="Proyecto">
+      <Hierarchy name="Jerarquia" visible="true" hasAll="true" primaryKey="pk_proyecto">
+        <Table name="dim_tipo_proyecto" schema="public">
+        </Table>
+        <Level name="Clase" visible="true" column="nb_clase_proyecto" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Proyecto" visible="true" column="nb_proyecto" ordinalColumn="pk_proyecto" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" name="mes">
+      <Hierarchy name="mes" visible="true" hasAll="true" allMemberName="mes">
+        <Level name="mes" visible="true" column="mes" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="fk_clasificacion" name="Clasificacion">
+      <Hierarchy name="Clases de Articulos" visible="true" hasAll="true" primaryKey="pk_clasificacion">
+        <Table name="dim_clasificacion" schema="public" alias="">
+        </Table>
+        <Level name="Clasificacion" visible="true" column="nb_clasificacion" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Articulo" visible="true" column="nb_subclase" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Measure name="Ventas" column="venta" datatype="Numeric" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="Gasto" column="gasto" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="Credito" column="credito" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="Prestamo" column="prestar" aggregator="sum" visible="true">
+    </Measure>
+    <CalculatedMember name="Ganancias" description="Ganancias" formula="[Measures].[Ventas] - [Measures].[Gasto]" dimension="Measures" visible="true">
+    </CalculatedMember>
+  </Cube>
+</Schema>

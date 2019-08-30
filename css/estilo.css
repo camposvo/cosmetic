@@ -1,0 +1,20 @@
+﻿@charset "utf-8";
+
+
+ .table-hover tbody tr:hover td {
+        /*background-color: #CAE8FC; Azul claro*/ 
+		background-color: #c1e2b3; /*Verde claro o success*/
+}
+
+.menu_2{
+	font-family:Verdana, Geneva, sans-serif;
+	color:#666;
+	font-size:12px;
+}
+
+a:hover {
+	font-size:11px;
+	color: #CD0000;
+	
+}
+

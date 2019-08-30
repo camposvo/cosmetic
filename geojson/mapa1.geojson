@@ -1,0 +1,9 @@
+?({
+"type": "FeatureCollection",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::31493" } },
+                                                                                
+"features": [
+{ "type": "Feature", "properties": { "cat": "2", "adm1_code": "DEU-1579", "OBJECTID_1": "942", "diss_me": "1579", "adm1_cod_1": "DEU-1579", "iso_3166_2": "DE-", "wikipedia": null, "iso_a2": "DE", "adm0_sr": "6", "name": "Schleswig-Holstein", "name_alt": null, "name_local": null, "type": "Land", "type_en": "State", "code_local": null, "code_hasc": "DE.SH", "note": null, "hasc_maybe": null, "region": null, "region_cod": null, "provnum_ne": "3", "gadm_level": "1", "check_me": "20", "scalerank": "3", "datarank": "3", "abbrev": null, "postal": "SH", "area_sqkm": "0", "sameascity": "-99", "labelrank": "3", "featurecla": "Admin-1 scale rank", "name_len": "18", "mapcolor9": "5", "mapcolor13": "1", "fips": "GM10", "fips_alt": null, "woe_id": "2345490", "woe_label": "Schleswig-Holstein, DE, Germany", "woe_name": "Schleswig-Holstein", "latitude": "54.1315", "longitude": "9.84605", "sov_a3": "DEU", "adm0_a3": "DEU", "adm0_label": "2", "admin": "Germany", "geonunit": "Germany", "gu_a3": "DEU", "gn_id": "2838632", "gn_name": "Land Schleswig-Holstein", "gns_id": "-1858348", "gns_name": "Schleswig-Holstein", "gn_level": "1", "gn_region": null, "gn_a1_code": "DE.10", "region_sub": null, "sub_code": null, "gns_level": "1", "gns_lang": "zho", "gns_adm1": "GM10", "gns_region": null }, "geometry": { "type": "LineString", "coordinates": [ [ 396780.0, 13860.0, 0.0 ], [ 396787.0, 13730.0, 0.0 ], [ 396999.0, 12287.0, 0.0 ], [ 397700.0, 12305.0, 0.0 ], [ 397799.0, 14079.0, 0.0 ], [ 397820.0, 14388.0, 0.0 ], [ 396780.0, 13860.0, 0.0 ] ]  } }
+]
+}
+);

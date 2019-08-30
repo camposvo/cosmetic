@@ -1,0 +1,57 @@
+1;Acuicola;2
+2;Agricola;5
+2;Agricola;7
+3;Alim. Peces;1
+4;Alimento Ganado;1
+5;Antibiotico;8
+6;Articulo;7
+7;Avicola;2
+7;Avicola;5
+8;Becerros;1
+9;Bolsas;7
+10;Bombillo;7
+11;Camion;3
+12;Cerdas Gestantes;1
+13;Cerdas Lactantes;1
+14;Cerdos Desarrollo;1
+15;Cerdos Engorde;1
+16;Cerdos Iniciador;1
+17;Cerdos Preiniciador;1
+18;Comida;4
+19;Construccion;5
+19;Construccion;6
+19;Construccion;7
+20;Credito;9
+21;Desinfectante;7
+22;Electricidad;7
+23;Ganaderia;2
+23;Ganaderia;5
+23;Ganaderia;6
+23;Ganaderia;7
+24;Ganado de Ceba;1
+25;Garrapaticida;8
+26;Gas;7
+27;Herreria;7
+28;Hervisida;7
+29;Hidratante;8
+30;Hierro;8
+31;Limpieza;7
+32;Lubricantes;7
+33;Mano de Obra;9
+34;Matagusano;8
+35;Medicina;8
+36;Papeleria;7
+37;Pintura;6
+38;Pinturas;7
+39;Plomeria;5
+39;Plomeria;7
+40;Pollo Engorde;1
+41;Pollo Iniciador;1
+42;Pollo Preiniciador;1
+43;Pollo Retiro;1
+44;Porcina;2
+45;Refrigeracion;5
+46;Tramites;9
+47;Vacas Lecheras;1
+48;Vacuna;8
+49;Vitamina;8

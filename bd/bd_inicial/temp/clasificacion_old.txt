@@ -1,0 +1,57 @@
+1;Pollo Iniciador;1
+2;Cerdos Preiniciador;1
+3;Cerdos Iniciador;1
+4;Cerdos Engorde;1
+5;Cerdos Desarrollo;1
+6;Cerdas Lactantes;1
+7;Pollo Engorde;1
+8;Ganado de Ceba;1
+9;Pollo Preiniciador;1
+10;Pollo Retiro;1
+11;Becerros;1
+12;Alimento Ganado;1
+13;Vacas Lecheras;1
+14;Alim. Peces;1
+15;Cerdas Gestantes;1
+16;Ganaderia;2
+17;Avicola;2
+18;Acuicola;2
+19;Porcina;2
+20;Camion;3
+21;Comida;4
+22;Refrigeracion;5
+23;Equipos Agricola;5
+24;Equipos Avicola;5
+25;Equipos Plomeria;5
+26;Equipos Ganaderia;5
+27;Equipos Construccion;5
+28;Herramientas Pintura;6
+29;Herramientas Ganaderia;6
+30;Construccion;6
+31;Materiales Construccion;7
+32;Materiales Ganaderia;7
+33;Papeleria;7
+34;Plomeria;7
+35;Bombillo;7
+36;Bolsas;7
+37;Articulo;7
+38;Agricola;7
+39;Pinturas;7
+40;Gas;7
+41;Limpieza;7
+42;Herreria;7
+43;Electricidad;7
+44;Lubricantes;7
+45;Desinfectante;7
+46;Hervisida;7
+47;Medicina;8
+48;Matagusano;8
+49;Vitamina;8
+50;Garrapaticida;8
+51;Hidratante;8
+52;Hierro;8
+53;Antibiotico;8
+54;Vacuna;8
+55;Mano de Obra;9
+56;Credito;9
+57;Tramites;9

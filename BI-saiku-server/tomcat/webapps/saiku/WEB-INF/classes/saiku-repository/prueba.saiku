@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Query name="7C049B63-45AC-3170-B057-DA67002410B1" type="QM" connection="falla" cube="[cubo]" catalog="fallas" schema="fallas">
+  <QueryModel>
+    <Axes>
+      <Axis location="ROWS" nonEmpty="false">
+        <Dimensions>
+          <Dimension name="tipo" hierarchizeMode="PRE" hierarchyConsistent="true">
+            <Inclusions>
+              <Selection dimension="tipo" type="level" node="[tipo].[Tipos de Falla]" operator="MEMBERS" />
+            </Inclusions>
+            <Exclusions />
+          </Dimension>
+          <Dimension name="Lugar" hierarchizeMode="PRE" hierarchyConsistent="true">
+            <Inclusions>
+              <Selection dimension="Lugar" type="level" node="[Lugar.Jerarquia].[Distrito]" operator="MEMBERS" />
+            </Inclusions>
+            <Exclusions />
+          </Dimension>
+        </Dimensions>
+      </Axis>
+      <Axis location="COLUMNS" nonEmpty="false">
+        <Dimensions>
+          <Dimension name="Measures">
+            <Inclusions>
+              <Selection dimension="Measures" type="member" node="[Measures].[Cantidad de Fallas]" operator="MEMBER" />
+            </Inclusions>
+            <Exclusions />
+          </Dimension>
+        </Dimensions>
+      </Axis>
+      <Axis location="FILTER" nonEmpty="false" />
+    </Axes>
+  </QueryModel>
+  <MDX>SELECT&#xD;
+{[Measures].[Cantidad de Fallas]} ON COLUMNS,&#xD;
+CrossJoin([tipo].[Tipos de Falla].Members, [Lugar.Jerarquia].[Distrito].Members) ON ROWS&#xD;
+FROM [cubo]</MDX>
+  <Properties>
+    <Property name="saiku.ui.render.mode" value="table" />
+    <Property name="org.saiku.query.explain" value="true" />
+    <Property name="saiku.ui.render.type" value="spark_bar" />
+    <Property name="saiku.olap.query.nonempty.columns" value="false" />
+    <Property name="saiku.olap.query.nonempty.rows" value="false" />
+    <Property name="org.saiku.connection.scenario" value="false" />
+    <Property name="saiku.olap.query.automatic_execution" value="true" />
+    <Property name="saiku.olap.query.drillthrough" value="true" />
+    <Property name="saiku.olap.query.filter" value="true" />
+    <Property name="saiku.olap.query.limit" value="true" />
+    <Property name="saiku.olap.query.nonempty" value="false" />
+  </Properties>
+</Query>
+

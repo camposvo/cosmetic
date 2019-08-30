@@ -1,0 +1,92 @@
+f_cuenta(valor numeric)
+
+declare
+resul numeric;
+ingreso_1 numeric;
+ingreso_2 numeric;
+ingreso_3 numeric;
+egreso_1 numeric;
+egreso_2 numeric;
+egreso_3 numeric;
+egreso_4 numeric;
+
+begin
+resul = 1;
+-- ABONOS POR VENTAS O CUENTAS QUE ESTAN PENDIENTE POR COBRAR
+SELECT sum(nu_monto+nu_interes) INTO ingreso_1
+  FROM t04_abono
+  inner join t20_factura ON t04_abono.fk_factura = t20_factura.pk_factura
+  where t04_abono.nu_referencia <= $1 and (t20_factura.tx_tipo = 'VENTA');
+
+-- SOLICITUDE DE CREDITO O CUENTA POR PAGAR
+SELECT sum(nu_cantidad * nu_precio) into ingreso_2
+  FROM t01_detalle
+   inner join t20_factura ON t01_detalle.fk_factura = t20_factura.pk_factura
+  where (t01_detalle.nu_referencia <= $1) and  t20_factura.tx_tipo = 'CTAXPAGAR';
+
+-- ABONOS POR CUENTAS QUE ESTAN PENDIENTE POR COBRAR
+SELECT sum(nu_monto+nu_interes) INTO ingreso_3
+  FROM t04_abono
+  inner join t20_factura ON t04_abono.fk_factura = t20_factura.pk_factura
+  where t04_abono.nu_referencia <= $1 and (t20_factura.tx_tipo = 'CTAXCOBRAR');
+
+-- PAGO O ABONO DE UN CREDITO O CUENTA POR PAGAR
+SELECT sum(nu_monto+nu_interes) into egreso_1
+  FROM t04_abono
+   inner join t20_factura ON t04_abono.fk_factura = t20_factura.pk_factura
+  where t04_abono.nu_referencia <= $1 and t20_factura.tx_tipo = 'CTAXPAGAR';
+
+-- EMISION DE UN GASTOS 
+-- * Se lee de la tabla abono por la vista vm02_edo_consulta esta haciendo la consulta a la tabla abono
+SELECT sum(nu_monto+nu_interes) into egreso_2
+  FROM t04_abono
+   inner join t20_factura ON t04_abono.fk_factura = t20_factura.pk_factura
+  where t04_abono.nu_referencia <= $1 and t20_factura.tx_tipo = 'GASTO';
+
+-- EMISION DE UN PRESTAMO (CTA POR COBRAR) 
+SELECT sum(nu_cantidad * nu_precio) into egreso_3
+  FROM t01_detalle
+   inner join t20_factura ON t01_detalle.fk_factura = t20_factura.pk_factura
+  where (t01_detalle.nu_referencia <= $1) and  (t20_factura.tx_tipo = 'CTAXCOBRAR');
+
+-- EMISION DE UN PAGO  DE NOMINA
+SELECT sum(nu_cantidad * nu_precio) into egreso_4
+  FROM t01_detalle
+   inner join t20_factura ON t01_detalle.fk_factura = t20_factura.pk_factura
+  where (t01_detalle.nu_referencia <= $1) and  (t20_factura.tx_tipo = 'NOMINA');
+
+
+  
+
+IF ingreso_1 is null THEN
+ ingreso_1 =0;
+end if;
+
+IF ingreso_2 is null THEN
+ ingreso_2 =0;
+end if;
+
+IF ingreso_3 is null THEN
+ ingreso_3 =0;
+end if;
+
+IF egreso_1 is null THEN
+ egreso_1 =0;
+end if;
+
+IF egreso_2 is null THEN
+ egreso_2 =0;
+end if;
+
+IF egreso_3 is null THEN
+ egreso_3 =0;
+end if;
+
+IF egreso_4 is null THEN
+ egreso_4 =0;
+end if;
+
+resul =  (ingreso_1 + ingreso_2 + ingreso_3) - (egreso_1 + egreso_2 + egreso_3 + egreso_4) ;
+
+return resul;
+end;

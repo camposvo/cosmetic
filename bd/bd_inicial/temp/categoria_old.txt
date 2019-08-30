@@ -1,0 +1,9 @@
+1;Alimento Animal
+2;Animal
+3;Automotriz
+4;Comida
+5;Equipos
+6;Herramientas
+7;Materiaes
+8;Medicina Veterinaria
+9;Servicios

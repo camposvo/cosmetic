@@ -1,0 +1,50 @@
+DECLARE
+edad numeric;
+resultado text;
+datos gan_grupo_etareo%rowtype;
+
+BEGIN
+
+-- 
+SELECT * FROM  gan_grupo_etareo INTO datos;
+
+-- Calcula la edad en dias por la fecha de nacimiento
+
+SELECT 	EXTRACT (days from (now() - fe_nacimiento)) INTO edad;  
+
+IF ( edad >= datos.nu_edad_ini_1 AND edad < datos.nu_edad_fin_1 ) THEN
+	IF (sexo = 'MACHO') THEN
+		resultado = 'BECERRO';
+	ELSE
+		resultado = 'BECERRA';
+	END IF;
+ELSIF( edad >= datos.nu_edad_ini_2 AND edad < datos.nu_edad_fin_2 ) THEN
+	IF (sexo = 'MACHO') THEN
+		resultado = 'NOVILLO DESTETE';
+	ELSE
+		resultado = 'NOVILLA DESTETE';
+	END IF;
+ELSIF( edad >= datos.nu_edad_ini_3 AND edad < datos.nu_edad_fin_3 ) THEN
+	IF (sexo = 'MACHO') THEN
+		resultado = 'NOVILLO LEVANTE';
+	ELSE
+		resultado = 'NOVILLA LEVANTE';
+	END IF;
+ELSIF( edad >= datos.nu_edad_ini_4 AND edad < datos.nu_edad_fin_4 ) THEN
+	IF (sexo = 'MACHO') THEN
+		resultado = 'NOVILLO LEVANTE';
+	ELSE
+		resultado = 'NOVILLA LEVANTE';
+	END IF;
+ELSE
+	IF (sexo = 'MACHO') THEN
+		resultado = 'TORO';
+	ELSE
+		resultado = 'VACA';
+	END IF;
+
+	
+END IF;
+
+RETURN resultado;
+END;

@@ -1,0 +1,57 @@
+1,00;Pintura;1,00
+2,00;Ganaderia;1,00
+3,00;Construccion;1,00
+4,00;Refrigeracion;2,00
+5,00;Avicola;2,00
+6,00;Agricola;2,00
+7,00;Ganaderia;2,00
+8,00;Construccion;2,00
+8,00;Plomeria;2,00
+9,00;Lubricantes;3,00
+10,00;Plomeria;3,00
+11,00;Herreria;3,00
+12,00;Construccion;3,00
+13,00;Bolsas;3,00
+14,00;Bombillo;3,00
+15,00;Ganaderia;3,00
+16,00;Limpieza;3,00
+17,00;Agricola;3,00
+18,00;Desinfectante;3,00
+19,00;Articulo;3,00
+20,00;Electricidad;3,00
+21,00;Gas;3,00
+22,00;Hervisida;3,00
+23,00;Papeleria;3,00
+24,00;Pinturas;3,00
+25,00;Alim. Peces;4,00
+26,00;Alimento Ganado;4,00
+27,00;Becerros;4,00
+28,00;Cerdas Gestantes;4,00
+29,00;Cerdas Lactantes;4,00
+30,00;Cerdos Desarrollo;4,00
+31,00;Cerdos Engorde;4,00
+32,00;Cerdos Iniciador;4,00
+33,00;Cerdos Preiniciador;4,00
+34,00;Ganado de Ceba;4,00
+35,00;Pollo Engorde;4,00
+36,00;Pollo Iniciador;4,00
+37,00;Pollo Preiniciador;4,00
+38,00;Pollo Retiro;4,00
+39,00;Vacas Lecheras;4,00
+40,00;Antibiotico;5,00
+41,00;Garrapaticida;5,00
+42,00;Hidratante;5,00
+43,00;Hierro;5,00
+44,00;Matagusano;5,00
+45,00;Medicina;5,00
+46,00;Vacuna;5,00
+47,00;Vitamina;5,00
+48,00;Tramites;6,00
+49,00;Credito;6,00
+50,00;Mano de Obra;6,00
+51,00;Camion;7,00
+52,00;Avicola;8,00
+53,00;Acuicola;8,00
+54,00;Comida;8,00
+55,00;Ganaderia;8,00
+56,00;Porcina;8,00

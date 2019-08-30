@@ -1,0 +1,5 @@
+index.php: Es la pantalla de inicio que se encarga tomar el usuario y password y pasa el control a sesion.php
+
+sesion.php: valida usuario y password, define el menu y roles del usurio y llamar a interface.php
+
+interface.php: genera la interfaz principal el marco de trabajo de donde se invokan todas las pantallas de la logica del negocio

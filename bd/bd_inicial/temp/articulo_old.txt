@@ -1,0 +1,234 @@
+Alevin;1;Peces;2;0,00
+Cortina 60 X 2,10 Anaranjada Sin Bordes;2;Cortina 60 X 2,10 Anaranjada Sin Bordes;7;0,00
+Rollo De Malla Plastica 1.83X30 Mts De 3/4;2;Rollo De Malla Plastica 1.83X30 Mts De 3/4;7;0,00
+Mecatillo;2;Mecatillo;7;0,00
+PP30 ;2;Rollo De Mecatillo;7;0,00
+Malla Plastica 3/4 De 1,80 X 30 mts;2;Malla Plastica 3/4 De 1,80 X 30 mts;7;0,00
+Malla Plastica 1/2 De 1,60 X 30Mts;2;Malla Plastica 1/2 De 1,60 X 30Mts;7;0,00
+Grampa;2;Grampa;7;0,00
+Separadores De Huevo;2;Separadores De Huevo;7;0,00
+Driza 1 Mts;2;Driza 1 Mts;7;0,00
+Dedos Desplumadora;2;Dedos Desplumadora;7;0,00
+Concha de Arroz;2;Concha de Arroz;7;0,00
+Desmalezadora Domopower 45cc 83-D45;2;Desmalezadora Domopower 45cc 83-D45;5;0,00
+Bandeja  Semillero 162 Pts;2;Bandeja de semilleros con 162 puestos;5;0,00
+Porta Nailon Universal;2;Porta Nailon Universal;5;0,00
+Filtro A-4731;2;Filtro A-4731;5;0,00
+Humus Liquido 1 lt;2;Humus Liquido 1 lt;7;0,00
+Puricachama;3;Puricachama;1;0,00
+Sal Roja;4;Sal Roja;1;0,00
+Melaza Cunete;4;Melaza Cunete;1;0,00
+Tylafur;5;Antibiotico respiratorio;8;0,00
+Enrrosig 1lt;5;Antibiotico respiratorio Enrofloxacina;8;0,00
+Amoxicilina;5;Amoxicilina;8;0,00
+Fosforo;6;Fosforo;7;0,00
+Pollo Bebe;7;Pollo Bebe;2;0,00
+Ponedora Bebe;7;Ponedora Bebe;2;0,00
+Ponedora;7;Ponedora;2;0,00
+Bebedero Automatico Pollos;7;Bebedero Automatico Pollos;5;0,00
+Jualas de 7 Puestos X 3 ;7;Jualas de 7 Puestos X 3 ;5;0,00
+Mecanismos Para Bebederos Automaticos;7;Mecanismos Para Bebederos Automaticos;5;0,00
+Bebedero tipo Copa;7;Bebedero tipo Copa;5;0,00
+Criadora Infraroja Cap. 1800 Pollos bb;7;Criadora Infraroja con Capacidad de 1800 Pollos bb;5;0,00
+Ganarina Becerro Alconca;8;Suministrarse a libre acceso desde los 4 días de edad hasta el cuarto mes;1;0,00
+Agrobecerros;8;Alimento Balanceado indicado para becerros de reemplazo y de engorde adecuado a la etapa de crecimiento;1;0,00
+Bolsa de 30x40 S/A cien;9;Bolsa de 30x40 S/A cien;7;0,00
+Bolsa de 30x40 S/A mil;9;Bolsa de 30x40 S/A mil;7;0,00
+Bolsas de 15 Kg c/asa;9;Bolsas de 15 Kg c/asa;7;0,00
+Bobina Plastica de 30x40;9;Bobina Plastica de 30x40;7;0,00
+Bombillo 100w;10;Bombillo 100w;7;0,00
+Bombillo 60w;10;Bombillo 60w;7;0,00
+Bombillo 75w;10;Bombillo 75w;7;0,00
+Puente Central Mitsubishi Fuso 444;11;Puente Central Mitsubishi Fuso 444;3;0,00
+Swicthe De Encendido;11;Swicthe De Encendido;3;0,00
+Filtro Combustiible 33399;11;Filtro Combustiible 33399;3;0,00
+Filtro Combustiible 33281;11;Filtro Combustiible 33281;3;0,00
+Abrazaderas De Alternador;11;Abrazaderas De Alternador;3;0,00
+Turbo Td05;11;Turbo Td05;3;0,00
+Bomba De Aceita Y Concha De Viela;11;Bomba De Aceita Y Concha De Viela;3;0,00
+Kit De Axiales;11;Kit De Axiales;3;0,00
+Puente Central Camion;11;Puente Central Camion;3;0,00
+Porcimantenimiento Alconca;12;Suminístrese a las cerdas gestantes de 2 a 3 Kg diarios dependiendo de la condición física del animal desde el día de la monta y hasta 21 a 28 días antes del parto;1;0,00
+Cerdas Gestantes Agrobueyca;12;Alimento Balanceado completo, para ser suministrado a las cerdas gestantes a razón de 2 a 3 Kg. Según condición física y estado de la gestación. ;1;0,00
+Porcilactante Alconca;13;Suminístrese de 2 a 3 Kg de alimento de 3 a 4 semanas antes del parto.El día del parto suminístrese 1 Kg de alimento.Posteriormente suminístrese 2 Kg diarios + 400 g por cada Lechón.;1;0,00
+Cerdas Lactantes Agrobueyca;13;Alimento Balanceado completo, muy palatable, para ser suministrado a las cerdas lactantes. Se usa como única fuente de alimentación desde el momento del parto hasta el destete de los lechones.;1;0,00
+Porcidesarrollo Alconca;14;Suminístrese a libre acceso desde los 29Kg.de peso corporal hasta que los cerdos hayan alcanzado los 65 Kg. de peso;1;0,00
+Cerdos Desarrollo Agrobueyca;14;Alimento Balanceado completo, para ser utilizado en cerdos de 40 hasta 65 Kg. Se administrará sin racionamiento.;1;0,00
+Porciengorde Alconca;15;Suminístrese a libre acceso desde los 65 Kg. de peso corporal hasta que los cerdos hayan alcanzado el peso de mercado deseado;1;0,00
+Cerdos Engorde Agrobueyca;15;Alimento Balanceado completo, para ser utilizado en cerdos de 65 hasta 95 Kg ó hasta su beneficio. Se administrará sin racionamiento.  ;1;0,00
+Porcilechon Alconca;16;Suminístrese a libre acceso, desde los 14 Kg. de peso corporal hasta que los lechones alcancen 29 Kg. de peso;1;0,00
+Cerdos Iniciador Agrobueyca;16;Alimento Balanceado completo, muy palatable, para ser usado en lechones de 20 a 40 Kg. Se administrará sin racionamiento. ;1;0,00
+Cerdos Preiniciador Precoz Agrobueyca;17;alimento en lechones, desde la segunda semana de edad, hasta que alcancen el peso de 8 a 10 Kg ó 35 días de edad. ;1;0,00
+Cerdos Preiniciador Agrobueyca;17;Para ser usado en lechones de 8 a 20Kg. Está medicado para combatir el stress y la diarrea de los lechones en etapa de crecimiento.;1;0,00
+Porcidestete Alconca;17;Alimento completo destinado a la alimentación de cerditos antes y después del destete. Suministre a libre acceso desde el séptimo día hasta que los cerditos hayan alcanzado 14 Kg;1;0,00
+Arroz 1kg;18;Arroz 1kg;4;0,00
+Casabe;18;Casabe;4;0,00
+Azucar 1kg;18;Azucar 1kg;4;0,00
+Adobo;18;Adobo;4;0,00
+Costilla Cochino 1 kg;18;Costilla Cochino 1 kg;4;1,00
+Sardina Fresca 1kg;18;Sardina Fresca 1kg;4;0,00
+Pollo 1kg;18;Pollo 1kg;4;2,00
+Patas de Pollo 1 kg;18;Patas de Pollo 1 kg;4;1,00
+Molleja Pollo 1 kg;18;Molleja Pollo 1 kg;4;1,00
+Higado Pollo 1 kg;18;Higado Pollo 1 kg;4;1,00
+Atun ;18;Atun ;4;0,00
+Mayonesa;18;Mayonesa;4;0,00
+Espagueti 1kg;18;Espagueti 1kg;4;0,00
+Sardina Lata;18;Sardina Lata;4;0,00
+Aceite 1 lt;18;Aceite 1 lt;4;0,00
+Sal 1 kg;18;Sal 1 kg;4;0,00
+Refresco;18;Refresco;4;0,00
+Tomate 1 kg;18;Tomate 1 kg;4;0,00
+Mortadela 1 Kg;18;Mortadela 1 Kg;4;0,00
+Cebolla 1 kg;18;Cebolla 1 kg;4;0,00
+Café 250 gr;18;Café 250 gr;4;0,00
+Fororo 1 Kg;18;Fororo 1 Kg;4;0,00
+Espagueti 1/2 kg;18;Espagueti 1/2 kg;4;0,00
+Azadura Cochino 1 kg;18;Azadura Cochino 1 kg;4;1,00
+Salsa de Tomate;18;Salsa de Tomate;4;0,00
+Paleta Cochino 1 kg;18;Paleta Cochino 1 kg;4;1,00
+Pan Canilla;18;Pan Canilla;4;0,00
+Chuleta Cochino 1 kg;18;Chuleta Cochino 1 kg;4;1,00
+Patas Cochino 1 kg;18;Patas Cochino 1 kg;4;1,00
+Carne de Res Primera 1kg;18;Carne de Res 1kg;4;2,00
+Carne de Res Segunda 1kg;18;Carne de Res 1kg;4;2,00
+Pernil Cochino 1 kg;18;Pernil Cochino 1 kg;4;1,00
+Mantequilla;18;Mantequilla;4;0,00
+Cabeza Cochino 1 kg;18;Cabeza Cochino 1 kg;4;1,00
+Café 500 gr;18;Café 500 gr;4;0,00
+Pico C/Cabo;19;Pico C/Cabo;6;0,00
+Cinta Metrica;19;Cinta Metrica;6;0,00
+Tenaza de 8" Fermetal;19;Tenaza de 8" Fermetal;6;0,00
+Rastrillo;19;Rastrillo;6;0,00
+Arco de Seguea Stanley;19;Arco de Seguea Stanley;6;0,00
+Carretilla 140Lt;19;Carretilla 140Lt;6;0,00
+Pala Ancha;19;Pala Ancha;6;0,00
+Chicura C/Cabo;19;Chicura C/Cabo;6;0,00
+Rueda Neumatica De Carretilla;19;Rueda Neumatica De Carretilla;5;0,00
+Cepillo Construcion;19;Cepillo Construcion;6;0,00
+Bloque de 10;19;Bloque de 10;7;0,00
+Bloque de 15;19;Bloque de 15;7;0,00
+Tripa Carretilla;19;Tripa Carretilla;7;0,00
+Cal 8 kg;19;Cal 8 kg;7;0,00
+Pago de Credito;20;Pago de Credito;9;0,00
+Despacadac 5 Lt;21;Desinfectante antimicrobiano contra bacterias, hongos, mohos y virus patógenos y perniciosos para las especies avícolas, ganaderas, porcinas, etc. ;7;0,00
+Creolina;21;Creolina;7;0,00
+Socate/Toma Corriente;22;Socate/Toma Corriente;7;0,00
+Socate;22;Socate;7;0,00
+Caujo Bixa 1Lts;23;Caujo Bixa 1Lts;7;0,00
+Ganado;23;Ganado;2;0,00
+Yegua;23;Yegua;2;0,00
+Agujas Para Ganado;23;Agujas Para Ganado;6;0,00
+Silla De Trabajo De Cuero Semiaperada;23;Silla De Trabajo De Cuero Semiaperada;5;0,00
+Ganarina Ceba Alconca;24;Ganarina Ceba Alconca;1;0,00
+Agroceba Plus;24;Alimento Balanceado, altamente energético, indicado  para mantenimiento y producción de ganado de carne en el período de ceba;1;0,00
+Agroceba;24;Alimento Balanceado indicado para mantenimiento de ganado de carne en el peridodo de ceba.;1;0,00
+Garrapaticida ;25;Garrapaticida ;8;0,00
+Regulador De Gas Con Adap.;26;Regulador De Gas Con Adap.;7;0,00
+Rabo De Cochino Para Gas;26;Rabo De Cochino Para Gas;7;0,00
+Cabilla 5,2 mm;27;Cabilla 5,2 mm;7;0,00
+Disco de Corte Ultra Fino 14" 2mm;27;Disco de Corte Ultra Fino 14" 2mm;7;0,00
+Barra Cuadrada 5/8;27;Barra Cuadrada 5/8;7;0,00
+Barilla de Cobre;27;Barilla de Cobre;7;0,00
+Lamina Zinc Ondulado 2.44X0.80X0.17Mm;27;Lamina Zinc Ondulado 2.44X0.80X0.17Mm;7;0,00
+Lamina Zinc Ondulado 3.66X0.80X0.18Mm;27;Lamina Zinc Ondulado 3.66X0.80X0.18Mm;7;0,00
+Lima Motosierra 5/32  Bv;27;Lima Motosierra 5/32  Bv;7;0,00
+Tirra 004X350M;27;Tirra 004X350M;7;0,00
+Alambre Liso 1Kg;27;Alambre Liso 1Kg;7;0,00
+Electrodos E6013 1/8 ;27;Electrodos E6013 1/8 ;7;0,00
+Disco de Corte 14";27;Disco de Corte 14";7;0,00
+Tubular 2x1;27;Tubular 2x1;7;0,00
+Nylon Para Desmalezadora;27;Nylon Para Desmalezadora;7;0,00
+Alambre Pua 500 Mts;27;Alambre Pua 500 Mts;7;0,00
+Visagra;27;Visagra;7;0,00
+Tubular 2x1x6Mts 0.90;27;Tubular 2x1x6Mts 0.90;7;0,00
+Hervisida;28;Hervisida;7;0,00
+Hidravit;29;Hidravit;8;0,00
+Hidratopp;29;Hidratopp;8;0,00
+Eritrogen;30;Producto que reúne en sus componentes 4 acciones principales: Antianémico,Anabolizante, Energético y Estimulante;8;0,00
+Detergente en Polvo 1kg;31;Detergente en Polvo 1kg;7;0,00
+Desengrasante 1 lts;31;Desengrasante 1 lts;7;0,00
+Cloro 1 lts;31;Cloro 1 lts;7;0,00
+Jabon Liq. 1lts;31;Jabon Liq. 1lts;7;0,00
+Aceite dos tiempo;32;Aceite dos tiempo;7;0,00
+Serv. Mano de Obra;33;Serv. Mano de Obra;9;0,00
+Serv. Herreria;33;Serv. Herreria;9;0,00
+Serv. Refrigeracion;33;Serv. Refrigeracion;9;0,00
+Serv. Mecanica;33;Serv. Mecanica;9;0,00
+Matabicheiras Forte;34;Matabicheiras Forte;8;0,00
+Lepeci;34;Lepeci;8;0,00
+Mata Gusano En Crema;35;Mata Gusano En Crema;8;0,00
+Percloruro ( Cicatrizante);35;Percloruro ( Cicatrizante);8;0,00
+Talonario;36;Talonario;7;0,00
+Brocha 4" ;37;Brocha De 4 Pulgasdas;6;0,00
+Pintura De Aceite Negro Brillante;38;Pintura De Aceite Negro Brillante;7;0,00
+Tee PVC Desague 1 1/2;39;Tee PVC Desague 1 1/2;7;0,00
+Tee PVC Desague 4;39;Tee PVC Desague 4;7;0,00
+Tee PVC Desague 6;39;Tee PVC Desague 6;7;0,00
+Tee PVC Desague 7;39;Tee PVC Desague 7;7;0,00
+Tuberia pavco 2;39;Tuberia pavco 2;7;0,00
+Pega Tanque;39;Pega Tanque;7;0,00
+Tee PVC Desague 3;39;Tee PVC Desague 3;7;0,00
+Teflon 3/4 x 50 Mts.;39;Teflon 3/4 x 50 Mts.;7;0,00
+Tee PVC Desague 2;39;Tee PVC Desague 2;7;0,00
+Tee PVC Desague 5;39;Tee PVC Desague 5;7;0,00
+Union Rapida 25 mm ;39;Union Rapida 25 mm ;7;0,00
+Tubo Azul 3/4;39;Tubo Azul 3/4;7;0,00
+Manguera De 25mm x 100 mts;39;Manguera De 25mm x 100 mts;7;0,00
+Tuberia pavco 1;39;Tuberia pavco 1;7;0,00
+Codo 45° pavco 1/2;39;Codo 45° pavco 1/2;7;0,00
+Codo 45° pavco 1 1/2;39;Codo 45° pavco 1 1/2;7;0,00
+Codo 45° pavco 1;39;Codo 45° pavco 1;7;0,00
+Codo 45° pavco 3/4;39;Codo 45° pavco 3/4;7;0,00
+Adaptador 25 mm x 3/4;39;Adaptador 25 mm x 3/4;7;0,00
+Codo 45° pavco 2;39;Codo 45° pavco 2;7;0,00
+Anillo pvc 1/2;39;Anillo pvc 1/2;7;0,00
+Tanque Decoplas 900 Lts;39;Tanque Decoplas 900 Lts;5;0,00
+Lima Triangular;39;Lima Triangular;7;0,00
+Codo 90º Desague 1 1/2;39;Codo 90º Desague 1 1/2;7;0,00
+Codo 90º Desague 2;39;Codo 90º Desague 2;7;0,00
+Codo 90º Desague 3;39;Codo 90º Desague 3;7;0,00
+Codo 90º Desague 4;39;Codo 90º Desague 4;7;0,00
+Codo 90º Desague 5;39;Codo 90º Desague 5;7;0,00
+Tuberia pavco 3/4;39;Tuberia pavco 3/4;7;0,00
+Teflon 1/2 X 20 Mts.;39;Teflon 1/2 X 20 Mts.;7;0,00
+Tee PVC Desague 8;39;Tee PVC Desague 8;7;0,00
+Teflon 3/4 X 20 Mts.;39;Teflon 3/4 X 20 Mts.;7;0,00
+Teflon 3/4 X 10 Mts.;39;Teflon 3/4 X 10 Mts.;7;0,00
+Tee Rapida 25 mm;39;Tee Rapida 25 mm;7;0,00
+Llave de Paso 3/4;39;Llave de Paso 3/4;7;0,00
+Tuberia pavco 1 1/2;39;Tuberia pavco 1 1/2;7;0,00
+Tubo Sanitario 11Omm X 3Mts;39;Tubo Sanitario 11Omm X 3Mts;7;0,00
+Teflon 1/2 X 10 Mts.;39;Teflon 1/2 X 10 Mts.;7;0,00
+Teflon   1" x 20 Mts.;39;Teflon   1" x 20 Mts.;7;0,00
+Teflon   1" x 10 Mts. ;39;Teflon   1" x 10 Mts. ;7;0,00
+Tee Rapida 40 mm;39;Tee Rapida 40 mm;7;0,00
+Tuberia pavco 1/2;39;Tuberia pavco 1/2;7;0,00
+Pollo Engorde Agrobueyca;40;Alimento Balanceado para ser suministrado a pollos en la etapa de 22 hasta los 35 días de edad. ;1;0,00
+Nutripollo Alconca;40;Suminístrese a libre acceso, desde los 22 días de edad hasta que los pollos obtengan el peso de mercado deseado.;1;0,00
+Pollo Iniciador Agrobueyca;41;Alimento Balanceado para ser suministrado a pollos desde los 8 a los 21 días de edad;1;0,00
+Nutripollito Ultra Alconca;41;Suminístrese a libre acceso, desde el séptimo día hasta los 21 días de edad.;1;0,00
+Pre-Nutripollito Ultra Alconca;42;Suminístrese a libre acceso, desde el primer día hasta los 7 días de edad. Asegúrese que los pollitos dispongan en todo momento de agua limpia, fresca y abundante;1;0,00
+Pollo Preiniciador Agrobueyca;42;Alimento para ser suministrado a pollitos BB desde la recepción hasta los 7 días de edad. ;1;0,00
+Pollo Retiro Agrobueyca;43;Alimento sin coccidiostato, diseñado para la finalización de los pollos entre 36 a 42 días máximo. ;1;0,00
+Cerdo Bebe;44;Cerdo Bebe;2;0,00
+Compresor de 1/4;45;Compresor de 1/4;5;0,00
+Pago de Seguro;46;Pago de Seguro;9;0,00
+Ganarina Lecheras Alconca;47;Use este alimento desde 20 días antes del parto hasta él término del período de producción de leche.;1;0,00
+Vacas Lecheras Agrollano;47;Alimento Balanceado altamente engergético, muy palatable, se suministrará de acuerdo a la producción lechera y cantidad de forraje. Para vacas de hasta 6 litros de producción diaria. ;1;0,00
+Vacas Lecheras Clasicas Agrobueyca;47;Alimento Balanceado altamente engergético, muy palatable, se suministrará de acuerdo a la producción lechera y cantidad de forraje. Para vacas de hasta 8 litros de producción diaria. ;1;0,00
+Vacas Lecheras 20% Agrobueyca;47;Alimento Balanceado altamente engergético, muy palatable, se suministrará de acuerdo a la producción lechera y cantidad de forraje. Para vacas más de 18 litros de producción diaria;1;0,00
+Vacas Lecheras 16%  Agrobueyca;47;Alimento Balanceado altamente engergético, muy palatable, se suministra de acuerdo a la producción lechera y cantidad de forraje. Para vacas de hasta 18 litros de producción diaria.;1;0,00
+Vacas Lecheras 18%  Agrobueyca;47;Alimento Balanceado altamente energético, muy palatable, se suministrará de acuerdo a la producción lechera y cantidad de forraje para vacas de hasta 12 litros de producción diaria;1;0,00
+New Castle 2500 ds;48;New Castle 2500 ds;8;0,00
+Bobita F10 x 2Dosis;48;Bobita F10 x 2Dosis;8;0,00
+New Castle 1000 ds;48;New Castle 1000 ds;8;0,00
+Gumboro 1000 ds;48;Es una vacuna viva contra la Bursitis Infecciosa o Enfermedad de Gumboro de las aves. ;8;0,00
+Gumboro 2500 ds;48;Es una vacuna viva contra la Bursitis Infecciosa o Enfermedad de Gumboro de las aves. ;8;0,00
+Gumboro 5000 ds;48;Es una vacuna viva contra la Bursitis Infecciosa o Enfermedad de Gumboro de las aves. ;8;0,00
+Aftovac B 50 Ds ;48;Aftovac B 50 Ds ;8;0,00
+Multivitamina La Grua;49;Multivitamina La Grua;8;0,00
+Promotor L 1Lts;49;Promotor L 1Lts;8;0,00
+Vita Pro;49;Vita Pro;8;0,00
+Hierro De 100 ml;49;Hierro De 100 ml;8;0,00
+Megasig Diamond 500 ml;49;:En trastornos nutricionales como suplemento de Vitaminas, Aminoácidos y Minerales.Para mejorar el metabolismo orgánico , para aumentar la producción de carne, en los terneros para reducir el stress durante el destete;8;0,00

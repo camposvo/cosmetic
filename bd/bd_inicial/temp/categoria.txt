@@ -1,0 +1,9 @@
+1,00;Herramientas
+2,00;Equipos
+3,00;Materiales
+4,00;Alimento Animal
+5,00;Medicina Veterinaria
+6,00;Servicios
+7,00;Automotriz
+8,00;Animal
+8,00;Comida

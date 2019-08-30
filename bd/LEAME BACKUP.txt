@@ -1,0 +1,12 @@
+El código anterior es código Batch, si alguien tiene una mejor manera de decirlo, lo agradeceré enormemente. A continuación explico el código.
+
+Línea 1: Cancelamos el echo para que no haya volcado de datos.
+Línea 2-6: Creamos un ciclo for /f para asignar en las variables day, month y year la fecha actual vía %date%
+Línea 8-9: Creamos una variable datestr en la cual asignaremos la fecha en formato dd_mm_aaaa y estará lista para usarla después
+Línea 10: creamos la variable BACKUP_FILE y en esta ingresaremos el lugar (ruta) donde guardaremos nuestro backup. Como pueden ver yo estoy guardando el backup en la raíz de D: con el nombre mibase, guion bajo y %datestr% que es la fecha, por último la extensión .backup.
+Línea 11: Set sirve en Batch para mostrar, asignar o eliminar variables de entorno mientras esté abierto la sesión cmd que lo llamo, es decir mientras termina nuestro backup, por lo tanto en esta línea estamos asignando a PGPASSWORD la contraseña del usuario de postres que va a hacer el backup. 
+Línea 12: le decimos al echo que puede comenzar desde aquí el volcado de datos, vía instrucción siguiente.
+Línea 13: Ejecuta la utilidad pg_dump, los parámetros que deben cambiar son 5432(en caso de que hayan configurado un puerto diferente a postres), usuario(es el usuario que tiene como contraseña la línea 11) y base (nombre de la pase de datos en postres que vamos a hacer el backup).
+Línea 14: Reasignamos la contraseña del usuario que creo el backup, por seguridad.
+
+Guardamos este script en un lugar que se pueda recordar facilmente y si queremos podemos ejecutarlo via cmd de la siguiente manera para que puedan ver que realmente ya hace el backup.

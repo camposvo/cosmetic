@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <style type="text/css">
+        body, html
+        {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        /*Modal Popup*/
+        .modalBackground
+        {
+            background-color: Gray;
+            filter: alpha(opacity=70); /*opacity:0.7;*/
+        }
+        .modalPopup
+        {
+            background-color: Window;
+            border-width: 3px;
+            border-style: solid;
+            border-color: Gray;
+            padding: 3px;
+            width: 250px;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <asp:ScriptManager ID="sc" runat="server">
+    </asp:ScriptManager>
+    <b>Some Caption here:</b>
+    <br />
+    <iframe src="http://www.google.com" style="height: 400px; width: 100%; overflow: auto;"
+        frameborder="0"></iframe>
+    <cc1:ModalPopupExtender runat="server" ID="MyPopup" TargetControlID="Target" BackgroundCssClass="modalBackground"
+        PopupControlID="Popup" DropShadow="true" OkControlID="btnClose">
+    </cc1:ModalPopupExtender>
+    <asp:Button ID="Target" runat="server" Text="Show Popup" />
+    <asp:Panel ID="Popup" runat="server" CssClass="modalPopup" Style="display: none"
+        Width="400px" Height="210px">
+        Some test control here
+        <br />
+        <asp:Button ID="btnClose" runat="server" Text="Close" />
+    </asp:Panel>
+    </form>
+</body>
+</html>

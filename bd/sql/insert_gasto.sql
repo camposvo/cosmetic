@@ -1,0 +1,1 @@
+﻿copy t01_movimiento from 'c:/todo.csv' USING delimiters ';' ;

@@ -1,0 +1,60 @@
+may 27, 2016 3:43:36 PM org.apache.catalina.core.AprLifecycleListener init
+INFORMACIÓN: La biblioteca nativa de Apache Tomcat basada en ARP que permite un rendimiento óptimo en entornos de desarrollo no ha sido hallada en java.library.path: C:\Archivos de programa\Java\jdk1.8.0_31\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Documents and Settings\All Users\Datos de programa\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\ORANT\BIN;C:\"Archivos de Programa"\PostgreSQL\9.3;C:\Archivos de programa\Microsoft SQL Server\80\Tools\Binn\;C:\WINDOWS\system32\WindowsPowerShell\v1.0;c:\Archivos de programa\Microsoft SQL Server\100\Tools\Binn\;c:\Archivos de programa\Microsoft SQL Server\100\DTS\Binn\;c:\Archivos de programa\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;.
+may 27, 2016 3:44:01 PM org.apache.coyote.http11.Http11Protocol init
+INFORMACIÓN: Inicializando Coyote HTTP/1.1 en puerto http-8080
+may 27, 2016 3:44:01 PM org.apache.catalina.startup.Catalina load
+INFORMACIÓN: Initialization processed in 27270 ms
+may 27, 2016 3:44:01 PM org.apache.catalina.core.StandardService start
+INFORMACIÓN: Arrancando servicio Catalina
+may 27, 2016 3:44:01 PM org.apache.catalina.core.StandardEngine start
+INFORMACIÓN: Starting Servlet Engine: Apache Tomcat/6.0.24
+may 27, 2016 3:44:01 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFORMACIÓN: Despliegue del directorio ROOT de la aplicación web
+may 27, 2016 3:44:33 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFORMACIÓN: Despliegue del directorio saiku de la aplicación web
+may 27, 2016 3:48:03 PM com.sun.jersey.api.core.PackagesResourceConfig init
+INFORMACIÓN: Scanning for root resource and provider classes in the packages:
+  org.saiku.web
+may 27, 2016 3:48:03 PM com.sun.jersey.api.core.ScanningResourceConfig logClasses
+INFORMACIÓN: Root resource classes found:
+  class org.saiku.web.rest.resources.ExporterResource
+  class org.saiku.web.rest.resources.QueryResource
+  class org.saiku.web.rest.resources.DataSourceResource
+  class org.saiku.web.rest.resources.SessionResource
+  class org.saiku.web.rest.resources.OlapDiscoverResource
+  class org.saiku.web.rest.resources.StatisticsResource
+  class org.saiku.web.rest.resources.BasicTagRepositoryResource
+  class org.saiku.web.rest.resources.BasicRepositoryResource2
+  class org.saiku.web.rest.resources.BasicRepositoryResource
+may 27, 2016 3:48:03 PM com.sun.jersey.api.core.ScanningResourceConfig init
+INFORMACIÓN: No provider classes found.
+may 27, 2016 3:48:03 PM org.codehaus.enunciate.modules.jersey.EnunciateJerseyServletContainer configure
+INFORMACIÓN: org.codehaus.enunciate.modules.amf.JAXRSProvider not found.
+may 27, 2016 3:48:03 PM com.sun.jersey.spi.spring.container.SpringComponentProviderFactory registerSpringBeans
+INFORMACIÓN: Registering Spring bean, datasourceResourceBean, of type org.saiku.web.rest.resources.DataSourceResource as a root resource class
+may 27, 2016 3:48:03 PM com.sun.jersey.spi.spring.container.SpringComponentProviderFactory registerSpringBeans
+INFORMACIÓN: Registering Spring bean, olapDiscoverBean, of type org.saiku.web.rest.resources.OlapDiscoverResource as a root resource class
+may 27, 2016 3:48:03 PM com.sun.jersey.spi.spring.container.SpringComponentProviderFactory registerSpringBeans
+INFORMACIÓN: Registering Spring bean, queryResource, of type org.saiku.web.rest.resources.QueryResource as a root resource class
+may 27, 2016 3:48:03 PM com.sun.jersey.spi.spring.container.SpringComponentProviderFactory registerSpringBeans
+INFORMACIÓN: Registering Spring bean, sessionResource, of type org.saiku.web.rest.resources.SessionResource as a root resource class
+may 27, 2016 3:48:03 PM com.sun.jersey.spi.spring.container.SpringComponentProviderFactory registerSpringBeans
+INFORMACIÓN: Registering Spring bean, repositoryBean, of type org.saiku.web.rest.resources.BasicRepositoryResource as a root resource class
+may 27, 2016 3:48:03 PM com.sun.jersey.spi.spring.container.SpringComponentProviderFactory registerSpringBeans
+INFORMACIÓN: Registering Spring bean, repository2bean, of type org.saiku.web.rest.resources.BasicRepositoryResource2 as a root resource class
+may 27, 2016 3:48:03 PM com.sun.jersey.spi.spring.container.SpringComponentProviderFactory registerSpringBeans
+INFORMACIÓN: Registering Spring bean, tagRepositoryBean, of type org.saiku.web.rest.resources.BasicTagRepositoryResource as a root resource class
+may 27, 2016 3:48:03 PM com.sun.jersey.spi.spring.container.SpringComponentProviderFactory registerSpringBeans
+INFORMACIÓN: Registering Spring bean, exporterBean, of type org.saiku.web.rest.resources.ExporterResource as a root resource class
+may 27, 2016 3:48:03 PM com.sun.jersey.spi.spring.container.SpringComponentProviderFactory registerSpringBeans
+INFORMACIÓN: Registering Spring bean, statsBean, of type org.saiku.web.rest.resources.StatisticsResource as a root resource class
+may 27, 2016 3:48:03 PM com.sun.jersey.server.impl.application.WebApplicationImpl _initiate
+INFORMACIÓN: Initiating Jersey application, version 'Jersey: 1.11 12/09/2011 10:27 AM'
+may 27, 2016 3:48:06 PM org.apache.coyote.http11.Http11Protocol start
+INFORMACIÓN: Arrancando Coyote HTTP/1.1 en puerto http-8080
+may 27, 2016 3:48:06 PM org.apache.jk.common.ChannelSocket init
+INFORMACIÓN: JK: ajp13 listening on /0.0.0.0:8009
+may 27, 2016 3:48:06 PM org.apache.jk.server.JkMain start
+INFORMACIÓN: Jk running ID=0 time=0/95  config=null
+may 27, 2016 3:48:06 PM org.apache.catalina.startup.Catalina start
+INFORMACIÓN: Server startup in 242402 ms

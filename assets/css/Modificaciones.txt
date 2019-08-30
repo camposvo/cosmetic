@@ -1,0 +1,12 @@
+ace.min.css
+background-color del body y se coloco transparent
+
+
+se cambio el line-height de 38 a 30
+
+table-header{background-color:#307ecc;color:#FFF;font-size:14px;line-height:30px;padding-left:12px;margin-bottom:1px}
+
+
+archivo ace.min.css en la cols 25960 se cambio el padding de 8px a 4 px
+
+archivo ace.min.css el font-size:12px en la cols se cambio font-size:11px  -- esto impacta en las tablas 

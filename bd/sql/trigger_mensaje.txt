@@ -1,0 +1,16 @@
+
+DECLARE
+    r s01_persona%rowtype;
+BEGIN
+    FOR r IN SELECT co_persona, in_grupo_correo
+		FROM s01_persona
+		WHERE in_grupo_correo = 'S'
+    LOOP
+	INSERT INTO t17_mensaje_persona(
+            fe_fecha, fk_destinatario, fk_mensaje, in_leido)
+    VALUES (NOW(), r.co_persona, new.pk_mensaje, 'N');
+        -- can do some processing here
+        RETURN NEXT r; -- return current row of SELECT
+    END LOOP;
+    RETURN;
+END;

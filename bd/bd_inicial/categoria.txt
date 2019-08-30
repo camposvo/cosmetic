@@ -1,0 +1,10 @@
+1;Herramientas
+2;Equipos
+3;Materiales
+4;Alimento Animal
+5;Medicina Veterinaria
+6;Servicios
+7;Automotriz
+8;Animal
+9;Comida
+10;Nomina

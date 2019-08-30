@@ -1,0 +1,126 @@
+Significado de caracteres especiales
+
+á	&aacute;
+é	&eacute;
+í	&iacute;
+ó	&oacute;
+ú	&uacute;
+Á	&Aacute;
+É	&Eacute;
+Í	&Iacute;
+Ó	&Oacute;
+Ú	&Uacute;
+ñ	&ntilde;
+Ñ	&Ntilde;
+´	&acute;
+¿	&iquest;
+¡	&iexcl;
+
+
+
+
+
+
+
+Referencia a entidades o Caracteres
+cod. 	mnemo 	(1): 	(2)
+&#160; 	&nbsp; 	nbsp 	 
+&#161; 	&iexcl; 	¡ 	¡
+&#162; 	&cent; 	¢ 	¢
+&#163; 	&pound; 	£ 	£
+&#164; 	&curren; 	¤ 	¤
+&#165; 	&yen; 	¥ 	¥
+&#166; 	&brvbar; 	¦ 	¦
+&#167; 	&sect; 	§ 	§
+&#168; 	&uml; 	¨ 	¨
+&#169; 	&copy; 	© 	©
+&#170; 	&ordf; 	ª 	ª
+&#171; 	&laquo; 	« 	«
+&#172; 	&not; 	¬ 	¬
+&#173; 	&shy; 	­ 	­
+&#174; 	&reg; 	® 	®
+&#175; 	&hibar; 	¯ 	&hibar;
+&#176; 	&deg; 	° 	°
+&#177; 	&plusmn; 	± 	±
+&#178; 	&sup2; 	² 	²
+&#179; 	&sup3; 	³ 	³
+&#180; 	&acute; 	´ 	´
+&#181; 	&micro; 	µ 	µ
+&#182; 	&para; 	¶ 	¶
+&#183; 	&middot; 	· 	·
+&#184; 	&cedil; 	¸ 	¸
+&#185; 	&sup1; 	¹ 	¹
+&#186; 	&ordm; 	º 	º
+&#187; 	&raquo; 	» 	»
+&#188; 	&frac14; 	¼ 	¼
+&#189; 	&frac12; 	½ 	½
+&#190; 	&frac34; 	¾ 	¾
+&#191; 	&iquest; 	¿ 	¿
+	
+cod. 	mnemo 	(1): 	(2)
+&#192; 	&agrave; 	À 	à
+&#193; 	&aacute; 	Á 	á
+&#194; 	&acirc; 	Â 	â
+&#195; 	&atilde; 	Ã 	ã
+&#196; 	&auml; 	Ä 	ä
+&#197; 	&aring; 	Å 	å
+&#198; 	&aelig; 	Æ 	æ
+&#199; 	&ccedil; 	Ç 	ç
+&#200; 	&egrave; 	È 	è
+&#201; 	&eacute; 	É 	é
+&#202; 	&ecirc; 	Ê 	ê
+&#203; 	&euml; 	Ë 	ë
+&#204; 	&igrave; 	Ì 	ì
+&#205; 	&iacute; 	Í 	í
+&#206; 	&icirc; 	Î 	î
+&#207; 	&iuml; 	Ï 	ï
+&#208; 	&eth; 	Ð 	ð
+&#209; 	&ntilde; 	Ñ 	ñ
+&#210; 	&ograve; 	Ò 	ò
+&#211; 	&oacute; 	Ó 	ó
+&#212; 	&ocirc; 	Ô 	ô
+&#213; 	&otilde; 	Õ 	õ
+&#214; 	&ouml; 	Ö 	ö
+&#215; 	&times; 	× 	×
+&#216; 	&oslash; 	Ø 	ø
+&#217; 	&ugrave; 	Ù 	ù
+&#218; 	&uacute; 	Ú 	ú
+&#219; 	&ucirc; 	Û 	û
+&#220; 	&uuml; 	Ü 	ü
+&#221; 	&yacute; 	Ý 	ý
+&#222; 	&thorn; 	Þ 	þ
+&#223; 	&szlig; 	ß 	ß
+	
+cod. 	mnemo 	(1): 	(2)
+&#224; 	&agrave; 	à 	à
+&#225; 	&aacute; 	á 	á
+&#226; 	&acirc; 	â 	â
+&#227; 	&atilde; 	ã 	ã
+&#228; 	&auml; 	ä 	ä
+&#229; 	&aring; 	å 	å
+&#230; 	&aelig; 	æ 	æ
+&#231; 	&ccedil; 	ç 	ç
+&#232; 	&egrave; 	è 	è
+&#233; 	&eacute; 	é 	é
+&#234; 	&ecirc; 	ê 	ê
+&#235; 	&euml; 	ë 	ë
+&#236; 	&igrave; 	ì 	ì
+&#237; 	&iacute; 	í 	í
+&#238; 	&icirc; 	î 	î
+&#239; 	&iuml; 	ï 	ï
+&#240; 	&eth; 	ð 	ð
+&#241; 	&ntilde; 	ñ 	ñ
+&#242; 	&ograve; 	ò 	ò
+&#243; 	&oacute; 	ó 	ó
+&#244; 	&ocirc; 	ô 	ô
+&#245; 	&otilde; 	õ 	õ
+&#246; 	&ouml; 	ö 	ö
+&#247; 	&divide; 	÷ 	÷
+&#248; 	&oslash; 	ø 	ø
+&#249; 	&ugrave; 	ù 	ù
+&#250; 	&uacute; 	ú 	ú
+&#251; 	&ucirc; 	û 	û
+&#252; 	&uuml; 	ü 	ü
+&#253; 	&yacute; 	ý 	ý
+&#254; 	&thorn; 	þ 	þ
+&#255; 	&yuml; 	ÿ 	ÿ
