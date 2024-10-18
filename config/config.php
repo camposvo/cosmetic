@@ -634,18 +634,18 @@ function Combo_Vendedor(){
 }
 
 function mes_letras($numero)
-	{if($numero==01) $mes="Enero";
-	if($numero==02) $mes="Febrero";
-	if($numero==03) $mes="Marzo";
-	if($numero==04) $mes="Abril";
-	if($numero==05) $mes="Mayo";
-	if($numero==06) $mes="Junio";
-	if($numero==07) $mes="Julio";
-	if($numero==08) $mes="Agosto";
-	if($numero==09) $mes="Septiembre";
-	if($numero==10) $mes="Octubre";
-	if($numero==11) $mes="Noviembre";
-	if($numero==12) $mes="Diciembre";
+	{if($numero=='01') $mes="Enero";
+	if($numero=='02') $mes="Febrero";
+	if($numero=='03') $mes="Marzo";
+	if($numero=='04') $mes="Abril";
+	if($numero=='05') $mes="Mayo";
+	if($numero=='06') $mes="Junio";
+	if($numero=='07') $mes="Julio";
+	if($numero=='08') $mes="Agosto";
+	if($numero=='09') $mes="Septiembre";
+	if($numero=='10') $mes="Octubre";
+	if($numero=='11') $mes="Noviembre";
+	if($numero=='12') $mes="Diciembre";
 	return $mes;
 	}
 /*------------------------------------------------------------------------------------------------------------------------

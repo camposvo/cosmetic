@@ -9,7 +9,7 @@
 --------------------------------------------------------------------------------------------*/
 	session_start();
 	include_once ("man_utilidad.php");
-	require_once("../../clases/xajax/xajax_core/xajax.inc.php");
+	/* require_once("../../clases/xajax/xajax_core/xajax.inc.php"); */
 	$usu_autentico= isset($_SESSION['autentificado'])?$_SESSION['autentificado']:'';
 
 	if ($usu_autentico != "SI") {
@@ -21,11 +21,12 @@
 /*-------------------------------------------------------------------------------------------|
 |		Implantacin De Una Funcin Ajax Utilizando La Clase XAJAX     		                 |
 |-------------------------------------------------------------------------------------------*/
-	$xajax = new xajax(); // Creo La Instancia.
-	$xajax->registerfunction("Fun_Ajax_Mensaje"); // Asociamos La Funcin Al Objeto XAJAX.
+	/* $xajax = new xajax(); // Creo La Instancia.
+	$xajax->registerfunction("Fun_Ajax_Mensaje"); // Asociamos La Funcin Al Objeto XAJAX. */
+
 	
-	function Fun_Ajax_Mensaje($id_operacion, $valor){
-		$objResponse = new xajaxResponse();
+ 	function Fun_Ajax_Mensaje($id_operacion, $valor){
+		//$objResponse = new xajaxResponse();
 		$co_usuario  =  $_SESSION["li_cod_usuario"];
 		
 		if ($id_operacion == 1){
@@ -68,7 +69,7 @@
 		$ls_resultado =  $obj_miconexion->fun_consult($ls_sql);
 		$num_reg = $obj_miconexion->fun_numregistros($ls_resultado);
 		
-		
+		$newContent='';
 		while($row = pg_fetch_row($ls_resultado)){
 			$i=0;
 				$fecha_registro   = $row[$i++];
@@ -136,11 +137,11 @@
 		
 			$objResponse->assign("respuesta","innerHTML", $newContent);
 			
-			return $objResponse;
+			return $newContent;
 			
 	}
-	
-	$xajax->processRequest(); // Escribimos En La Capa Con id="respuesta" El Texto Que Aparece En $newContent.
+	 
+//	$xajax->processRequest(); // Escribimos En La Capa Con id="respuesta" El Texto Que Aparece En $newContent.
 	
 	
 ?>
@@ -149,11 +150,11 @@
 <head>
 <?php 
 	// En El <head> Indicamos Al Objeto XAJAX Se Encargue De Generar El Javascript Necesario.
-	$xajax->printJavascript('../../clases/xajax'); 
+	//$xajax->printJavascript('../../clases/xajax'); 
 ?>
 
 <meta charset="UTF-8" />
-<title>La Peperana</title>
+<title>BellinghieriCosmetic</title>
 			
 	<!-- bootstrap & fontawesome -->
 		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css" />
@@ -208,7 +209,7 @@
 		$row = pg_fetch_row($ls_resultado,0);
 			$x_grupo_correo     = $row[0];
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);
 	}
 	
 /*-------------------------------------------------------------------------------------------
@@ -220,7 +221,7 @@
 			
 	$ls_resultado =  $obj_miconexion->fun_consult($ls_sql);
 	if($ls_resultado == 0){
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);
 	}else{
 		echo "<script language='javascript' type='text/javascript'>xajax_Fun_Ajax_Mensaje(0);</script>";
 	}
@@ -246,7 +247,7 @@ if ($tarea == "I"){
 						
 		$ls_resultado =  $obj_miconexion->fun_consult($ls_sql);
 		if($ls_resultado == 0){
-			fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);
+			fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);
 		}else{
 			echo "<script language='javascript' type='text/javascript'>xajax_Fun_Ajax_Mensaje(0);</script>";
 		}
@@ -300,7 +301,7 @@ if ($tarea == "I"){
 	if($ls_resultado != 0){
 		$tarea = "M";
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);
 	}
 	
 	

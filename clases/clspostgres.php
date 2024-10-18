@@ -14,7 +14,7 @@ class cls_posgres{
 	var $ls_puerto     = "5432";         // Se refierre al nombre de la base de datos
 	var $ls_nbservidor = "localhost";    // Almacena el nombre del servidor
 	var $ls_usuario    = "postgres";     // Almacena el identificador del usuario
-	var $ls_clave      = "123456";       // Almacena la clave del usuario
+	var $ls_clave      = "postgres";       // Almacena la clave del usuario
 	var $ls_regactual  = -1;             //
 	
 	// Variables de identificador de conexi�n y consulta

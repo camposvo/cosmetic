@@ -113,7 +113,7 @@
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<meta charset="utf-8" />
-		<title>La PPreña</title>
+		<title>BellinghieriCosmetic</title>
 
 		<meta name="description" content="overview &amp; stats" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
@@ -180,7 +180,7 @@
 					<a href="index.html" class="navbar-brand">
 						<small>
 							<i class="fa fa-leaf"></i>
-							Finca La PPreña
+							BellinghieriCostmetic, CA.
 						</small>
 					</a>
 				</div>
@@ -435,7 +435,7 @@
 				<div class="footer-inner">
 					<div class="footer-content">
 						<span class="bigger-120">
-							<span class="blue bolder">Finca La PPreña</span>
+							<span class="blue bolder">Finanzas</span>
 							2017-2019
 						</span>
 
@@ -485,7 +485,7 @@
 
 
 		<script type="text/javascript">		
-			timer = window.setInterval("ActulizarMensaje();", 4000);
+			//timer = window.setInterval("ActulizarMensaje();", 4000);
 		
 			$(document).ready(function(){			
 				//esta funcion es invocada desde el iframe para colocar es scroll vertical a cero es decir arriba
@@ -495,20 +495,36 @@
 				  }, 'fast');
 				};
 				
-				$("a").click(function(){
-					var oID = $(this).attr("id");
+				/* $("a").click(function(event) {
+					event.preventDefault(); // Evita que se siga el enlace por defecto
+
+					// Obtener el valor de un atributo específico (por ejemplo, href)
+					var href = $(this).attr('id');
+					console.log("El valor del atributo href es: " + href);
+
+					// Obtener todos los atributos y sus valores
+					
+				});	
+ */
+
+
+
+				/* $("a").click(function(){
+					event.preventDefault();
+				    console.log($(this).attr("id"));
+					const oID = $(this).attr("id");
 					resul = oID.split(';') 
 					
 					$("#recargar_titulo").html(
 							'<ul class="breadcrumb"><li><i class="ace-icon fa '+resul[2]+
 							' fa-fw"></i><a href="#">&nbsp;'+resul[0]+'</a></li><li class="active">'+resul[1]+'</li></ul>'
 					);
-				});
+				}); */
 				
 				ace.settings.set("sidebar","fixed");
 				
 				//Refresca el menu mensajes
-				ActulizarMensaje();
+				//ActulizarMensaje();
 								
 			});	
 

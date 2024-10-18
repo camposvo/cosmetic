@@ -16,7 +16,7 @@
 <html>
 <head>
 <meta charset="UTF-8" />
-<title>La Peperana</title>
+<title>BellinghieriCosmetic</title>
 		
 	<!-- bootstrap & fontawesome -->
 		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css" />
@@ -74,7 +74,7 @@
 			
 		$obj_miconexion->fun_closepg($li_id_conex); 
 		}else{
-			fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__); //  Envía Mensaje De Error De Consulta.
+			fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__); //  Envï¿½a Mensaje De Error De Consulta.
 		}		
 
 /*-------------------------------------------------------------------------------------------

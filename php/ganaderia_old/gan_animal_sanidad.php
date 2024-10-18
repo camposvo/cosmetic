@@ -17,7 +17,7 @@
 <html>
 <head>
 <meta charset="UTF-8" />
-<title>La Peperana</title>
+<title>BellinghieriCosmetic</title>
 		
 	
 	<link rel="stylesheet" href="../../css/estilo.css" /> <!-- estilos personales ( Hover de datatable)  --> 

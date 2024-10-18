@@ -20,7 +20,7 @@
 <html>
 <head>
 <meta charset="UTF-8" />
-<title>La Peperana</title>
+<title>BellinghieriCosmetic</title>
 	
 		<!-- bootstrap & fontawesome -->
 		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css" />

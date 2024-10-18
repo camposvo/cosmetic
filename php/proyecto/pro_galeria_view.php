@@ -22,7 +22,7 @@
 <head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<meta charset="UTF-8" />
-		<title>La Peperana</title>
+		<title>BellinghieriCosmetic</title>
 
 
 		<meta name="description" content="responsive photo gallery using colorbox" />

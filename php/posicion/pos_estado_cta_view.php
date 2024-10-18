@@ -1,5 +1,6 @@
 <?php
 	session_start();
+
 	include_once ("utilidad.php");
 	$usu_autentico= isset($_SESSION['autentificado'])?$_SESSION['autentificado']:'';
 	if ($usu_autentico != "SI") {
@@ -7,13 +8,15 @@
     	echo"<script language='JavaScript' type='text/JavaScript'>top.location.href='../../html/fin_sesion.html'</script>";
 		exit();
 	}
+
+
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8" />
-<title>La Peperana</title>
+<title>BellinghieriCosmetic</title>
 	
 	<link rel="stylesheet" href="../../css/estilo.css" /> <!-- estilos personales ( Hover de datatable)  --> 
 	<link rel="stylesheet" href="../../assets/css/bootstrap.min.css" />
@@ -46,6 +49,8 @@
 		}
 	}	
 
+
+
 	$obj_miconexion = fun_crear_objeto_conexion();
 	$li_id_conex = fun_conexion($obj_miconexion);
 	
@@ -69,9 +74,6 @@
 		$x_fecha_fin = $x_fecha_actual;
 	}
 
-	$date_ini = new DateTime($x_fecha_ini);
-	echo "hkhk".$date_ini->format('Y-m-d H:i:s');
-
 /*-------------------------------------------------------------------------------------------
 	INVOCA FUNCION DE B.D. PARA REFRESCAR VISTA MATERIALIZADA
 ----------------------------------------------------------------------------------------------*/	
@@ -81,7 +83,7 @@
 	if($ls_resultado != 0){
 		
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);// enviar mensaje de error de consulta
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);// enviar mensaje de error de consulta
 	}
 
 /*-------------------------------------------------------------------------------------------
@@ -94,7 +96,7 @@
 		$row = pg_fetch_row($ls_resultado,0);
 		$Banco    = $row[0];
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);// enviar mensaje de error de consulta
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);// enviar mensaje de error de consulta
 	}
 	  
 /*-------------------------------------------------------------------------------------------
@@ -113,7 +115,7 @@
 		$TotalCtxCob    = $row[1];
 		$DebeCtxCob     = $row[1] - $row[0];
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);// enviar mensaje de error de consulta
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);// enviar mensaje de error de consulta
 	}
 	
 /*-------------------------------------------------------------------------------------------
@@ -133,7 +135,7 @@
 		$TotalCtxPag    = $row[1];
 		$DebeCtxPag     = $row[1] - $row[0];
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);// enviar mensaje de error de consulta
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);// enviar mensaje de error de consulta
 	}
 	
 /*-------------------------------------------------------------------------------------------
@@ -148,7 +150,7 @@
 			$Disponible    = $row[0];
 		}	
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);// enviar mensaje de error de consulta
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);// enviar mensaje de error de consulta
 	}	
 	$Caja = $Disponible - $Banco;	
 	
@@ -176,7 +178,7 @@
 		$Ingreso   = $row[0];
 		$Egreso    = $row[1];
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);// enviar mensaje de error de consulta
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);// enviar mensaje de error de consulta
 	}	
 
 /*-------------------------------------------------------------------------------------------
@@ -194,10 +196,11 @@
 	if($ls_resultado != 0){
 		$tarea = "M";
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);
 	}
 	
 	$collaps = ($sw==1)?'':'collapsed';	
+
 ?>
 
 <div class="main-content">

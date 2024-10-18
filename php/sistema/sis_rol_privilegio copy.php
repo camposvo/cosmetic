@@ -1,25 +1,68 @@
 <?php 
+/*-------------------------------------------------------------------------------------------
+	Nombre: sis_rol_privilegio.php                                            
+	Descripcion: Esta interfaz permite ASOCIAR/ELIMINAR privilegios de un ROL
+--------------------------------------------------------------------------------------------*/
 
+/*-------------------------------------------------------------------------------------------
+	VERIFICACION Y AUTENTIFICACIN DE USUARIO. 
+--------------------------------------------------------------------------------------------*/
 	session_start();
-
 	include_once ("sis_utilidad.php");
-	
-	//require_once("../../clases/xajax/xajax_core/xajax.inc.php");
-	echo "paso ";
+	require_once("../../clases/xajax/xajax_core/xajax.inc.php");
 	
 	$usu_autentico= isset($_SESSION['autentificado'])?$_SESSION['autentificado']:'';
 	if ($usu_autentico != "SI") {
 	    session_destroy();
     	echo"<script language='JavaScript' type='text/JavaScript'>top.location.href='../../html/fin_sesion.html'</script>";
-	    echo "paso 1";
-		exit();
+	    exit();
 	}
+/*-------------------------------------------------------------------------------------------|
+|			Implantacin De Una Funcin Ajax Utilizando La Clase XAJAX     		     |
+|-------------------------------------------------------------------------------------------*/
+	/* $xajax = new xajax(); // Creo La Instancia.
+	$xajax->registerFunction("Fun_Ajax_Menu"); // Asociamos La Funcin Al Objeto XAJAX.
+	
+	function Fun_Ajax_Menu($menu){
+		$newContent = "<select name='o_sub_menu' class='col-xs-10 col-sm-7' >";
+		$objResponse = new xajaxResponse();
+			if ($menu == 0){
+				$newContent.= "<option value='' selected>Seleccionar --></option>";
+			}else{
+				$newContent.= "<option value=''>Seleccionar --></option>";
+			}
+		$obj_miconexion = fun_crear_objeto_conexion();
+		$li_id_conex = fun_conexion($obj_miconexion);
+		$ls_sql = "SELECT  tx_submenu , co_menu_padre_hijo 
+						FROM s06_menu_padre_hijo 
+						WHERE co_menu_padre = '$menu'
+						ORDER BY nu_orden ";
+						
+		$ls_resultado =  $obj_miconexion->fun_consult($ls_sql);
+			while($row = pg_fetch_row($ls_resultado)){
+				$k = $row[0];
+				$v = $row[1];
+				$ls_cadenasel =($v == $menu)?'selected':'';
+				$newContent.= "<option value='$v' $ls_cadenasel>$k</option>";                
+			}
+		$newContent.= "</select>";
+		$objResponse->assign("Submenu","innerHTML", $newContent);
+		return $objResponse;
+	
+	}
+	
+	
+	$xajax->processRequest(); // Escribimos En La Capa Con id="respuesta" El Texto Que Aparece En $newContent.
+ */
+/*-------------------------------------------------------------------------------------------|
+|											Fin XAJAX     		  						     |
+|-------------------------------------------------------------------------------------------*/	
+	
 ?>
 <!DOCTYPE html>
 <html>
 <head>
 <?php 
- echo "paso 1";
 	// En El <head> Indicamos Al Objeto XAJAX Se Encargue De Generar El Javascript Necesario.
 //	$xajax->printJavascript('../../clases/xajax'); 
 ?>
