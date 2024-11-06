@@ -53,7 +53,7 @@
 	EDITAR  UN REGISTRO
 |-------------------------------------------------------------------------------------------*/		
 	if ($tarea == "M"){
-		$ls_sql = "SELECT nb_articulo, t05_clase.fk_categoria, fk_clase, tx_descripcion, in_venta, in_gasto
+		$ls_sql = "SELECT nb_articulo, t05_clase.fk_categoria, fk_clase, tx_descripcion, in_venta, in_gasto, nu_precio_item
 				  FROM t13_articulo
 				  INNER JOIN t05_clase ON t05_clase.pk_clase = t13_articulo.fk_clase
 				  WHERE pk_articulo = $pk_articulo";
@@ -68,10 +68,11 @@
 			$x_descripcion 		= $row[3];
 			$x_venta     		= $row[4];
 			$x_gasto     		= $row[5];
+			$x_precio    		= $row[6];
 			
 		$obj_miconexion->fun_closepg($li_id_conex); 
 		}else{
-			fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__); //  Envía Mensaje De Error De Consulta.
+			fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__); //  Envía Mensaje De Error De Consulta.
 		}		
 	}
 	
@@ -96,7 +97,8 @@
 								fk_clase       = $o_clase_articulo  ,
 								tx_descripcion = '".ucwords($x_descripcion)."',
 								in_venta       = '$x_venta',
-								in_gasto       = '$x_gasto'							
+								in_gasto       = '$x_gasto',
+								nu_precio_item      = $x_precio													
 								
 				 		   WHERE pk_articulo = $pk_articulo";
 				
@@ -131,14 +133,14 @@
 		$ls_resultado =  $obj_miconexion->fun_consult($ls_sql);
 		if($ls_resultado != 0){
 			if($obj_miconexion->fun_numregistros() == 0){
-				$ls_sql = "INSERT INTO t13_articulo(nb_articulo, tx_descripcion, fk_clase , in_venta, in_gasto	)
-							VALUES ('".$o_nombre."', '".$x_descripcion."',  $o_clase_articulo, '$x_venta','$x_gasto'
+				$ls_sql = "INSERT INTO t13_articulo(nb_articulo, tx_descripcion, fk_clase , in_venta, in_gasto, nu_precio_item	)
+							VALUES ('".$o_nombre."', '".$x_descripcion."',  $o_clase_articulo, '$x_venta','$x_gasto', $x_precio		
 							);";
 						
 				//echo $ls_sql;			
 				$ls_resultado =  $obj_miconexion->fun_consult($ls_sql);
 				if($ls_resultado == 0){
-					fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);
+					fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);
 				}else{
 					$parametros = "tarea=A";
 					echo "<script language='javascript' type='text/javascript'>alert('Agregado Exitosamente');location.href='mae_articulo_add.php?$parametros';</script>";
@@ -191,6 +193,13 @@
 												<label  class="col-sm-3 control-label no-padding-right"  >Nombre</label>
 												<div class="col-sm-7" >
 													<input class="col-xs-10 col-sm-7" name="o_nombre" value="<?php echo $o_nombre;?>" id="o_nombre" type="text"  placeholder="Nombre del Articulo">
+												</div>
+											</div>
+
+											<div class="form-group">
+												<label  class="col-sm-3 control-label no-padding-right"  >Precio</label>
+												<div class="col-sm-7" >
+													<input class="col-xs-10 col-sm-7" name="x_precio" value="<?php echo $x_precio;?>" id="x_precio" type="text"  placeholder="Precio" onkeypress = "return validardec(event)">
 												</div>
 											</div>
 											

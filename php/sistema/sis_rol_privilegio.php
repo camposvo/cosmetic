@@ -5,13 +5,12 @@
 	include_once ("sis_utilidad.php");
 	
 	//require_once("../../clases/xajax/xajax_core/xajax.inc.php");
-	echo "paso ";
+
 	
 	$usu_autentico= isset($_SESSION['autentificado'])?$_SESSION['autentificado']:'';
 	if ($usu_autentico != "SI") {
 	    session_destroy();
     	echo"<script language='JavaScript' type='text/JavaScript'>top.location.href='../../html/fin_sesion.html'</script>";
-	    echo "paso 1";
 		exit();
 	}
 ?>
@@ -19,7 +18,6 @@
 <html>
 <head>
 <?php 
- echo "paso 1";
 	// En El <head> Indicamos Al Objeto XAJAX Se Encargue De Generar El Javascript Necesario.
 //	$xajax->printJavascript('../../clases/xajax'); 
 ?>
@@ -280,8 +278,12 @@
 				{ "orderable": false }
 			  ]
 		} );
+
+		xajax_Fun_Ajax_Menu("<?php echo $o_menu; ?>");
+
+
 						
-			window.parent.ScrollToTop(); // invoca la funcion ScrollToTop que se encuentra en interace.php para posicionar el scroll vertical
+		window.parent.ScrollToTop(); // invoca la funcion ScrollToTop que se encuentra en interace.php para posicionar el scroll vertical
 		
 		} );
 		
@@ -325,10 +327,19 @@
 		document.formulario.submit();
 	}	
 	
+	
+	function xajax_Fun_Ajax_Menu(o_menu){
+		$.post("sis_rol_privilegio_ajax.php", {
+			o_menu: o_menu
+                }, function(data) {
+                    $("#Submenu").html(data);
+                });
+	}	
+
 </script>
 <?php 
-	/* echo 'Valor menu principal'.$o_menu;
-	echo "<script type='text/javascript'>xajax_Fun_Ajax_Menu($o_menu);</script>"; */
+
+	echo "<script type='text/javascript'>xajax_Fun_Ajax_Menu($o_menu);</script>"; 
 ?>
 </html>
  

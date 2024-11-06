@@ -2,8 +2,11 @@
 
 	include("../../clases/fpdf/fpdf.php");
 	include_once ("nom_utilidad.php");	
+
+/* 	ini_set('display_errors', 1);
+error_reporting(E_ALL); */
 	
-	$top=110;// el top se usa para el N° de caracteres que permite pdf
+	$top=110;// el top se usa para el Nï¿½ de caracteres que permite pdf
 /*-------------------------------------------------------------------------------------------
 	RUTINA: Se utiliza para recibir las variables por la url.
 -------------------------------------------------------------------------------------------*/
@@ -77,7 +80,11 @@
 	$total_asignacion = $sueldo_basico + $asig_alimento + $asig_2 + $asig_bono + $asig_4 + $asig_5 + $asig_6 + $asig_7;
 	$total_deduccion = $deduc_1 + $deduc_2 + $deduc_3 + $deduc_4  + $deduc_5  + $deduc_6 + $deduc_7;
 	$pagar =  $total_asignacion - $total_deduccion ;
-	
+/* 	echo "total:";
+
+	echo $total_asignacion;
+	exit;
+	 */
 
 /*******************************************************************************************************/
 //para la cantidad de caracteres dentro de una linea 
@@ -85,15 +92,15 @@ if ($cont >= $top){
 	
 }
 
-$pdf=new FPDF('P','mm','Letter'); // FPDF($orientation=’P’,$unit=’mm’,$format=’A4')
+$pdf = new FPDF('P','mm','A4');
 //$pdf=new FPDF();// orientacion de la hoja, medidas en este caso milimetro, tipo de hoja
 $pdf->AddPage();// agregar nueva pagina
 //$pdf->SetTextColor(140,140,140);//color del texto(color rojo, color verde, color azul)
-$pdf->SetFont('Arial','B', 10);// formato del texto(tipo de fuente, estilo de la fuente, tamaño de la fuente)
+$pdf->SetFont('Arial','B', 10);// formato del texto(tipo de fuente, estilo de la fuente, tamaï¿½o de la fuente)
 //$pdf->Image('../../img/iconos_pagina/logo_pdf.jpg',10,8,320,8);//nombre de imagen, ubicacion horizontal, ubicacion vertical, ancho, grosor
 $pdf->Text(10,20,'COMPROBANTE DE PAGO');// ubicacion horizontal, ubicacion vertical, cadena de caracteres
 
-$pdf->SetDash(1,1);
+//$pdf->SetDash(1,1);
 $pdf->Line(10, 22, 200, 22);
 
 //Fecha
@@ -209,4 +216,6 @@ $pdf->Cell(30, 6, number_format($pagar,2,",",".") , 0, 'L');
 $pdf->Line(10, $col_1+=6, 200, $col_1);	
 	
 $pdf->Output();//cierra el archivo
+
+
 ?>

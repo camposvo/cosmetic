@@ -26,9 +26,7 @@
 </head>
 <body>
 <?php 
-/*-------------------------------------------------------------------------------------------
-	RUTINA: Se utiliza para recibir las variables por la url.
--------------------------------------------------------------------------------------------*/
+
 	$o_cantidad  = 0;
 	$o_cantidad2 = 0;
 	if (!$_GET)	{
@@ -55,9 +53,9 @@
 	$x_fecha_actual = date('d/m/Y h:i');
 	
 
-/*-------------------------------------------------------------------------------------------
-	RUTINAS: MOSTRAR DATOS
--------------------------------------------------------------------------------------------*/
+	/*-------------------------------------------------------------------------------------------
+		RUTINAS: MOSTRAR DATOS
+	-------------------------------------------------------------------------------------------*/
 	$ls_sql ="SELECT pk_factura, fk_responsable, UPPER(s01_persona.tx_nombre), to_char(fe_fecha_factura,'DD/MM/YYYY') ,  
 				tx_nota, tx_concepto,  nu_total, nu_subtotal, f_calcular_abono($x_movimiento),
 				(nu_total - f_calcular_abono($x_movimiento)) as Debe
@@ -100,9 +98,9 @@
 		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);// enviar mensaje de error de consulta
 	}
 	
-/*-------------------------------------------------------------------------------------------
-	RUTINAS: Muestra la lista de ABONOS realizados
--------------------------------------------------------------------------------------------*/
+	/*-------------------------------------------------------------------------------------------
+		RUTINAS: Muestra la lista de ABONOS realizados
+	-------------------------------------------------------------------------------------------*/
   	$i=0;
 	$ls_sql = "SELECT to_char(fe_fecha,'DD/MM/YYYY'), UPPER(s01_persona.tx_nombre||' '||s01_persona.tx_apellido), tx_observacion, nu_monto, pk_abono
 					FROM t04_abono

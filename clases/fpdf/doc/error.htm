@@ -1,23 +1,26 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<HTML>
-<HEAD>
-<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
-<TITLE>Error</TITLE>
-<LINK TYPE="text/css" REL="stylesheet" HREF="../fpdf.css">
-</HEAD>
-<BODY>
-<H2>Error</H2>
-<TT>Error(<B>string</B> msg)</TT>
-<H4 CLASS='st'>Version</H4>
-1.0
-<H4 CLASS='st'>Descripción</H4>
-Este método es automáticamente invocado en caso de un error fatal; este simplemte emite el mensaje y para la ejecución. Una clase heredada puede anularlo para personalizar el manejo de errores pero siempre debería parar el script, o el resultado probablemente sería no válido.
-<H4 CLASS='st'>Parámetros</H4>
-<TT><U>msg</U></TT>
-<BLOCKQUOTE>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Error</title>
+<link type="text/css" rel="stylesheet" href="../fpdf.css">
+</head>
+<body>
+<h1>Error</h1>
+<code>Error(<b>string</b> msg)</code>
+<h2>DescripciÃ³n</h2>
+Ã‰ste mÃ©todo es llamado automÃ¡ticamente in caso de un error fatal. Ã‰ste mÃ©todo simplemente
+devuelve una excepciÃ³n con el mensaje correspondiente.<br>
+Una clase puede heredar Ã©ste mÃ©todo para personalizar el tratamiento del error. Pero el
+mÃ©todo nunca debe devolver, en tal caso, el resultado del documento puede ser errÃ³neo.
+<h2>ParÃ¡metros</h2>
+<dl class="param">
+<dt><code>msg</code></dt>
+<dd>
 El mensaje de error.
-</BLOCKQUOTE>
-<HR STYLE="margin-top:1.5em">
-<DIV STYLE="text-align:center"><A HREF="index.htm">Inicio</A></DIV>
-</BODY>
-</HTML>
+</dd>
+</dl>
+<hr style="margin-top:1.5em">
+<div style="text-align:center"><a href="index.htm">Inicio</a></div>
+</body>
+</html>

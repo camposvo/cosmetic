@@ -112,7 +112,7 @@
 			$row = pg_fetch_row($ls_resultado,0);
 			$Result    = $row[0];
 		}else{
-			fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);// enviar mensaje de error de consulta
+			fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);// enviar mensaje de error de consulta
 		}
 		
 		if ($Result==0){
@@ -157,7 +157,7 @@ RUTINAS: Consulta  datos resumen
 		$SumaAbono    = $row[1];
 		$SumaDebe     = $SumaTotal - $SumaAbono ;
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);// enviar mensaje de error de consulta
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);// enviar mensaje de error de consulta
 	}
 
 /*-------------------------------------------------------------------------------------------
@@ -176,7 +176,7 @@ RUTINAS: Consulta  datos resumen
 	if($ls_resultado != 0){
 		$tarea = "M";
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);
 	}
 	
 	if($x_fecha_ini !=0 and $x_fecha_fin !=0){
@@ -604,7 +604,15 @@ RUTINAS: Consulta  datos resumen
 			document.formulario.method = "post";
 			document.formulario.submit();
 		}
-		
+
+		function Reporte_Venta(identificador){
+			pagina = "adm_venta_pdf.php?x_movimiento="+identificador;
+			window.open(pagina,'','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=800,height=600,top=0,left=0');
+
+		}
+
+
+	
 		function Eliminar_Venta(identificador){
 			if (confirm('Desea Eliminar este Registro?') == true){
 				document.formulario.tarea.value = "E";

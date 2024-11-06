@@ -54,10 +54,16 @@ function fun_dibujar_tabla($rs,$li_columnas,$li_indice, $operacion, $variable){
 		
 			echo '<td  align="center">
 					<div class="hidden-sm hidden-xs action-buttons">
+
+						<a class="tooltip-info open-event" href="#" title="PDF"  onClick=\'Reporte_Venta("'.$ls_cod.'");return false;\'>
+							<i class="ace-icon fa fa-file-pdf-o bigger-130"></i>
+						</a>
 						
 						<a class="blue tooltip-info open-event" href="#" title="Ver" onClick=\'Mostrar_Info("'.$ls_cod.'");return false;\' >
 							<i class="ace-icon fa  fa-search-plus bigger-130"></i>
 						</a>
+
+
 					
 						<a class="green tooltip-success  open-event" href="#" title="Pagar" onClick=\'Pagar_Venta("'.$ls_cod.'");return false;\'>
 							<i class="ace-icon fa fa-dollar bigger-130"></i>
@@ -225,7 +231,7 @@ function fun_dibujar_tabla($rs,$li_columnas,$li_indice, $operacion, $variable){
 				}
 				echo "</select></td>";	
 			
-			echo "<td><input name='det_Item[]' onkeypress = 'return validardec(event);'  class='' size='7' value='".$row[$i++]."' type='text'></td>";
+			//echo "<td><input name='det_Item[]' onkeypress = 'return validardec(event);'  class='' size='7' value='".$row[$i++]."' type='text'></td>";
 			
 			echo "<td><select name='det_Articulo[]'  class='chosen-select' >";
 				$o_articulo = $row[$i++];

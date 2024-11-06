@@ -91,7 +91,7 @@
 	if($ls_resultado != 0){
 		
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);// enviar mensaje de error de consulta
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);// enviar mensaje de error de consulta
 	}	
 	
 /*-------------------------------------------------------------------------------------------
@@ -108,7 +108,7 @@
 		$TotalCtxCob    = $row[1];
 		$CtxCob     = $row[1] - $row[0];
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);// enviar mensaje de error de consulta
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);// enviar mensaje de error de consulta
 	}
 	
 	
@@ -122,7 +122,7 @@
 		$row = pg_fetch_row($ls_resultado,0);
 		$Banco    = $row[0];
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);// enviar mensaje de error de consulta
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);// enviar mensaje de error de consulta
 	}
 	  
 	
@@ -140,7 +140,7 @@
 		$row = pg_fetch_row($ls_resultado,0);
 		$DebeCtxPag    = $row[0];
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);// enviar mensaje de error de consulta
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);// enviar mensaje de error de consulta
 	}
 	
 
@@ -157,7 +157,7 @@
 		$row = pg_fetch_row($ls_resultado,0);
 		$VentaXcobrar    = $row[0];
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);// enviar mensaje de error de consulta
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);// enviar mensaje de error de consulta
 	}	
 	
 /*-------------------------------------------------------------------------------------------
@@ -172,7 +172,7 @@
 			$Disponible    = $row[0];
 		}	
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);// enviar mensaje de error de consulta
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);// enviar mensaje de error de consulta
 	}
 	
 	$Caja = $Disponible - $Banco;	
@@ -249,7 +249,7 @@
 	
 	$ls_sql = "SELECT SUM(ingreso), SUM(egreso), EXTRACT(month FROM fecha) AS MES 
 			FROM vm02_edo_cuenta 
-			WHERE EXTRACT(YEAR FROM fecha) = '2017'
+			WHERE EXTRACT(YEAR FROM fecha) = '2024'
 			GROUP BY EXTRACT(month FROM fecha)  ORDER BY EXTRACT(month FROM fecha)  asc";
 	
 	//echo $ls_sql;

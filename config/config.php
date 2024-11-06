@@ -40,7 +40,7 @@ function Combo_Almacen(){
 			$arr[$cod] = $nombre; 
 		}
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF]);
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF']);
 	}
 	return($arr);
 }
@@ -64,7 +64,7 @@ function Combo_Admin(){
 			$arr[$cod] = $nombre; 
 		}
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF]);
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF']);
 	}
 	return($arr);
 }
@@ -87,7 +87,7 @@ function Combo_Articulo(){
 			$arr[$cod] = $nombre; 
 		}
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF]);
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF']);
 	}
 	return($arr);
 }
@@ -107,9 +107,34 @@ function Combo_Articulo_Venta(){
 			$cod = $row[0];
 			$nombre = $row[1];
 			$arr[$cod] = $nombre; 
+			
 		}
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF]);
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF']);
+	}
+	return($arr);
+}
+
+
+function Combo_Articulo_Precio(){
+	$obj_miconexion = fun_crear_objeto_conexion();
+	$li_id_conex = fun_conexion($obj_miconexion);
+									
+		$ls_sql = " SELECT pk_articulo, nu_precio_item FROM t13_articulo 
+		WHERE in_venta = 'on'";
+	
+	/* El co_rol =  40 especifica el ROL FINANCIADOR, segun los cargado en la TABLA ROL */		
+
+	$ls_resultado =  $obj_miconexion->fun_consult($ls_sql);
+	if($ls_resultado != 0){
+		while($row = pg_fetch_row($ls_resultado)){
+			$cod = $row[0];
+			$precio = $row[1];
+			$arr[$cod] = $precio; 
+			
+		}
+	}else{
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF']);
 	}
 	return($arr);
 }
@@ -131,7 +156,7 @@ function Combo_Categoria_Articulo(){
 			$arr[$cod] = $nombre; 
 		}
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF]);
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF']);
 	}
 	return($arr);
 }
@@ -157,7 +182,7 @@ function Combo_Clase_Proyecto(){
 			$arr[$cod] = $nombre; 
 		}
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF]);
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF']);
 	}
 	return($arr);
 }
@@ -180,7 +205,7 @@ function Combo_Clasificacion(){
 			$arr[$cod] = $nombre; 
 		}
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF]);
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF']);
 	}
 	return($arr);
 }
@@ -204,7 +229,7 @@ function Combo_Cliente(){
 			$arr[$cod] = $nombre; 
 		}
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF]);
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF']);
 	}
 	return($arr);
 }
@@ -231,7 +256,7 @@ function Combo_Empleado(){
 	$ls_sql ="SELECT  s01_persona.co_persona,  UPPER(tx_nombre) || ' ' || UPPER(tx_apellido)
 			FROM s02_persona_rol
 			INNER JOIN s01_persona ON s02_persona_rol.co_persona = s01_persona.co_persona
-			WHERE co_rol = 41
+			WHERE co_rol = 46
 			ORDER BY tx_nombre";
 	/* El co_rol =  39 especifica el ROL CLIENTE, segun los cargado en la TABLA ROL */		
 
@@ -243,7 +268,7 @@ function Combo_Empleado(){
 			$arr[$cod] = $nombre; 
 		}
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF]);
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF']);
 	}
 	return($arr);
 }
@@ -272,7 +297,7 @@ function Combo_Financiador(){
 			$arr[$cod] = $nombre; 
 		}
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF]);
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF']);
 	}
 	return($arr);
 }
@@ -294,7 +319,7 @@ function Combo_Grupo_Etareo(){
 			$arr[$cod] = $nombre; 
 		}
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF]);
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF']);
 	}
 	return($arr);
 }
@@ -318,7 +343,7 @@ function Combo_Gan_Madre(){
 			$arr[$cod] = $nombre; 
 		}
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF]);
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF']);
 	}
 	return($arr);
 }
@@ -340,7 +365,7 @@ function Combo_Gan_Padre(){
 			$arr[$cod] = $nombre; 
 		}
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF]);
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF']);
 	}
 	return($arr);
 }
@@ -364,7 +389,7 @@ function Combo_Menu_Padre(){
 			$arr[$cod] = $nombre; 
 		}
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF]);
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF']);
 	}
 	return($arr);
 }
@@ -386,7 +411,7 @@ function Combo_Lote(){
 			$arr[$cod] = $nombre; 
 		}
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF]);
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF']);
 	}
 	return($arr);
 }
@@ -408,7 +433,7 @@ function Combo_Potrero(){
 			$arr[$cod] = $nombre; 
 		}
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF]);
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF']);
 	}
 	return($arr);
 }
@@ -433,7 +458,7 @@ function Combo_Proveedor(){
 			$arr[$cod] = $nombre; 
 		}
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF]);
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF']);
 	}
 	return($arr);
 }
@@ -457,7 +482,7 @@ function Combo_Raza(){
 			$arr[$cod] = $nombre; 
 		}
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF]);
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF']);
 	}
 	return($arr);
 }
@@ -478,7 +503,7 @@ function Combo_Rubro(){
 			$arr[$cod] = $nombre; 
 		}
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF]);
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF']);
 	}
 	return($arr);
 }
@@ -504,7 +529,7 @@ function Combo_Sector(){
 			$arr[$cod] = $nombre; 
 		}
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF]);
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF']);
 	}
 	return($arr);
 }
@@ -582,7 +607,7 @@ function Combo_Tipo_Rubro(){
 			$arr[$cod] = $nombre; 
 		}
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF]);
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF']);
 	}
 	return($arr);
 }
@@ -604,7 +629,7 @@ function Combo_Vacuna(){
 			$arr[$cod] = $nombre; 
 		}
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF]);
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF']);
 	}
 	return($arr);
 }
@@ -628,7 +653,7 @@ function Combo_Vendedor(){
 			$arr[$cod] = $nombre; 
 		}
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF]);
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF']);
 	}
 	return($arr);
 }

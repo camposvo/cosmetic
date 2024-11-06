@@ -42,6 +42,7 @@
 		}
 	}
 	
+	echo 'paso';
 /*-------------------------------------------------------------------------------------------
 	RUTINA: variables tipo arreglo para rellenar los combos en la interfaz. (VER CONFIG.PHP)
 ---------------------------------------------------------------------------------------------*/
@@ -87,7 +88,7 @@
 
 			$obj_miconexion->fun_closepg($li_id_conex); 
 		}else{
-			fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);
+			fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);
 		}		
 	}
 	
@@ -132,7 +133,7 @@
 					$error_sql = true;
 				}
 				
-				$ls_sq_conv = ereg_replace("'","\"",$ls_sql);
+				$ls_sql = preg_replace("/'/", "\"", $ls_sql);
 				$fecha = date('Y/m/d H:i');
 				$ls_sql = "INSERT INTO t11_bitacora(co_persona,fe_fecha,tx_tabla,tx_accion,tx_sql) 
 								VALUES ($ls_usuario,'$fecha','s01_persona','U','$ls_sq_conv')";
@@ -147,14 +148,14 @@
 					echo "<script language='JavaScript' type='text/JavaScript'>alert('Datos Actualizados Satisfactoriamente');location.href='sis_usuario.php?$parametros';</script>";
 				}else{
 					$ls_resultado =  $obj_miconexion->fun_consult(" ROLLBACK ");
-					fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);
+					fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);
 				}
 			}else{
 				$msg = "La Cedula y/o Indicador ya esta asignada a otro Persona!";
 				echo "<script language='JavaScript' type='text/JavaScript'>alert('$msg')</script>";			
 			}
 		}else{
-			fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);
+			fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);
 		}
 		$tarea = "M";  //Vuelve a colocar la Tarea 
 	}
@@ -189,7 +190,7 @@
 
 			$obj_miconexion->fun_closepg($li_id_conex); 
 		}else{
-			fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);
+			fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);
 		}		
 	}
 	
@@ -223,7 +224,7 @@
 					$error_sql = true;
 				}
 
-				$ls_sq_conv = ereg_replace("'","\"",$ls_sql);
+				$ls_sql = preg_replace("/'/", "\"", $ls_sql);
 				$fecha = date('Y/m/d H:i');
 				$ls_sql = "INSERT INTO t11_bitacora(co_persona,fe_fecha,tx_tabla,tx_accion,tx_sql) 
 								VALUES ($ls_usuario,'$fecha','s01_persona','I','$ls_sq_conv')";
@@ -238,7 +239,7 @@
 					echo "<script language='JavaScript' type='text/JavaScript'>alert('Usuario Ingresado Satisfactoriamente');location.href='sis_usuario_mtto.php?$parametros';</script>";										
 				}else{
 					$ls_resultado =  $obj_miconexion->fun_consult(" ROLLBACK ");
-					$msg = "Error en la Consulta !";
+					$msg = $ls_sql;
 					echo "<script language='javascript' type='text/javascript'>alert('$msg');</script>";
 				}
 
@@ -248,7 +249,7 @@
 				$tarea = "A";
 			}
 		}else{
-			fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);
+			fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);
 		}
 	}
 	

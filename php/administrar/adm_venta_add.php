@@ -24,6 +24,14 @@
 		<link rel="stylesheet" href="../../assets/css/chosen.min.css" /> 
 		<link rel="stylesheet" href="../../assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
 		<script src="../../assets/js/ace-extra.min.js"></script>	
+
+		<style>
+	.chosen-container, [class*="chosen-container"] {
+	width: 100% !important;
+
+}
+	
+		</style>
 				
 </head>
 <body>
@@ -55,11 +63,12 @@
 	if ($_POST['det_Proyecto'])	{ // Recibe el detalle de la Factura
 		$a_proyecto	= $_POST['det_Proyecto'];
 		$a_precio 	= $_POST['det_Precio'];
-		$a_item		= $_POST['det_Item'];
+	//	$a_item		= $_POST['det_Item'];
 		$a_cantidad	= $_POST['det_Cantidad'];
 		$a_articulo	= $_POST['det_Articulo'];		
 	}
-	
+
+
 	$obj_miconexion = fun_crear_objeto_conexion();
 	$li_id_conex = fun_conexion($obj_miconexion);	
 	
@@ -67,6 +76,9 @@
 	$arr_cliente =  Combo_Cliente();
 	$arr_rubro   =  Combo_Rubro();
 	$arr_articulo	=  	Combo_Articulo_Venta();
+	$arr_precios	=  	Combo_Articulo_Precio();
+
+	
 	$x_cant_item =  isset($x_cant_item)?$x_cant_item:0; 
 	
 /*-------------------------------------------------------------------------------------------
@@ -101,7 +113,7 @@
 		//echo $ls_sql;
 						
 		if($obj_miconexion->fun_consult("BEGIN TRANSACTION; ".$ls_sql) == 0){
-			fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);
+			fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);
 		}else{
 			
 			$ls_sql ="SELECT CURRVAL('t20s_pk_factura')	"; //Obtiene el ID de la factura
@@ -110,7 +122,7 @@
 				$row = pg_fetch_row($ls_resultado,0);
 				$id_factura       = $row[0];			
 			}else{
-				fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);
+				fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);
 			}			
 			
 			echo count($a_articulo);
@@ -133,7 +145,7 @@
 						$a_cantidad[$k],
 						$a_precio[$k],
 						'$a_und[$k]',
-						$a_item[$k],
+						0,
 						'$o_fecha' 				
 						);";								
 					//echo $ls_sql;
@@ -180,7 +192,7 @@
 
 								
 		if($obj_miconexion->fun_consult($ls_sql) == 0){
-			fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);
+			fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);
 		}else{
 			
 			$ls_sql ="DELETE FROM t01_detalle WHERE fk_factura = $id_factura; "; //
@@ -188,7 +200,7 @@
 			if($ls_resultado){
 			
 			}else{
-				fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);
+				fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);
 			}			
 			
 			foreach($a_precio as $k=>$valor){
@@ -209,7 +221,7 @@
 					$a_cantidad[$k],
 					$a_precio[$k],
 					'$a_und[$k]',
-					$a_item[$k],
+					0,
 					'$o_fecha'				
 					);";								
 				//echo $ls_sql;
@@ -217,7 +229,7 @@
 				if($obj_miconexion->fun_consult($ls_sql)){
 					
 				}else{
-					fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);
+					fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);
 				}	
 			}	
 			 $msg = "¡Factura Actualizada Satisfactoriamente !";           
@@ -236,6 +248,8 @@
 					tx_concepto,  nu_total, nu_abono
 					FROM t20_factura
 					WHERE pk_factura = $x_movimiento";
+
+					
 		
 		$ls_resultado =  $obj_miconexion->fun_consult($ls_sql);
 		if($ls_resultado != 0){
@@ -250,22 +264,21 @@
 			$x_abono        = $row[7];
 			
 			// Extrae el detalle de la factura
-			$ls_sql ="SELECT fk_rubro, nu_cant_item, fk_articulo, nu_cantidad, nu_precio,  
+			$ls_sql ="SELECT fk_rubro, fk_articulo, nu_cantidad, nu_precio,  
 				  nu_cantidad * nu_precio as total
 				  FROM t01_detalle
 				  WHERE fk_factura = $id_factura ;";
-			//echo $ls_sql;
 			
 			$ls_resultado =  $obj_miconexion->fun_consult($ls_sql);
 			if($ls_resultado){
 				$mostrar_rs = true;
 				// Consulta exitosa					
 			}else{
-				fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);
+				fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);
 			}
 			
 		}else{
-			fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);// enviar mensaje de error de consulta
+			fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);// enviar mensaje de error de consulta
 		}
 		$tarea = 'U';
 		$modo= 'Actualizar Datos';
@@ -315,7 +328,7 @@
 											<div class="form-group">
 												<label class="col-sm-3 control-label no-padding-right" >Cliente</label>
 												<div class="col-sm-7" >	
-													<select name="o_cliente" class="col-xs-10 col-sm-7 chosen-select " data-placeholder="Selecciona un Cliente...">
+													<select name="o_cliente" class="col-xs-10 col-sm-7 chosen-select " data-placeholder="Selecciona un Cliente..." >
 														<?php
 															if ($o_cliente == ""){
 																echo "<option value='0' selected></option>";
@@ -373,13 +386,12 @@
 							<table id="simple-table" class="table table-striped table-bordered table-hover">
 								<thead>
 									<tr class="bg-primary" >
-										<th>Proyecto</th>
-										<th>Item</th>
-										<th>Articulo</th>
-										<th>Cantidad</th>
-										<th>Precio</th>
-										<th>SubTotal</th>
-										<th></th>
+										<th width="30%">Proyecto</th>
+										<th width="30%">Articulo</th>
+										<th width="10%">Cantidad</th>
+										<th width="10%">Precio</th>
+										<th width="10%">SubTotal</th>
+										<th width="10%"></th>
 									</tr>
 								</thead>
 								<tbody id="tblDetalle">	
@@ -456,9 +468,6 @@
 				autoclose: true,
 				todayHighlight: true,
 				
-				
-				
-				
 			})
 			
 			
@@ -477,7 +486,7 @@
 					if(event_name != 'sidebar_collapsed') return;
 					$('.chosen-select').each(function() {
 						 var $this = $(this);
-						 $this.next().css({'width': $this.parent().width()});
+						 $this.next().css({'width': '100%'});
 					})
 				});	
 
@@ -500,9 +509,26 @@
 /*-------------------------------------------------------------------------------------------
 Se invoka en tiempo de ejecucion para activar la clase select multiple
 --------------------------------------------------------------------------------------------*/		
-		function chosen(){
+		function chosen(id_sele){
+
+			var precios = <?php echo json_encode($arr_precios); ?>;
 			
 			if(!ace.vars['touch']) {
+
+				 $("#"+id_sele).chosen().change(function() {
+					//Get Input Price
+					const fila = this.parentNode.parentNode;
+					const price = fila.cells[3].firstChild;	
+		
+					var valorSeleccionado = $(this).val();	
+
+					price.value = precios[valorSeleccionado];
+					
+					calcular();		
+				}); 
+
+				$(".chosen-select").chosen({width: "100%"}); 
+
 				$('.chosen-select').chosen({allow_single_deselect:true}); 
 			
 				//resize chosen on sidebar collapse/expand
@@ -512,11 +538,17 @@ Se invoka en tiempo de ejecucion para activar la clase select multiple
 					$('.chosen-select').each(function() {
 						 var $this = $(this);
 						 $this.next().css({'width': $this.parent().width()});
+
+						 console.log("$this.parent().width()");
+
+						console.log($this.parent().width());
 					})
 				});	
+
+				//$(".chosen-select").chosen({width: "100%"}); 
 		
 				$('#chosen-multiple-style .btn').on('click', function(e){
-					var target = $(this).find('input[type=radio]');
+						var target = $(this).find('input[type=radio]');
 					var which = parseInt(target.val());
 					if(which == 2) $('#form-field-select-4').addClass('tag-input-style');
 					 else $('#form-field-select-4').removeClass('tag-input-style');
@@ -542,6 +574,23 @@ crea un campo dinamicamente
 			td.appendChild(txt);
 			return td;		
 		}	
+
+
+		function crearPrecio(nombre,readonly, evento, valor){
+			td= document.createElement('td');
+			txt = document.createElement('input');
+			txt.type = 'text';
+			txt.setAttribute('name',nombre);
+			txt.setAttribute('size',7);
+			txt.setAttribute('onkeyup',evento); 
+			txt.setAttribute('onkeypress','return validardec(event);');
+			
+			if(readonly){
+				txt.setAttribute('readonly','readonly')
+			}
+			td.appendChild(txt);
+			return td;		
+		}	
 			
 /*-------------------------------------------------------------------------------------------
 Calcula el total de todos los item de la factura
@@ -549,7 +598,8 @@ Calcula el total de todos los item de la factura
 		function calcular(){		
 			cantidad = document.getElementsByName('det_Cantidad[]');
 			precios =  document.getElementsByName('det_Precio[]');
-			subtotal = document.getElementsByName('det_Subtotal[]');		
+			subtotal = document.getElementsByName('det_Subtotal[]');	
+
 			var_subtotal =0;
 			for(x=0; x < cantidad.length; x++){
 				sub = redondeo2decimales(cantidad[x].value * precios[x].value);
@@ -574,7 +624,7 @@ crea dinamicamente un fila para un nuevo articulo
 			td = document.createElement('td');
 			sele = document.createElement('select');
 			sele.name = 'det_Proyecto[]';
-			sele.setAttribute("class","chosen-select");
+			sele.setAttribute("class","chosen-select chosen-select-width");
 
 			opt = document.createElement('option');
 			opt.value = '0';
@@ -586,35 +636,44 @@ crea dinamicamente un fila para un nuevo articulo
 				opt.value = p;
 				opt.innerHTML = proy[p];
 				sele.appendChild(opt);
-			}		
+			}	
+
 			td.appendChild(sele);
+
 			tr.appendChild(td);
-			tr.appendChild(crearCampo('det_Item[]',false,''));	
+			//tr.appendChild(crearCampo('det_Item[]',false,''));	 */
+
 			// Select Articulo
 			td = document.createElement('td');
 			sele = document.createElement('select');
 			sele.name = 'det_Articulo[]';
-			sele.setAttribute("class","chosen-select");
-
+			
+			sele.setAttribute("class","chosen-select  chosen-select-width");
+			sele.setAttribute("id","form_field");
+		
+			
 			opt = document.createElement('option');
 			opt.value = '0';
 			opt.setAttribute('data-placeholder','Selecciona un Articulo');
 			sele.appendChild(opt);
 
+			
 			for (var p in articulo){
 				opt = document.createElement('option');
 				opt.value = p;
 				opt.innerHTML = articulo[p];
 				sele.appendChild(opt);
-			}		
+			}	
+
 			td.appendChild(sele);
 			tr.appendChild(td);
-		
+
+
 			// otros
 			
 			tr.appendChild(crearCampo('det_Cantidad[]',false,'calcular()'));
 			
-			tr.appendChild(crearCampo('det_Precio[]',false,'calcular()'));
+			tr.appendChild(crearPrecio('det_Precio[]',false,'calcular()'));
 			tr.appendChild(crearCampo('det_Subtotal[]',true,''));
 			td = document.createElement('td');
 			x = document.createElement('button');
@@ -625,11 +684,17 @@ crea dinamicamente un fila para un nuevo articulo
 			tr.appendChild(td);
 			destino.appendChild(tr);
 			
+			const fila = sele.parentNode.parentNode.rowIndex;
+			const id_sele = "articulo_"+fila;
+
+			sele.setAttribute("id",id_sele);
+			//console.log(padre);
+
 			//LLama el JS que se requiere para el Select Multiple
-			chosen();
+			chosen(id_sele);
+
 			
 		}	
-			
 /*-------------------------------------------------------------------------------------------
 Evento para ELIMINA una  fila de los registros DETALLE
 --------------------------------------------------------------------------------------------*/	

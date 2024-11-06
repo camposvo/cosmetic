@@ -52,7 +52,7 @@
 			$msg = "¡Eliminado Exitosamente!.";
 			echo "<script language='javascript' type='text/javascript'>alert('$msg');</script>";
 		}else{
-			fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);
+			fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);
 		}
 	}
 	
@@ -66,7 +66,7 @@
 			$msg = "¡Asignado a la Lista de Mensaje !.";
 			echo "<script language='javascript' type='text/javascript'>alert('$msg');</script>";
 		}else{
-			fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);
+			fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);
 		}
 	}
 /*-------------------------------------------------------------------------------------------
@@ -79,7 +79,7 @@
 			$msg = "¡Retirado de Lista de Mensajes!.";
 			echo "<script language='javascript' type='text/javascript'>alert('$msg');</script>";
 		}else{
-			fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);
+			fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);
 		}
 	}
 
@@ -87,14 +87,14 @@
 	LEE LISTA DE USUARIOS
 --------------------------------------------------------------------------------------------*/	
 	$ls_sql = "SELECT to_char(co_persona,'000000'), UPPER(tx_nombre)||' ' ||UPPER(tx_apellido), tx_telefono_hab, UPPER(tx_indicador), in_grupo_correo, co_password, co_persona 
-				FROM  s01_persona ORDER BY tx_nombre";
+				FROM  s01_persona where in_activo = 'S' ORDER BY tx_nombre ";
 	
 	$ls_resultado =  $obj_miconexion->fun_consult($ls_sql);
 	//echo $ls_sql;
 	if ($ls_resultado != 0){
 		$tarea      = "M";
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);
 	}	
 	$co_usuario = 0;
 ?>
