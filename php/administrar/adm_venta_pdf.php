@@ -3,10 +3,16 @@
 include("../../clases/fpdf/fpdf.php");
 include_once("adm_utilidad.php");
 
-/* 	ini_set('display_errors', 1);
-error_reporting(E_ALL); */
+	ini_set('display_errors', 1);
+    error_reporting(E_ALL); 
 
-$top = 110; // el top se usa para el N� de caracteres que permite pdf
+
+	function fix_texto($texto) {
+		$texto_normalizado = iconv('UTF-8', 'windows-1252', $texto);	
+		return $texto_normalizado;
+	}
+
+$max = 110; // el max se usa para el N� de caracteres que permite pdf
 /*-------------------------------------------------------------------------------------------
 	RUTINA: Se utiliza para recibir las variables por la url.
 -------------------------------------------------------------------------------------------*/
@@ -27,26 +33,19 @@ if (!$_GET) {
 $obj_miconexion = fun_crear_objeto_conexion();
 $li_id_conex = fun_conexion($obj_miconexion);
 
-$co_usuario  =  $_SESSION["li_cod_usuario"];
 $arr_cliente =  Combo_Cliente();
 $arr_vendedor =  Combo_Vendedor();
 $arr_rubro   =  Combo_Rubro();
 $arr_abono   =  Combo_Abono();
-
-$arr_fecha = explode('-', $x_fecha, 2);
-$x_fecha_ini = $arr_fecha[0];
-$x_fecha_fin = $arr_fecha[1];
-
-$x_vendedor = isset($x_vendedor) ? $x_vendedor : $co_usuario;
-$x_cliente   = isset($x_cliente) ? $x_cliente : 0;
+$arr_articulo	=  	Combo_Articulo_Venta();
 
 
 $ls_sql = "SELECT pk_factura, fk_responsable, fk_cliente, to_char(fe_fecha_factura, 'dd/mm/yyyy'),  tx_nota,
-				tx_concepto,  nu_total, nu_abono
+				tx_concepto,  nu_total, nu_abono, to_char(nextval('sec_nota'),'0000000') 
 				FROM t20_factura
 				WHERE pk_factura = $x_movimiento";
 
-echo $ls_sql;
+			
 
 
 
@@ -61,6 +60,7 @@ if ($ls_resultado != 0) {
 	$x_observacion  = $row[5];
 	$x_total        = $row[6];
 	$x_abono        = $row[7];
+	$x_nota       = $row[8];
 
 	// Extrae el detalle de la factura
 	
@@ -69,16 +69,13 @@ if ($ls_resultado != 0) {
 }
 
 
-var_dump($ls_resultado_1);
-
 /*-------------------------------------------------------------------------------------------
 LEE DATOS DEL CLIENTE
 -------------------------------------------------------------------------------------------*/
-$ls_sql = "SELECT tx_nombre || ' ' || tx_apellido, tx_cedula, tx_direccion_hab
+$ls_sql = "SELECT tx_nombre || ' ' || tx_apellido, tx_cedula, tx_direccion_hab, tx_telefono_hab
 			FROM s01_persona 
 			WHERE s01_persona.co_persona = $o_cliente";
 
-			echo $ls_sql;
 
 
 $ls_resultado =  $obj_miconexion->fun_consult($ls_sql);
@@ -87,16 +84,16 @@ if ($ls_resultado != 0) {
 	$o_cliente      = $row[0];	
 	$o_cedula      = $row[1];
 	$o_direccion     = $row[2];
+	$o_telefono    = $row[3];
 }
 
 //echo $o_cliente;
 
-$ls_sql = "SELECT fk_rubro, fk_articulo, nu_cantidad, nu_precio,  
+$ls_sql = "SELECT nu_cantidad, fk_articulo, nu_precio,  
 			  nu_cantidad * nu_precio as total
 			  FROM t01_detalle
 			  WHERE fk_factura = $id_factura ;";
 
-echo $ls_sql;
 
 	$ls_resultado_1 =  $obj_miconexion->fun_consult($ls_sql);
 	if ($ls_resultado_1) {
@@ -108,36 +105,146 @@ echo $ls_sql;
 
 
 /*******************************************************************************************************/
-//para la cantidad de caracteres dentro de una linea 
-if ($cont >= $top) {
-}
 
-$pdf = new FPDF('P', 'mm', 'A4');
-//$pdf=new FPDF();// orientacion de la hoja, medidas en este caso milimetro, tipo de hoja
-$pdf->AddPage(); // agregar nueva pagina
-//$pdf->SetTextColor(140,140,140);//color del texto(color rojo, color verde, color azul)
-$pdf->SetFont('Arial', 'B', 10); // formato del texto(tipo de fuente, estilo de la fuente, tama�o de la fuente)
-//$pdf->Image('../../img/iconos_pagina/logo_pdf.jpg',10,8,320,8);//nombre de imagen, ubicacion horizontal, ubicacion vertical, ancho, grosor
-$pdf->Text(10, 20, 'COMPROBANTE DE PAGO'); // ubicacion horizontal, ubicacion vertical, cadena de caracteres
+$top = 10;
+
+
+
+$pdf= new FPDF('P', 'mm', 'A4', 'UTF-8');
+$pdf->AddPage(); 
+
+//HEADER
+$pdf->SetFont('Arial', 'B', 10); 
+$pdf->SetXY(150, $top += 5);
+$pdf->Image('../../img/logo1.png',20,15,45,30);
+$pdf->Cell(50, 10, 'BELLINGHIERI COSMETICS, C.A', 0, 0,'R');
+$pdf->SetXY(150, $top += 5);
+$pdf->Cell(50, 10, 'RIF: J-410596457', 0, 0,'R');
+$pdf->SetXY(150, $top += 5);
+$pdf->Cell(50, 10, 'CALLE 8 CASA NRO 478 URB DON IGNACIO', 0, 0,'R');
+$pdf->SetXY(150, $top += 5);
+$pdf->Cell(50, 10, 'EL TIGRE ANZOATEGUI', 0, 0,'R');
+$pdf->SetXY(150, $top += 5);
+$pdf->Cell(50, 10, 'ZONA POSTAL 6050', 0, 0,'R');
+
+
+$pdf->SetTextColor(255, 0, 0); // Rojo (R, G, B)
+$pdf->SetFont('Arial', 'B', 12); 
+$pdf->SetXY(150, $top += 10);
+$pdf->Cell(50, 10, 'NOTA NRO .'.$x_nota, 0, 0,'R');
+
+$pdf->SetTextColor(0, 0, 0); // Rojo (0, 0, 0)
+$pdf->SetFont('Arial', 'B', 10); 
+$pdf->SetXY(150, $top += 5);
+$pdf->Cell(50, 10, fix_texto('Fecha de Emisión:').$o_fecha, 0, 0,'R');
+
+//CLIENT TITLE
+$top += 15;
+
+$pdf->SetFont('Arial', '', 9); 
+$pdf->SetXY(20, $top);
+$pdf->Cell(120, 5, fix_texto('Nombre o Razón Social:'), 'LTR', 1, 'L');
+
+$pdf->SetXY(20, $top + 10);
+$pdf->Cell(120, 5, 'Domicilio Fiscal:', 'LR', 1, 'L');
+
+$pdf->SetXY(140, $top);
+$pdf->Cell(60, 5, fix_texto('RIF o CI:'), 'LTR', 1, 'L');
+
+$pdf->SetXY(140, $top + 10);
+$pdf->Cell(60, 5, fix_texto('Teléfono:'), 'LR', 1, 'L');
+
+//CLIENT DATA 
+
+$pdf->SetFont('Arial', 'B', 11); 
+$pdf->SetXY(20, $top + 5);
+$pdf->Cell(120, 5, fix_texto(strtoupper($o_cliente)),'LBR', 1, 'L');
+
+$pdf->SetXY(20, $top + 15);
+$pdf->MultiCell(120, 5, fix_texto($o_direccion), 'LBR', 'L');
+
+$pdf->SetXY(140, $top + 5);
+$pdf->Cell(60, 5, strtoupper($o_cedula),'LBR', 1, 'L');
+
+$pdf->SetXY(140, $top + 15);
+$pdf->Cell(60, 10, strtoupper($o_telefono),'LBR', 1, 'L');
+
+//ITEMS DATA
+
+
+
+$top += 30;
+$ma = 20;
+$h1 = 7;
+
+$w1 = 20;
+$w2 = 110;
+$w3 = 25;
+$w4 = 25;
+
+
+
+$pdf->SetFillColor(198,217,241); 
+
+$pdf->SetFont('Arial', 'B', 10); 
+//$pdf->SetTextColor(255, 255, 255); // Rojo (0, 0, 0)
+
+$pdf->SetXY($ma, $top);
+$pdf->Cell($w1, $h1, 'Cant.', 1, 1, 'C',true);
+
+$pdf->SetXY($ma+20, $top);
+$pdf->Cell($w2, $h1, 'Concepto', 1, 1, 'C', true);
+
+$pdf->SetXY($ma+130, $top);
+$pdf->Cell($w3, $h1, 'Precio', 1, 1, 'C',true);
+
+$pdf->SetXY($ma+155, $top);
+$pdf->Cell($w4, $h1, 'Total', 1, 1, 'C',true);
+
 
 //$pdf->SetDash(1,1);
-$pdf->Line(10, 22, 200, 22);
+$total = 0;
+$pdf->SetFont('Arial', '', 10); 
+while($fila = pg_fetch_row($ls_resultado_1)){	
 
-while($fila = pg_fetch_row($ls_resultado_1)){				
-	echo ucwords(strtolower($fila[0]));	
+	$top += 7;	
+	
+	$pdf->SetXY($ma, $top);
+	$pdf->Cell($w1, $h1, $fila[0], 1, 1, 'C');
+
+	$pdf->SetXY($ma+20, $top);
+	$pdf->Cell($w2, $h1, $arr_articulo[$fila[1]], 1, 1, 'L');
+
+	$precio = number_format($fila[2],2,",",".");
+	$pdf->SetXY($ma+130, $top);
+	$pdf->Cell($w3, $h1, $precio, 1, 1, 'C');
+
+	$subtotal = number_format($fila[3],2,",",".");
+	$pdf->SetXY($ma+155, $top);
+	$pdf->Cell($w4, $h1, $subtotal, 1, 1, 'C');
+
+	$total += $fila[3];
+
+	
 }
 
-//Fecha
-$pdf->SetFont('Times', 'B', 10);
-$col_1 = 18;
-$pdf->SetXY(10, $col_1 += 6);
-$pdf->Cell(60, 6, 'Fecha de Emision: ' . $o_fecha, 0, 'L');
+	$top += 7;	
+	$pdf->SetFont('Arial', 'B', 11); 
+	
+	$pdf->SetXY($ma, $top);
+	$pdf->Cell($w1, $h1, '', 1, 1, 'C');
 
-$pdf->SetXY(10, $col_1 += 6);
-$pdf->Cell(25, 6, 'Cedula: ', 0, 'L');
-$pdf->Cell(45, 6,  number_format($o_cedula, 0, ",", "."), 0, 'L');
+	$pdf->SetXY($ma+20, $top);
+	$pdf->Cell($w2, $h1, '', 1, 1, 'L');
 
+	$pdf->SetXY($ma+130, $top);
+	$pdf->Cell($w3, $h1, 'Total:', 1, 1, 'C');
 
-$pdf->Line(10, $col_1 += 6, 200, $col_1);
+	$temp = number_format($total,2,",",".");
+
+	$pdf->SetXY($ma+155, $top);
+	$pdf->Cell($w4, $h1,$temp, 1, 1, 'C');
+ 
+
 
 $pdf->Output(); //cierra el archivo
