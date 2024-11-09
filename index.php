@@ -27,7 +27,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta charset="UTF-8" />
-<title>La Peperana</title>
+<title>BellingieriCosmetic</title>
 			
 	<!-- bootstrap & fontawesome -->
 		<link rel="stylesheet" href="assets/css/bootstrap.min.css" />
@@ -87,10 +87,9 @@ DESCRIPCIN: VERIFICA SI LOS CAMPOS ESTAN COMPLETOS Y MANDA A LA PAGINA SESION.PH
 							<div class="center">
 								<h1>
 									<i class="ace-icon fa fa-leaf green"></i>
-									<span class="red">La PPreña</span>
-									<span class="white" id="id-text2">Aplicacion</span>
+									<span class="red">BellingieriCosmetic</span>
 								</h1>
-								<h4 class="blue" id="id-company-text">&copy; La PPreña</h4>
+								<h4 class="blue" id="id-company-text">@cosm.eticsca</h4>
 							</div>
 
 							<div class="space-6"></div>

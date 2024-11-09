@@ -66,13 +66,13 @@
 					echo $ls_sql ;
 					$ls_resultado =  $obj_miconexion->fun_consult($ls_sql);
 					if($ls_resultado == 0){
-						fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__); //  Envía Mensaje De Error De Consulta.
+						fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__); //  Envía Mensaje De Error De Consulta.
 					}else{echo "<script language='javascript' type='text/javascript'>alert('¡Nueva Clase Ingresada Satisfactoriamente!');</script>";}
 				}else{
 					echo "<script language='javascript' type='text/javascript'>alert('¡Nombre Duplicado!');</script>";
 				}
 			}else{
-				fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__); //  Envía Mensaje De Error De Consulta.
+				fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__); //  Envía Mensaje De Error De Consulta.
 			}
 		}else{
 			$ls_sql = " UPDATE t21_categoria SET nb_categoria = '".strtoupper($o_nombre)."' 
@@ -81,7 +81,7 @@
 			if($ls_resultado != 0){
 				echo "<script language='javascript' type='text/javascript'>alert('Clase Actualizada Satisfactoriamente!');</script>";
 			}else{
-				fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__); //  Envía Mensaje De Error De Consulta.
+				fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__); //  Envía Mensaje De Error De Consulta.
 			}
 		}
 		$pk_categoria = '';
@@ -94,7 +94,7 @@
 |-------------------------------------------------------------------------------------------*/	
 	if ($tarea == "E"){
 		
-		$ls_sql = "SELECT * FROM t21_categoria WHERE fk_categoria= '$pk_categoria' ";
+		$ls_sql = "SELECT * FROM t21_categoria WHERE pk_categoria= '$pk_categoria' ";
 		$ls_resultado =  $obj_miconexion->fun_consult($ls_sql);
 		
 		if ($ls_resultado != 0){
@@ -105,14 +105,14 @@
 						$msg = "¡Proveedor Eliminado Exitosamente!";
 						echo "<script language='javascript' type='text/javascript'>alert('$msg');</script>";
 					}else{
-						fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__); //  Envía Mensaje De Error De Consulta.
+						fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__); //  Envía Mensaje De Error De Consulta.
 					}
 			}else{
 				$msg = "¡Imposible Eliminar, Este Clasificacion esta Asociado a un Producto!";
 				echo "<script language='javascript' type='text/javascript'>alert('$msg');</script>";
 			}
 		}else{
-			fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__); //  Envía Mensaje De Error De Consulta.
+			fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__); //  Envía Mensaje De Error De Consulta.
 		}
 		
 		$modo = 'Insertar Nuevo Registro';

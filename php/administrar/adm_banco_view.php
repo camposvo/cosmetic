@@ -56,7 +56,7 @@
 		if($ls_resultado != 0){
 			echo "<script language='javascript' type='text/javascript'>alert('¡Monto Actualizado Exitosamente !');</script>";
 		}else{
-			fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__); //  Envía Mensaje De Error De Consulta.
+			fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__); //  Envía Mensaje De Error De Consulta.
 		}
 	}
 
@@ -68,7 +68,7 @@
 	if($ls_resultado != 0){
 		//Sin Error
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__); //  Envía Mensaje De Error De Consulta.
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__); //  Envía Mensaje De Error De Consulta.
 	}
 
 ?>

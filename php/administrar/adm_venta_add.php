@@ -27,9 +27,8 @@
 
 		<style>
 	.chosen-container, [class*="chosen-container"] {
-	width: 100% !important;
-
-}
+		width: 100% !important;
+	}
 	
 		</style>
 				
@@ -76,7 +75,7 @@
 	$arr_cliente =  Combo_Cliente();
 	$arr_rubro   =  Combo_Rubro();
 	$arr_articulo	=  	Combo_Articulo_Venta();
-	$arr_precios	=  	Combo_Articulo_Precio();
+	$arr_precios	=  	Combo_Articulo_Precio_Venta();
 
 	
 	$x_cant_item =  isset($x_cant_item)?$x_cant_item:0; 
@@ -641,7 +640,7 @@ crea dinamicamente un fila para un nuevo articulo
 			td.appendChild(sele);
 
 			tr.appendChild(td);
-			//tr.appendChild(crearCampo('det_Item[]',false,''));	 */
+
 
 			// Select Articulo
 			td = document.createElement('td');

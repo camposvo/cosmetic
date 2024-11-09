@@ -116,11 +116,11 @@ function Combo_Articulo_Venta(){
 }
 
 
-function Combo_Articulo_Precio(){
+function Combo_Articulo_Precio_Venta(){
 	$obj_miconexion = fun_crear_objeto_conexion();
 	$li_id_conex = fun_conexion($obj_miconexion);
 									
-		$ls_sql = " SELECT pk_articulo, nu_precio_item FROM t13_articulo 
+		$ls_sql = " SELECT pk_articulo, nu_precio_venta FROM t13_articulo 
 		WHERE in_venta = 'on'";
 	
 	/* El co_rol =  40 especifica el ROL FINANCIADOR, segun los cargado en la TABLA ROL */		
@@ -138,6 +138,30 @@ function Combo_Articulo_Precio(){
 	}
 	return($arr);
 }
+
+
+function Combo_Articulo_Precio_Compra(){
+	$obj_miconexion = fun_crear_objeto_conexion();
+	$li_id_conex = fun_conexion($obj_miconexion);
+									
+		$ls_sql = " SELECT pk_articulo, nu_precio_compra FROM t13_articulo 
+		WHERE in_gasto = 'on'";
+	
+
+	$ls_resultado =  $obj_miconexion->fun_consult($ls_sql);
+	if($ls_resultado != 0){
+		while($row = pg_fetch_row($ls_resultado)){
+			$cod = $row[0];
+			$precio = $row[1];
+			$arr[$cod] = $precio; 
+			
+		}
+	}else{
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF']);
+	}
+	return($arr);
+}
+
 
 
 function Combo_Categoria_Articulo(){

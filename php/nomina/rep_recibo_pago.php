@@ -63,7 +63,7 @@ error_reporting(E_ALL); */
 		
 				
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);// enviar mensaje de error de consulta
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);// enviar mensaje de error de consulta
 	}
 	
 	/*if($tipo_nomina == "QUINCENAL"){

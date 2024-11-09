@@ -22,7 +22,14 @@
 		<link rel="stylesheet" href="../../assets/fonts/fonts.googleapis.com.css" />
 		<link rel="stylesheet" href="../../assets/css/chosen.min.css" />
 		<link rel="stylesheet" href="../../assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
-		<script src="../../assets/js/ace-extra.min.js"></script>		
+		<script src="../../assets/js/ace-extra.min.js"></script>	
+		
+		<style>
+			.chosen-container, [class*="chosen-container"] {
+				width: 100% !important;
+			}
+	
+		</style>
 				
 </head>
 <body>
@@ -70,6 +77,7 @@
 	$arr_articulo 		=  	Combo_Articulo();
 	$arr_almacen       	=  	Combo_Almacen();
 	$x_fecha_actual    	=  	date('Y/m/d');
+	$arr_precios	=  	Combo_Articulo_Precio_Compra();
 	
 /*-------------------------------------------------------------------------------------------
 	AGREGA UN GASTO
@@ -113,7 +121,7 @@
 				$row = pg_fetch_row($ls_resultado,0);
 				$id_factura       = $row[0];			
 			}else{
-				fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);
+				fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);
 			}			
 
 			foreach($a_precio as $k=>$valor){
@@ -195,7 +203,7 @@
 
 								
 		if($obj_miconexion->fun_consult("BEGIN TRANSACTION; ".$ls_sql) == 0){
-			fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);
+			fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);
 		}else{
 			
 			$ls_sql ="DELETE FROM t01_detalle WHERE fk_factura = $id_factura; "; //
@@ -203,7 +211,7 @@
 			if($ls_resultado){
 			
 			}else{
-				fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);
+				fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);
 			}			
 			
 			foreach($a_precio as $k=>$valor){
@@ -298,11 +306,11 @@
 				$mostrar_rs = true;
 				// Consulta exitosa					
 			}else{
-				fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);
+				fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);
 			}
 			
 		}else{
-			fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);// enviar mensaje de error de consulta
+			fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);// enviar mensaje de error de consulta
 		}
 		$tarea = 'U';
 		$modo= 'Actualizar Datos';
@@ -406,13 +414,13 @@
 							<table id="simple-table" class="table table-striped table-bordered table-hover">
 								<thead>
 									<tr class="bg-primary" >
-										<th>Proyecto</th>
-										<th>Articulo</th>
-										<th>Cantidad</th>
-										<th>Precio</th>
-										<th>SubTotal</th>
-										<th>Almacen</th>
-										<th>Eliminar</th>
+										<th width="30%">Proyecto</th>
+										<th width="30%">Articulo</th>
+										<th width="10%">Cantidad</th>
+										<th width="10%">Precio</th>
+										<th width="10%">SubTotal</th>
+										<th width="5%">Almacen</th>
+										<th width="5%">Eliminar</th>
 									</tr>
 								</thead>
 								<tbody id="tblDetalle">	
@@ -535,10 +543,25 @@
 
 <script>
 // Se invoka en tiempo de ejecucion para activar la clase select multiple
-	function chosen(){
+	function chosen(id_sele){
+
+		var precios = <?php echo json_encode($arr_precios); ?>;
 		
 		if(!ace.vars['touch']) {
 			$('.chosen-select').chosen({allow_single_deselect:true}); 
+
+			$("#"+id_sele).chosen().change(function() {
+					//Get Input Price
+					const fila = this.parentNode.parentNode;
+					const price = fila.cells[3].firstChild;	
+		
+					var valorSeleccionado = $(this).val();	
+
+					price.value = precios[valorSeleccionado];
+					
+					calcular();		
+				}); 
+
 		
 			//resize chosen on sidebar collapse/expand
 			
@@ -599,10 +622,7 @@
 		var proy = <?php echo json_encode($arr_rubro); ?>;
 		var articulo = <?php echo json_encode($arr_articulo); ?>;
 		
-		
-		//var yea=document.getElementById("tblDetalle").rows.length;
-		//var yea=document.getElementById("tblDetalle").rowIndex; 
-		
+	
 		// Mostramos los valores del array
 
 		destino = document.getElementById('tblDetalle');
@@ -618,7 +638,7 @@
 
 		opt = document.createElement('option');
 		opt.value = '0';
-		opt.setAttribute('data-placeholder','Selecciona un Proveedor');
+		opt.setAttribute('data-placeholder','Selecciona un Articulo');
 		sele.appendChild(opt);
 
 		for (var p in proy){
@@ -677,10 +697,14 @@
 		tr.appendChild(td);
 		
 		destino.appendChild(tr);
+
+		const fila = sele.parentNode.parentNode.rowIndex;
+		const id_sele = "articulo_"+fila;
+		sele.setAttribute("id",id_sele);
 			
 		
 		//LLama el JS que se requiere para el Select Multiple
-		chosen();
+		chosen(id_sele);
 		
 	}	
 		
