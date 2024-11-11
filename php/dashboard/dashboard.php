@@ -1,4 +1,8 @@
 <?php
+/* 
+ini_set('display_errors', 1);
+error_reporting(E_ALL);  */
+
 	session_start();
 	include_once ("utilidad.php");
 	$usu_autentico= isset($_SESSION['autentificado'])?$_SESSION['autentificado']:'';
@@ -175,9 +179,9 @@
 		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);// enviar mensaje de error de consulta
 	}
 	
-	$Caja = $Disponible - $Banco;	
+	$Caja = $Disponible ;	
 
-	
+	echo $Caja ;
 	
 /*-------------------------------------------------------------------------------------------
 	CONSULTA LISTA DE ANIMALES
@@ -687,7 +691,7 @@
 								<tbody>	
 									<?php   
 										if($tarea == "M"){
-											$li_numcampo = $obj_miconexion_5->fun_numcampos()-9; // Columnas que se muestran en la Tabla
+											$li_numcampo = $obj_miconexion_5->fun_numcampos()-3; // Columnas que se muestran en la Tabla
 											$li_indicecampo = $obj_miconexion_5->fun_numcampos(); // Referencia al indice de la columna clave
 											fun_dibujar_tabla($obj_miconexion_5,$li_numcampo,$li_indicecampo, 'LISTAR_SEGUIMIENTO',0); // Dibuja la Tabla de Datos
 										}
@@ -1037,72 +1041,10 @@
 				/*********************** Gastos por Clasificacion *******************************/
 				
 				
-				
-				  Highcharts.chart('container_4', {
-						chart: {
-							plotBackgroundColor: null,
-							plotBorderWidth: 0,
-							plotShadow: false
-						},
-						title: {
-							text: '<br>Sexo<br>',
-							align: 'center',
-							verticalAlign: 'middle',
-							y: 40
-						},
-						tooltip: {
-							pointFormat: '{series.name}: <b>{point.y} ({point.percentage:.1f}%)</b>'
-						},
-						plotOptions: {
-							pie: {
-								dataLabels: {
-									enabled: true,
-									distance: -50,
-									style: {
-										fontWeight: 'bold',
-										color: 'white'
-									}
-								},
-								startAngle: -90,
-								endAngle: 90,
-								center: ['50%', '75%']
-							}
-						},
-						series: [{
-							type: 'pie',
-							name: 'Ganado por Sexo',
-							innerSize: '50%',
-							data: [<?php echo join($gan_serie1, ',') ?>] /* Convierte un array en una cadena*/
-						}]
-					});
+
 							
 
-					Highcharts.chart('container_5', {
-						chart: {
-						plotBackgroundColor: null,
-						plotBorderWidth: null,
-						plotShadow: false,
-						type: 'pie'
-					},
-						title: {
-							text: 'Grupo Etareo'
-						},
-						
-						plotOptions: {
-						pie: {
-							allowPointSelect: true,
-							cursor: 'pointer',
-							dataLabels: {
-								enabled: false
-							},
-							showInLegend: true
-						}
-					},
-						series: [{
-							name: 'Cantidad',
-							data: [<?php echo join($gan_serie2, ',') ?>] /* Convierte un array en una cadena*/
-						}]
-					});				
+					
 			
 		} );
 					

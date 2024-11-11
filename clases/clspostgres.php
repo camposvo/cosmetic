@@ -9,7 +9,7 @@ class cls_posgres{
 	Atributos de la clase postgres
 ------------------------------------------------------------------------------------------------------------------------*/
 	//var $ls_nbbasedat  = "siscamp_desarrollo"; // Se refierre al nombre de la base de datos
-	var $ls_nbbasedat  = "siscamp";
+	var $ls_nbbasedat  = "cosmetic";
 	
 	var $ls_puerto     = "5432";         // Se refierre al nombre de la base de datos
 	var $ls_nbservidor = "localhost";    // Almacena el nombre del servidor
