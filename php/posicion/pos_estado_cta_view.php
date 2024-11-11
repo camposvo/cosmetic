@@ -147,12 +147,12 @@
 	if($ls_resultado != 0){
 		if($obj_miconexion->fun_numregistros($ls_resultado)>0){
 			$row = pg_fetch_row($ls_resultado,0);
-			$Disponible    = $row[0];
+			$Caja    = $row[0];
 		}	
 	}else{
 		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);// enviar mensaje de error de consulta
 	}	
-	$Caja = $Disponible - $Banco;	
+	$Disponible = $Caja + $Banco;	
 	
 /*-------------------------------------------------------------------------------------------
 	DEFINE EL CRITERIO DE LA BUSQUEDA AVANZADA

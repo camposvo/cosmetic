@@ -14,11 +14,8 @@ function fun_dibujar_tabla($rs,$li_columnas,$li_indice, $operacion){
     $j=0;
 	while ($row = pg_fetch_row($rs->li_idconsult)){
 		// CAMPOS CLAVES PARA LOS BOTONES DE ENLACE - Deben Estar al final de la clausula select
-     	$ls_cod = $row[$li_indice];     // Campo que identifica el registro clave
-		$ls_cod1 = $row[$li_indice-1];  // Campo que identifica el registro clave - opcional
-		$egreso = $row[$li_indice-2];     // Campo que identifica el registro clave
-		$ingreso = $row[$li_indice-3];  // Campo que identifica el registro clave - opcional
-		
+     
+			
 			$sw = ($sw==0)?1:0; 
 		
 		echo "<tr>";
@@ -49,9 +46,20 @@ function fun_dibujar_tabla($rs,$li_columnas,$li_indice, $operacion){
 			echo "<td class=''>" . $row[$i++] . "</td>"; 
 			echo "<td class='blue'>" .number_format($row[$i++],2,",",".").  "</td>"; 			
 		}
+
+		if(strtoupper($operacion)=='LISTAR_VENTAS_PERIODO'){ 
+			echo "<td class=''>" . $row[$i++] . "</td>"; 
+			echo "<td class=''>" . $row[$i++] . "</td>"; 
+			echo "<td class='blue'>" .number_format($row[$i++],2,",",".").  "</td>"; 			
+		}
 				
 		//PAGINA: adm_listar_plantel
 		if(strtoupper($operacion)=='LISTAR_CUENTA'){
+			$ls_cod = $row[$li_indice];     // Campo que identifica el registro clave
+			$ls_cod1 = $row[$li_indice-1];  // Campo que identifica el registro clave - opcional
+			$egreso = $row[$li_indice-2];     // Campo que identifica el registro clave
+			$ingreso = $row[$li_indice-3];  // Campo que identifica el registro clave - opcional
+	
 			
 			$egreso  = $egreso==0?'':number_format($egreso*(-1),2,",",".");
 			$ingreso = $ingreso==0?'':number_format($ingreso,2,",",".");
@@ -84,11 +92,15 @@ function fun_dibujar_tabla($rs,$li_columnas,$li_indice, $operacion){
 			echo "<td class='blue'>" .$row[$i++]."</td>"; 
 			
 			echo "<td class='hidden-480'>" .$row[$i++]."</td>"; 
+
+			$ventas = floatval($row[$i++]);
 			
-			echo "<td class='hidden'>" .$ventas = $row[$i++]."</td>";  // Ventas  -- esta columna nunca se muestra			
+			echo "<td class='hidden'>" .$ventas."</td>";  // Ventas  -- esta columna nunca se muestra			
 			echo "<td>" .number_format($ventas,2,",",".")."</td>";  // Ventas
+
+			$gastos = floatval($row[$i++]);
 			
-			echo "<td class='hidden'>" .$gastos = $row[$i++]."</td>";  // Gastos -- esta columna nunca se muestra
+			echo "<td class='hidden'>" .$gastos."</td>";  // Gastos -- esta columna nunca se muestra
 			echo "<td>" .number_format($gastos,2,",",".")."</td>";  // Gastos
 			
 			echo "<td class='hidden-480'>" .number_format($row[$i++],2,",",".")."</td>";  // Ganancia
