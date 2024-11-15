@@ -65,22 +65,22 @@
 					//echo $ls_sql ;
 					$ls_resultado =  $obj_miconexion->fun_consult($ls_sql);
 					if($ls_resultado == 0){
-						fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__); //  Envía Mensaje De Error De Consulta.
+						fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__); //  Envía Mensaje De Error De Consulta.
 					}else{echo "<script language='javascript' type='text/javascript'>alert('¡Nueva Clase Ingresada Satisfactoriamente!');</script>";}
 				}else{
 					echo "<script language='javascript' type='text/javascript'>alert('¡Nombre Duplicado!');</script>";
 				}
 			}else{
-				fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__); //  Envía Mensaje De Error De Consulta.
+				fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__); //  Envía Mensaje De Error De Consulta.
 			}
 		}else{
-			$ls_sql = " UPDATE t05_clase SET nb_clase = '".strtoupper($o_nombre)."' 
-						WHERE pk_clase = $pk_clase ";
+			$ls_sql = " UPDATE t05_clase SET fk_categoria = $o_categoria, nb_clase = '$o_nombre' WHERE pk_clase = $pk_clase ";
+
 			$ls_resultado =  $obj_miconexion->fun_consult($ls_sql);
 			if($ls_resultado != 0){
 				echo "<script language='javascript' type='text/javascript'>alert('Clase Actualizada Satisfactoriamente!');</script>";
 			}else{
-				fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__); //  Envía Mensaje De Error De Consulta.
+				fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__); //  Envía Mensaje De Error De Consulta.
 			}
 		}
 		$pk_clase = '';
@@ -104,14 +104,14 @@
 						$msg = "¡Proveedor Eliminado Exitosamente!";
 						echo "<script language='javascript' type='text/javascript'>alert('$msg');</script>";
 					}else{
-						fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__); //  Envía Mensaje De Error De Consulta.
+						fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__); //  Envía Mensaje De Error De Consulta.
 					}
 			}else{
 				$msg = "¡Imposible Eliminar, Este Clasificacion esta Asociado a un Producto!";
 				echo "<script language='javascript' type='text/javascript'>alert('$msg');</script>";
 			}
 		}else{
-			fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__); //  Envía Mensaje De Error De Consulta.
+			fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__); //  Envía Mensaje De Error De Consulta.
 		}
 		
 		$modo = 'Insertar Nueva Clasificacion';
@@ -129,7 +129,7 @@
 			$o_nombre = $row[0];
 			$o_categoria = $row[1];
 		}else{
-			fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__); //  Envía Mensaje De Error De Consulta.
+			fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__); //  Envía Mensaje De Error De Consulta.
 		}
 		$modo = "Editar Clasificacion";
 	}
@@ -145,7 +145,7 @@
 	if($ls_resultado != 0){
 		//Sin Error
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__); //  Envía Mensaje De Error De Consulta.
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__); //  Envía Mensaje De Error De Consulta.
 	}	
 	
 	$color_modo = $modo == "Editar Clasificacion" ?"widget-color-red":"widget-color-green";
@@ -261,6 +261,7 @@
 							<table id="dynamic-table" class="table table-striped table-bordered table-hover">
 								<thead>
 									<tr>
+										<th>ID</th>
 										<th>Clasificacion</th>
 										<th>Categoria</th>
 										<th></th>

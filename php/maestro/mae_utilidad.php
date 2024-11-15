@@ -144,6 +144,7 @@ function fun_dibujar_tabla($rs,$li_columnas,$li_indice, $operacion){
 		}
 		
 		if(strtoupper($operacion)=='LISTAR_CLASE'){ 
+			echo "<td class='blue'>" . $ls_cod . "</td>"; 
 			echo "<td class='blue'>" . $row[$i++] . "</td>"; 
 			echo "<td class='hidden-480'>" . $row[$i++] . "</td>"; 
 	

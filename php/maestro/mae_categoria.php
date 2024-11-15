@@ -63,7 +63,6 @@
 					$ls_sql = " INSERT INTO t21_categoria (nb_categoria) 
 								VALUES ('".$o_nombre."')";
 					
-					echo $ls_sql ;
 					$ls_resultado =  $obj_miconexion->fun_consult($ls_sql);
 					if($ls_resultado == 0){
 						fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__); //  Envía Mensaje De Error De Consulta.
@@ -130,7 +129,7 @@
 			$o_nombre = $row[0];
 			$o_categoria = $row[1];
 		}else{
-			fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__); //  Envía Mensaje De Error De Consulta.
+			fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__); //  Envía Mensaje De Error De Consulta.
 		}
 		$modo = "Editar Registro";
 	}
@@ -145,7 +144,7 @@
 	if($ls_resultado != 0){
 		//Sin Error
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__); //  Envía Mensaje De Error De Consulta.
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__); //  Envía Mensaje De Error De Consulta.
 	}
 	
 	
