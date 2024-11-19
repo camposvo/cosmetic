@@ -385,8 +385,8 @@
 							<table id="simple-table" class="table table-striped table-bordered table-hover">
 								<thead>
 									<tr class="bg-primary" >
-										<th width="30%">Proyecto</th>
-										<th width="30%">Articulo</th>
+										<th width="15%">Proyecto</th>
+										<th width="45%">Articulo</th>
 										<th width="10%">Cantidad</th>
 										<th width="10%">Precio</th>
 										<th width="10%">SubTotal</th>

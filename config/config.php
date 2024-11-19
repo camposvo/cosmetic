@@ -74,10 +74,18 @@ function Combo_Articulo(){
 	$obj_miconexion = fun_crear_objeto_conexion();
 	$li_id_conex = fun_conexion($obj_miconexion);
 									
-		$ls_sql = " SELECT pk_articulo, nb_articulo FROM t13_articulo 
-		WHERE in_gasto = 'on' ORDER BY nb_articulo ASC";
+		$ls_sql = "SELECT
+					a.pk_articulo,
+					CONCAT(LPAD(ca.pk_categoria::text, 3, '0'), '-', LPAD(a.pk_articulo::text, 3, '0'), ' ', a.nb_articulo) AS articulo
+					FROM
+						t13_articulo a
+					LEFT JOIN t05_clase c ON a.fk_clase = c.pk_clase
+					LEFT JOIN t21_categoria ca ON c.fk_categoria = ca.pk_categoria
+					WHERE
+						a.in_gasto = 'on'
+					ORDER BY
+						a.nb_articulo ASC;";
 	
-	/* El co_rol =  40 especifica el ROL FINANCIADOR, segun los cargado en la TABLA ROL */		
 
 	$ls_resultado =  $obj_miconexion->fun_consult($ls_sql);
 	if($ls_resultado != 0){
@@ -96,11 +104,18 @@ function Combo_Articulo_Venta(){
 	$obj_miconexion = fun_crear_objeto_conexion();
 	$li_id_conex = fun_conexion($obj_miconexion);
 									
-		$ls_sql = " SELECT pk_articulo, nb_articulo FROM t13_articulo 
-		WHERE in_venta = 'on' ORDER BY nb_articulo ASC";
+		$ls_sql = "SELECT
+					a.pk_articulo,
+					CONCAT(LPAD(ca.pk_categoria::text, 3, '0'), '-', LPAD(a.pk_articulo::text, 3, '0'), ' ', a.nb_articulo) AS articulo
+					FROM
+						t13_articulo a
+					LEFT JOIN t05_clase c ON a.fk_clase = c.pk_clase
+					LEFT JOIN t21_categoria ca ON c.fk_categoria = ca.pk_categoria
+					WHERE
+						a.in_venta = 'on'
+					ORDER BY
+						a.nb_articulo ASC;";
 	
-	/* El co_rol =  40 especifica el ROL FINANCIADOR, segun los cargado en la TABLA ROL */		
-
 	$ls_resultado =  $obj_miconexion->fun_consult($ls_sql);
 	if($ls_resultado != 0){
 		while($row = pg_fetch_row($ls_resultado)){

@@ -237,7 +237,7 @@
 							</div>
 							
 							<div class="table-header">
-								Lista de Clasificacion
+								Lista de Categoría
 							</div>
 
 							<table id="dynamic-table" class="table table-striped table-bordered table-hover">

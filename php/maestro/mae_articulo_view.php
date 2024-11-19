@@ -58,14 +58,14 @@
 						$msg = "Articulo Eliminado Exitosamente!";
 						echo "<script language='javascript' type='text/javascript'>alert('$msg');</script>";
 					}else{
-						fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__); //  Envía Mensaje De Error De Consulta.
+						fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__); //  Envía Mensaje De Error De Consulta.
 					}
 			}else{
 				$msg = "¡Imposible Eliminar, Este Articulo Esta Asociado!";
 				echo "<script language='javascript' type='text/javascript'>alert('$msg');</script>";
 			}
 		}else{
-			fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__); //  Envía Mensaje De Error De Consulta.
+			fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__); //  Envía Mensaje De Error De Consulta.
 		}
 	}
 
@@ -74,11 +74,11 @@
 	LEE LOS ARTICULOS DE LA BASE DE DATOS
 |------------------------------------------------------------------------------------------------*/
 
-	$ls_sql = "SELECT nb_articulo, nb_clase, nb_categoria, pk_articulo
+	$ls_sql = "SELECT CONCAT(LPAD(pk_categoria::text, 3, '0'), '-', LPAD(pk_articulo::text, 3, '0')), nb_articulo, nb_clase, nb_categoria, pk_articulo
 		FROM t13_articulo 
 		INNER JOIN t05_clase ON t13_articulo.fk_clase =  t05_clase.pk_clase
 		INNER JOIN t21_categoria ON t05_clase.fk_categoria =  t21_categoria.pk_categoria
-		ORDER BY nb_articulo";
+		ORDER BY pk_categoria, pk_articulo ASC";
 	
 	//echo $ls_sql ;
 				
@@ -90,7 +90,7 @@
 			
 		}	
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__); //  Envía Mensaje De Error De Consulta.
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__); //  Envía Mensaje De Error De Consulta.
 	}	
 
 ?>
@@ -113,14 +113,14 @@
 								<i class="ace-icon fa fa-plus align-top bigger-125 "></i>
 								Articulo 
 							</button>
-							<button class="btn-sm btn-info" onclick="Agregar_Clase()">
-								<i class="ace-icon fa fa-plus align-top bigger-125 "></i>
-								Clasificacion
-							</button>
 							<button class="btn-sm btn-info" onclick="Agregar_Categoria()">
 								<i class="ace-icon fa fa-plus align-top bigger-125 "></i>
 								Categoria 
 							</button>
+							<button class="btn-sm btn-info" onclick="Agregar_Clase()">
+								<i class="ace-icon fa fa-plus align-top bigger-125 "></i>
+								Clasificacion
+							</button>							
 						</div>
 					</div>	
 													
@@ -138,6 +138,7 @@
 							<table id="dynamic-table" class="table table-striped table-bordered table-hover">
 								<thead>
 									<tr>
+										<th>ID</th>
 										<th>Nombre</th>
 										<th class="hidden-480">Clasificacion</th>
 										<th class="hidden-480">Categoria</th>
@@ -146,7 +147,7 @@
 								</thead>
 								<tbody>	
 									<?php   
-										$li_totcampos = $obj_miconexion->fun_numcampos($ls_resultado)-4;  // Columnas Que Se Muestran En La Tabla.
+										$li_totcampos = 0;  // Columnas Que Se Muestran En La Tabla.
 										$li_indice = $obj_miconexion->fun_numcampos($ls_resultado)-1; // Referencia Al Índice De La Columna Clave.
 										fun_dibujar_tabla($obj_miconexion,$li_totcampos,$li_indice,"LISTAR_ARTICULO"); // Dibuja La Tabla De Datos.
 										$obj_miconexion->fun_closepg($li_id_conex,$ls_resultado); // Cierra Conexión.

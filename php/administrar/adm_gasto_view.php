@@ -109,7 +109,7 @@
 			$row = pg_fetch_row($ls_resultado,0);
 			$Result    = $row[0];
 		}else{
-			fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);// enviar mensaje de error de consulta
+			fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);// enviar mensaje de error de consulta
 		}
 		
 		if ($Result==0){
@@ -161,7 +161,7 @@ RUTINAS: Consulta  de registros de la busqueda
 	if($ls_resultado != 0){
 		$tarea = "M";
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);
 	}
 	
 	//$collaps = ($sw==1)?'':'collapsed';	

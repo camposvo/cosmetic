@@ -89,6 +89,7 @@ function fun_dibujar_tabla($rs,$li_columnas,$li_indice, $operacion){
 			echo "<td class='hidden-480'>" . $row[$i++] . "</td>"; 
 			echo "<td class='hidden-480'>" . $row[$i++] . "</td>"; 
 			echo "<td class='hidden-480'>" . $row[$i++] . "</td>"; 
+			echo "<td class='hidden-480'>" . $row[$i++] . "</td>"; 
 		
 			echo '<td>
 					<div class="hidden-sm hidden-xs action-buttons">						
