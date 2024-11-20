@@ -486,8 +486,12 @@ function Combo_Proveedor(){
 	$obj_miconexion = fun_crear_objeto_conexion();
 	$li_id_conex = fun_conexion($obj_miconexion);
 									
-	$ls_sql ="SELECT pk_proveedor, nb_proveedor
-				FROM t03_proveedor 	ORDER BY nb_proveedor";
+	$ls_sql ="SELECT  s01_persona.co_persona,  UPPER(tx_nombre) || ' ' || UPPER(tx_apellido)
+			FROM s02_persona_rol
+			INNER JOIN s01_persona ON s02_persona_rol.co_persona = s01_persona.co_persona
+			WHERE co_rol = 47
+			ORDER BY tx_nombre";
+	/* El co_rol =  39 especifica el ROL CLIENTE, segun los cargado en la TABLA ROL */		
 
 	$ls_resultado =  $obj_miconexion->fun_consult($ls_sql);
 	if($ls_resultado != 0){
