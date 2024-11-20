@@ -373,6 +373,7 @@ error_reporting(E_ALL);   */
 	/*-------------------------------------------------------------------------------------------------------------------------------------------------------
 	 TABLA 4 - VENTAS POR CATEGORIA
 	---------------------------------------------------------------------------------------------------------------------------------------------------------*/	
+	$total_gasto_periodo = 0;
 	$ls_sql = "SELECT nb_categoria, nb_clase, SUM(nu_cantidad * nu_precio) AS Precio_Total FROM t01_detalle 
 	INNER JOIN t20_factura ON t20_factura.pk_factura = t01_detalle.fk_factura 
 	LEFT JOIN t13_articulo ON t13_articulo.pk_articulo = t01_detalle.fk_articulo 
@@ -388,6 +389,28 @@ error_reporting(E_ALL);   */
 	}else{
 		fun_error(1,$li_id_conex_6,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);
 	}
+
+
+	$total_venta_periodo = 0;
+	$ls_sql = "SELECT nb_categoria, SUM(nu_cantidad * nu_precio) AS Precio_Total
+		  FROM t01_detalle
+			INNER JOIN t20_factura ON t20_factura.pk_factura = t01_detalle.fk_factura
+			LEFT JOIN t13_articulo ON t13_articulo.pk_articulo = t01_detalle.fk_articulo
+			LEFT JOIN t05_clase ON t05_clase.pk_clase = t13_articulo.fk_clase
+			LEFT JOIN t21_categoria ON t21_categoria.pk_categoria = t05_clase.fk_categoria
+		WHERE EXTRACT(YEAR FROM t20_factura.fe_fecha_factura) = $CURRENT_YEAR AND t20_factura.tx_tipo = 'VENTA' 
+		GROUP BY nb_categoria";	
+	//echo $ls_sql;
+	$ls_resultado =  $obj_miconexion->fun_consult($ls_sql);			
+	if($ls_resultado != 0){		
+		while ($row = pg_fetch_row($obj_miconexion->li_idconsult)){
+			//$data4[] ="{ name: '$row[0]',y: $row[1]}";
+			$total_venta_periodo = $total_venta_periodo + $row[1];
+		}		
+	}else{
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);
+	}		
+
 
 	$activos_fijo = $Caja+$Banco;
 	$pasivos = $DebeCtxPag;
@@ -802,8 +825,8 @@ error_reporting(E_ALL);   */
 											<table class="table table-bordered table-striped">
 												<thead class="thin-border-bottom">
 													<tr>
-														<th><i class="ace-icon fa fa-caret-right blue"></i>Descripcion</th>
-														<th><i class="ace-icon fa fa-caret-right blue"></i>Descripcion</th>
+														<th><i class="ace-icon fa fa-caret-right blue"></i>Categoria</th>
+														<th><i class="ace-icon fa fa-caret-right blue"></i>Clase</th>
 														<th><i class="ace-icon fa fa-caret-right blue"></i>Monto</th>
 													</tr>
 												</thead>
@@ -823,7 +846,7 @@ error_reporting(E_ALL);   */
 														<th colspan="2">Total</th>
 														<th>
 															<span class="label label-warning "> 
-																<?php echo number_format($total_gasto_periodo,2,",",".").' Bs'; ?>
+																<?php echo number_format($total_venta_periodo,2,",",".").' Bs'; ?>
 															</span>
 														</th>
 
