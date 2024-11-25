@@ -62,8 +62,6 @@ function fun_dibujar_tabla($rs,$li_columnas,$li_indice, $operacion, $variable){
 						<a class="blue tooltip-info open-event" href="#" title="Ver" onClick=\'Mostrar_Info("'.$ls_cod.'");return false;\' >
 							<i class="ace-icon fa  fa-search-plus bigger-130"></i>
 						</a>
-
-
 					
 						<a class="green tooltip-success  open-event" href="#" title="Pagar" onClick=\'Pagar_Venta("'.$ls_cod.'");return false;\'>
 							<i class="ace-icon fa fa-dollar bigger-130"></i>
@@ -131,10 +129,16 @@ function fun_dibujar_tabla($rs,$li_columnas,$li_indice, $operacion, $variable){
 			echo "<td class=''>" . $row[$i++] . "</td>";					
 			echo "<td class='hidden-480'>" . $row[$i++] . "</td>"; 
 			
-			echo "<td>" . number_format($row[$i++],0,",",".") . "</td>";
+			echo "<td class='hidden'>" . $row[$i] . "</td>"; 		
 			echo "<td>" . number_format($row[$i++],2,",",".") . "</td>";
-			echo "<td class='hidden'>" . $row[$i] . "</td>"; 			
+
+			echo "<td class='hidden'>" . $row[$i] . "</td>"; 		
 			echo "<td>" . number_format($row[$i++],2,",",".") . "</td>";			
+				
+
+			echo "<td class='hidden'>" . $row[$i] . "</td>"; 		
+			echo "<td>" . number_format($row[$i++],2,",",".") . "</td>";	
+				
 			
 			echo '<td  align="center">
 					<div class="hidden-sm hidden-xs action-buttons">
@@ -146,6 +150,12 @@ function fun_dibujar_tabla($rs,$li_columnas,$li_indice, $operacion, $variable){
 						<a class="red tooltip-error open-event" href="#" title="Borrar" onClick=\'Eliminar_Gasto("'.$ls_cod.'");return false;\'>
 							<i class="ace-icon fa fa-trash-o bigger-120"></i>
 						</a>
+
+						<a class="green tooltip-success  open-event" href="#" title="Pagar" onClick=\'Pagar_Gasto("'.$ls_cod.'");return false;\'>
+							<i class="ace-icon fa fa-dollar bigger-130"></i>
+						</a>
+
+
 					</div>
 
 					<div class="hidden-md hidden-lg">
@@ -448,6 +458,7 @@ function fun_dibujar_tabla($rs,$li_columnas,$li_indice, $operacion, $variable){
 		}	
 				
 		if(strtoupper($operacion)=='LISTAR_PRESTAR_ABONO'){ 
+			$debe=0;
 			
 			$debe = $bandera?$variable: $debe;			
 			echo "<td class=''>" . $row[$i++] . "</td>";				

@@ -67,7 +67,7 @@
 			
 		$obj_miconexion->fun_closepg($li_id_conex); 
 		}else{
-			fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__); //  Envía Mensaje De Error De Consulta.
+			fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__); //  Envía Mensaje De Error De Consulta.
 		}		
 	}
 /*------------------------------------------------------------------------------------------|
@@ -85,7 +85,7 @@
 			echo "<script language='javascript' type='text/javascript'>alert('$msg');</script>";
 			echo "<script language='javascript' type='text/javascript'>location.href='alm_almacen_view.php';</script>";
 		}else{
-			fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);  //  Envía Mensaje De Error De Consulta.
+			fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);  //  Envía Mensaje De Error De Consulta.
 		}
 	}	
 	

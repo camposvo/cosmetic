@@ -67,7 +67,7 @@
 					$msg = "¡Almacén Eliminado Exitosamente!";
 					echo "<script language='javascript' type='text/javascript'>alert('$msg');</script>";
 				}else{
-					fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);  // Envía Mensaje De Error De Consulta.
+					fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);  // Envía Mensaje De Error De Consulta.
 				}
 			}else{
 				$msg = "¡Existen Ubicaciones Asociadas!";
@@ -102,7 +102,7 @@
 			$bandera=1;
 		}	
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__); //  Envía Mensaje De Error De Consulta.
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__); //  Envía Mensaje De Error De Consulta.
 	}	
 /*-------------------------------------------------------------------------------------------|
 |						Rutina: Se Utiliza Para Buscar Y Filtrar Almacenes.				  	 |
@@ -139,7 +139,7 @@
 				echo "<script language='javascript' type='text/javascript'>alert('$msg');</script>";
 			}	
 		}else{
-			fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__); //  Envía Mensaje De Error De Consulta.
+			fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__); //  Envía Mensaje De Error De Consulta.
 		}	
 		$co_almacen = '';
 	}

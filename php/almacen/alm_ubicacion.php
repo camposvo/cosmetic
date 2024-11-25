@@ -82,7 +82,7 @@
 				
 					$ls_resultado =  $obj_miconexion->fun_consult($ls_sql);
 					if($ls_resultado == 0){
-						fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__); //  Envía Mensaje De Error De Consulta.
+						fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__); //  Envía Mensaje De Error De Consulta.
 					}else{
 						// ¡Nueva Ubicación Ingresada Satisfactoriamente!
 					}
@@ -90,7 +90,7 @@
 					echo "<script language='javascript' type='text/javascript'>alert('¡Nombre Duplicado!');</script>";
 				}
 			}else{
-				fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__); //  Envía Mensaje De Error De Consulta.
+				fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__); //  Envía Mensaje De Error De Consulta.
 			}
 		}else{
 			$ls_sql = " UPDATE t10_ubicacion SET nb_ubicacion = '".strtoupper($o_ubicacion)."'
@@ -99,7 +99,7 @@
 			if($ls_resultado != 0){
 				echo "<script language='javascript' type='text/javascript'>alert('¡Ubicación Actualizada Satisfactoriamente!');</script>";
 			}else{
-				fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__); //  Envía Mensaje De Error De Consulta.
+				fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__); //  Envía Mensaje De Error De Consulta.
 			}
 		}
 		$co_ubicacion = '';
@@ -126,7 +126,7 @@
 				echo "<script language='javascript' type='text/javascript'>alert('$msg');</script>";
 			}
 		}else{
-			fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__); //  Envía Mensaje De Error De Consulta.
+			fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__); //  Envía Mensaje De Error De Consulta.
 		}
 	}
 /*-------------------------------------------------------------------------------------------|
@@ -138,7 +138,7 @@
 		$row = pg_fetch_row($ls_resultado,0);
 		$o_almacen = $row[0];
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__); //  Envía Mensaje De Error De Consulta.
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__); //  Envía Mensaje De Error De Consulta.
 	}
 /*-------------------------------------------------------------------------------------------|
 |				 		Rutina: Coloca Los Datos En Modo Edición.							 |
@@ -150,7 +150,7 @@
 			$row = pg_fetch_row($ls_resultado,0);
 			$o_ubicacion = $row[0];
 		}else{
-			fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__); //  Envía Mensaje De Error De Consulta.
+			fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__); //  Envía Mensaje De Error De Consulta.
 		}
 	}
 /*-------------------------------------------------------------------------------------------|
@@ -165,7 +165,7 @@
 	if($ls_resultado != 0){
 		//Sin Error
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__); //  Envía Mensaje De Error De Consulta.
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__); //  Envía Mensaje De Error De Consulta.
 	}
 /*---------------------------------------------------------------------------------------------|
 |          						Fin De Rutinas Para El Mantenimiento.                          |

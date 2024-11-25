@@ -107,7 +107,7 @@
 					//echo $ls_sql;
 						
 					if($obj_miconexion->fun_consult($ls_sql) == 0){
-						fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);
+						fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);
 					}else{
 						$msg = "Cuenta Agregada Satisfactoriamente";
 						$parametros = "tarea=A";
@@ -187,11 +187,11 @@
 				$mostrar_rs = true;
 				// Consulta exitosa					
 			}else{
-				fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);
+				fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);
 			}
 			
 		}else{
-			fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);// enviar mensaje de error de consulta
+			fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);// enviar mensaje de error de consulta
 		}
 		$tarea = 'U';
 		$modo= 'Actualizar Datos';

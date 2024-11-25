@@ -64,7 +64,7 @@
 						WHERE pk_animal_vacuna = $pk_animal_vacuna;";		
 		$ls_resultado =  $obj_miconexion->fun_consult($ls_sql);		
 		if($ls_resultado == 0){
-			fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__); //  Envía Mensaje De Error De Consulta.
+			fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__); //  Envía Mensaje De Error De Consulta.
 		}
 	}
 	
@@ -87,7 +87,7 @@
 
 			echo "<script language='JavaScript' type='text/JavaScript'>alert('Datos Actualizados Satisfactoriamente');</script>";
 		}else{
-			fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);
+			fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);
 		}			
 		
 		$tarea == "X";  //Vuelve a colocar la Tarea 
@@ -119,7 +119,7 @@
 		$x_grupo_etareo     = $row[6];
 		$x_raza		      	= $row[7];		
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);// enviar mensaje de error de consulta
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);// enviar mensaje de error de consulta
 	}
 
 /*-------------------------------------------------------------------------------------------
@@ -142,7 +142,7 @@
 			$html_img = '<img class="editable img-responsive" alt="Ganado" id="avatar2" src="'.$x_imagen.'" />';
 		}
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);// enviar mensaje de error de consulta
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);// enviar mensaje de error de consulta
 	}
 	
 /*-------------------------------------------------------------------------------------------
@@ -160,7 +160,7 @@
 	if($ls_resultado != 0){
 		$tarea = "M";
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);
 	}
 	
 

@@ -83,7 +83,7 @@
 		$row = pg_fetch_row($ls_resultado,0);
 		$Banco    = $row[0];
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);// enviar mensaje de error de consulta
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);// enviar mensaje de error de consulta
 	}
 	  
 /*-------------------------------------------------------------------------------------------
@@ -102,7 +102,7 @@
 		$TotalCtxCob    = $row[1];
 		$DebeCtxCob     = $row[1] - $row[0];
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);// enviar mensaje de error de consulta
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);// enviar mensaje de error de consulta
 	}
 	
 /*-------------------------------------------------------------------------------------------
@@ -122,7 +122,7 @@
 		$TotalCtxPag    = $row[1];
 		$DebeCtxPag     = $row[1] - $row[0];
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);// enviar mensaje de error de consulta
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);// enviar mensaje de error de consulta
 	}
 	
 /*-------------------------------------------------------------------------------------------
@@ -138,7 +138,7 @@
 			$Disponible    = $row[0];
 		}	
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);// enviar mensaje de error de consulta
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);// enviar mensaje de error de consulta
 	}
 	
 	$Caja = $Disponible - $Banco;	
@@ -156,7 +156,7 @@
 		$Ingreso   = $row[0];
 		$Egreso    = $row[1];
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);// enviar mensaje de error de consulta
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);// enviar mensaje de error de consulta
 	}		
 
 
@@ -190,7 +190,7 @@
 		}
 		
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);
 	}
 	
 
@@ -209,7 +209,7 @@
 			$serie2[] = "[$timestamp, $row[1]]"; //egreso
 		}		
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);
 	}
 		
 	//print_r ($serie1_bar); // Imprime un arreglo por pantalla		

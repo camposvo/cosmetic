@@ -63,7 +63,7 @@
 		
 		$ls_resultado =  $obj_miconexion->fun_consult($ls_sql);
 		if($ls_resultado == 0){
-			fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);
+			fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);
 		}
 	}	
 	
@@ -93,7 +93,7 @@
 						
 			$ls_resultado =  $obj_miconexion->fun_consult($ls_sql);
 			if($ls_resultado == 0){
-				fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);
+				fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);
 			}else{
 				echo "<script language='javascript' type='text/javascript'>alert('Transaccion Exitosa');</script>";
 				$x_debe = $x_debe - $o_PagMonto;
@@ -129,7 +129,7 @@
 		$SumaAbono      = $row[6];
 		$x_debe         = $row[7];
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);// enviar mensaje de error de consulta
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);// enviar mensaje de error de consulta
 	}
 	//$x_debe = number_format(($o_total - $SumaAbono),2,",",".");
 
@@ -152,7 +152,7 @@
 	if($ls_resultado != 0){
 		$tarea = "M";
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);
 	}
 	
 /*-------------------------------------------------------------------------------------------

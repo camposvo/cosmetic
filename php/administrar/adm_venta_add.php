@@ -124,7 +124,7 @@
 				fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);
 			}			
 			
-			echo count($a_articulo);
+			//echo count($a_articulo);
 			if(count($a_articulo)){
 				foreach($a_precio as $k=>$valor){ // Ingresa todo el detalle de la factura
 					$ls_sql = "INSERT INTO t01_detalle(

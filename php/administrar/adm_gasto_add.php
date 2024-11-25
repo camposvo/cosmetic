@@ -94,7 +94,7 @@
 			fe_fecha_registro, 
             tx_factura, 
 			tx_tipo, 
-			fk_proveedor, 
+			fk_cliente, 
 			tx_concepto,
             nu_total		
 			)
@@ -195,7 +195,7 @@
 			fe_fecha_registro 	=now(),
 			tx_factura        	='$o_factura', 
 			tx_tipo             ='GASTO', 
-			fk_proveedor        = $o_proveedor,
+			fk_cliente        = $o_proveedor,
 			fe_fecha_factura  	='$o_fecha',
 			tx_concepto         ='$x_referencia',
 			nu_total		  	= $x_total	
@@ -276,7 +276,7 @@
 	LEE DATOS DE UN GASTO
 -------------------------------------------------------------------------------------------*/
 	if ($tarea == "M"){		
-		$ls_sql ="SELECT pk_factura, fk_responsable, fk_proveedor, to_char(fe_fecha_factura, 'dd/mm/yyyy'),  tx_factura,
+		$ls_sql ="SELECT pk_factura, fk_responsable, fk_cliente, to_char(fe_fecha_factura, 'dd/mm/yyyy'),  tx_factura,
 					nu_total, nu_subtotal, nu_abono, tx_concepto
 					FROM t20_factura
 					WHERE pk_factura = $x_movimiento";
@@ -348,7 +348,7 @@
 												<label class="col-sm-3 control-label no-padding-right" for="id-date-picker-1" >Fecha Fact.</label>
 												<div class="col-sm-4" >	
 													<div class="input-group">
-														<input name="o_fecha" value="<?php echo $o_fecha;?>" class="col-xs-10 col-sm-6 form-control date-picker" id="id-date-picker-1" type="text" data-date-format="dd/mm/yyyy" readonly />
+														<input name="o_fecha" value="<?php echo $o_fecha;?>" class="col-xs-10 col-sm-6 form-control date-picker" id="id-date-picker-1" type="text" data-date-format="dd/mm/yyyy" readonly data-date-end-date="0d"/>
 														<span class="input-group-addon">
 															<i class="fa fa-calendar bigger-110"></i>
 														</span>
@@ -504,12 +504,20 @@
 		
 		$('.date-picker').datepicker({
 			autoclose: true,
-			todayHighlight: true
+			todayHighlight: true,
+			max: true
 		})
 		//show datepicker when clicking on the icon
 		.next().on(ace.click_event, function(){
 			$(this).prev().focus();
 		});
+
+		/* $("#id-date-picker-1").datepicker({
+			maxDate: 0,
+			dateFormat: 'yy-mm-dd' // Formato de fecha (ajusta según tus necesidades)
+		});
+ */
+		
 		
 		if(!ace.vars['touch']) {
 			$('.chosen-select').chosen({allow_single_deselect:true}); 

@@ -91,11 +91,11 @@
 			$mostrar_rs = true;
 			// Consulta exitosa					
 		}else{
-			fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);
+			fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);
 		}
 		
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);// enviar mensaje de error de consulta
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);// enviar mensaje de error de consulta
 	}
 	
 	/*-------------------------------------------------------------------------------------------
@@ -112,7 +112,7 @@
 	if($ls_resultado_1 != 0){
 		$tarea = "M";
 	}else{
-		fun_error(1,$li_id_conex_1,$ls_sql,$_SERVER[PHP_SELF]);
+		fun_error(1,$li_id_conex_1,$ls_sql,$_SERVER['PHP_SELF']);
 	}
 
 ?>

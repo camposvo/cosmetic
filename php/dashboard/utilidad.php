@@ -39,7 +39,7 @@ function fun_dibujar_tabla($rs,$li_columnas,$li_indice, $operacion){
 		
 		if(strtoupper($operacion)=='LISTAR_CREDITOS'){ 
 			echo "<td class=''>" . $row[$i++] . "</td>"; 
-			echo "<td class='blue'>" .number_format($row[$i++],2,",",".").  "</td>"; 			
+			echo "<td class='red'><b>" .number_format($row[$i++],2,",",".").  "</b></td>"; 			
 		}
 				
 		if(strtoupper($operacion)=='LISTAR_GASTO_PERIODO'){ 
@@ -89,28 +89,31 @@ function fun_dibujar_tabla($rs,$li_columnas,$li_indice, $operacion){
 		
 		if(strtoupper($operacion)=='LISTAR_SEGUIMIENTO'){ 
 			
-			echo "<td class='blue'>" .$row[$i++]."</td>"; 
+			echo "<td class='blue'>" .$row[$i++]."</td>";			
 			
-			echo "<td class='hidden-480'>" .$row[$i++]."</td>"; 
 
-			$ventas = floatval($row[$i++]);
-			
+			$ventas = floatval($row[$i++]);			
 			echo "<td class='hidden'>" .$ventas."</td>";  // Ventas  -- esta columna nunca se muestra			
 			echo "<td>" .number_format($ventas,2,",",".")."</td>";  // Ventas
 
-			$gastos = floatval($row[$i++]);
-			
+			$egreso_neto = floatval($row[$i++]);			
+			echo "<td class='hidden'>" .$egreso_neto."</td>";  // Ventas  -- esta columna nunca se muestra			
+			echo "<td>" .number_format($egreso_neto,2,",",".")."</td>";  // Ventas
+
+			$ingresos = floatval($row[$i++]);	
+			echo "<td class='hidden'>" .$ingresos."</td>";  // Ingresos  -- esta columna nunca se muestra			
+			echo "<td>" .number_format($ingresos,2,",",".")."</td>";  // Ingresos
+
+			$gastos = floatval($row[$i++]);			
 			echo "<td class='hidden'>" .$gastos."</td>";  // Gastos -- esta columna nunca se muestra
 			echo "<td>" .number_format($gastos,2,",",".")."</td>";  // Gastos
 			
 			echo "<td class='hidden-480'>" .number_format($row[$i++],2,",",".")."</td>";  // Ganancia
 			
-			$porc_gan = ($gastos == 0)? 0: (($ventas - $gastos)*100)/$gastos;
+			$porc_gan = ($gastos == 0)? 0: (($ingresos - $gastos)*100)/$gastos;
 			
 			echo "<td class=''>" .number_format($porc_gan,2,",",".")."%</td>";         //Ganancia en Porcentaje =    ventas - gastos)*100)/gastos
-			
-			
-			
+					
 		
 		}
 

@@ -91,7 +91,7 @@
 			
 			$obj_miconexion->fun_closepg($li_id_conex); 
 		}else{
-			fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);
+			fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);
 		}		
 	}
 	
@@ -146,14 +146,14 @@
 					echo "<script language='JavaScript' type='text/JavaScript'>alert('Datos Actualizados Satisfactoriamente');location.href='gan_animal_view.php?$parametros';</script>";
 				}else{
 					$ls_resultado =  $obj_miconexion->fun_consult(" ROLLBACK ");
-					fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);
+					fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);
 				}
 			}else{
 				$msg = "La Cedula y/o Indicador ya esta asignada a otro Persona!";
 				echo "<script language='JavaScript' type='text/JavaScript'>alert('$msg')</script>";			
 			}
 		}else{
-			fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);
+			fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);
 		}
 		$tarea == "M";  //Vuelve a colocar la Tarea 
 	}
@@ -186,7 +186,7 @@
 			echo "<script language='JavaScript' type='text/JavaScript'>alert('¡Datos Ingresados Satisfactoriamente!');location.href='gan_animal_add.php?$parametros';</script>";
 
 		}else{
-			fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__); //  Envía Mensaje De Error De Consulta.
+			fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__); //  Envía Mensaje De Error De Consulta.
 		}
 		
 	}

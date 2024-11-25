@@ -78,7 +78,7 @@
 
 			echo "<script language='JavaScript' type='text/JavaScript'>alert('Datos Actualizados Satisfactoriamente');</script>";
 		}else{
-			fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);
+			fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);
 		}			
 		
 		$tarea == "X";  //Vuelve a colocar la Tarea 
@@ -115,7 +115,7 @@
 		$x_observacion      = $row[10];	
 		
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);// enviar mensaje de error de consulta
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);// enviar mensaje de error de consulta
 	}
 
 /*-------------------------------------------------------------------------------------------
@@ -138,7 +138,7 @@
 			$html_img = '<img class="editable img-responsive" alt="Ganado" id="avatar2" src="'.$x_imagen.'" />';
 		}
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);// enviar mensaje de error de consulta
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);// enviar mensaje de error de consulta
 	}
 	
 
