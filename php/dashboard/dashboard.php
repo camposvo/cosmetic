@@ -46,7 +46,7 @@ if ($usu_autentico != "SI") {
 	<?php
 	/*-------------------------------------------------------------------------------------------
 	RUTINA: Se utiliza para recibir las variables por la url.
--------------------------------------------------------------------------------------------*/
+	-------------------------------------------------------------------------------------------*/
 	$Disponible  = 0;
 	$Banco       = 0;
 	$sw = 1;
@@ -106,7 +106,7 @@ if ($usu_autentico != "SI") {
 
 	/*-------------------------------------------------------------------------------------------
 	CONSULTA DE CUENTAS POR COBRAR
------------------------------------------------------------------------------------------------*/
+	-----------------------------------------------------------------------------------------------*/
 	$ls_sql = "SELECT sum(abono) as Abono, sum (detalle) as Deuda
 				FROM v01_pago 
 				WHERE v01_pago.tx_tipo='CTAXCOBRAR' ";
@@ -124,7 +124,7 @@ if ($usu_autentico != "SI") {
 
 	/*-------------------------------------------------------------------------------------------
 	RUTINAS: CONSULTA DE BANCO
-----------------------------------------------------------------------------------------------*/
+	----------------------------------------------------------------------------------------------*/
 	$ls_sql = "SELECT sum(nu_capital) FROM t15_banco";
 
 	$ls_resultado =  $obj_miconexion->fun_consult($ls_sql);
@@ -138,7 +138,7 @@ if ($usu_autentico != "SI") {
 
 	/*-------------------------------------------------------------------------------------------
 	RUTINAS: CONSULTA DE CUENTAS POR PAGAR
------------------------------------------------------------------------------------------------*/
+	-----------------------------------------------------------------------------------------------*/
 	$ls_sql = "SELECT sum(f_calcular_factura(pk_factura)) - sum(f_calcular_abono_capital(pk_factura)) as Debe 
 				FROM t20_factura 
 			WHERE t20_factura.tx_tipo='CTAXPAGAR' or t20_factura.tx_tipo='GASTO' ";
@@ -191,14 +191,13 @@ if ($usu_autentico != "SI") {
 	/*-------------------------------------------------------------------------------------------
 	RUTINAS: CONSULTA LOS INGRESOS Y EGRESOS 
 --------------------------------------------------------------------------------------------*/
-	$ls_sql = "SELECT SUM(ingreso) as Ingreso, SUM(egreso) as Egreso
-				FROM vm02_edo_cuenta	";
+	$ls_sql = "SELECT SUM(ingreso) as Ingreso, SUM(egreso) as Egreso FROM vm02_edo_cuenta	";
 
 	$ls_resultado =  $obj_miconexion->fun_consult($ls_sql);
 	if ($ls_resultado != 0) {
 		$row = pg_fetch_row($ls_resultado, 0);
-		$Ingreso   = $row[0];
-		$Egreso    = $row[1];
+		$ingreso   = $row[0];
+		$egreso    = $row[1];
 	} else {
 		fun_error(1, $li_id_conex, $ls_sql, $_SERVER['PHP_SELF'], __LINE__); // enviar mensaje de error de consulta
 	}
@@ -206,7 +205,7 @@ if ($usu_autentico != "SI") {
 
 	/*-------------------------------------------------------------------------------------------
 	 GRAFICA 2 - INGRESOS VS EGRESOS
---------------------------------------------------------------------------------------------*/
+	--------------------------------------------------------------------------------------------*/
 	for ($i = 1; $i <= 12; $i++) {
 		$serie1_bar[$i] = "0"; //Crear un array ingreso
 		$serie2_bar[$i] = "0"; //egreso
@@ -238,8 +237,7 @@ if ($usu_autentico != "SI") {
 
 	/*-------------------------------------------------------------------------------------------
 	RUTINAS: DETALLE DE CUENTAS POR COBRAR VENTAS
------------------------------------------------------------------------------------------------*/
-
+	---------------------------------------------------------------------------------------------*/
 	$ls_sql = "SELECT  v01_pago.fk_responsable, UPPER(s01_persona.tx_nombre ||' '|| s01_persona.tx_apellido),
 		sum(detalle) - sum(abono) as Debe 
 		FROM v01_pago
@@ -260,7 +258,7 @@ if ($usu_autentico != "SI") {
 
 	/*-------------------------------------------------------------------------------------------
 	RUTINAS: DETALLE DE CUENTAS POR COBRAR PRESTAMOS
------------------------------------------------------------------------------------------------*/
+    ---------------------------------------------------------------------------------------------*/
 
 	$ls_sql = "SELECT UPPER(s01_persona.tx_nombre ||' '|| s01_persona.tx_apellido),
 		sum(detalle) - sum(abono) as Debe 
@@ -269,7 +267,6 @@ if ($usu_autentico != "SI") {
 		WHERE (v01_pago.tx_tipo='CTAXCOBRAR') and (detalle - abono) > 0 
 		GROUP BY s01_persona.tx_nombre, s01_persona.tx_apellido 	
 		ORDER BY Debe DESC ";
-
 
 	//echo $ls_sql;
 	$ls_resultado_2 =  $obj_miconexion_2->fun_consult($ls_sql);
@@ -283,7 +280,7 @@ if ($usu_autentico != "SI") {
 
 	/*-------------------------------------------------------------------------------------------
 	RUTINAS: DETALLE DE CUENTAS POR PAGAR
------------------------------------------------------------------------------------------------*/
+	--------------------------------------------------------------------------------------------*/
 	$i = 0;
 
 	$ls_sql = "SELECT UPPER(s01_persona.tx_nombre ||' '|| s01_persona.tx_apellido),
@@ -304,9 +301,9 @@ if ($usu_autentico != "SI") {
 	}
 
 
-	/*-------------------------------------------------------------------------------------------------------------------------------------------------------
+	/*-----------------------------------------------------------------------------------------
 	 GRAFICA 4 - GASTOS POR CATEGORIA
----------------------------------------------------------------------------------------------------------------------------------------------------------*/
+	------------------------------------------------------------------------------------------*/
 	$total_gasto_periodo = 0;
 	$ls_sql = "SELECT nb_categoria, SUM(nu_cantidad * nu_precio) AS Precio_Total
 		  FROM t01_detalle
@@ -330,8 +327,6 @@ if ($usu_autentico != "SI") {
 	/*-------------------------------------------------------------------------------------------------------------------------------------------------------
 	 TABLA - GASTOS POR CATEGORIA
 	---------------------------------------------------------------------------------------------------------------------------------------------------------*/
-
-
 	$ls_sql = "SELECT nb_categoria, SUM(nu_cantidad * nu_precio) AS Precio_Total
 	FROM t01_detalle
 	  INNER JOIN t20_factura ON t20_factura.pk_factura = t01_detalle.fk_factura
@@ -350,9 +345,13 @@ if ($usu_autentico != "SI") {
 	/*-------------------------------------------------------------------------------------------------------------------------------------------------------
 	 RESUMEN DE PROYECTOS DE INVERSION
 ---------------------------------------------------------------------------------------------------------------------------------------------------------*/
-	$ls_sql = "SELECT tx_nombre,  sum(venta) as venta, sum(gasto) as egreso, (sum(venta) - $VentaXcobrar)  as ingreso, (sum(gasto) -  $DebeCtxPag) as gasto, 
-			(sum(venta) - $VentaXcobrar) - (sum(gasto) -  $DebeCtxPag) as ganancia,  
-			in_proy_activo, pk_proyecto
+	$ls_sql = "SELECT tx_nombre,  
+			sum(venta) as venta, 
+			sum(gasto) as gasto, 
+			(sum(venta) - $VentaXcobrar)  as ingreso, 
+			(sum(gasto) -  $DebeCtxPag) as egreso, 		
+			in_proy_activo, 
+			pk_proyecto
 			FROM v06_mov_resumen 
 			inner join t02_proyecto ON t02_proyecto.pk_proyecto = v06_mov_resumen.fk_proyecto 
 			left join t08_tipo_proyecto ON t08_tipo_proyecto.pk_tipo_rubro = t02_proyecto.fk_tipo_rubro 
@@ -360,15 +359,17 @@ if ($usu_autentico != "SI") {
 			GROUP BY tx_nombre, in_proy_activo, pk_proyecto 			
 		";
 
-
+	$data_5 = array();
 	$ls_resultado_5 =  $obj_miconexion_5->fun_consult($ls_sql);
 	if ($ls_resultado_5 != 0) {
+		while ($row = pg_fetch_row($ls_resultado_5)) {
+			$data_5[] = $row;
+		}
 	} else {
 		fun_error(1, $li_id_conex_5, $ls_sql, $_SERVER['PHP_SELF'], __LINE__);
 	}
 
 
-	/*-------------------------------------------------------------------------------------------------------------------------------------------------------
 	/*-------------------------------------------------------------------------------------------------------------------------------------------------------
 	 TABLA 4 - VENTAS POR CATEGORIA
 	---------------------------------------------------------------------------------------------------------------------------------------------------------*/
@@ -440,7 +441,7 @@ if ($usu_autentico != "SI") {
 				</div><!-- /.page-header -->
 
 				<div class="row">
-					<div class="col-xs-12"> <!-- ROW CONTENT BEGINS -->
+					<div class="col-xs-12">
 
 						<div class="row">
 							<div class="col-sm-8 col-md-6 infobox-container">
@@ -651,9 +652,6 @@ if ($usu_autentico != "SI") {
 												</tfoot>
 											</table>
 										</div>
-
-
-
 									</div><!-- /.widget-main -->
 								</div><!-- /.widget-body -->
 							</div><!-- /.widget-box -->
@@ -661,12 +659,13 @@ if ($usu_autentico != "SI") {
 
 						<div class="space-6"></div>
 
+
 						<div class="row">
 							<div class="widget-box transparent ">
 								<div class="widget-header widget-header-flat">
 									<h4 class="widget-title lighter">
 										<i class="ace-icon fa fa-star orange"></i>
-										Proyectos
+										Finanzas (Real)
 									</h4>
 
 									<div class="widget-toolbar">
@@ -678,36 +677,99 @@ if ($usu_autentico != "SI") {
 								<div class="widget-body no-padding">
 									<div class="widget-main ">
 										<div class="col-xs-12">
-
-
 											<div class="table-header">
 												Lista de Proyectos
 											</div>
 											<table id="dynamic-table" class="table table-striped table-bordered table-hover">
 												<thead>
 													<tr>
-														<th class="">Proyecto</th>														
-														<th class="hidden">Ventas</th>
-														<th class="">Venta Neta</th>
-														<th class="hidden">Egreso</th>
-														<th class="">Egreso Neto</th>
-														<th class="hidden">Ingreso</th>
-														<th class="hidden-480">Ingreso Real</th>
-														<th class="hidden">Egreso Real</th>
-														<th class="">Egreso Real</th>
+														<th class="">Proyecto</th>
+														<th class="">Ingresos</th>
+														<th class="">Egresos</th>
 														<th class="hidden-480">Ganancia</th>
 														<th class="">Utilidad(%)</th>
 													</tr>
 												</thead>
 												<tbody>
 													<?php
-													if ($tarea == "M") {
-														$li_numcampo = 0; // Columnas que se muestran en la Tabla
-														$li_indicecampo = 6; // Referencia al indice de la columna clave
-														fun_dibujar_tabla($obj_miconexion_5, $li_numcampo, $li_indicecampo, 'LISTAR_SEGUIMIENTO', 0); // Dibuja la Tabla de Datos
+
+													foreach ($data_5 as $row) {
+														// Accediendo al valor de la columna "nombre" en cada fila
+														$proyecto   = $row[0];
+														$ventaNeta    = floatval($row[3]);
+														$gastoNeto    = floatval($row[4]);
+														$gananciaNeta    = $ventaNeta  - $gastoNeto;
+														$porc_gan = ($gastoNeto == 0) ? 0 : (($ventaNeta - $gastoNeto) * 100) / $gastoNeto;
+
+
+														echo "<td class='blue'>" . $proyecto . "</td>";
+														echo "<td>" . number_format($ventaNeta, 2, ",", ".") . "</td>";  // venta
+														echo "<td>" . number_format($gastoNeto, 2, ",", ".") . "</td>";  // gasto
+														echo "<td>" . number_format(floatval($gananciaNeta), 2, ",", ".") . "</td>";  // Ganancia	
+														echo "<td class=''>" . number_format($porc_gan, 2, ",", ".") . "%</td>";
 													}
 													?>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
 
+							</div>
+						</div>
+
+
+						<div class="space-6"></div>
+
+						<div class="row">
+							<div class="widget-box transparent ">
+								<div class="widget-header widget-header-flat">
+									<h4 class="widget-title lighter">
+										<i class="ace-icon fa fa-star orange"></i>
+										Finanzas (Estimada)
+									</h4>
+
+									<div class="widget-toolbar">
+										<a href="#" data-action="collapse">
+											<i class="ace-icon fa fa-chevron-up"></i>
+										</a>
+									</div>
+								</div>
+								<div class="widget-body no-padding">
+									<div class="widget-main ">
+										<div class="col-xs-12">
+											<div class="table-header">
+												Lista de Proyectos
+											</div>
+											<table id="dynamic-table" class="table table-striped table-bordered table-hover">
+												<thead>
+													<tr>
+														<th class="">Proyecto</th>
+														<th class="">Venta Neta</th>
+														<th class="">Gastos Neto</th>
+														<th class="hidden-480">Ganancia Neta</th>
+														<th class="">Utilidad(%) Neta</th>
+													</tr>
+												</thead>
+												<tbody>
+													<?php
+
+													foreach ($data_5 as $row) {
+														// Accediendo al valor de la columna "nombre" en cada fila
+														$proyecto   = $row[0];
+														$ventaNeta    = floatval($row[1]);
+														$gastoNeto    = floatval($row[2]);
+														$gananciaNeta    = $ventaNeta  - $gastoNeto;
+														$porc_gan = ($gastoNeto == 0) ? 0 : (($ventaNeta - $gastoNeto) * 100) / $gastoNeto;
+
+
+														echo "<td class='blue'>" . $proyecto . "</td>";
+														echo "<td>" . number_format($ventaNeta, 2, ",", ".") . "</td>";  // venta
+														echo "<td>" . number_format($gastoNeto, 2, ",", ".") . "</td>";  // gasto
+														echo "<td>" . number_format(floatval($gananciaNeta), 2, ",", ".") . "</td>";  // Ganancia	
+														echo "<td class=''>" . number_format($porc_gan, 2, ",", ".") . "%</td>";
+													}
+													?>
 												</tbody>
 											</table>
 										</div><!-- /.widget-main -->
@@ -715,7 +777,8 @@ if ($usu_autentico != "SI") {
 								</div><!-- /.widget-box -->
 
 							</div>
-						</div> <!-- /.row tabla principal -->
+						</div>
+
 
 						<div class="space-6"></div>
 
@@ -936,22 +999,16 @@ if ($usu_autentico != "SI") {
 
 				var id_vendedor = $(this).attr("id");
 
-				//alert(id_vendedor );
-
 				$.post("ajax_deudas_ventas.php", {
 					id_vendedor: id_vendedor
 				}, function(data) {
-					//alert( "Data Loaded: " + data );
 					if (row.child.isShown()) {
-						// This row is already open - close it
 						row.child.hide();
 						tr.removeClass('shown');
 					} else {
-						// Open this row
 						row.child(data).show();
 						tr.addClass('shown');
 					}
-					//tabla_hijo = data;
 				});
 
 			});

@@ -13,8 +13,7 @@ function fun_dibujar_tabla($rs,$li_columnas,$li_indice, $operacion){
 	$sw = 0; 
     $j=0;
 	while ($row = pg_fetch_row($rs->li_idconsult)){
-		// CAMPOS CLAVES PARA LOS BOTONES DE ENLACE - Deben Estar al final de la clausula select
-     
+		// CAMPOS CLAVES PARA LOS BOTONES DE ENLACE - Deben Estar al final de la clausula select    
 			
 			$sw = ($sw==0)?1:0; 
 		
@@ -87,33 +86,37 @@ function fun_dibujar_tabla($rs,$li_columnas,$li_indice, $operacion){
 			//echo "<td style=\"CURSOR: hand\" onClick=\"Mostrar_Info('".$ls_cod."','".$ingreso."','".$egreso."');\"><div align=\"center\" title=\"Detalle de la Operacion \"><img src=\"../../img/iconos_pagina/ficha.png\" width=\"25\" border=\"0\" ></div></td>";
 		}	
 		
-		if(strtoupper($operacion)=='LISTAR_SEGUIMIENTO'){ 
-			
-			echo "<td class='blue'>" .$row[$i++]."</td>";			
-			
+		if(strtoupper($operacion)=='LISTAR_SEGUIMIENTO_1'){ 
 
-			$ventas = floatval($row[$i++]);			
-			echo "<td class='hidden'>" .$ventas."</td>";  // Ventas  -- esta columna nunca se muestra			
-			echo "<td>" .number_format($ventas,2,",",".")."</td>";  // Ventas
-
-			$egreso_neto = floatval($row[$i++]);			
-			echo "<td class='hidden'>" .$egreso_neto."</td>";  // Ventas  -- esta columna nunca se muestra			
-			echo "<td>" .number_format($egreso_neto,2,",",".")."</td>";  // Ventas
-
-			$ingresos = floatval($row[$i++]);	
-			echo "<td class='hidden'>" .$ingresos."</td>";  // Ingresos  -- esta columna nunca se muestra			
-			echo "<td>" .number_format($ingresos,2,",",".")."</td>";  // Ingresos
-
-			$gastos = floatval($row[$i++]);			
-			echo "<td class='hidden'>" .$gastos."</td>";  // Gastos -- esta columna nunca se muestra
-			echo "<td>" .number_format($gastos,2,",",".")."</td>";  // Gastos
+			$proyecto   = $row[0];
+			$ventaNeta    = floatval($row[1]) ;
+			$gastoNeto    = floatval($row[2]);
+			$gananciaNeta    = $ventaNeta  - $gastoNeto ; 
+			$porc_gan = ($gastoNeto == 0)? 0: (($ventaNeta - $gastoNeto)*100)/$gastoNeto;		
 			
-			echo "<td class='hidden-480'>" .number_format($row[$i++],2,",",".")."</td>";  // Ganancia
 			
-			$porc_gan = ($gastos == 0)? 0: (($ingresos - $gastos)*100)/$gastos;
+			echo "<td class='blue'>" .$proyecto."</td>";	
+			echo "<td>" .number_format($ventaNeta,2,",",".")."</td>";  // venta
+			echo "<td>" .number_format($gastoNeto,2,",",".")."</td>";  // gasto
+			echo "<td>" .number_format(floatval($gananciaNeta),2,",",".")."</td>";  // Ganancia	
+			echo "<td class=''>" .number_format($porc_gan,2,",",".")."%</td>"; 
+		
+		}
+
+		if(strtoupper($operacion)=='LISTAR_SEGUIMIENTO_2'){ 
+
+			$proyecto   = $row[0];
+			$ingreso    = floatval($row[3]) ;
+			$egreso    = floatval($row[4]);
+			$ganancia    = $ingreso  - $egreso ; 
+			$porc_gan = ($egreso == 0)? 0: (($ingreso - $egreso)*100)/$egreso;		
 			
-			echo "<td class=''>" .number_format($porc_gan,2,",",".")."%</td>";         //Ganancia en Porcentaje =    ventas - gastos)*100)/gastos
-					
+			
+			echo "<td class='blue'>" .$proyecto."</td>";	
+			echo "<td>" .number_format($ingreso,2,",",".")."</td>";  // venta
+			echo "<td>" .number_format($egreso,2,",",".")."</td>";  // gasto
+			echo "<td>" .number_format(floatval($ganancia),2,",",".")."</td>";  // Ganancia	
+			echo "<td class=''>" .number_format($porc_gan,2,",",".")."%</td>"; 
 		
 		}
 
