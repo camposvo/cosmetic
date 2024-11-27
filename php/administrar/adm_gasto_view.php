@@ -162,21 +162,6 @@ if ($usu_autentico != "SI") {
 		INNER JOIN s01_persona ON s01_persona.co_persona = t20_factura.fk_cliente
 		WHERE t20_factura.tx_tipo='GASTO'  " . $ls_criterio;
 
-	/* $ls_sql = "SELECT to_char(t20_factura.pk_factura,'0000000'), to_char(t20_factura.fe_fecha_factura, 'dd-TMMon-yyyy'), 
-			nb_articulo, 
-			nb_categoria,
-			t02_proyecto.tx_nombre, 
-			t01_detalle.nu_cantidad,
-			nu_precio,			
-			t01_detalle.nu_cantidad * nu_precio AS MONTO, t20_factura.pk_factura 
-		    FROM t01_detalle
-		    INNER JOIN t20_factura ON t20_factura.pk_factura = t01_detalle.fk_factura
-		    INNER JOIN t13_articulo ON t01_detalle.fk_articulo = t13_articulo.pk_articulo
-		    INNER JOIN t05_clase ON t13_articulo.fk_clase = t05_clase.pk_clase  
-		    INNER JOIN t21_categoria ON t21_categoria.pk_categoria = t05_clase.fk_categoria 
-			INNER JOIN t02_proyecto ON t01_detalle.fk_rubro = t02_proyecto.pk_proyecto
-			WHERE t20_factura.tx_tipo='GASTO' ".$ls_criterio; */
-
 	//echo $ls_sql;
 	$ls_resultado =  $obj_miconexion->fun_consult($ls_sql);
 
