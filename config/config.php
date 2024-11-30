@@ -106,7 +106,7 @@ function Combo_Articulo_Venta(){
 									
 		$ls_sql = "SELECT
 					a.pk_articulo,
-					CONCAT(LPAD(ca.pk_categoria::text, 3, '0'), '-', LPAD(a.pk_articulo::text, 3, '0'), ' ', a.nb_articulo) AS articulo
+					CONCAT(LPAD(ca.pk_categoria::text, 3, '0'), '-', LPAD(a.pk_articulo::text, 3, '0'), ' ', a.nb_articulo, ' (', a.nb_presentacion,')') AS articulo
 					FROM
 						t13_articulo a
 					LEFT JOIN t05_clase c ON a.fk_clase = c.pk_clase

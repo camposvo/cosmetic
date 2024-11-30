@@ -355,14 +355,7 @@
 													</div>
 												</div>
 											</div>	
-												
-										<!-- 	<div class="form-group">
-												<label  class="col-sm-3 control-label no-padding-right"  for="o_factura">Factura</label>
-												<div class="col-sm-7" >
-													<input class="col-xs-10 col-sm-7" name="o_factura" value="<?php //echo $o_factura;?>" id="o_factura" type="text"  placeholder="Ingrese Nro. de Factura">
-												</div>
-											</div> -->
-											
+										
 											<div class="form-group">
 												<label class="col-sm-3 control-label no-padding-right" >Proveedor</label>
 												<div class="col-sm-7" >	
@@ -396,17 +389,7 @@
 						</div>
 					</div>
 					
-					<div class="space-4"></div>
-					
-					<div class="row">
-						<div class="col-xs-12 col-sm-12 ">
-							<button type="button" onClick="nuevoArticulo();"  class="btn-success btn-xs pull-left ">
-								<i class="ace-icon fa fa-plus align-top bigger-100 "></i>
-								Add
-							</button>	
-						</div> 
-					</div>
-					
+									
 					<div class="space-4"></div>
 		
 					<div class="row">
@@ -414,8 +397,8 @@
 							<table id="simple-table" class="table table-striped table-bordered table-hover">
 								<thead>
 									<tr class="bg-primary" >
-										<th width="30%">Proyecto</th>
-										<th width="30%">Articulo</th>
+										<th width="15%">Proyecto</th>
+										<th width="45%">Articulo</th>
 										<th width="10%">Cantidad</th>
 										<th width="10%">Precio</th>
 										<th width="10%">SubTotal</th>
@@ -450,6 +433,10 @@
 								<button type="button" onClick="Guardar('<?php echo $tarea;?>');" class="btn-sm btn-success">
 									<i class="ace-icon fa fa-check  icon-on-right bigger-110"></i>
 									Guardar
+								</button>	
+								<button type="button" onClick="nuevoArticulo();"  class="btn-success btn-sm ">
+									<i class="ace-icon fa fa-plus align-top bigger-100 "></i>
+									Add
 								</button>																								
 
 						</div>							

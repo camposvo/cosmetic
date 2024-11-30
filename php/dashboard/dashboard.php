@@ -374,13 +374,13 @@ if ($usu_autentico != "SI") {
 	 TABLA 4 - VENTAS POR CATEGORIA
 	---------------------------------------------------------------------------------------------------------------------------------------------------------*/
 	$total_gasto_periodo = 0;
-	$ls_sql = "SELECT nb_categoria, nb_clase, SUM(nu_cantidad * nu_precio) AS Precio_Total FROM t01_detalle 
+	$ls_sql = "SELECT UPPER(nb_articulo), nb_categoria, SUM(nu_cantidad) AS Cantidad, SUM(nu_cantidad * nu_precio) AS Precio_Total FROM t01_detalle 
 	INNER JOIN t20_factura ON t20_factura.pk_factura = t01_detalle.fk_factura 
 	LEFT JOIN t13_articulo ON t13_articulo.pk_articulo = t01_detalle.fk_articulo 
 	LEFT JOIN t05_clase ON t05_clase.pk_clase = t13_articulo.fk_clase 
 	LEFT JOIN t21_categoria ON t21_categoria.pk_categoria = t05_clase.fk_categoria 
 	WHERE EXTRACT(YEAR FROM t20_factura.fe_fecha_factura) = $CURRENT_YEAR AND t20_factura.tx_tipo = 'VENTA'  
-	GROUP BY nb_categoria, nb_clase ORDER BY Precio_Total DESC";
+	GROUP BY nb_categoria, nb_articulo ORDER BY Cantidad DESC";
 
 	$ls_resultado_6 =  $obj_miconexion_6->fun_consult($ls_sql);
 
@@ -889,13 +889,15 @@ if ($usu_autentico != "SI") {
 
 								<div class="widget-body">
 									<div class="widget-main ">
-										<div class="col-sm-6">
-											<table class="table table-bordered table-striped">
+										<div class="col-sm-12 ">
+											<div class="table-header">Listado Articulos Vendidos</div>
+											<table id="dynamic-table-3" class="table table-striped table-bordered table-hover ">
 												<thead class="thin-border-bottom">
 													<tr>
-														<th><i class="ace-icon fa fa-caret-right blue"></i>Categoria</th>
-														<th><i class="ace-icon fa fa-caret-right blue"></i>Clase</th>
-														<th><i class="ace-icon fa fa-caret-right blue"></i>Monto</th>
+														<th>Articulo</th>
+														<th>Clase</th>
+														<th>Cantidad</th>
+														<th>Monto</th>
 													</tr>
 												</thead>
 
@@ -909,7 +911,7 @@ if ($usu_autentico != "SI") {
 
 													?>
 												</tbody>
-												<tfoot>
+												<!-- <tfoot>
 													<tr>
 														<th colspan="2">Total</th>
 														<th>
@@ -919,7 +921,7 @@ if ($usu_autentico != "SI") {
 														</th>
 
 													</tr>
-												</tfoot>
+												</tfoot> -->
 											</table>
 										</div>
 
@@ -965,6 +967,33 @@ if ($usu_autentico != "SI") {
 					weekdays: ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado']
 				}
 			});
+
+			$('#dynamic-table-3').dataTable( {
+				"search": {
+					"search": $('#input_filtro').val()
+				  },
+				"lengthChange": false,
+				"pageLength": 80,
+				"aaSorting": [ [0,'desc'] ],
+				"oLanguage": {
+					"sInfo": "De _START_ hasta _END_ de un total de _TOTAL_",
+					"sInfoFiltered": " ( filtrado de _MAX_ registros )",
+					"sSearch": "Filtro:",						
+					"spaginate": {
+					  "next": "Próximo",
+					  "previous": "Previo"
+					}
+				},
+								
+				"columns": [
+					null,					
+					null,
+					null,
+					null,					
+				  ],
+				  
+			  				  
+			} );
 
 			// DATATABLE  ASOCIADA A VENTAS DEL VENDEDOR
 			var table = $('#example').DataTable({

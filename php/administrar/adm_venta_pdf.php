@@ -114,9 +114,9 @@ $pdf= new FPDF('P', 'mm', 'A4', 'UTF-8');
 $pdf->AddPage(); 
 
 //HEADER
-$pdf->SetFont('Arial', 'B', 10); 
+$pdf->SetFont('Courier', 'B', 10); 
 $pdf->SetXY(150, $top += 5);
-$pdf->Image('../../img/logo1.png',20,15,45,30);
+/* $pdf->Image('../../img/logo1.png',20,15,45,30);
 $pdf->Cell(50, 10, 'BELLINGHIERI COSMETICS, C.A', 0, 0,'R');
 $pdf->SetXY(150, $top += 5);
 $pdf->Cell(50, 10, 'RIF: J-410596457', 0, 0,'R');
@@ -125,23 +125,23 @@ $pdf->Cell(50, 10, 'CALLE 8 CASA NRO 478 URB DON IGNACIO', 0, 0,'R');
 $pdf->SetXY(150, $top += 5);
 $pdf->Cell(50, 10, 'EL TIGRE ANZOATEGUI', 0, 0,'R');
 $pdf->SetXY(150, $top += 5);
-$pdf->Cell(50, 10, 'ZONA POSTAL 6050', 0, 0,'R');
+$pdf->Cell(50, 10, 'ZONA POSTAL 6050', 0, 0,'R'); */
 
 
 $pdf->SetTextColor(255, 0, 0); // Rojo (R, G, B)
-$pdf->SetFont('Arial', 'B', 12); 
+$pdf->SetFont('Courier', 'B', 12); 
 $pdf->SetXY(150, $top += 10);
 $pdf->Cell(50, 10, 'NOTA NRO .'.$x_nota, 0, 0,'R');
 
 $pdf->SetTextColor(0, 0, 0); // Rojo (0, 0, 0)
-$pdf->SetFont('Arial', 'B', 10); 
+$pdf->SetFont('Courier', 'B', 10); 
 $pdf->SetXY(150, $top += 5);
 $pdf->Cell(50, 10, fix_texto('Fecha de Emisión:').$o_fecha, 0, 0,'R');
 
 //CLIENT TITLE
 $top += 15;
 
-$pdf->SetFont('Arial', '', 9); 
+$pdf->SetFont('Courier', '', 9); 
 $pdf->SetXY(20, $top);
 $pdf->Cell(120, 5, fix_texto('Nombre o Razón Social:'), 'LTR', 1, 'L');
 
@@ -156,7 +156,7 @@ $pdf->Cell(60, 5, fix_texto('Teléfono:'), 'LR', 1, 'L');
 
 //CLIENT DATA 
 
-$pdf->SetFont('Arial', 'B', 11); 
+$pdf->SetFont('Courier', 'B', 11); 
 $pdf->SetXY(20, $top + 5);
 $pdf->Cell(120, 5, fix_texto(strtoupper($o_cliente)),'LBR', 1, 'L');
 
@@ -186,7 +186,7 @@ $w4 = 25;
 
 $pdf->SetFillColor(198,217,241); 
 
-$pdf->SetFont('Arial', 'B', 10); 
+$pdf->SetFont('Courier', 'B', 10); 
 //$pdf->SetTextColor(255, 255, 255); // Rojo (0, 0, 0)
 
 $pdf->SetXY($ma, $top);
@@ -204,7 +204,7 @@ $pdf->Cell($w4, $h1, 'Total', 1, 1, 'C',true);
 
 //$pdf->SetDash(1,1);
 $total = 0;
-$pdf->SetFont('Arial', '', 10); 
+$pdf->SetFont('Courier', '', 10); 
 while($fila = pg_fetch_row($ls_resultado_1)){	
 
 	$top += 7;	
@@ -213,7 +213,7 @@ while($fila = pg_fetch_row($ls_resultado_1)){
 	$pdf->Cell($w1, $h1, $fila[0], 1, 1, 'C');
 
 	$pdf->SetXY($ma+20, $top);
-	$pdf->Cell($w2, $h1, $arr_articulo[$fila[1]], 1, 1, 'L');
+	$pdf->Cell($w2, $h1,strtoupper($arr_articulo[$fila[1]]), 1, 1, 'L');
 
 	$precio = number_format($fila[2],2,",",".");
 	$pdf->SetXY($ma+130, $top);
@@ -229,7 +229,7 @@ while($fila = pg_fetch_row($ls_resultado_1)){
 }
 
 	$top += 7;	
-	$pdf->SetFont('Arial', 'B', 11); 
+	$pdf->SetFont('Courier', 'B', 11); 
 	
 	$pdf->SetXY($ma, $top);
 	$pdf->Cell($w1, $h1, '', 1, 1, 'C');

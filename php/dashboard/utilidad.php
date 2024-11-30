@@ -49,6 +49,7 @@ function fun_dibujar_tabla($rs,$li_columnas,$li_indice, $operacion){
 		if(strtoupper($operacion)=='LISTAR_VENTAS_PERIODO'){ 
 			echo "<td class=''>" . $row[$i++] . "</td>"; 
 			echo "<td class=''>" . $row[$i++] . "</td>"; 
+			echo "<td class=''>" . $row[$i++] . "</td>"; 
 			echo "<td class='blue'>" .number_format($row[$i++],2,",",".").  "</td>"; 			
 		}
 				

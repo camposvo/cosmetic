@@ -68,20 +68,26 @@ if ($usu_autentico != "SI") {
 	$x_mes_actual = date('m');
 	$x_ano_actual = date('Y');
 
+
 	// Coloca por defecto los ultimos 30 dias como fecha inicial
 	if (!empty($x_fecha)) { // Seleccion de una Fecha
+		
 		$arr_fecha = explode('-', $x_fecha, 2);
 		$x_fecha_ini = $arr_fecha[0];
 		$x_fecha_fin = $arr_fecha[1];
 	} else { // No hay seleccion de Fecha  y Carga variables con los ultimos 30 DIAS POR DEFECTO
-		$x_fecha_ini  = isset($x_fecha_ini) ? $x_fecha_ini : $x_fecha_mespasado;
-		$x_fecha_fin  = isset($x_fecha_fin) ? $x_fecha_fin : $x_fecha_actual;
+		
+		$x_fecha_ini  = !empty($x_fecha_ini) ? $x_fecha_ini : $x_fecha_mespasado;
+		$x_fecha_fin  = !empty($x_fecha_fin) ? $x_fecha_fin : $x_fecha_actual;
+
 	}
 
 	/*-------------------------------------------------------------------------------------------
 	LEE DATOS DEL PROVEEDOR
 -------------------------------------------------------------------------------------------*/
+
 	$x_proveedor = isset($x_proveedor) ? $x_proveedor : 0;
+
 	$ls_sql = "SELECT nb_proveedor
 				FROM t03_proveedor 
 				WHERE t03_proveedor.pk_proveedor = $x_proveedor";
@@ -129,13 +135,14 @@ if ($usu_autentico != "SI") {
 	$i = 0; /*Banderar para cantidad de reglas */
 	$sw = 0; // Bandera para indicar si hay filtros
 
+
 	if ($filtro == 'NO_ALL') $arr_criterio[$i++] = " (f_calcular_abono(pk_factura) < nu_total) ";
 
 	if ($x_proveedor != 0) {
 		$arr_criterio[$i++] = " t20_factura.fk_cliente = " . $x_proveedor;
 		$sw = 1;
 	}
-	if ($x_factura != 0) {
+	if (!empty($x_factura)) {
 		$arr_criterio[$i++] = " UPPER(t20_factura.tx_factura) = '" . strtoupper($x_factura) . "' ";
 		$sw = 1;
 	}
@@ -143,10 +150,10 @@ if ($usu_autentico != "SI") {
 		$arr_criterio[$i++] = " t20_factura.fe_fecha_factura >= '" . strtoupper($x_fecha_ini) . "' and t20_factura.fe_fecha_factura <= '" . strtoupper($x_fecha_fin) . "' ";
 		$sw = 1;
 	}
-	if ($x_vendedor != 0) {
-		$arr_criterio[$i++] = " t20_factura.fk_responsable = " . $x_vendedor;
+/* 	if ($co_usuario != 0) {
+		$arr_criterio[$i++] = " t20_factura.fk_responsable = " . $co_usuario;
 		$sw = 1;
-	}
+	} */
 	//if($filtro =='NO_ALL'){  $arr_criterio[$i++]=" t20_factura.fe_fecha_factura >= '".$x_fecha_ini."' and t20_factura.fe_fecha_factura <= '".$x_fecha_fin."' ";  }
 
 	for ($j = 0; $j < $i; $j++) $ls_criterio = $ls_criterio . ($ls_criterio == "" ? "" : " and ") . $arr_criterio[$j];
@@ -162,7 +169,7 @@ if ($usu_autentico != "SI") {
 		INNER JOIN s01_persona ON s01_persona.co_persona = t20_factura.fk_cliente
 		WHERE t20_factura.tx_tipo='GASTO'  " . $ls_criterio;
 
-	//echo $ls_sql;
+
 	$ls_resultado =  $obj_miconexion->fun_consult($ls_sql);
 
 	if ($ls_resultado != 0) {
@@ -373,7 +380,7 @@ if ($usu_autentico != "SI") {
 
 		<script type="text/javascript">
 			$(document).ready(function() {
-				//window.parent.ScrollToTop(); // invoca la funcion ScrollToTop que se encuentra en interace.php para posicionar el scroll vertical
+				window.parent.ScrollToTop(); // invoca la funcion ScrollToTop que se encuentra en interace.php para posicionar el scroll vertical
 
 
 				$('#dynamic-table').dataTable({
