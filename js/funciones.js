@@ -210,6 +210,7 @@ function campos_blancos(forma){
 
 for(i=0;i<forma.elements.length;i++)
     {	snombrecampo = forma.elements[i].name;
+		console.log(forma.elements[i].type);
 		
     	if (forma.elements[i].type == "text")	
     	 {	if ((snombrecampo.substring(0,1) == "o")||(snombrecampo.substring(0,1) == "n"))
@@ -246,7 +247,8 @@ for(i=0;i<forma.elements.length;i++)
 					}
 			}
 		else
-		   if (forma.elements[i].type == "select-one")	 
+		   if (forma.elements[i].type == "select-one")	
+			
 		   	   { if (snombrecampo.substring(0,1) == "o")
 					 {if (snombrecampo.substring(2,1) == "_")
 						{var indice = forma.elements[i].selectedIndex ;

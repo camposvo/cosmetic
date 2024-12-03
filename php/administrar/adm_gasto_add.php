@@ -40,6 +40,7 @@
 	$o_cantidad  = 0;
 	$o_cantidad2 = 0;
 	$mostrar_rs = false;
+	$x_pedido = "S";
 	
 	if (!$_GET)	{
 		foreach($_POST as $nombre_campo => $valor){
@@ -55,11 +56,8 @@
 		$modo = isset($_GET['modo'])?$_GET['modo']:'Insertar Nuevo Registro';
 	}
 	
-	//var_dump($_POST['det_Proyecto']);
-	//var_dump($_POST['det_Precio']);
 	
-	if ($_POST['det_Proyecto'])	{ // Recibe el detalle de la Factura
-		$a_proyecto	= $_POST['det_Proyecto'];
+	if ($_POST['det_Articulo'])	{ // Recibe el detalle de la Factura
 		$a_precio 	= $_POST['det_Precio'];
 		$a_articulo	= $_POST['det_Articulo'];
 		$a_cantidad	= $_POST['det_Cantidad'];
@@ -96,7 +94,9 @@
 			tx_tipo, 
 			fk_cliente, 
 			tx_concepto,
-            nu_total		
+            nu_total,
+			fk_proyecto,
+			in_pedido
 			)
 		VALUES (
 			$co_usuario, 
@@ -106,7 +106,9 @@
 			'GASTO',	
 			$o_proveedor,
 			'$x_referencia',
-			$x_total
+			$x_total,
+			$o_proyecto,
+			'$x_pedido'
 		);";
 						
 		//echo $ls_sql;
@@ -136,7 +138,6 @@
 				$ls_sql = "INSERT INTO t01_detalle(
 					fk_responsable, 
 					  fk_factura, 
-					  fk_rubro, 
 					  fk_articulo,
 					  nu_cantidad, 
 					  nu_precio, 
@@ -147,7 +148,6 @@
 				VALUES (
 					$co_usuario, 
 					$id_factura,
-					$a_proyecto[$k],
 					$a_articulo[$k],
 					$a_cantidad[$k],
 					$a_precio[$k],
@@ -198,7 +198,9 @@
 			fk_cliente        = $o_proveedor,
 			fe_fecha_factura  	='$o_fecha',
 			tx_concepto         ='$x_referencia',
-			nu_total		  	= $x_total	
+			nu_total		  	= $x_total,
+			fk_proyecto         = $o_proyecto,
+			in_pedido			= '$x_pedido'
 		WHERE pk_factura   	  	= $id_factura;";
 
 								
@@ -227,7 +229,6 @@
 					
 				$ls_sql = "INSERT INTO t01_detalle(
 					  fk_factura, 
-					  fk_rubro, 
 					  fk_articulo,
 					  nu_cantidad, 
 					  nu_precio, 
@@ -237,7 +238,6 @@
 					)
 				VALUES (
 					$id_factura,
-					$a_proyecto[$k],
 					$a_articulo[$k],					
 					$a_cantidad[$k],
 					$a_precio[$k],
@@ -276,8 +276,8 @@
 	LEE DATOS DE UN GASTO
 -------------------------------------------------------------------------------------------*/
 	if ($tarea == "M"){		
-		$ls_sql ="SELECT pk_factura, fk_responsable, fk_cliente, to_char(fe_fecha_factura, 'dd/mm/yyyy'),  tx_factura,
-					nu_total, nu_subtotal, nu_abono, tx_concepto
+		$ls_sql ="SELECT pk_factura, fk_responsable, fk_cliente, to_char(fe_fecha_factura, 'dd/mm/yyyy'),  tx_factura, 
+					nu_total, nu_subtotal, nu_abono, tx_concepto, fk_proyecto, in_pedido
 					FROM t20_factura
 					WHERE pk_factura = $x_movimiento";
 		
@@ -288,14 +288,16 @@
 			$co_usuario	     = $row[1];
 			$o_proveedor  	 = $row[2];	
 			$o_fecha         = $row[3];
-			$o_factura      = $row[4];
+			$o_factura      = $row[4];			
 			$x_total        = $row[5];
 			$x_subtotal     = $row[6];
 			$x_abono    	= $row[7];
-			$x_referencia     = $row[8];
+			$x_referencia   = $row[8];
+			$o_proyecto     = $row[9];
+			$x_pedido     = $row[10];
 			
 			// Extrae el detalle de la factura
-			$ls_sql ="SELECT fk_rubro, fk_articulo, nu_cantidad, nu_precio,  
+			$ls_sql ="SELECT fk_articulo, nu_cantidad, nu_precio,  
 				  nu_cantidad * nu_precio as total, in_inventario
 				  FROM t01_detalle
 				  WHERE fk_factura = $id_factura ;";
@@ -374,6 +376,25 @@
 													</select>
 												</div>													
 											</div>
+
+											<div class="form-group">
+												<label class="col-sm-3 control-label no-padding-right" >Proyecto</label>
+												<div class="col-sm-7" >	
+													<select  type="select-one" name="o_proyecto" class="col-xs-10 col-sm-7 chosen-select " data-placeholder="Seleccionar" >
+														<?php
+															if ($o_proyecto == ""){
+																echo "<option value='0' selected>Seleccionar</option>";
+															}else{
+																echo "<option value='0'></option>";
+															}
+															foreach($arr_rubro as $k => $v) {
+																$ls_cadenasel =($k == $o_proyecto)?'selected':'';
+																echo "<option value='$k' $ls_cadenasel>$v</option>";                
+															}
+														?>							
+													</select>
+												</div>													
+											</div>
 											
 											<div class="form-group">
 												<label  class="col-sm-3 control-label no-padding-right"  for="x_referencia">Ref</label>
@@ -397,13 +418,12 @@
 							<table id="simple-table" class="table table-striped table-bordered table-hover">
 								<thead>
 									<tr class="bg-primary" >
-										<th width="15%">Proyecto</th>
-										<th width="45%">Articulo</th>
+										<th width="50%">Articulo</th>
 										<th width="10%">Cantidad</th>
 										<th width="10%">Precio</th>
 										<th width="10%">SubTotal</th>
-										<th width="5%">Almacen</th>
-										<th width="5%">Eliminar</th>
+										<th width="10%">Almacen</th>
+										<th width="10%">Eliminar</th>
 									</tr>
 								</thead>
 								<tbody id="tblDetalle">	
@@ -424,16 +444,7 @@
 					
 					<div class="row">
 						
-						<div class="col-xs-12 col-sm-8 ">
-								<button type="button" onClick="Atras('<?php echo "tarea=B"; ?>')" class="btn-sm  btn-danger">
-									<i class="ace-icon fa fa-reply  bigger-110 icon-on-right"></i>
-									Regresar
-								</button>
-								
-								<button type="button" onClick="Guardar('<?php echo $tarea;?>');" class="btn-sm btn-success">
-									<i class="ace-icon fa fa-check  icon-on-right bigger-110"></i>
-									Guardar
-								</button>	
+						<div class="col-xs-12 col-sm-8 ">								
 								<button type="button" onClick="nuevoArticulo();"  class="btn-success btn-sm ">
 									<i class="ace-icon fa fa-plus align-top bigger-100 "></i>
 									Add
@@ -458,6 +469,33 @@
 							</div>
 						</div>
 					</div>
+
+
+					<div class="row">
+						
+						<div class="col-xs-12 text-center ">
+								<button type="button" onClick="Atras('<?php echo "tarea=B"; ?>')" class="btn-sm  btn-danger">
+									<i class="ace-icon fa fa-reply  bigger-110 icon-on-right"></i>
+									Regresar
+								</button>
+								
+								<button type="button" onClick="Guardar('<?php echo $tarea; ?>', '<?php echo $x_pedido; ?>');" class="btn-sm btn-success">
+								<i class="ace-icon fa fa-check  icon-on-right bigger-110"></i>
+								Guardar
+								</button>
+
+								<button type="button" onClick="Guardar('<?php echo $tarea; ?>','N');" class="btn-sm btn-success">
+									<i class="ace-icon fa fa-check  icon-on-right bigger-110"></i>
+									Cerrar Pedido
+								</button>
+																															
+
+						</div>							
+												
+						
+					</div>
+
+
 					<input type="hidden" name="x_movimiento" value="<?php echo $x_movimiento;?>">
 					<input type="hidden" name="tarea" value="<?php echo $tarea;?>">
 					<input type="hidden" name="modo" value="<?php echo $modo;?>"> 
@@ -468,7 +506,8 @@
 					<input type="hidden" name="x_fecha_ini" value="<?php echo $x_fecha_ini;?>">
 					<input type="hidden" name="x_fecha_fin" value="<?php echo $x_fecha_fin;?>">
 					<input type="hidden" id = "input_filtro" name="input_filtro" 		 value="<?php echo $input_filtro;?>">		
-					<input type="hidden" name="check" value="<?php echo $check;?>">			
+					<input type="hidden" name="check" value="<?php echo $check;?>">	
+					<input type="hidden" name="x_pedido" value="<?php echo $x_pedido; ?>">		
 				</form>
 			</div> <!-- /.row tabla principal -->
 		</div> <!-- /.page-content -->
@@ -548,7 +587,7 @@
 			$("#"+id_sele).chosen().change(function() {
 					//Get Input Price
 					const fila = this.parentNode.parentNode;
-					const price = fila.cells[3].firstChild;	
+					const price = fila.cells[2].firstChild;	
 		
 					var valorSeleccionado = $(this).val();	
 
@@ -614,36 +653,15 @@
 		
 //crea dinamicamente un fila para un nuevo articulo
 	function nuevoArticulo(){
-		var proy = <?php echo json_encode($arr_rubro); ?>;
+	
 		var articulo = <?php echo json_encode($arr_articulo); ?>;
 		
 	
 		// Mostramos los valores del array
 
 		destino = document.getElementById('tblDetalle');
-		tr = document.createElement('tr');
-			
+		tr = document.createElement('tr');	
 	
-		
-		// Select Proyecto
-		td = document.createElement('td');
-		sele = document.createElement('select');
-		sele.name = 'det_Proyecto[]';
-		sele.setAttribute("class","chosen-select");
-
-		opt = document.createElement('option');
-		opt.value = '0';
-		opt.setAttribute('data-placeholder','Selecciona un Articulo');
-		sele.appendChild(opt);
-
-		for (var p in proy){
-			opt = document.createElement('option');
-			opt.value = p;
-			opt.innerHTML = proy[p];
-			sele.appendChild(opt);
-		}		
-		td.appendChild(sele);
-		tr.appendChild(td);
 				
 		// Select Articulo
 		td = document.createElement('td');
@@ -709,7 +727,7 @@
 		calcular();
 	}	
 		
-	function Guardar(Identificador){		
+	function  Guardar(Identificador, pedido) {		
 		if (document.getElementById('x_total').value > 0){ //Hay elementos en el detalle
 			if(campos_blancos(document.formulario) == false){
 				if (confirm('Esta conforme con los Datos Ingresados?') == true){
@@ -720,6 +738,7 @@
 						cantidad[x].value = x;
 					}
 					
+					document.formulario.x_pedido.value = pedido;
 					document.formulario.tarea.value = Identificador;
 					document.formulario.action = "adm_gasto_add.php";
 					document.formulario.method = "POST";

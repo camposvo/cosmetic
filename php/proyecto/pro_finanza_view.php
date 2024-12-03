@@ -99,7 +99,9 @@
 				FROM t01_detalle
 			    INNER JOIN t20_factura ON t01_detalle.fk_factura = t20_factura.pk_factura
 				LEFT JOIN s01_persona AS VENDEDOR ON t20_factura.fk_responsable = VENDEDOR.co_persona					
-			WHERE t20_factura.tx_tipo='VENTA' AND t01_detalle.fk_rubro = ".$pk_proyecto.  
+			WHERE t20_factura.tx_tipo='VENTA' AND 
+			t20_factura.in_pedido='N' AND 
+			t20_factura.fk_proyecto = ".$pk_proyecto.  
 			" GROUP BY VENDEDOR.co_persona, VENDEDOR.tx_nombre,VENDEDOR.tx_apellido ORDER BY VENDEDOR.tx_nombre ASC";
 	
 	
@@ -110,7 +112,7 @@
 			$data_1[] ="{ name: '$row[0]',y: $row[1]}";
 		}		
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);
 	}		
 	
 	
@@ -123,7 +125,9 @@
 				FROM t01_detalle
 			    INNER JOIN t20_factura ON t01_detalle.fk_factura = t20_factura.pk_factura
 				LEFT JOIN t13_articulo AS ARTICULO ON t01_detalle.fk_articulo = ARTICULO.pk_articulo					
-			WHERE t20_factura.tx_tipo='VENTA' AND t01_detalle.fk_rubro = ".$pk_proyecto.  
+			WHERE t20_factura.tx_tipo='VENTA' AND 
+			t20_factura.in_pedido='N' AND 
+			t01_detalle.fk_rubro = ".$pk_proyecto.  
 			" GROUP BY ARTICULO.nb_articulo ORDER BY ARTICULO.nb_articulo ASC";
 	
 	//echo $ls_sql;
@@ -134,7 +138,7 @@
 			$data_2[] ="{ name: '$row[0]',y: $row[1]}";
 		}		
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);
 	}	
 
 /*-------------------------------------------------------------------------------------------
@@ -156,7 +160,7 @@
 			$data_3[] ="{ name: '$row[0]',y: $row[1]}";
 		}		
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);
 	}	
 	
 /*-------------------------------------------------------------------------------------------
@@ -181,7 +185,7 @@
 		$x_muerte        = $row[6];
 		$x_tipo_rubro  = $row[7];
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);// enviar mensaje de error de consulta
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);// enviar mensaje de error de consulta
 	}
 /*-------------------------------------------------------------------------------------------
 	RUTINAS: RESUMEN DE GASTOS
@@ -199,19 +203,21 @@
 		$row = pg_fetch_row($ls_resultado,0);
 		$TotalGasto    = $row[0];
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);// enviar mensaje de error de consulta
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);// enviar mensaje de error de consulta
 	}	
 		
 		
 	/*-------------------------------------------------------------------------------------------
 	RUTINAS: RESUMEN DE VENTAS
 	-------------------------------------------------------------------------------------------*/
-	$ls_sql = "SELECT sum (t01_detalle.nu_cantidad * nu_precio) as TotalGasto,
+	$ls_sql = "SELECT sum (t01_detalle.nu_cantidad * nu_precio) as Total,
 					sum (t01_detalle.nu_cant_item) as TotalItem,
 					sum (t01_detalle.nu_cantidad) as TotalCantidad
 				FROM t01_detalle
 			    INNER JOIN t20_factura ON t01_detalle.fk_factura = t20_factura.pk_factura	
-			WHERE t20_factura.tx_tipo='VENTA' AND t01_detalle.fk_rubro = ".$pk_proyecto;
+			WHERE t20_factura.tx_tipo='VENTA' AND 
+			t20_factura.in_pedido='N' AND 
+			t20_factura.fk_proyecto = ".$pk_proyecto;
 	
 	
 	//echo $ls_sql;
@@ -225,22 +231,26 @@
 		$PromCant       = $TotalCantidad ==0? 0:($SumaTotal / $TotalCantidad); 
 		$PromPeso       = $TotalItem ==0? 0:($TotalCantidad / $TotalItem); 
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);// enviar mensaje de error de consulta
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);// enviar mensaje de error de consulta
 	}
 
 /*-------------------------------------------------------------------------------------------
 RUTINAS: LISTADO DE VENTAS POR RUBRO
 -------------------------------------------------------------------------------------------*/
 	$i=0;
-	$ls_sql = "SELECT   UPPER(ARTICULO.nb_articulo) as Articulo,
-						SUM(t01_detalle.nu_cant_item) AS Item,
+	$ls_sql = "SELECT   UPPER(t21_categoria.nb_categoria) as Categoria,
+						UPPER(ARTICULO.nb_articulo) as Articulo,
 						SUM(t01_detalle.nu_cantidad) AS Cantidad,
 						SUM(t01_detalle.nu_cantidad * t01_detalle.nu_precio) as monto						
 				FROM t01_detalle
 			    INNER JOIN t20_factura ON t01_detalle.fk_factura = t20_factura.pk_factura
-				LEFT JOIN t13_articulo AS ARTICULO ON t01_detalle.fk_articulo = ARTICULO.pk_articulo					
-			WHERE t20_factura.tx_tipo='VENTA' AND t01_detalle.fk_rubro = ".$pk_proyecto.  
-			" GROUP BY ARTICULO.nb_articulo ORDER BY ARTICULO.nb_articulo ASC";
+				LEFT JOIN t13_articulo AS ARTICULO ON t01_detalle.fk_articulo = ARTICULO.pk_articulo
+				LEFT JOIN t05_clase ON t05_clase.pk_clase = ARTICULO.fk_clase	
+				LEFT JOIN t21_categoria ON t05_clase.fk_categoria = t21_categoria.pk_categoria				
+			WHERE t20_factura.tx_tipo='VENTA' AND 
+			t20_factura.in_pedido='N' AND
+			t20_factura.fk_proyecto = ".$pk_proyecto.  
+			" GROUP BY t21_categoria.nb_categoria, ARTICULO.nb_articulo ORDER BY t21_categoria.nb_categoria";
 	
 	//echo $ls_sql;
 	$ls_resultado_proyecto =  $obj_miconexion_proyecto->fun_consult($ls_sql);
@@ -248,7 +258,7 @@ RUTINAS: LISTADO DE VENTAS POR RUBRO
 	if($ls_resultado_proyecto != 0){
 		$tarea = "V";
 	}else{
-		fun_error(1,$li_id_conex_proyecto,$ls_sql,$_SERVER[PHP_SELF]);
+		fun_error(1,$li_id_conex_proyecto,$ls_sql,$_SERVER['PHP_SELF']);
 	}		
 	
 	
@@ -257,12 +267,13 @@ RUTINAS: LISTADO DE VENTAS POR VENDEDOR
 -------------------------------------------------------------------------------------------*/
 	$i=0;
 	$ls_sql = "SELECT   VENDEDOR.co_persona, UPPER(VENDEDOR.tx_nombre)||' '||UPPER(VENDEDOR.tx_apellido) as Vendedor,
-						SUM(t01_detalle.nu_cant_item) as item, 
 						SUM(t01_detalle.nu_cantidad * t01_detalle.nu_precio) as monto						
 				FROM t01_detalle
 			    INNER JOIN t20_factura ON t01_detalle.fk_factura = t20_factura.pk_factura
 				LEFT JOIN s01_persona AS VENDEDOR ON t20_factura.fk_responsable = VENDEDOR.co_persona					
-			WHERE t20_factura.tx_tipo='VENTA' AND t01_detalle.fk_rubro = ".$pk_proyecto.  
+			WHERE t20_factura.tx_tipo='VENTA' AND 
+			t20_factura.in_pedido='N' AND 
+			t20_factura.fk_proyecto = ".$pk_proyecto.  
 			" GROUP BY VENDEDOR.co_persona, VENDEDOR.tx_nombre,VENDEDOR.tx_apellido ORDER BY VENDEDOR.tx_nombre ASC";
 	
 	//echo $ls_sql;
@@ -271,7 +282,7 @@ RUTINAS: LISTADO DE VENTAS POR VENDEDOR
 	if($ls_resultado_vendedor != 0){
 		$tarea = "V";
 	}else{
-		fun_error(1,$li_id_conex_venta,$ls_sql,$_SERVER[PHP_SELF]);
+		fun_error(1,$li_id_conex_venta,$ls_sql,$_SERVER['PHP_SELF']);
 	}
 	
 /*-------------------------------------------------------------------------------------------
@@ -292,7 +303,7 @@ RUTINAS: LISTADO DE VENTAS POR VENDEDOR
 	if($ls_resultado_gasto != 0){
 		$tarea_gasto = "G";
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);
 	}	
 	
 	$Ganancia = $SumaTotal - $TotalGasto;	
@@ -437,7 +448,6 @@ RUTINAS: LISTADO DE VENTAS POR VENDEDOR
 								<tr>
 									<th width="40px"></th>
 									<th>Vendedor</th>
-									<th>Items</th>
 									<th>Monto Ventas</th>
 								</tr>
 							</thead>
@@ -452,7 +462,6 @@ RUTINAS: LISTADO DE VENTAS POR VENDEDOR
 							 <tfoot>
 								<tr>
 									<td colspan="2" align="right"><strong>Total </strong></td>
-									<td><strong><span class="blue "><?php echo number_format($TotalItem,2,",","."); ?></span></strong></td>
 									<td><strong><span class="blue "><?php echo number_format($SumaTotal,2,",","."); ?></span></strong></td>
 								</tr>
 							  </tfoot>	
@@ -461,7 +470,7 @@ RUTINAS: LISTADO DE VENTAS POR VENDEDOR
 						
 	
 					<div class="col-sm-6 padding">
-						<div id="container_1" style="padding: 10px; border-color:#E0E0E0; border-style: solid; border-width: 0.5px; margin: 0 height: 300px; min-width: 310px"></div>
+						<div id="container_1" style="padding: 10px; border-color:#E0E0E0; border-style: solid; border-width: 0.5px; margin: 0 height:300px; min-width: 310px"></div>
 					</div><!-- /.widget-main -->
 							
 				</div><!-- /.col -->
@@ -469,7 +478,7 @@ RUTINAS: LISTADO DE VENTAS POR VENDEDOR
 			<!--  **********************   VENTAS POR RUBRO   ******************   -->
 			<h3 class="header smaller  blue">
 				<i class="ace-icon fa fa-bullhorn"></i>
-				Ventas por Rubro
+				Ventas 
 			</h3>
 			
 			<div class="row">								
@@ -481,13 +490,11 @@ RUTINAS: LISTADO DE VENTAS POR VENDEDOR
 							</div>								
 							<thead>
 								<tr>
-									<th>Rubro</th>
-									<th>Animales</th>
-									<th>Cantidad (kg)</th>	
-									<th>Prom. Peso(kg)</th>	
-									<th>Prom. Venta/Anim.(Bs)</th>
-									<th>Prom. Venta/Kg(Bs)</th>										
-									<th>Ventas(Bs)</th>
+									<th>Clase</th>
+									<th>Articulo</th>
+									<th>Precio Prom.</th>
+									<th>Cantidad</th>
+									<th>Total</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -497,31 +504,27 @@ RUTINAS: LISTADO DE VENTAS POR VENDEDOR
 									fun_dibujar_tabla($obj_miconexion_proyecto,$li_numcampo,$li_indicecampo, 'LISTAR_VENTA_RUBRO'); // Dibuja la Tabla de Datos
 									$obj_miconexion_proyecto->fun_closepg($li_id_conex_proyecto,$ls_resultado_proyecto);
 								?>
-								<tr>
-									<td align="right"><strong>Total</strong></td>
-									<td><strong><span class="blue "><?php echo number_format($TotalItem,2,",","."); ?></span></strong></td>
+								 <tr>
+									<td align="right" colspan="3"><strong>Total</strong></td>
 									<td><strong><span class="blue "><?php echo number_format($TotalCantidad,2,",","."); ?></span></strong></td>
-									<td><strong><span class="blue "><?php echo number_format($PromPeso,2,",","."); ?></span></strong></td>
-									<td><strong><span class="blue "><?php echo number_format($PromItem,2,",","."); ?></span></strong></td>
-									<td><strong><span class="blue "><?php echo number_format($PromCant,2,",","."); ?></span></strong></td>
-									<td><strong><span class="blue "><?php echo number_format($SumaTotal,2,",","."); ?></span></strong></td>
-								</tr>
+									<td><strong><span class="blue "><?php echo number_format($SumaTotal,0,",","."); ?></span></strong></td>
+								</tr> 
 							</tbody>
 						</table>								
 					</div><!-- /.col -->	
 							
 			</div><!-- /.row -->
 			
-			<div class="row">								
+			<!-- <div class="row">								
 					<div class="col-sm-12 padding">
 						<div id="container_2" style="padding: 10px; border-color:#E0E0E0; border-style: solid; border-width: 0.5px; margin: 0 height: 300px; min-width: 310px"></div>
-					</div><!-- /.widget-main -->
-			</div><!-- /.row -->
+					</div>
+			</div> -->
 			
 			<!--  **********************   GASTOS  ******************   -->
 		
 			
-			<h3 class="header smaller blue">
+	<!-- 		<h3 class="header smaller blue">
 				<i class="ace-icon fa fa-bullhorn"></i>
 				Gastos
 			</h3>
@@ -543,11 +546,11 @@ RUTINAS: LISTADO DE VENTAS POR VENDEDOR
 							</thead>
 							<tbody>
 								<?php   
-										$li_numcampo = 0; // Columnas que se muestran en la Tabla
+										/* $li_numcampo = 0; // Columnas que se muestran en la Tabla
 										$li_indicecampo = $obj_miconexion_gasto->fun_numcampos()-1; // Referencia al indice de la columna clave
 										fun_dibujar_tabla($obj_miconexion_gasto,$li_numcampo,$li_indicecampo, 'LISTAR_GASTO'); // Dibuja la Tabla de Datos
 										$obj_miconexion->fun_closepg($li_id_conex_gasto,$ls_resultado_gasto);
-								?>
+ */								?>
 								<tr>
 									<td colspan="2" align="right"><strong>Total</strong></td>
 									<td><strong><span class="blue "><?php echo number_format($TotalGasto,2,",","."); ?></span></strong></td>
@@ -555,16 +558,16 @@ RUTINAS: LISTADO DE VENTAS POR VENDEDOR
 								
 							</tbody>
 						</table>								
-					</div><!-- /.col -->	
+					</div>
 						
 	
 					<div class="col-sm-6 padding">
 						<div id="container_3" style="padding: 10px; border-color:#E0E0E0; border-style: solid; border-width: 0.5px; margin: 0 height: 300px; min-width: 310px"></div>
-					</div><!-- /.widget-main -->
+					</div>
 							
-				</div><!-- /.col -->
-			</div><!-- /.row -->
-		
+				</div>
+			</div>
+		 -->
 
 	</div> <!-- /.row tabla principal -->
 </div> <!-- /.page-content -->
@@ -598,7 +601,6 @@ RUTINAS: LISTADO DE VENTAS POR VENDEDOR
 						 "data":           null,
                 		"defaultContent": ''
 					},
-					{ "orderable": false },
 					{ "orderable": false },
 					{ "orderable": false }
 				

@@ -307,26 +307,24 @@ function fun_dibujar_tabla($rs,$li_columnas,$li_indice, $operacion){
 		if(strtoupper($operacion)=='LISTAR_VENTA_VENDEDOR'){ 
 			echo "<td class='details-control' id='".$row[$i++]."'></td>"; 
 			echo "<td class=''>" . $row[$i++] . "</td>"; 
-			echo "<td >" . $row[$i++] . "</td>"; 
 			echo "<td > <span class='blue '>".number_format($row[$i++],2,",",".")."</span></td>";  
 		}
 		
 		if(strtoupper($operacion)=='LISTAR_VENTA_RUBRO'){ 
-			echo "<td class=''>" . $row[$i++] . "</td>"; 
-			$Item = $row[$i];
-			echo "<td class=''>" . number_format($row[$i++],2,",",".") . "</td>"; 
-			$Cant = $row[$i];
-			echo "<td class=''>" . number_format($row[$i++],2,",",".") . "</td>"; 
-			$Venta = $row[$i];
-			$PromItem = $Item == 0 ? 0: ($Venta / $Item );
-			$PromCant = $Cant == 0 ? 0: ($Venta / $Cant );
-			$PromPeso = $Item == 0 ? 0: ($Cant / $Item );
-			
-			echo "<td class=''>" . number_format($PromPeso,2,",",".") . "</td>";
-			
-			echo "<td class=''>" . number_format($PromItem,2,",",".") . "</td>"; 
-			echo "<td class=''>" . number_format($PromCant,2,",",".") . "</td>"; 
-			echo "<td > <span class='blue '>".number_format($row[$i++],2,",",".")."</span></td>";  
+
+			$categoria = $row[$i++];
+			$articulo = $row[$i++];
+			$catidad = $row[$i++];
+			$total = $row[$i++];
+
+			$promedio = $catidad >0 ? $total / $catidad: 0;
+
+
+			echo "<td class=''>" .$categoria . "</td>"; 
+			echo "<td class=''>" .$articulo . "</td>"; 
+			echo "<td class=''>" . number_format($promedio,2,",",".") . "</td>"; 
+			echo "<td class=''>" . number_format($catidad,0,",",".") . "</td>"; 			
+			echo "<td class=''>" . number_format($total,2,",",".") . "</td>"; 			 
 		}
 		
 		if(strtoupper($operacion)=='LISTAR_VENTA_PROYECTO'){ 
