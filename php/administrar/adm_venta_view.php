@@ -164,6 +164,11 @@ RUTINAS: Consulta  datos resumen
 	LEE LOS DATOS DE LAS VENTAS PARA MOSTRAR EN LA TABLA
 -------------------------------------------------------------------------------------------*/			
 	$ls_sql = "SELECT to_char(pk_factura,'0000000'), to_char(fe_fecha_factura, 'dd-TMMon-yyyy'), tx_telefono_hab, UPPER(s01_persona.tx_nombre), tx_nota,
+				CASE 
+				WHEN in_pedido = 'S' THEN 'NUEVO'
+				WHEN (f_calcular_factura(pk_factura) - f_calcular_abono(pk_factura)) = 0 THEN 'COMPLETADO'
+				ELSE 'EN PROCESO'
+			END AS nombre_status,
 				f_calcular_factura(pk_factura), f_calcular_abono(pk_factura) AS abono, (f_calcular_factura(pk_factura) - f_calcular_abono(pk_factura)) as debe,
 				pk_factura
 			FROM t20_factura
@@ -369,6 +374,7 @@ RUTINAS: Consulta  datos resumen
 										<th class="">Fecha</th>
 										<th class="">Cliente</th>
 										<th class="hidden-480">Referencia</th>
+										<th class="">Estatus</th>
 										
 										<th class="hidden">Total</th> <!-- Se utiliza una columna oculta para visualizar el formato numerico correcto  -->	
 										<th class="">Total</th>
@@ -458,6 +464,7 @@ RUTINAS: Consulta  datos resumen
 				"columns": [
 					null,
 					{ "orderable": false },
+					null,
 					null,
 					null,
 					null,

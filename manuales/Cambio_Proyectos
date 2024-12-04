@@ -1,0 +1,165 @@
+ 1.- Crear la columna fk_proyecto en factura
+ 
+ ======================================================
+
+-- Column: public.t20_factura.fk_proyecto
+
+-- ALTER TABLE IF EXISTS public.t20_factura DROP COLUMN IF EXISTS fk_proyecto;
+
+ALTER TABLE IF EXISTS public.t20_factura
+    ADD COLUMN fk_proyecto numeric;
+    
+    ==================================================
+    
+    
+2.- ACTUALIZAR EN LA TABLA FACTURA EL COLUMNA FK_PROYECTO
+
+======================================================
+
+UPDATE public.t20_factura SET fk_proyecto=2
+
+=========================================================
+	
+
+3.- Crear Constraint en tabla factura
+============================
+
+Borrar vista
+v02_resumen_proyecto
+
+v06_mov_resumen
+    
+4.- Actualizar Vistas
+==========================================================
+
+-- View: public.v03_resumen_venta
+
+-- DROP VIEW public.v03_resumen_venta;
+
+CREATE OR REPLACE VIEW public.v03_resumen_venta
+ AS
+ SELECT t01_detalle.fk_rubro AS fk_proyecto,
+    sum(t01_detalle.nu_cantidad * t01_detalle.nu_precio) AS totalventa,
+    sum(t01_detalle.nu_cantidad) AS cantidad,
+    sum(t01_detalle.nu_cant_item) AS items
+   FROM t01_detalle
+     JOIN t20_factura ON t20_factura.pk_factura = t01_detalle.fk_factura
+  WHERE t20_factura.tx_tipo::text = 'VENTA'::text AND date_part('year'::text, t20_factura.fe_fecha_factura) = date_part('year'::text, now())
+  GROUP BY t01_detalle.fk_rubro;
+
+ALTER TABLE public.v03_resumen_venta
+    OWNER TO postgres;
+    
+==============================================================
+
+-- View: public.v04_resumen_gasto
+
+-- DROP VIEW public.v04_resumen_gasto;
+
+CREATE OR REPLACE VIEW public.v04_resumen_gasto
+ AS
+ SELECT t20_factura.fk_proyecto,
+    sum(t01_detalle.nu_cantidad * t01_detalle.nu_precio) AS totalgasto
+   FROM t01_detalle
+     JOIN t20_factura ON t20_factura.pk_factura = t01_detalle.fk_factura
+  WHERE t20_factura.tx_tipo::text = 'GASTO'::text AND date_part('year'::text, t20_factura.fe_fecha_factura) = date_part('year'::text, now())
+  GROUP BY t20_factura.fk_proyecto;
+
+ALTER TABLE public.v04_resumen_gasto
+    OWNER TO postgres;
+    
+   ==============================================================
+    
+    -- View: public.v02_resumen_proyecto
+
+-- DROP VIEW public.v02_resumen_proyecto;
+
+CREATE OR REPLACE VIEW public.v02_resumen_proyecto
+ AS
+ SELECT t02_proyecto.pk_proyecto,
+    t02_proyecto.tx_nombre,
+    t08_tipo_proyecto.nb_tipo_rubro,
+        CASE
+            WHEN v03_resumen_venta.totalventa IS NULL THEN 0::numeric
+            ELSE v03_resumen_venta.totalventa
+        END AS ventas,
+        CASE
+            WHEN v04_resumen_gasto.totalgasto IS NULL THEN 0::numeric
+            ELSE v04_resumen_gasto.totalgasto
+        END AS gastos,
+        CASE
+            WHEN v03_resumen_venta.cantidad IS NULL THEN 0::numeric
+            ELSE v03_resumen_venta.cantidad
+        END AS cantidad,
+        CASE
+            WHEN v03_resumen_venta.items IS NULL THEN 0::numeric
+            ELSE v03_resumen_venta.items
+        END AS items
+   FROM t02_proyecto
+     LEFT JOIN v03_resumen_venta ON t02_proyecto.pk_proyecto = v03_resumen_venta.fk_proyecto
+     LEFT JOIN v04_resumen_gasto ON t02_proyecto.pk_proyecto = v04_resumen_gasto.fk_proyecto
+     JOIN t08_tipo_proyecto ON t02_proyecto.fk_tipo_rubro = t08_tipo_proyecto.pk_tipo_rubro;
+
+ALTER TABLE public.v02_resumen_proyecto
+    OWNER TO postgres;
+COMMENT ON VIEW public.v02_resumen_proyecto
+    IS 'Esta vista agrupa o resume la ventas y gastos asociados a un determinado proyecto';
+
+=============================================================
+
+
+-- View: public.v05_mov_proyectos
+
+-- DROP VIEW public.v05_mov_proyectos;
+
+CREATE OR REPLACE VIEW public.v05_mov_proyectos
+ AS
+ SELECT t20_factura.tx_tipo AS tipo_operacion,
+    t20_factura.fk_proyecto,
+    t20_factura.fe_fecha_factura,
+    t01_detalle.nu_precio AS valorunit,
+    t01_detalle.nu_cantidad AS cantidad,
+    t01_detalle.nu_cantidad * t01_detalle.nu_precio AS valortotal,
+    t01_detalle.nu_cant_item AS items
+   FROM t01_detalle
+     LEFT JOIN t20_factura ON t20_factura.pk_factura = t01_detalle.fk_factura;
+
+ALTER TABLE public.v05_mov_proyectos
+    OWNER TO postgres;
+
+========================================================
+
+
+-- View: public.v06_mov_resumen
+
+-- DROP VIEW public.v06_mov_resumen;
+
+CREATE OR REPLACE VIEW public.v06_mov_resumen
+ AS
+ SELECT v05_mov_proyectos.fk_proyecto,
+    v05_mov_proyectos.fe_fecha_factura,
+    v05_mov_proyectos.valorunit,
+    v05_mov_proyectos.cantidad,
+    v05_mov_proyectos.items,
+        CASE
+            WHEN v05_mov_proyectos.tipo_operacion::text = 'GASTO'::text THEN v05_mov_proyectos.valortotal
+            ELSE 0::numeric
+        END AS gasto,
+        CASE
+            WHEN v05_mov_proyectos.tipo_operacion::text = 'VENTA'::text THEN v05_mov_proyectos.valortotal
+            ELSE 0::numeric
+        END AS venta
+   FROM v05_mov_proyectos;
+
+ALTER TABLE public.v06_mov_resumen
+    OWNER TO postgres;
+
+
+
+==========================================
+
+Eliminar y restaura todas las vistas
+
+    
+    
+

@@ -130,7 +130,7 @@ if ($usu_autentico != "SI") {
 	$ls_resultado =  $obj_miconexion->fun_consult($ls_sql);
 	if ($ls_resultado != 0) {
 		$row = pg_fetch_row($ls_resultado, 0);
-		$Banco    = $row[0];
+		$Banco    = $row[0]?? 0;
 	} else {
 		fun_error(1, $li_id_conex, $ls_sql, $_SERVER['PHP_SELF'], __LINE__); // enviar mensaje de error de consulta
 	}
@@ -141,13 +141,13 @@ if ($usu_autentico != "SI") {
 	-----------------------------------------------------------------------------------------------*/
 	$ls_sql = "SELECT sum(f_calcular_factura(pk_factura)) - sum(f_calcular_abono_capital(pk_factura)) as Debe 
 				FROM t20_factura 
-			WHERE t20_factura.tx_tipo='CTAXPAGAR' or t20_factura.tx_tipo='GASTO' ";
+			WHERE t20_factura.in_pedido='N' and (t20_factura.tx_tipo='CTAXPAGAR' or t20_factura.tx_tipo='GASTO' )";
 
 	//echo $ls_sql;
 	$ls_resultado =  $obj_miconexion->fun_consult($ls_sql);
 	if ($ls_resultado != 0) {
 		$row = pg_fetch_row($ls_resultado, 0);
-		$DebeCtxPag    = $row[0];
+		$DebeCtxPag    = $row[0]?? 0;
 	} else {
 		fun_error(1, $li_id_conex, $ls_sql, $_SERVER['PHP_SELF'], __LINE__); // enviar mensaje de error de consulta
 	}
@@ -156,6 +156,7 @@ if ($usu_autentico != "SI") {
 	/*-------------------------------------------------------------------------------------------
 	CONSULTA DE CUENTAS POR COBRAR VENTAS
 -----------------------------------------------------------------------------------------------*/
+	$VentaXcobrar =0;
 	$ls_sql = "SELECT sum(detalle) - sum(abono) as Debe 
 		FROM v01_pago 
 		WHERE v01_pago.tx_tipo='VENTA'";
@@ -164,10 +165,11 @@ if ($usu_autentico != "SI") {
 	$ls_resultado =  $obj_miconexion->fun_consult($ls_sql);
 	if ($ls_resultado != 0) {
 		$row = pg_fetch_row($ls_resultado, 0);
-		$VentaXcobrar    = $row[0];
+		$VentaXcobrar    = $row[0]?? 0;
 	} else {
 		fun_error(1, $li_id_conex, $ls_sql, $_SERVER['PHP_SELF'], __LINE__); // enviar mensaje de error de consulta
 	}
+
 
 	/*-------------------------------------------------------------------------------------------
 	CONSULTA DE MONTO DISPONIBLE
@@ -327,14 +329,18 @@ if ($usu_autentico != "SI") {
 	/*-------------------------------------------------------------------------------------------------------------------------------------------------------
 	 TABLA - GASTOS POR CATEGORIA
 	---------------------------------------------------------------------------------------------------------------------------------------------------------*/
-	$ls_sql = "SELECT nb_categoria, SUM(nu_cantidad * nu_precio) AS Precio_Total
+	$ls_sql = "SELECT nb_articulo, SUM(nu_cantidad * nu_precio) AS Precio_Total
 	FROM t01_detalle
 	  INNER JOIN t20_factura ON t20_factura.pk_factura = t01_detalle.fk_factura
 	  LEFT JOIN t13_articulo ON t13_articulo.pk_articulo = t01_detalle.fk_articulo
 	  LEFT JOIN t05_clase ON t05_clase.pk_clase = t13_articulo.fk_clase
 	  LEFT JOIN t21_categoria ON t21_categoria.pk_categoria = t05_clase.fk_categoria
-	WHERE EXTRACT(YEAR FROM t20_factura.fe_fecha_factura) = $CURRENT_YEAR AND  t20_factura.tx_tipo = 'GASTO' OR t20_factura.tx_tipo = 'NOMINA'
-	GROUP BY nb_categoria ORDER BY Precio_Total DESC";
+	WHERE EXTRACT(YEAR FROM t20_factura.fe_fecha_factura) = $CURRENT_YEAR AND  
+	(t20_factura.tx_tipo = 'GASTO' OR t20_factura.tx_tipo = 'NOMINA') AND
+	t20_factura.in_pedido = 'N'
+	GROUP BY nb_articulo ORDER BY Precio_Total DESC";
+
+
 
 	$ls_resultado_4 =  $obj_miconexion_4->fun_consult($ls_sql);
 	if ($ls_resultado_4 != 0) {
@@ -380,6 +386,7 @@ if ($usu_autentico != "SI") {
 	LEFT JOIN t05_clase ON t05_clase.pk_clase = t13_articulo.fk_clase 
 	LEFT JOIN t21_categoria ON t21_categoria.pk_categoria = t05_clase.fk_categoria 
 	WHERE EXTRACT(YEAR FROM t20_factura.fe_fecha_factura) = $CURRENT_YEAR AND t20_factura.tx_tipo = 'VENTA'  
+	AND t20_factura.in_pedido = 'N'
 	GROUP BY nb_categoria, nb_articulo ORDER BY Cantidad DESC";
 
 	$ls_resultado_6 =  $obj_miconexion_6->fun_consult($ls_sql);
@@ -665,7 +672,7 @@ if ($usu_autentico != "SI") {
 								<div class="widget-header widget-header-flat">
 									<h4 class="widget-title lighter">
 										<i class="ace-icon fa fa-star orange"></i>
-										Finanzas (Real)
+										Finanzas 
 									</h4>
 
 									<div class="widget-toolbar">
@@ -721,7 +728,7 @@ if ($usu_autentico != "SI") {
 
 						<div class="space-6"></div>
 
-						<div class="row">
+					<!-- 	<div class="row">
 							<div class="widget-box transparent ">
 								<div class="widget-header widget-header-flat">
 									<h4 class="widget-title lighter">
@@ -754,8 +761,7 @@ if ($usu_autentico != "SI") {
 												<tbody>
 													<?php
 
-													foreach ($data_5 as $row) {
-														// Accediendo al valor de la columna "nombre" en cada fila
+													/* foreach ($data_5 as $row) {
 														$proyecto   = $row[0];
 														$ventaNeta    = floatval($row[1]);
 														$gastoNeto    = floatval($row[2]);
@@ -768,16 +774,16 @@ if ($usu_autentico != "SI") {
 														echo "<td>" . number_format($gastoNeto, 2, ",", ".") . "</td>";  // gasto
 														echo "<td>" . number_format(floatval($gananciaNeta), 2, ",", ".") . "</td>";  // Ganancia	
 														echo "<td class=''>" . number_format($porc_gan, 2, ",", ".") . "%</td>";
-													}
+													} */
 													?>
 												</tbody>
 											</table>
-										</div><!-- /.widget-main -->
-									</div><!-- /.widget-body -->
-								</div><!-- /.widget-box -->
+										</div>
+									</div>
+								</div>
 
 							</div>
-						</div>
+						</div> -->
 
 
 						<div class="space-6"></div>
@@ -788,7 +794,7 @@ if ($usu_autentico != "SI") {
 								<div class="widget-header widget-header-flat">
 									<h4 class="widget-title lighter">
 										<i class="ace-icon fa fa-star orange"></i>
-										Ventas por Ingresos Mensual
+										Gráfica Egresos vs Ingresos Mensual
 									</h4>
 
 									<div class="widget-toolbar">
@@ -810,12 +816,12 @@ if ($usu_autentico != "SI") {
 						<div class="space-6"></div>
 
 						<!-- GASTOS DETALLE -->
-						<div class="row">
+						<!-- <div class="row">
 							<div class="widget-box transparent ">
 								<div class="widget-header widget-header-flat">
 									<h4 class="widget-title lighter">
 										<i class="ace-icon fa fa-star orange"></i>
-										Egresos
+										Gastos Totales
 									</h4>
 
 									<div class="widget-toolbar">
@@ -863,16 +869,16 @@ if ($usu_autentico != "SI") {
 										<div class="col-sm-6">
 											<div id="container_2" style="height: 400px; min-width: 310px"></div>
 										</div>
-									</div><!-- /.widget-main -->
-								</div><!-- /.widget-body -->
-							</div><!-- /.widget-box -->
+									</div>
+								</div>
+							</div>
 
-						</div><!-- /.ROW -->
+						</div> -->
 
 						<div class="space-6"></div>
 
 						<!-- VENTAS  DETALLE -->
-						<div class="row">
+						<!-- <div class="row">
 							<div class="widget-box transparent ">
 								<div class="widget-header widget-header-flat">
 									<h4 class="widget-title lighter">
@@ -904,37 +910,29 @@ if ($usu_autentico != "SI") {
 												<tbody>
 													<?php
 
-													$li_numcampo = 0; // Columnas que se muestran en la Tabla
+												/* 	$li_numcampo = 0; // Columnas que se muestran en la Tabla
 													$li_indicecampo = $obj_miconexion_6->fun_numcampos(); // Referencia al indice de la columna clave
 													fun_dibujar_tabla($obj_miconexion_6, $li_numcampo, $li_indicecampo, 'LISTAR_VENTAS_PERIODO'); // Dibuja la Tabla de Datos
 													$obj_miconexion_4->fun_closepg($li_id_conex_6, $ls_resultado_6);
-
+ */
 													?>
 												</tbody>
-												<!-- <tfoot>
-													<tr>
-														<th colspan="2">Total</th>
-														<th>
-															<span class="label label-warning ">
-																<?php echo number_format($total_venta_periodo, 2, ",", ".") . ' Bs'; ?>
-															</span>
-														</th>
-
-													</tr>
-												</tfoot> -->
+											
+													<?php //echo number_format($total_venta_periodo, 2, ",", ".") . ' Bs'; ?>
+															
 											</table>
 										</div>
 
 										<div class="col-sm-6">
 											<div id="container_3" style="height: 400px; min-width: 310px"></div>
 										</div>
-									</div><!-- /.widget-main -->
-								</div><!-- /.widget-body -->
-							</div><!-- /.widget-box -->
+									</div>
+								</div>
+							</div>
 
-						</div><!-- /.ROW -->
+						</div>
 
-
+ -->
 					</div> <!-- ROW CONTENT END -->
 				</div> <!-- /.main-content-inner -->
 

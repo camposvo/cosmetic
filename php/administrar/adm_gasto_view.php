@@ -162,7 +162,13 @@ if ($usu_autentico != "SI") {
 	/*-------------------------------------------------------------------------------------------
 	RUTINAS: Consulta  de registros de la busqueda
 	-------------------------------------------------------------------------------------------*/
-	$ls_sql = "SELECT to_char(pk_factura,'0000000'), to_char(fe_fecha_factura, 'dd-TMMon-yyyy'), UPPER(s01_persona.tx_nombre),tx_telefono_hab,  tx_concepto,
+	$ls_sql = "SELECT to_char(pk_factura,'0000000'), to_char(fe_fecha_factura, 'dd-TMMon-yyyy'), UPPER(s01_persona.tx_nombre),
+			CASE 
+				WHEN in_pedido = 'S' THEN 'NUEVO'
+				WHEN (f_calcular_factura(pk_factura) - f_calcular_abono(pk_factura)) = 0 THEN 'COMPLETADO'
+				ELSE 'EN PROCESO'
+			END AS nombre_status,
+		tx_concepto,
 		f_calcular_factura(pk_factura) as total, f_calcular_abono(pk_factura) AS abono, (f_calcular_factura(pk_factura) - f_calcular_abono(pk_factura)) as debe,
 		pk_factura
 		FROM t20_factura
@@ -284,9 +290,9 @@ if ($usu_autentico != "SI") {
 											<table id="" class="table table-striped table-bordered ">
 												<thead>
 													<tr class="info">
-														<th>Egreso Netos</th>
-														<th>Egreso Real</th>
-														<th>Deuda por Pagar</th>
+														<th>Total</th>
+														<th>Abono</th>
+														<th>Debe</th>
 
 													</tr>
 
@@ -328,7 +334,7 @@ if ($usu_autentico != "SI") {
 											<th class="hidden-480">id</th>
 											<th class="">Fecha</th>
 											<th class="">Proveedor</th>
-											<th class="hidden-480">Teléfono</th>
+											<th class="hidden-480">Estatus</th>
 											<th class="hidden-480">Referencia</th>
 
 											<th class="hidden">Total</th> <!-- Se utiliza una columna oculta para visualizar el formato numerico correcto  -->
