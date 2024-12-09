@@ -9,6 +9,9 @@
 		exit();
 	}
 
+	/* ini_set('display_errors', 1);
+    error_reporting(E_ALL);  */
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -314,7 +317,7 @@
 									<tbody>	
 										<?php   
 											if($tarea == "M"){
-												$li_numcampo = $obj_miconexion->fun_numcampos()-9; // Columnas que se muestran en la Tabla
+												$li_numcampo =0; // Columnas que se muestran en la Tabla
 												$li_indicecampo = $obj_miconexion->fun_numcampos(); // Referencia al indice de la columna clave
 												fun_dibujar_tabla($obj_miconexion,$li_numcampo,$li_indicecampo, 'LISTAR_SEGUIMIENTO',0); // Dibuja la Tabla de Datos
 											}

@@ -345,14 +345,16 @@ function fun_dibujar_tabla($rs, $li_columnas, $li_indice, $operacion, $variable)
 						<a class="tooltip-info open-event" href="#" title="Editar" onClick=\'Editar_Gasto("' . $ls_cod . '");return false;\' >
 							<i class="ace-icon fa fa-pencil bigger-130"></i>
 						</a>
+
+						<a class="green tooltip-success  open-event" href="#" title="Pagar" onClick=\'Pagar_Gasto("' . $ls_cod . '");return false;\'>
+							<i class="ace-icon fa fa-dollar bigger-130"></i>
+						</a>
 						
 						<a class="red tooltip-error open-event" href="#" title="Borrar" onClick=\'Eliminar_Gasto("' . $ls_cod . '");return false;\'>
 							<i class="ace-icon fa fa-trash-o bigger-120"></i>
 						</a>
 
-						<a class="green tooltip-success  open-event" href="#" title="Pagar" onClick=\'Pagar_Gasto("' . $ls_cod . '");return false;\'>
-							<i class="ace-icon fa fa-dollar bigger-130"></i>
-						</a>
+						
 
 					</div>
 
@@ -370,6 +372,14 @@ function fun_dibujar_tabla($rs, $li_columnas, $li_indice, $operacion, $variable)
 										</span>
 									</a>
 								</li>
+
+								<li>
+									<a href="#" class="tooltip-info" data-rel="tooltip" title="Pagar" onClick=\'Pagar_Gasto("' . $ls_cod . '");return false;\'>
+										<span class="green">
+											<i class="ace-icon fa fa-dollar bigger-130"></i>
+										</span>
+									</a>
+								</li>
 								
 								<li>
 									<a href="#" class="tooltip-info" data-rel="tooltip" title="Eliminar" onClick=\'Eliminar_Gasto("' . $ls_cod . '");return false;\'>
@@ -379,13 +389,7 @@ function fun_dibujar_tabla($rs, $li_columnas, $li_indice, $operacion, $variable)
 									</a>
 								</li>
 
-								<li>
-									<a href="#" class="tooltip-info" data-rel="tooltip" title="Pagar" onClick=\'Pagar_Gasto("' . $ls_cod . '");return false;\'>
-										<span class="red">
-											<i class="ace-icon fa fa-trash-o bigger-120"></i>
-										</span>
-									</a>
-								</li>
+								
 
 							</ul>
 						</div>
@@ -397,6 +401,14 @@ function fun_dibujar_tabla($rs, $li_columnas, $li_indice, $operacion, $variable)
 
 				echo '<td  align="center">
 					<div class="hidden-sm hidden-xs action-buttons">
+
+						<a class="tooltip-info open-event" href="#" title="Editar" onClick=\'Editar_Gasto("' . $ls_cod . '");return false;\' >
+							<i class="ace-icon fa fa-pencil bigger-130"></i>
+						</a>
+
+						<a class="green tooltip-success  open-event" href="#" title="Pagar" onClick=\'Pagar_Gasto("' . $ls_cod . '");return false;\'>
+							<i class="ace-icon fa fa-dollar bigger-130"></i>
+						</a>
 						
 						<a class="red tooltip-error open-event" href="#" title="Borrar" onClick=\'Eliminar_Gasto("' . $ls_cod . '");return false;\'>
 							<i class="ace-icon fa fa-trash-o bigger-120"></i>
@@ -416,6 +428,22 @@ function fun_dibujar_tabla($rs, $li_columnas, $li_indice, $operacion, $variable)
 									<a href="#" class="tooltip-info" data-rel="tooltip" title="Eliminar" onClick=\'Eliminar_Gasto("' . $ls_cod . '");return false;\'>
 										<span class="red">
 											<i class="ace-icon fa fa-trash-o bigger-120"></i>
+										</span>
+									</a>
+								</li>
+
+								<li>
+									<a href="#" class="tooltip-info" data-rel="tooltip" title="Ver" onClick=\'Editar_Gasto("' . $ls_cod . '");return false;\'>
+										<span class="blue">
+											<i class="ace-icon fa fa-pencil bigger-130"></i>
+										</span>
+									</a>
+								</li>
+
+								<li>
+									<a href="#" class="tooltip-info" data-rel="tooltip" title="Pagar" onClick=\'Pagar_Gasto("' . $ls_cod . '");return false;\'>
+										<span class="green">
+											<i class="ace-icon fa fa-dollar bigger-130"></i>
 										</span>
 									</a>
 								</li>
@@ -462,21 +490,7 @@ function fun_dibujar_tabla($rs, $li_columnas, $li_indice, $operacion, $variable)
 		}
 
 		if (strtoupper($operacion) == 'LISTAR_VENTA_ADD') {
-			/* echo "<td><select name='det_Proyecto[]'  class='chosen-select' >";
-				$o_rubro = $row[$i++];
-				if ($o_rubro == ""){
-					echo "<option value='0' selected></option>";
-				}else{
-					echo "<option value='0'></option>";
-				}
-				foreach($arr_rubro as $k => $v) {
-					$ls_cadenasel =($k == $o_rubro)?'selected':'';
-					echo "<option value='$k' $ls_cadenasel>$v</option>";                
-				}
-				echo "</select></td>";	 */
-
-			//echo "<td><input name='det_Item[]' onkeypress = 'return validardec(event);'  class='' size='7' value='".$row[$i++]."' type='text'></td>";
-
+			
 			echo "<td><select name='det_Articulo[]'  class='chosen-select' >";
 			$o_articulo = $row[$i++];
 			if ($o_articulo == "") {
@@ -733,13 +747,19 @@ function fun_dibujar_tabla($rs, $li_columnas, $li_indice, $operacion, $variable)
 		if (strtoupper($operacion) == 'LISTAR_PAGAR') {
 
 			$debe = $bandera ? $variable : $debe;
-			echo "<td class=''>" . $row[$i++] . "</td>";
-			echo "<td class=''>" . $row[$i++] . "</td>";
-			echo "<td class=''>" . $row[$i++] . "</td>";
-			echo "<td class=''>" . $row[$i++] . "</td>";
+			$referencia   = $row[$i++];
+			$fecha   = $row[$i++];
+			$nombre   = $row[$i++];
+			$concepto   = $row[$i++];
 			$interes   = $row[$i++];
 			$abono   = $row[$i++];
 			$egreso  = $row[$i++];
+
+			echo "<td class=''>" . $referencia . "</td>";
+			echo "<td class=''>" . $fecha . "</td>";
+			echo "<td class=''>" . $nombre . "</td>";
+			echo "<td class=''>" . $concepto . "</td>";
+			
 
 			if ($ls_cod1 == 'A') {
 				echo "<td class=''>" . number_format($interes, 2, ",", ".") . "</td>"; //Abono

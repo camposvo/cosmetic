@@ -421,7 +421,7 @@ RUTINAS: LISTADO DE VENTAS POR VENDEDOR
 			<div class="row">
 				<div class="col-xs-12 col-sm-12">
 					<div class="form-group left">												
-						<button type="button" onClick="Atras('<?php echo "tarea=B"; ?>')" class="btn btn-sm  btn-danger">
+						<button type="button" onClick="Atras()" class="btn btn-sm  btn-danger">
 							<i class="ace-icon fa fa-reply  bigger-110 icon-on-right"></i>
 							Regresar
 						</button>																						
@@ -581,6 +581,22 @@ RUTINAS: LISTADO DE VENTAS POR VENDEDOR
 	<script src="../../assets/js/ace.min.js"></script>
 	<script src="../../assets/js/jquery.dataTables.min.js"></script>
 	<script src="../../assets/js/jquery.dataTables.bootstrap.min.js"></script>
+
+	<script type="text/javascript">
+		
+		function Atras(){
+			location.href = "pro_proyecto_view.php?tarea=B";
+		}	
+		
+		function calcular_total(){
+			document.formulario.o_total.value = document.formulario.o_cantidad.value * document.formulario.o_precio.value;
+		}
+		
+		function Limpiar(){
+			document.formulario.reset();
+		}	
+
+	</script>
 	
 	
 
@@ -606,8 +622,8 @@ RUTINAS: LISTADO DE VENTAS POR VENDEDOR
 				
 				],
 				"order": [[1, 'asc']]
-			} );
-			
+			} ); 
+		
 					
 			 // Add event listener for opening and closing details
 			$('#example tbody').on('click', 'td.details-control', function () {
@@ -616,7 +632,7 @@ RUTINAS: LISTADO DE VENTAS POR VENDEDOR
 				
 				var id_vendedor = $(this).attr("id");	
 				var id_proyecto = <?php echo $pk_proyecto; ?>;
-				//alert(id_proyecto );
+				
 				
 					$.post("ajax_proy_finanzas.php", { id_vendedor: id_vendedor, id_proyecto: id_proyecto }, function(data){
 						//alert( "Data Loaded: " + data );
@@ -637,7 +653,7 @@ RUTINAS: LISTADO DE VENTAS POR VENDEDOR
 			
 				/*********************** VENTAS POR VENDEDOR *******************************/
 				
-				Highcharts.chart('container_1', {
+				/* Highcharts.chart('container_1', {
 					 chart: {
 						plotBackgroundColor: null,
 						plotBorderWidth: null,
@@ -664,13 +680,13 @@ RUTINAS: LISTADO DE VENTAS POR VENDEDOR
 					series: [{
 						name: 'Vendedor',
 						colorByPoint: true,
-						data: [<?php echo join($data_1, ','); ?>]
+						data: [<?php //echo join($data_1, ','); ?>]
 					}]
-				});
+				}); */
 				
 				/*********************** VENTAS  POR RUBRO*******************************/
 				
-				Highcharts.chart('container_2', {
+				/* Highcharts.chart('container_2', {
 					 chart: {
 						plotBackgroundColor: null,
 						plotBorderWidth: null,
@@ -697,12 +713,12 @@ RUTINAS: LISTADO DE VENTAS POR VENDEDOR
 					series: [{
 						name: 'Vendedor',
 						colorByPoint: true,
-						data: [<?php echo join($data_2, ','); ?>]
+						data: [<?php //echo join($data_2, ','); ?>]
 					}]
-				});
+				}); */
 				
 				/*********************** GASTOS *******************************/
-				
+			/* 	
 				Highcharts.chart('container_3', {
 					 chart: {
 						plotBackgroundColor: null,
@@ -730,9 +746,9 @@ RUTINAS: LISTADO DE VENTAS POR VENDEDOR
 					series: [{
 						name: 'Vendedor',
 						colorByPoint: true,
-						data: [<?php echo join($data_3, ','); ?>]
+						data: [<?php //echo join($data_3, ','); ?>]
 					}]
-				});
+				}); */
 				
 					
 			
@@ -745,20 +761,6 @@ RUTINAS: LISTADO DE VENTAS POR VENDEDOR
 	
 				
  
-	<script type="text/javascript">
-		
-		function Atras(parametros){
-			location.href = "pro_proyecto_view.php?" + parametros;
-		}	
-		
-		function calcular_total(){
-			document.formulario.o_total.value = document.formulario.o_cantidad.value * document.formulario.o_precio.value;
-		}
-		
-		function Limpiar(){
-			document.formulario.reset();
-		}	
 
-	</script>
 
 </html>

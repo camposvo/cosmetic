@@ -182,11 +182,13 @@ function fun_dibujar_tabla($rs,$li_columnas,$li_indice, $operacion){
 			echo "<td class='blue'>" .$row[$i++]."</td>"; 
 			
 			echo "<td class='hidden-480'>" .$row[$i++]."</td>"; 
+			$ventas = $row[$i++];
+			$gastos = $row[$i++];
 			
-			echo "<td class='hidden'>" .$ventas = $row[$i++]."</td>";  // Ventas  -- esta columna nunca se muestra			
+			echo "<td class='hidden'>" .$ventas."</td>";  // Ventas  -- esta columna nunca se muestra			
 			echo "<td>" .number_format($ventas,2,",",".")."</td>";  // Ventas
 			
-			echo "<td class='hidden'>" .$gastos = $row[$i++]."</td>";  // Gastos -- esta columna nunca se muestra
+			echo "<td class='hidden'>" .$gastos ."</td>";  // Gastos -- esta columna nunca se muestra
 			echo "<td>" .number_format($gastos,2,",",".")."</td>";  // Gastos
 			
 			echo "<td class='hidden-480'>" .number_format($row[$i++],2,",",".")."</td>";  // Ganancia

@@ -116,21 +116,20 @@
 			
 			
 			if(strtoupper($operacion)=='LISTAR_INVENTARIO'){ 
-				echo "<td class=''>" . $row[$i++] . "</td>"; 
-				echo "<td class='hidden-480'>" . $row[$i++] . "</td>"; 
-				echo "<td class=''>" . $row[$i++] . "</td>";		
-				echo "<td class='hidden-480'>" . $row[$i++] . "</td>"; 
+				$articulo = $row[$i++];
+				$presentacion = $row[$i++];
+				$compras = $row[$i++];
+				$ventas = $row[$i++];
+				$inventario = $row[$i++];
+
+				echo "<td class=''>" . $articulo . "</td>"; 
+				echo "<td class='hidden-480'>" . $presentacion . "</td>"; 
+				echo "<td class=''>" . $compras . "</td>";	
+				echo "<td class=''>" . $ventas . "</td>";		
+				echo "<td class='hidden-480'>" . $inventario . "</td>"; 
 
 			
-				
-				echo '<td  align="center">
-						<div>
-							<a class="blue tooltip-info open-event" href="#" title="Inventariar" onClick=\'Inventario("'.$ls_cod.'");return false;\' >
-								<i class="ace-icon fa  fa-home bigger-130"></i>
-							</a>
-						</div>
-					</td>';
-			
+						
 			
 				//echo "<td onClick=\"Inventario('".$ls_cod."');\"><div align=\"center\" title=\"Inventariar\"><img src=\"../../img/iconos_pagina/almacen.png\" width=\"22\" height=\"22\" border=\"0\" ></div></td>";
 			}

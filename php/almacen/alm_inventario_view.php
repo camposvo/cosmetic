@@ -51,14 +51,8 @@
 	$li_tampag = 50;
 	
 	
-	$ls_sql = " SELECT nb_articulo, nu_cantidad, UPPER(nb_almacen), UPPER(nb_ubicacion), pk_detalle       
-        FROM t01_detalle
-	   LEFT JOIN  t13_articulo ON  t13_articulo.pk_articulo =  t01_detalle.fk_articulo
-	   LEFT JOIN t10_ubicacion ON t10_ubicacion.pk_ubicacion = t01_detalle.fk_ubicacion
-	   LEFT JOIN t09_almacen  ON t10_ubicacion.fk_almacen = t09_almacen.pk_almacen
-	   INNER JOIN t05_clase ON t05_clase.pk_clase = t13_articulo.fk_clase
-	   WHERE t01_detalle.in_inventario = 'on'
-	   ;"; 
+	$ls_sql = " SELECT nb_articulo, nb_presentacion, compras, ventas, inventario
+	FROM public.v08_inventario;"; 
 		
 	//echo $ls_sql;
 	$ls_resultado =  $obj_miconexion->fun_consult($ls_sql);
@@ -104,15 +98,15 @@
 									<thead>
 										<tr>
 											<th class=''>Articulo</th>
-											<th class='hidden-480'>Cantidad</th>
-											<th class=''>Almacen</th>
-											<th class='hidden-480'>Ubicacion</th>
-											<th>Colocar</th>
+											<th class='hidden-480'>Presentacion</th>
+											<th class='hidden-480'>Compras</th>
+											<th class='hidden-480'>Ventas</th>
+											<th>Inventario</th>
 										</tr>
 									</thead>
 									<tbody>	
 										<?php   
-											$li_totcampos = $obj_miconexion->fun_numcampos($ls_resultado)-10; // Columnas Que Se Muestran En La Tabla.
+											$li_totcampos = 0; // Columnas Que Se Muestran En La Tabla.
 											$li_indice = $obj_miconexion->fun_numcampos($ls_resultado)-1; // Referencia Al Índice De La Columna Clave.
 											fun_dibujar_tabla($obj_miconexion,$li_totcampos,$li_indice,"LISTAR_INVENTARIO"); // Dibuja La Tabla De Datos.
 											$obj_miconexion->fun_closepg($li_id_conex); 
@@ -165,7 +159,7 @@
 						null,
 						null,
 						null,
-						{ "orderable": false }
+						null,
 					  ]
 				} );
 		

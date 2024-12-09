@@ -7,6 +7,9 @@
     	echo"<script language='JavaScript' type='text/JavaScript'>top.location.href='../../html/fin_sesion.html'</script>";
 		exit();
 	}
+
+	/* ini_set('display_errors', 1);
+    error_reporting(E_ALL);  */ 
 ?>
 
 <!DOCTYPE html>
@@ -31,6 +34,14 @@
 -------------------------------------------------------------------------------------------*/
 	$o_cantidad  = 0;
 	$o_cantidad2 = 0;
+	$o_PagMonto = 0;
+	$x_PagInteres =0;
+	$x_observacion = '';
+	$SumaAbono = 0.0;
+	$SumaInteres = 0.0;
+	$tipo_pago = '';
+
+
 	if (!$_GET)	{
 		foreach($_POST as $nombre_campo => $valor){
 			$asignacion = "\$" . $nombre_campo . "='" . $valor . "';";
@@ -57,9 +68,15 @@
 	ELIMINA UN REGISTRO DE LA TABLA ABONO
 -------------------------------------------------------------------------------------------*/
 	if ($tarea == "E"){
-		$ls_sql = "DELETE FROM t04_abono WHERE pk_abono = '$x_pagar' ";
-		//echo $ls_sql;
+
+		if($tipo_pago == "B"){
+			$ls_sql = "DELETE FROM t01_detalle WHERE pk_detalle = $id_pago ";
+		}
 		
+		if($tipo_pago == "A"){
+			$ls_sql = "DELETE FROM t04_abono WHERE pk_abono = $id_pago ";
+		}
+	
 		$ls_resultado =  $obj_miconexion->fun_consult($ls_sql);
 		if($ls_resultado == 0){
 			fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);
@@ -175,8 +192,8 @@
 	$ls_resultado =  $obj_miconexion->fun_consult($ls_sql);
 	if($ls_resultado != 0){
 		$row = pg_fetch_row($ls_resultado,0);
-		$SumaAbono	    = $row[0];
-		$SumaInteres    = $row[1];	
+		$SumaAbono	    = $row[0]??0;
+		$SumaInteres    = $row[1]??0;	
 		$x_debe			= $o_total - $SumaAbono;
 	}else{
 		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);// enviar mensaje de error de consulta
@@ -186,15 +203,13 @@
 	RUTINAS: Muestra la lista de ABONOS realizados
 -------------------------------------------------------------------------------------------*/
   	$i=0;
-	/*$ls_sql = "SELECT to_char(fe_fecha,'dd-TMMon-yyyy'), nu_monto, nu_interes, nu_monto + nu_interes, tx_observacion, UPPER(s01_persona.tx_nombre),  pk_abono
+/* 	$ls_sql = "SELECT to_char(fe_fecha,'dd-TMMon-yyyy'), nu_monto, nu_interes, nu_monto + nu_interes, tx_observacion, UPPER(s01_persona.tx_nombre),  pk_abono
 					FROM t04_abono
 					INNER JOIN s01_persona ON s01_persona.co_persona = t04_abono.fk_indicador
-					WHERE fk_factura= $x_movimiento
-					order by fe_fecha desc";
-		*/			
+					WHERE fk_factura= $x_movimiento"; */
+			
 	$ls_sql = "SELECT nu_referencia, fecha,  nombre, tx_observacion, nu_interes, monto_a , monto_b, tipo, id  
-				FROM v07_mov_abono_detalle
-				WHERE fk_factura= $x_movimiento";
+				FROM v07_mov_abono_detalle 	WHERE fk_factura= $x_movimiento"; 
 				
 	//echo $ls_sql;
 	$ls_resultado =  $obj_miconexion->fun_consult($ls_sql);	
@@ -302,8 +317,7 @@
 							<div class="widget-box ">
 								<div class="widget-body">
 									<div class="widget-main">
-										<form class="form-horizontal" name="formulario">
-										
+										<form class="form-horizontal" name="formulario">										
 																
 												
 											<div class="form-group">
@@ -347,13 +361,15 @@
 										</div>
 										
 											<input type="hidden" name="x_movimiento" value="<?php echo $x_movimiento;?>">
-											<input type="hidden" name="x_pagar" value="<?php echo $x_pagar;?>">
+											<input type="hidden" name="id_pago" value="<?php echo $id_pago;?>">
 											<input type="hidden" name="tarea" value="<?php echo $tarea;?>">
 											<input type="hidden" name="o_total" value="<?php echo $o_total;?>">
 											<input type="hidden" name="x_debe" value="<?php echo $x_debe;?>">
 											<input type="hidden" name="x_fecha_ini" value="<?php echo $x_fecha_ini;?>">
 											<input type="hidden" name="x_fecha_fin" value="<?php echo $x_fecha_fin;?>">
 											<input type="hidden" id = "input_filtro" name="input_filtro" value="<?php echo $input_filtro;?>">	
+											<input type="hidden" id = "tipo_pago" name="tipo_pago" value="<?php echo $tipo_pago;?>">	
+
 											
 										</form>
 									</div>
@@ -479,10 +495,12 @@
 		}	
 	}*/
 	
-	function Eliminar_Pago(identificador){
+	function Eliminar_Pago(identificador, tipo){
+		console.log(tipo);
 		if (confirm('Desea Eliminar este Registro?') == true){
 			document.formulario.tarea.value = "E";
-			document.formulario.x_pagar.value = identificador;
+			document.formulario.id_pago.value = identificador;
+			document.formulario.tipo_pago.value = tipo;
 			document.formulario.action = "adm_ctaxpagar_mtto.php";
 			document.formulario.method = "POST";
 			document.formulario.submit();

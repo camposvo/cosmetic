@@ -7,6 +7,9 @@
     	echo"<script language='JavaScript' type='text/JavaScript'>top.location.href='../../html/fin_sesion.html'</script>";
 		exit();
 	}
+
+	ini_set('display_errors', 1);
+    error_reporting(E_ALL); 
 ?>
 
 <!DOCTYPE html>
