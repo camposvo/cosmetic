@@ -139,7 +139,9 @@ if ($usu_autentico != "SI") {
 	/*-------------------------------------------------------------------------------------------
 	RUTINAS: CONSULTA DE CUENTAS POR PAGAR
 	-----------------------------------------------------------------------------------------------*/
-	$ls_sql = "SELECT sum(f_calcular_factura(pk_factura)) - sum(f_calcular_abono_capital(pk_factura)) as Debe 
+	$egresos =0;
+	$ls_sql = "SELECT sum(f_calcular_factura(pk_factura)) - sum(f_calcular_abono_capital(pk_factura)) as Debe,
+				sum(f_calcular_abono_capital(pk_factura)) as Abono
 				FROM t20_factura 
 			WHERE t20_factura.in_pedido='N' and (t20_factura.tx_tipo='CTAXPAGAR' or t20_factura.tx_tipo='GASTO' )";
 
@@ -203,7 +205,6 @@ if ($usu_autentico != "SI") {
 	} else {
 		fun_error(1, $li_id_conex, $ls_sql, $_SERVER['PHP_SELF'], __LINE__); // enviar mensaje de error de consulta
 	}
-
 
 	/*-------------------------------------------------------------------------------------------
 	 GRAFICA 2 - INGRESOS VS EGRESOS
@@ -354,8 +355,8 @@ if ($usu_autentico != "SI") {
 	$ls_sql = "SELECT tx_nombre,  
 			sum(venta) as venta, 
 			sum(gasto) as gasto, 
-			(sum(venta) - $VentaXcobrar)  as ingreso, 
-			(sum(gasto) -  $DebeCtxPag) as egreso, 		
+			$ingreso  as ingreso, 
+			$egreso  as egreso, 		
 			in_proy_activo, 
 			pk_proyecto
 			FROM v06_mov_resumen 

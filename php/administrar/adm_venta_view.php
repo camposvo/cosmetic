@@ -481,15 +481,15 @@ RUTINAS: Consulta  datos resumen
 				"fnFooterCallback": function ( row, data, start, end, display ) {					
 					var api = this.api(), data;
 
-					FiltroTotal = api.column(4, { search: 'applied'} ).data()	.reduce( function (a, b) {
+					FiltroTotal = api.column(5, { search: 'applied'} ).data()	.reduce( function (a, b) {
 							 return parseFloat(a) + parseFloat(b); 
 						}, 0 );
 						
-					FiltroAbono = api.column(6, { search: 'applied'} ).data()	.reduce( function (a, b) {
+					FiltroAbono = api.column(7, { search: 'applied'} ).data()	.reduce( function (a, b) {
 							 return parseFloat(a) + parseFloat(b); 
 						}, 0 );	
 					
-					FiltroDebe = api.column(8, { search: 'applied'} ).data()	.reduce( function (a, b) {
+					FiltroDebe = api.column(9, { search: 'applied'} ).data()	.reduce( function (a, b) {
 							 return parseFloat(a) + parseFloat(b); 
 						}, 0 );			
 							 								

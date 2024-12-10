@@ -190,7 +190,7 @@
 			.$ls_criterio.
            "ORDER BY  fecha desc , ref desc; ";
 	
-	//echo $ls_sql;
+	echo $ls_sql;
 	$ls_resultado =  $obj_miconexion->fun_consult($ls_sql);
 			
 	if($ls_resultado != 0){
