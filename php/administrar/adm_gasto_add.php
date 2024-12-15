@@ -72,7 +72,7 @@
 	$co_usuario     	= 	$_SESSION["li_cod_usuario"];
 	$arr_proveedor  	=  	Combo_Proveedor();
 	$arr_rubro      	=  	Combo_Rubro();
-	$arr_articulo 		=  	Combo_Articulo();
+	$arr_articulo 		=  	Combo_Articulo_Gasto();
 	$arr_almacen       	=  	Combo_Almacen();
 	$x_fecha_actual    	=  	date('Y/m/d');
 	$arr_precios	=  	Combo_Articulo_Precio_Compra();
@@ -728,7 +728,7 @@
 	}	
 		
 	function  Guardar(Identificador, pedido) {		
-		if (document.getElementById('x_total').value > 0){ //Hay elementos en el detalle
+		//if (document.getElementById('x_total').value > 0){ //Hay elementos en el detalle
 			if(campos_blancos(document.formulario) == false){
 				if (confirm('Esta conforme con los Datos Ingresados?') == true){
 					
@@ -745,9 +745,9 @@
 					document.formulario.submit();
 				}
 			}
-		}else{
+		/* }else{
 			alert("Debe cargar los Articulos")
-		}
+		} */
 	}	    
 
 	function Atras(parametros){

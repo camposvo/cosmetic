@@ -37,7 +37,7 @@ $arr_cliente =  Combo_Cliente();
 $arr_vendedor =  Combo_Vendedor();
 $arr_rubro   =  Combo_Rubro();
 $arr_abono   =  Combo_Abono();
-$arr_articulo	=  	Combo_Articulo_Venta();
+$arr_articulo	=  	Combo_Articulo();
 
 
 $ls_sql = "SELECT pk_factura, fk_responsable, fk_cliente, to_char(fe_fecha_factura, 'dd/mm/yyyy'),  tx_nota,
@@ -204,7 +204,7 @@ $pdf->Cell($w4, $h1, 'Total', 1, 1, 'C',true);
 
 //$pdf->SetDash(1,1);
 $total = 0;
-$pdf->SetFont('Courier', '', 10); 
+$pdf->SetFont('Courier', '', 9); 
 while($fila = pg_fetch_row($ls_resultado_1)){	
 
 	$top += 7;	
@@ -213,7 +213,7 @@ while($fila = pg_fetch_row($ls_resultado_1)){
 	$pdf->Cell($w1, $h1, $fila[0], 1, 1, 'C');
 
 	$pdf->SetXY($ma+20, $top);
-	$pdf->Cell($w2, $h1,strtoupper($arr_articulo[$fila[1]]), 1, 1, 'L');
+	$pdf->Cell($w2, $h1,strtoupper(fix_texto($arr_articulo[$fila[1]])), 1, 1, 'L');
 
 	$precio = number_format($fila[2],2,",",".");
 	$pdf->SetXY($ma+130, $top);

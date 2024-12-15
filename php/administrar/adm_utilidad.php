@@ -161,7 +161,7 @@ function fun_dibujar_tabla($rs, $li_columnas, $li_indice, $operacion, $variable)
 							<li>
 								<a href="#" class="tooltip-info" data-rel="tooltip" title="Pagar" onClick=\'Reporte_Venta("' . $ls_cod . '");return false;\'>
 									<span class="green">
-										<i class="ace-icon fa fa-dollar bigger-120"></i>
+										<i class="ace-icon fa fa-file-pdf-o bigger-130"></i>
 									</span>
 								</a>
 							</li>

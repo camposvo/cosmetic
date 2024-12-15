@@ -76,7 +76,35 @@ function Combo_Articulo(){
 									
 		$ls_sql = "SELECT
 					a.pk_articulo,
-					CONCAT(LPAD(ca.pk_categoria::text, 3, '0'), '-', LPAD(a.pk_articulo::text, 3, '0'), ' ', a.nb_articulo) AS articulo
+					a.nb_articulo AS articulo
+					FROM
+						t13_articulo a
+					LEFT JOIN t05_clase c ON a.fk_clase = c.pk_clase
+					LEFT JOIN t21_categoria ca ON c.fk_categoria = ca.pk_categoria				
+					ORDER BY
+						a.nb_articulo ASC;";
+	
+
+	$ls_resultado =  $obj_miconexion->fun_consult($ls_sql);
+	if($ls_resultado != 0){
+		while($row = pg_fetch_row($ls_resultado)){
+			$cod = $row[0];
+			$nombre = $row[1];
+			$arr[$cod] = $nombre; 
+		}
+	}else{
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF']);
+	}
+	return($arr);
+}
+
+function Combo_Articulo_Gasto(){
+	$obj_miconexion = fun_crear_objeto_conexion();
+	$li_id_conex = fun_conexion($obj_miconexion);
+									
+		$ls_sql = "SELECT
+					a.pk_articulo,
+					CONCAT(LPAD(ca.pk_categoria::text, 3, '0'), '-', LPAD(a.pk_articulo::text, 3, '0'), ' ', a.nb_articulo, ' (', a.nb_presentacion,')') AS articulo
 					FROM
 						t13_articulo a
 					LEFT JOIN t05_clase c ON a.fk_clase = c.pk_clase
