@@ -170,10 +170,14 @@ RUTINAS: Consulta  datos resumen
 				ELSE 'EN PROCESO'
 			END AS nombre_status,
 				f_calcular_factura(pk_factura), f_calcular_abono(pk_factura) AS abono, (f_calcular_factura(pk_factura) - f_calcular_abono(pk_factura)) as debe,
+				CASE WHEN fe_fecha_factura <= CURRENT_DATE - INTERVAL '10 days' THEN 'VENCIDA'
+         ELSE 'EN CURSO'
+    		END AS antiguedad,
 				pk_factura
 			FROM t20_factura
 			INNER JOIN s01_persona ON s01_persona.co_persona = t20_factura.fk_cliente
-			WHERE t20_factura.tx_tipo='VENTA'  ".$ls_criterio;	
+			WHERE t20_factura.tx_tipo='VENTA'  ".$ls_criterio.
+			"order by  fe_fecha_factura asc ;";	
 
 	//echo $ls_sql;
 	$ls_resultado =  $obj_miconexion->fun_consult($ls_sql);
@@ -450,7 +454,7 @@ RUTINAS: Consulta  datos resumen
 				  },
 				"lengthChange": false,
 				"pageLength": 50,
-				"aaSorting": [ [0,'desc'] ],
+				"ordering": false,
 				"oLanguage": {
 					"sInfo": "De _START_ hasta _END_ de un total de _TOTAL_",
 					"sInfoFiltered": " ( filtrado de _MAX_ registros )",
@@ -461,20 +465,7 @@ RUTINAS: Consulta  datos resumen
 					}
 				},
 								
-				"columns": [
-					null,
-					{ "orderable": false },
-					null,
-					null,
-					null,
-					null,
-					null,
-					null,
-					{ "orderable": false },
-					{ "orderable": false },
-					{ "orderable": false },
-					{ "orderable": false }
-				  ],
+				
 				  
 				  
 				// CALCULA LA SUMA RESUMEN POR FILTRO Y EL TOTAL  

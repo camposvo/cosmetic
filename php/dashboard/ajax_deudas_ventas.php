@@ -14,20 +14,29 @@
 					</tr>';
 		
 
-		$ls_sql = "SELECT UPPER(s01_persona.tx_nombre ||' '|| s01_persona.tx_apellido),
-		sum(detalle) - sum(abono) as Debe 
+		$ls_sql = "SELECT to_char(fe_fecha_factura, 'dd-TMMon-yyyy'), UPPER(s01_persona.tx_nombre ||' '|| s01_persona.tx_apellido),
+		(detalle - abono) as Debe,
+		 CASE WHEN fe_fecha_factura <= CURRENT_DATE - INTERVAL '10 days' THEN 'VENCIDA'
+         ELSE 'EN CURSO'
+    		END AS antiguedad		
 		FROM v01_pago
 			INNER JOIN s01_persona ON s01_persona.co_persona = v01_pago.fk_cliente 		
 		WHERE v01_pago.fk_responsable =$id_vendedor AND v01_pago.tx_tipo='VENTA' and (detalle - abono) > 0 
-		GROUP BY s01_persona.tx_nombre, s01_persona.tx_apellido 	";
+		order by  fe_fecha_factura asc";
 			
 			
 		$ls_resultado =  $obj_miconexion->fun_consult($ls_sql);
+
+
 			
 			while($row = pg_fetch_row($ls_resultado)){
-				$newContent .='<tr>
-									<td width="50%" class="text-primary"><small>'.$row[0].'</small></td>
-									<td width="25%" class="text-primary"><small>'.number_format($row[1],2,",",".").'</small></td>
+				$bg_color = ($row[3] == "VENCIDA") ? "style='background-color: #FA5858;'":"";
+				$txt_color = ($row[3] == "VENCIDA") ? "style='color: #FFFFFF;'":"";
+
+				$newContent .='<tr '.$bg_color.'>
+									<td width="20%" '.$txt_color.'>'.$row[0].'</td>
+									<td width="50%" '.$txt_color.'>'.$row[1].'</td>
+									<td width="30%" '.$txt_color.'>'.number_format($row[2],2,",",".").'</td>
 								</tr>';	
 
 				$entro = 'entro:'.$row[0];					

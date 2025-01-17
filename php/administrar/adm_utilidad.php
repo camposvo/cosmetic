@@ -43,13 +43,14 @@ function fun_dibujar_tabla($rs, $li_columnas, $li_indice, $operacion, $variable)
 			$total = $row[$i++];
 			$abono = $row[$i++];
 			$debe = $row[$i++];
+			$antiguedad = $row[$i++];
 
 			//$nombreStatus = $status == 'S'? 'NUEVO': (($debe == 0)?'COMPLETADO':'EN PROCESO');
 
-
+			$bg_color = ($antiguedad == "VENCIDA") ? "style='background-color: #FA5858;'":"";
 
 			echo "<td class='hidden-480'>" . $id . "</td>";
-			echo "<td class=''  >" . $fecha . "</td>";
+			echo "<td class='' ".$bg_color."  >" . $fecha . "</td>";
 
 			echo "<td class='blue'>
 					<a class='blue' href='#' data-rel='popover'  data-trigger='hover'  data-placement='top'  data-content='" . $phone . "' >" .
