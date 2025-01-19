@@ -50,7 +50,7 @@ if ($usu_autentico != "SI") {
 	$Disponible  = 0;
 	$Banco       = 0;
 	$sw = 1;
-	$CURRENT_YEAR = '2024';
+	$CURRENT_YEAR = '2025';
 
 	if (!$_GET) {
 		foreach ($_POST as $nombre_campo => $valor) {
