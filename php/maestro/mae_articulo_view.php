@@ -74,7 +74,8 @@
 	LEE LOS ARTICULOS DE LA BASE DE DATOS
 |------------------------------------------------------------------------------------------------*/
 
-	$ls_sql = "SELECT CONCAT(LPAD(pk_categoria::text, 3, '0'), '-', LPAD(pk_articulo::text, 3, '0')), nb_articulo, nb_clase, nb_categoria, pk_articulo
+	$ls_sql = "SELECT CONCAT(LPAD(pk_categoria::text, 3, '0'), '-', LPAD(pk_articulo::text, 3, '0')), nb_articulo, 
+		nb_categoria, nu_precio_compra, nu_precio_venta, pk_articulo
 		FROM t13_articulo 
 		INNER JOIN t05_clase ON t13_articulo.fk_clase =  t05_clase.pk_clase
 		INNER JOIN t21_categoria ON t05_clase.fk_categoria =  t21_categoria.pk_categoria
@@ -140,8 +141,9 @@
 									<tr>
 										<th>ID</th>
 										<th>Nombre</th>
-										<th class="hidden-480">Clasificacion</th>
 										<th class="hidden-480">Categoria</th>
+										<th class="">P.C</th>
+										<th class="">P.V</th>
 										<th></th>
 									</tr>
 								</thead>
@@ -194,6 +196,8 @@
 					},
 					
 					"columns": [
+						null,				
+						null,
 						null,
 						null,
 						null,

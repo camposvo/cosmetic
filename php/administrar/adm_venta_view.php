@@ -163,7 +163,8 @@ RUTINAS: Consulta  datos resumen
 /*-------------------------------------------------------------------------------------------
 	LEE LOS DATOS DE LAS VENTAS PARA MOSTRAR EN LA TABLA
 -------------------------------------------------------------------------------------------*/			
-	$ls_sql = "SELECT to_char(pk_factura,'0000000'), to_char(fe_fecha_factura, 'dd-TMMon-yyyy'), tx_telefono_hab, UPPER(s01_persona.tx_nombre), tx_nota,
+	$ls_sql = "SELECT to_char(pk_factura,'0000000'), to_char(fe_fecha_factura, 'dd-TMMon-yyyy'), tx_telefono_hab, 
+				UPPER(s01_persona.tx_nombre), 
 				CASE 
 				WHEN in_pedido = 'S' THEN 'NUEVO'
 				WHEN (f_calcular_factura(pk_factura) - f_calcular_abono(pk_factura)) = 0 THEN 'COMPLETADO'
@@ -377,7 +378,6 @@ RUTINAS: Consulta  datos resumen
 										<th class="hidden-480">id</th>
 										<th class="">Fecha</th>
 										<th class="">Cliente</th>
-										<th class="hidden-480">Referencia</th>
 										<th class="">Estatus</th>
 										
 										<th class="hidden">Total</th> <!-- Se utiliza una columna oculta para visualizar el formato numerico correcto  -->	
@@ -409,6 +409,24 @@ RUTINAS: Consulta  datos resumen
 			</div> <!-- ROW CONTENT END -->
 		</div> <!-- /.page-content -->
 	</div> <!-- /.main-content-inner -->
+
+	<div class="modal fullscreen-modal fade" id="modal-1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<div class="d-flex justify-content-end"> 
+						<button type="button" class="btn btn-default" id="btn-1">Close</button>
+					</div>
+				</div>
+
+				<div class="modal-body">
+					<iframe id="iframeModalWindow-1" width="100%" height="600px" src="blank.html" name="iframe_modal_1" style="border:none;"></iframe>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
 	
 	
 	<!--[if !IE]> -->
@@ -577,14 +595,23 @@ RUTINAS: Consulta  datos resumen
 		} );
 	</script>
 
+	<script>
+	
+		$("#btn-1").click(function() {
+			$('#modal-1').find('iframe').attr('src', 'blank.html')
+			$('#modal-1').modal('hide');
+		});
+	</script>
+
 	<script type="text/javascript"> 
+
 
 		function Mostrar_Info(identificador){
 			document.formulario.x_movimiento.value = identificador;
 			document.formulario.action = "adm_venta_info.php";
-			//document.formulario.action = "content-slider.html";
-			document.formulario.method = "post";
-			document.formulario.submit();
+			$('#modal-1').find('iframe').attr('src', 'adm_venta_info.php?x_movimiento=' + identificador)
+			$('#modal-1').modal('show');
+			window.parent.ScrollToTop();
 		}
 		
 			

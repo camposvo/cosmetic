@@ -378,15 +378,6 @@ if ($usu_autentico != "SI") {
 
 						<div class="col-xs-12 col-sm-6 widget-container-col">
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="x_referencia">Ref</label>
-								<div class="col-sm-7">
-									<input class="col-xs-10 col-sm-7" name="x_referencia"
-										value="<?php echo $x_referencia; ?>" id="x_referencia" type="text"
-										placeholder="Referencia">
-								</div>
-							</div>
-
-							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right"
 									for="x_descuento">Descuento</label>
 								<div class="col-sm-7">
@@ -396,6 +387,16 @@ if ($usu_autentico != "SI") {
 										placeholder="Descuento">
 								</div>
 							</div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="x_subtotal">Subtotal</label>
+								<div class="col-sm-7">
+									<input readonly="readonly" class="col-xs-10 col-sm-7" id="x_subtotal" name="x_subtotal"
+										value="<?php echo $x_subtotal; ?>" id="x_subtotal" type="text"
+										>
+								</div>
+							</div>
+
 
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right">Total</label>
@@ -509,6 +510,7 @@ if ($usu_autentico != "SI") {
 					<input type="hidden" name="input_filtro" value="<?php echo $input_filtro; ?>">
 					<input type="hidden" name="filtro" value="<?php echo $filtro; ?>">
 					<input type="hidden" name="x_pedido" value="<?php echo $x_pedido; ?>">
+					<input type="hidden" name="x_referencia" value="<?php echo $x_referencia; ?>">
 
 				</form>
 			</div> <!-- /.row tabla principal -->
@@ -682,8 +684,9 @@ Se invoka en tiempo de ejecucion para activar la clase select multiple
 		if (descuento > var_subtotal) {
 			alert("Descuento Invalido")
 		} else {
-			var_subtotal = var_subtotal - descuento;
-			document.getElementById('x_total').value = redondeo2decimales(var_subtotal);
+
+			document.getElementById('x_subtotal').value = redondeo2decimales(var_subtotal);
+			document.getElementById('x_total').value = redondeo2decimales(var_subtotal - descuento);
 		}
 
 	}
@@ -701,7 +704,7 @@ Se invoka en tiempo de ejecucion para activar la clase select multiple
 		precio = document.getElementById('id_precio');
 		const valorSeleccionado = selectElement.value;
 
-		if(valorSeleccionado == 0) {
+		if (valorSeleccionado == 0) {
 			precio.value = "";
 			return
 		}
@@ -746,7 +749,7 @@ Se invoka en tiempo de ejecucion para activar la clase select multiple
 		sele.name = 'det_Articulo[]';
 
 		sele.setAttribute("class", "chosen-select  chosen-select-width");
-		sele.setAttribute("id", "form_field");
+		//sele.setAttribute("id", "form_field");
 
 
 		for (var p in articulo) {

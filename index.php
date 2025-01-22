@@ -26,8 +26,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta charset="UTF-8" />
 <title>BellingieriCosmetic</title>
+<meta name="description" content="User login page" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
 			
 	<!-- bootstrap & fontawesome -->
 		<link rel="stylesheet" href="assets/css/bootstrap.min.css" />
@@ -86,8 +90,8 @@ DESCRIPCIN: VERIFICA SI LOS CAMPOS ESTAN COMPLETOS Y MANDA A LA PAGINA SESION.PH
 						<div class="login-container">
 							<div class="center">
 								<h1>
-									<i class="ace-icon fa fa-leaf green"></i>
-									<span class="red">BellingieriCosmetic</span>
+								
+									<span class="red">Bellingieri</span>
 								</h1>
 								<h4 class="blue" id="id-company-text">@cosm.eticsca</h4>
 							</div>

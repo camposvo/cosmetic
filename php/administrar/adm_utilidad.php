@@ -38,7 +38,6 @@ function fun_dibujar_tabla($rs, $li_columnas, $li_indice, $operacion, $variable)
 			$fecha = $row[$i++];
 			$phone = $row[$i++];
 			$client = $row[$i++];
-			$ref = $row[$i++];
 			$status =  $row[$i++];
 			$total = $row[$i++];
 			$abono = $row[$i++];
@@ -56,8 +55,6 @@ function fun_dibujar_tabla($rs, $li_columnas, $li_indice, $operacion, $variable)
 					<a class='blue' href='#' data-rel='popover'  data-trigger='hover'  data-placement='top'  data-content='" . $phone . "' >" .
 				$client . "</a>
 				</td>";
-
-			echo "<td class='hidden-480'>" . $ref . "</td>";
 
 			echo "<td class=''>" . $status . "</td>";
 
@@ -820,10 +817,8 @@ function fun_dibujar_tabla($rs, $li_columnas, $li_indice, $operacion, $variable)
 		if (strtoupper($operacion) == 'VER_FACTURA') {
 			echo "<td class=''>" . $row[$i++] . "</td>";
 			echo "<td class=''>" . $row[$i++] . "</td>";
-			echo "<td class='hidden-480'>" . $row[$i++] . "</td>";
 			echo "<td class='hidden-480'>" . number_format($row[$i++], 2, ",", ".") . "</td>";
 			echo "<td class='hidden-480'>" . number_format($row[$i++], 2, ",", ".") . "</td>";
-			echo "<td class=''>" . number_format($row[$i++], 2, ",", ".") . "</td>";
 		}
 
 		echo "</tr>";
