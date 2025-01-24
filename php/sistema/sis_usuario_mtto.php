@@ -42,7 +42,6 @@
 		}
 	}
 	
-	echo 'paso';
 /*-------------------------------------------------------------------------------------------
 	RUTINA: variables tipo arreglo para rellenar los combos en la interfaz. (VER CONFIG.PHP)
 ---------------------------------------------------------------------------------------------*/
@@ -64,8 +63,8 @@
 	if ($tarea == "M"){
 		$ls_sql = "SELECT tx_cedula, tx_nombre, tx_apellido, 	        
 						tx_telefono_hab,   	        
-						in_sexo, tx_email, tx_indicador, in_activo,tx_telefono_otro,
-						tx_direccion_hab, fe_nacimiento, in_tipo_persona
+						tx_email, tx_indicador, in_activo,tx_telefono_otro,
+						tx_direccion_hab, in_tipo_persona
 					FROM s01_persona 
 					WHERE co_persona = '$co_usuario'";
 
@@ -75,15 +74,13 @@
 			$o_cedula           = $row[0];
 			$o_nombre           = $row[1];
 			$x_apellido         = $row[2];
-			$x_telefono_hab		= $row[3];
-			$x_sexo    			= $row[4];
-			$x_email       		= $row[5];
-			$o_indicador        = $row[6];
-			$o_activo        	= $row[7];
-			$x_telefono_otro    = $row[8];
-			$x_direccion		= $row[9];
-			$x_nacimiento    	= $row[10];
-			$chk_tipo       	= $row[11];
+			$x_telefono_hab		= $row[3];			
+			$x_email       		= $row[4];
+			$o_indicador        = $row[5];
+			$o_activo        	= $row[6];
+			$x_telefono_otro    = $row[7];
+			$x_direccion		= $row[8];			
+			$chk_tipo       	= $row[9];
 			
 
 			$obj_miconexion->fun_closepg($li_id_conex); 
@@ -96,7 +93,6 @@
 	ACTUALIZAR DATOS DEL USUARIO
 ------------------------------------------------------------------------------------------------------------------------*/
 	if ($tarea == "U"){
-		$x_nacimiento = $x_nacimiento==''?'null':"'".$x_nacimiento."'";
 		$error_sql = false;
 		$o_indicador = strtolower($o_indicador);
 		
@@ -115,15 +111,13 @@
 				$ls_sql = "UPDATE s01_persona SET 
 								tx_cedula	        = '$o_cedula',           
 								tx_nombre	        = '$o_nombre',           
-								tx_apellido	        = '$x_apellido', 
-								in_sexo             = '$x_sexo', 
+								tx_apellido	        = '$x_apellido',								
 								tx_telefono_hab     = '$x_telefono_hab',  
 								tx_telefono_otro     = '$x_telefono_otro',  
 								tx_email            = '$x_email',
 								in_activo           = '$o_activo',
 								tx_indicador        = '$o_indicador',
-								tx_direccion_hab    =  '$x_direccion',
-								fe_nacimiento       =  $x_nacimiento,
+								tx_direccion_hab    =  '$x_direccion',								
 								in_tipo_persona     = '$chk_tipo'
 							WHERE co_persona = '$co_usuario'";
 							
@@ -166,8 +160,8 @@
 	if ($tarea == "M"){
 		$ls_sql = "SELECT tx_cedula, tx_nombre, tx_apellido, 	        
 						tx_telefono_hab,   	        
-						in_sexo, tx_email, tx_indicador, in_activo,tx_telefono_otro,
-						tx_direccion_hab, fe_nacimiento, in_tipo_persona
+						tx_email, tx_indicador, in_activo,tx_telefono_otro,
+						tx_direccion_hab, in_tipo_persona
 					FROM s01_persona 
 					WHERE co_persona = '$co_usuario'";
 
@@ -177,15 +171,13 @@
 			$o_cedula           = $row[0];
 			$o_nombre           = $row[1];
 			$x_apellido         = $row[2];
-			$x_telefono_hab		= $row[3];
-			$x_sexo    			= $row[4];
-			$x_email       		= $row[5];
-			$o_indicador        = $row[6];
-			$o_activo        	= $row[7];
-			$x_telefono_otro    = $row[8];
-			$x_direccion		= $row[9];
-			$x_nacimiento    	= $row[10];
-			$chk_tipo       	= $row[11];
+			$x_telefono_hab		= $row[3];			
+			$x_email       		= $row[4];
+			$o_indicador        = $row[5];
+			$o_activo        	= $row[6];
+			$x_telefono_otro    = $row[7];
+			$x_direccion		= $row[8];			
+			$chk_tipo       	= $row[9];
 			
 
 			$obj_miconexion->fun_closepg($li_id_conex); 
@@ -214,9 +206,9 @@
 				}  
 
 				$ls_sql = "INSERT INTO s01_persona(tx_cedula, tx_nombre, tx_apellido, tx_telefono_hab,tx_telefono_otro, 
-							in_sexo, tx_email, tx_indicador, in_activo, tx_direccion_hab, fe_nacimiento, in_tipo_persona) 
+							tx_email, tx_indicador, in_activo, tx_direccion_hab, in_tipo_persona) 
 					VALUES('$o_cedula', '$o_nombre','$x_apellido','','$x_telefono_otro', 
-						'$x_sexo', '$x_email', '$o_indicador','$o_activo', '$x_direccion', $x_nacimiento, '$chk_tipo' )";
+						 '$x_email', '$o_indicador','$o_activo', '$x_direccion', '$chk_tipo' )";
 					
 				//echo $ls_sql;
 				
@@ -273,33 +265,10 @@
 				<div class="col-xs-12">
 				
 					<div class="row">
-						<form class="form-horizontal" name="formulario">
-							
-							<div class="tabbable">
-								<ul class="nav nav-tabs padding-18">
-								<!-- <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab4"> -->
-									<li class="active">										
-										<a data-toggle="tab" href="#home4">
-											<i class="green ace-icon fa fa-user bigger-120"></i>											
-											Basicos
-										</a>
-									</li>
+						<form class="form-horizontal" name="formulario">												
+							<div class="row">
 
-									<li>
-										<a data-toggle="tab" href="#profile4">
-											<i class="orange ace-icon fa fa-rss bigger-120"></i>
-											Adicionales
-										</a>
-									</li>
-
-									<li>
-										<a data-toggle="tab" href="#dropdown14">
-											<i class="pink ace-icon fa fa-picture-o bigger-120"></i>
-											Foto
-										</a>
-									</li>
-								</ul>
-
+							<div class="col-xs-12 widget-container-col">
 							<div class="tab-content">								
 								<div id="home4" class="tab-pane in active">
 									
@@ -349,40 +318,7 @@
 											</select>
 										</div>
 									</div>
-									
-								</div>
 
-								<div id="profile4" class="tab-pane">
-									
-									<div class="form-group">
-										<label class="col-sm-3 control-label no-padding-right" for="id-date-picker-1" >Fecha de Nacimiento</label>
-										<div class="col-sm-4" >	
-											<div class="input-group">
-												<input name="x_nacimiento" value="<?php echo $x_nacimiento;?>" class="col-xs-10 col-sm-6 form-control date-picker" id="id-date-picker-1" type="text" data-date-format="dd/mm/yyyy" readonly />
-												<span class="input-group-addon">
-													<i class="fa fa-calendar bigger-110"></i>
-												</span>
-											</div>
-										</div>
-									</div>	
-									
-									<div class="form-group">
-										<label  class="col-sm-3 control-label no-padding-right" >Sexo</label>
-										<div class="col-sm-7" >	
-											<select name="x_sexo" class="col-xs-10 col-sm-7" id="x_sexo">
-												<?php 
-													if ($x_sexo == ""){
-														echo "<option value='' selected>Seleccionar</option>";
-													}else{
-														echo "<option value=''>Seleccionar</option>";}
-													foreach($array_sexo as $k => $v) {
-														$ls_cadenasel =($k == $x_sexo)?'selected':'';
-														echo "<option value='$k' $ls_cadenasel>$v</option>";                
-													}
-												?>
-											</select>
-										</div>										
-									</div>								
 									
 									<div class="form-group">
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-phone">Telefono 1</label>
@@ -424,13 +360,13 @@
 											<textarea name="x_direccion" cols="10" class="form-control" rows="1" onKeyPress="return validarAlfa(event)"placeholder="Enter ..."><?php echo $x_direccion;?></textarea>
 										</div>
 									</div>
+									
+								</div>	
 								
 								</div>
-
-								<div id="dropdown14" class="tab-pane">
-									<p>AQUI SE CARGARA LA FOTO</p>
-								</div>
 							</div>
+								
+							
 						</div>
 						
 								<div class="space-4"></div>	
@@ -475,6 +411,8 @@
 
 	<script type="text/javascript">
 		 $(document).ready(function() {
+
+			window.parent.ScrollToTop();
 		
 			$('.date-picker').datepicker({
 				autoclose: true,
