@@ -341,77 +341,163 @@
 				
 				<form class="form-horizontal" name="formulario">				
 					<div class="row">
-						<div class="col-xs-12 col-sm-12 widget-container-col">
-							<div class="widget-box ">
-								<div class="widget-body">
-									<div class="widget-main">
-																					
-											<div class="form-group">
-												<label class="col-sm-3 control-label no-padding-right" for="id-date-picker-1" >Fecha Fact.</label>
-												<div class="col-sm-4" >	
-													<div class="input-group">
-														<input name="o_fecha" value="<?php echo $o_fecha;?>" class="col-xs-10 col-sm-6 form-control date-picker" id="id-date-picker-1" type="text" data-date-format="dd/mm/yyyy" readonly data-date-end-date="0d"/>
-														<span class="input-group-addon">
-															<i class="fa fa-calendar bigger-110"></i>
-														</span>
-													</div>
-												</div>
-											</div>	
-										
-											<div class="form-group">
-												<label class="col-sm-3 control-label no-padding-right" >Proveedor</label>
-												<div class="col-sm-7" >	
-													<select type="select-one" name="o_proveedor" class="col-xs-10 col-sm-7 chosen-select " id="" data-placeholder="Selecciona un Proveedor...">
-														<?php
-															if ($o_proveedor == ""){
-																echo "<option value='0' selected></option>";
-															}else{
-																echo "<option value='0'></option>";
-															}
-															foreach($arr_proveedor as $k => $v) {
-																$ls_cadenasel =($k == $o_proveedor)?'selected':'';
-																echo "<option value='$k' $ls_cadenasel>$v</option>";                
-															}
-														?>									
-													</select>
-												</div>													
-											</div>
 
-											<div class="form-group">
-												<label class="col-sm-3 control-label no-padding-right" >Proyecto</label>
-												<div class="col-sm-7" >	
-													<select  type="select-one" name="o_proyecto" class="col-xs-10 col-sm-7 chosen-select " data-placeholder="Seleccionar" >
-														<?php
-															if ($o_proyecto == ""){
-																echo "<option value='0' selected>Seleccionar</option>";
-															}else{
-																echo "<option value='0'></option>";
-															}
-															foreach($arr_rubro as $k => $v) {
-																$ls_cadenasel =($k == $o_proyecto)?'selected':'';
-																echo "<option value='$k' $ls_cadenasel>$v</option>";                
-															}
-														?>							
-													</select>
-												</div>													
-											</div>
-											
-											<div class="form-group">
-												<label  class="col-sm-3 control-label no-padding-right"  for="x_referencia">Ref</label>
-												<div class="col-sm-7" >
-													<input class="col-xs-10 col-sm-7" name="x_referencia" value="<?php echo $x_referencia;?>" id="x_referencia" type="text"  placeholder="Referencia" maxlength="30">
-												</div>
-											</div>
-																		
-																						
-										</div>	
+						<div class="col-xs-12 col-sm-6 widget-container-col">				
+																	
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="id-date-picker-1" >Fecha Fact.</label>
+								<div class="col-sm-4" >	
+									<div class="input-group">
+										<input name="o_fecha" value="<?php echo $o_fecha;?>" class="col-xs-10 col-sm-6 form-control date-picker" id="id-date-picker-1" type="text" data-date-format="dd/mm/yyyy" readonly data-date-end-date="0d"/>
+										<span class="input-group-addon">
+											<i class="fa fa-calendar bigger-110"></i>
+										</span>
 									</div>
 								</div>
+							</div>	
+						
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" >Proveedor</label>
+								<div class="col-sm-7" >	
+									<select type="select-one" name="o_proveedor" class="col-xs-10 col-sm-7 chosen-select " id="" data-placeholder="Selecciona un Proveedor...">
+										<?php
+											if ($o_proveedor == ""){
+												echo "<option value='0' selected></option>";
+											}else{
+												echo "<option value='0'></option>";
+											}
+											foreach($arr_proveedor as $k => $v) {
+												$ls_cadenasel =($k == $o_proveedor)?'selected':'';
+												echo "<option value='$k' $ls_cadenasel>$v</option>";                
+											}
+										?>									
+									</select>
+								</div>													
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" >Proyecto</label>
+								<div class="col-sm-7" >	
+									<select  type="select-one" name="o_proyecto" class="col-xs-10 col-sm-7 chosen-select " data-placeholder="Seleccionar" >
+										<?php
+											if ($o_proyecto == ""){
+												echo "<option value='0' selected>Seleccionar</option>";
+											}else{
+												echo "<option value='0'></option>";
+											}
+											foreach($arr_rubro as $k => $v) {
+												$ls_cadenasel =($k == $o_proyecto)?'selected':'';
+												echo "<option value='$k' $ls_cadenasel>$v</option>";                
+											}
+										?>							
+									</select>
+								</div>													
+							</div>
+							
+							<div class="form-group">
+								<label  class="col-sm-3 control-label no-padding-right"  for="x_referencia">Ref</label>
+								<div class="col-sm-7" >
+									<input class="col-xs-10 col-sm-7" name="x_referencia" value="<?php echo $x_referencia;?>" id="x_referencia" type="text"  placeholder="Referencia" maxlength="30">
+								</div>
+							</div>																	
+										
+						</div>
+
+						<div class="col-xs-12 col-sm-6 widget-container-col">
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right"
+									for="x_descuento">Descuento</label>
+								<div class="col-sm-7">
+									<input class="col-xs-10 col-sm-7" name="x_descuento"
+										value="<?php echo $x_descuento; ?>" id="x_descuento"
+										onkeypress="return validardec(event)" onblur="calcular()" type="text"
+										placeholder="Descuento">
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="x_subtotal">Subtotal</label>
+								<div class="col-sm-7">
+									<input readonly="readonly" class="col-xs-10 col-sm-7" id="x_subtotal" name="x_subtotal"
+										value="<?php echo $x_subtotal; ?>" id="x_subtotal" type="text">
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right">Total</label>
+								<div class="col-sm-7">
+									<input readonly="readonly" class="col-xs-10 col-sm-7" name="x_total"
+										value="<?php echo $x_total; ?>" id="x_total" type="text">
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+
+
+					<div class="row">						
+						<div class="col-xs-12 text-center ">
+							<button type="button" onClick="Atras('<?php echo "tarea=B"; ?>')" class="btn-sm  btn-danger">
+								<i class="ace-icon fa fa-reply  bigger-110 icon-on-right"></i>
+								Regresar
+							</button>
+							
+							<button type="button" onClick="Guardar('<?php echo $tarea; ?>', '<?php echo $x_pedido; ?>');" class="btn-sm btn-success">
+							<i class="ace-icon fa fa-check  icon-on-right bigger-110"></i>
+							Guardar
+							</button>
+
+							<button type="button" onClick="Guardar('<?php echo $tarea; ?>','N');" class="btn-sm btn-success">
+								<i class="ace-icon fa fa-check  icon-on-right bigger-110"></i>
+								Cerrar Pedido
+							</button>
 						</div>
 					</div>
 					
 									
 					<div class="space-4"></div>
+
+
+					<div class="row">
+						<div class="col-xs-12 col-sm-12">
+							<table id="simple-table-new" class="table table-striped table-bordered">
+								<thead>
+									<tr class="bg-primary">
+										<th width="50%">Articulo</th>
+										<th width="10%">Cantidad</th>
+										<th width="15%">Precio</th>
+										<th width="15%">SubTotal</th>
+										<th width="10%"></th>
+									</tr>
+								</thead>
+								<tbody>
+									<?php
+									echo "<td><select  id='id_articulo' name='articulo'  class='chosen-select' onchange='findPrice()' >";
+									$o_articulo = '';
+									if ($o_articulo == "") {
+										echo "<option value='0' selected></option>";
+									} else {
+										echo "<option value='0'></option>";
+									}
+									foreach ($arr_articulo as $k => $v) {
+										$ls_cadenasel = ($k == $o_articulo) ? 'selected' : '';
+										echo "<option value='$k' $ls_cadenasel>$v</option>";
+									}
+									echo "</select></td>";
+									?>
+
+									<td><input id="id_cantidad" name="cantidad" onkeyup="calcularSubtotal();" onkeypress="return validardec(event);" class="" size="7" type="text"></td>
+									<td><input id="id_precio" n name="precio" onkeyup="calcularSubtotal();" onkeypress="return validardec(event);" class="" size="7" type="text"></td>
+									<td><input id="id_subtotal" name="subtotal" class="" size="7" type="text"></td>
+									<td><button type="button" onClick="nuevoArticulo();" class="btn-success btn-xs pull-left ">Agregar</button></td>
+
+								</tbody>
+							</table>
+						</div>
+					</div>
+
+
 		
 					<div class="row">
 						<div class="col-xs-12 col-sm-12">
@@ -442,59 +528,7 @@
 								
 					<div class="space-4"></div>
 					
-					<div class="row">
-						
-						<div class="col-xs-12 col-sm-8 ">								
-								<button type="button" onClick="nuevoArticulo();"  class="btn-success btn-sm ">
-									<i class="ace-icon fa fa-plus align-top bigger-100 "></i>
-									Add
-								</button>																								
-
-						</div>							
-												
-						<div class="col-xs-12 col-sm-4 widget-container-col">
-							<div class="widget-box ">
-								<div class="widget-body">
-									<div class="widget-main ">
-																		
-										<div class="form-group">
-											<label  class="col-sm-3 control-label no-padding-right">Total</label>
-											<div class="col-sm-7" >
-												<input readonly = "readonly" class="col-xs-10 col-sm-7" name="x_total" value="<?php echo $x_total;?>" id="x_total" type="text"  >
-											</div>
-										</div>
-								
-									</div>	
-								</div>
-							</div>
-						</div>
-					</div>
-
-
-					<div class="row">
-						
-						<div class="col-xs-12 text-center ">
-								<button type="button" onClick="Atras('<?php echo "tarea=B"; ?>')" class="btn-sm  btn-danger">
-									<i class="ace-icon fa fa-reply  bigger-110 icon-on-right"></i>
-									Regresar
-								</button>
-								
-								<button type="button" onClick="Guardar('<?php echo $tarea; ?>', '<?php echo $x_pedido; ?>');" class="btn-sm btn-success">
-								<i class="ace-icon fa fa-check  icon-on-right bigger-110"></i>
-								Guardar
-								</button>
-
-								<button type="button" onClick="Guardar('<?php echo $tarea; ?>','N');" class="btn-sm btn-success">
-									<i class="ace-icon fa fa-check  icon-on-right bigger-110"></i>
-									Cerrar Pedido
-								</button>
-																															
-
-						</div>							
-												
-						
-					</div>
-
+					
 
 					<input type="hidden" name="x_movimiento" value="<?php echo $x_movimiento;?>">
 					<input type="hidden" name="tarea" value="<?php echo $tarea;?>">
@@ -619,7 +653,7 @@
 	
 	    
 // crea un campo dinamicamente
-	function crearCampo(nombre,readonly, evento){
+	/* function crearCampo(nombre,readonly, evento){
 		td= document.createElement('td');
 		txt = document.createElement('input');
 		txt.type = 'text';
@@ -633,28 +667,106 @@
 		}
 		td.appendChild(txt);
 		return td;		
-	}	
+	}	*/
+	
+	function crearCampo(nombre, readonly, evento, valor) {
+		td = document.createElement('td');
+		txt = document.createElement('input');
+		txt.type = 'text';
+		txt.setAttribute('name', nombre);
+		txt.setAttribute('value', valor);
+		txt.setAttribute('size', 7);
+		txt.setAttribute('onkeyup', evento);
+		txt.setAttribute('onkeypress', 'return validardec(event);');
+
+		if (readonly) {
+			txt.setAttribute('readonly', 'readonly')
+		}
+		td.appendChild(txt);
+		return td;
+	}
+
+
+	function crearPrecio(nombre, readonly, evento, valor) {
+		td = document.createElement('td');
+		txt = document.createElement('input');
+		txt.type = 'text';
+		txt.setAttribute('name', nombre);
+		txt.setAttribute('value', valor);
+		txt.setAttribute('size', 7);
+		txt.setAttribute('onkeyup', evento);
+		txt.setAttribute('onkeypress', 'return validardec(event);');
+
+		if (readonly) {
+			txt.setAttribute('readonly', 'readonly')
+		}
+		td.appendChild(txt);
+		return td;
+	}
 		
 // crea un campo dinamicamente
-	function calcular(){		
+	function calcular() {
 		cantidad = document.getElementsByName('det_Cantidad[]');
-		precios =  document.getElementsByName('det_Precio[]');
+		precios = document.getElementsByName('det_Precio[]');
 		subtotal = document.getElementsByName('det_Subtotal[]');
-		
-		var_subtotal =0;
-		for(x=0; x < cantidad.length; x++){
+		descuento = document.getElementById('x_descuento').value;
+
+		var_subtotal = 0;
+		for (x = 0; x < cantidad.length; x++) {
 			sub = redondeo2decimales(cantidad[x].value * precios[x].value);
 			subtotal[x].value = sub;
-			var_subtotal += sub;			
+			var_subtotal += sub;
 		}
-		document.getElementById('x_total').value = redondeo2decimales(var_subtotal);		
-	}	
+
+		if (descuento > var_subtotal) {
+			alert("Descuento Invalido")
+		} else {
+
+			document.getElementById('x_subtotal').value = redondeo2decimales(var_subtotal);
+			document.getElementById('x_total').value = redondeo2decimales(var_subtotal - descuento);
+		}
+
+	}
+
+
+
+	function calcularSubtotal() {
+		cantidad = document.getElementById('id_cantidad').value;
+		precio = document.getElementById('id_precio').value;
+		var sub = cantidad * precio;
+		document.getElementById('id_subtotal').value = redondeo2decimales(sub);
+	}
+
+	function findPrice() {
+		var precios = <?php echo json_encode($arr_precios); ?>;
+		const selectElement = document.getElementById('id_articulo');
+		precio = document.getElementById('id_precio');
+		const valorSeleccionado = selectElement.value;
+
+		if (valorSeleccionado == 0) {
+			precio.value = "";
+			return
+		}
+
+		precio.value = precios[valorSeleccionado];
+
+	}
 	
 		
 //crea dinamicamente un fila para un nuevo articulo
 	function nuevoArticulo(){
 	
 		var articulo = <?php echo json_encode($arr_articulo); ?>;
+
+		cantidad = document.getElementById('id_cantidad').value;
+		precio = document.getElementById('id_precio').value;
+		subtotal = document.getElementById('id_subtotal').value;
+		item = document.getElementById('id_articulo').value;
+
+		if (item === 0) return;
+		if (cantidad === "") return;
+		if (precio === "") return;
+		if (subtotal === "") return;
 		
 	
 		// Mostramos los valores del array
@@ -669,24 +781,25 @@
 		sele.name = 'det_Articulo[]';
 		sele.setAttribute("class","chosen-select");
 
-		opt = document.createElement('option');
-		opt.value = '0';
-		opt.setAttribute('data-placeholder','Selecciona un Proveedor');
-		sele.appendChild(opt);
 
-		for (var p in articulo){
+
+		for (var p in articulo) {
 			opt = document.createElement('option');
 			opt.value = p;
+
+			if (p === item) {
+				opt.selected = true;
+			}
 			opt.innerHTML = articulo[p];
 			sele.appendChild(opt);
-		}		
+		}	
 		td.appendChild(sele);
 		tr.appendChild(td);
 		
 		// Otros Campos
-		tr.appendChild(crearCampo('det_Cantidad[]',false,'calcular()'));		
-		tr.appendChild(crearCampo('det_Precio[]',false,'calcular()'));
-		tr.appendChild(crearCampo('det_Subtotal[]',true,''));
+		tr.appendChild(crearCampo('det_Cantidad[]',false,'calcular()', cantidad));		
+		tr.appendChild(crearCampo('det_Precio[]',false,'calcular()', precio));
+		tr.appendChild(crearCampo('det_Subtotal[]',true,'', subtotal));
 		
 	
 		
@@ -718,6 +831,19 @@
 		
 		//LLama el JS que se requiere para el Select Multiple
 		chosen(id_sele);
+
+		calcular();
+
+		// Limpia los Inputs de Agregar
+		document.getElementById('id_cantidad').value = "";
+		document.getElementById('id_precio').value = "";
+		document.getElementById('id_subtotal').value = "";
+		const selectElement = document.getElementById('id_articulo');
+		for (let i = 0; i < selectElement.options.length; i++) {
+			selectElement.options[i].selected = false;
+		}
+
+		$('#id_articulo').trigger("chosen:updated")
 		
 	}	
 		

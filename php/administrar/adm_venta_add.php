@@ -392,11 +392,9 @@ if ($usu_autentico != "SI") {
 								<label class="col-sm-3 control-label no-padding-right" for="x_subtotal">Subtotal</label>
 								<div class="col-sm-7">
 									<input readonly="readonly" class="col-xs-10 col-sm-7" id="x_subtotal" name="x_subtotal"
-										value="<?php echo $x_subtotal; ?>" id="x_subtotal" type="text"
-										>
+										value="<?php echo $x_subtotal; ?>" id="x_subtotal" type="text">
 								</div>
 							</div>
-
 
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right">Total</label>
@@ -720,7 +718,6 @@ Se invoka en tiempo de ejecucion para activar la clase select multiple
 
 		var articulo = <?php echo json_encode($arr_articulo); ?>;
 
-
 		cantidad = document.getElementById('id_cantidad').value;
 		precio = document.getElementById('id_precio').value;
 		subtotal = document.getElementById('id_subtotal').value;
@@ -730,14 +727,6 @@ Se invoka en tiempo de ejecucion para activar la clase select multiple
 		if (cantidad === "") return;
 		if (precio === "") return;
 		if (subtotal === "") return;
-
-		console.log(item)
-		console.log(cantidad)
-		console.log(precio)
-		console.log(subtotal)
-
-
-
 
 
 		destino = document.getElementById('tblDetalle');

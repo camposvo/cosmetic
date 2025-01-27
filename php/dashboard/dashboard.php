@@ -122,6 +122,25 @@ if ($usu_autentico != "SI") {
 	}
 
 
+		/*-------------------------------------------------------------------------------------------
+	CONSULTA DE CUENTAS POR COBRAR
+	-----------------------------------------------------------------------------------------------*/
+	$ls_sql = "SELECT sum(abono) as Abono, sum (detalle) as Deuda
+				FROM v01_pago 
+				WHERE v01_pago.tx_tipo='INVERSION' ";
+
+	$ls_resultado =  $obj_miconexion->fun_consult($ls_sql);
+	if ($ls_resultado != 0) {
+		$row = pg_fetch_row($ls_resultado, 0);
+		$AbonoInversion    = $row[0];
+		$TotalInversion    = $row[1];
+		$Inversion     = $row[1] - $row[0];
+	} else {
+		fun_error(1, $li_id_conex, $ls_sql, $_SERVER['PHP_SELF'], __LINE__); // enviar mensaje de error de consulta
+	}
+
+
+
 	/*-------------------------------------------------------------------------------------------
 	RUTINAS: CONSULTA DE BANCO
 	----------------------------------------------------------------------------------------------*/
@@ -452,7 +471,7 @@ if ($usu_autentico != "SI") {
 					<div class="col-xs-12">
 
 						<div class="row">
-							<div class="col-sm-8 col-md-6 infobox-container">
+							<div class="col-xs-12 infobox-container">
 
 								<div class="infobox infobox-blue">
 									<div class="infobox-icon">
@@ -498,7 +517,11 @@ if ($usu_autentico != "SI") {
 										<span class="infobox-data-number"><?php echo number_format($CtxCob, 2, ",", "."); ?></span>
 										<div class="infobox-content">Dinero Prestado</div>
 									</div>
+
+																	
 								</div>
+
+								
 
 								<div class="space-6"></div>
 
@@ -508,8 +531,8 @@ if ($usu_autentico != "SI") {
 									</div>
 
 									<div class="infobox-data">
-										<div class="infobox-content">Activos</div>
-										<div class="infobox-content"><?php echo number_format($total_activos, 2, ",", "."); ?> </div>
+										<div class="infobox-content"><?php echo number_format($total_activos, 2, ",", "."); ?></div>
+										<div class="infobox-content">Activos </div>
 									</div>
 								</div>
 
@@ -519,8 +542,8 @@ if ($usu_autentico != "SI") {
 									</div>
 
 									<div class="infobox-data">
+										<div class="infobox-content"><?php echo number_format($pasivos, 2, ",", "."); ?></div>
 										<div class="infobox-content">Pasivos</div>
-										<div class="infobox-content"><?php echo number_format($pasivos, 2, ",", "."); ?> </div>
 									</div>
 								</div>
 
@@ -530,9 +553,22 @@ if ($usu_autentico != "SI") {
 									</div>
 
 									<div class="infobox-data">
-										<div class="infobox-content">Capital</div>
-										<div class="infobox-content"><?php echo number_format($balance, 2, ",", "."); ?> </div>
+										<div class="infobox-content"><?php echo number_format($balance, 2, ",", "."); ?></div>
+										<div class="infobox-content">Capital </div>
 									</div>
+								</div>
+
+								<div class="infobox infobox-orange infobox-small infobox-dark">
+									<div class="infobox-icon">
+										<i class="ace-icon fa fa-download"></i>
+									</div>
+
+									<div class="infobox-data">
+										<span class="infobox-content"><?php echo number_format($Inversion, 2, ",", "."); ?></span>
+										<div class="infobox-content">Inversión</div>
+									</div>	
+
+									
 								</div>
 
 							</div>
