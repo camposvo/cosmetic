@@ -822,7 +822,8 @@
 		td.appendChild(x);
 		tr.appendChild(td);
 		
-		destino.appendChild(tr);
+		//destino.appendChild(tr);
+		destino.insertBefore(tr, destino.firstChild);
 
 		const fila = sele.parentNode.parentNode.rowIndex;
 		const id_sele = "articulo_"+fila;
