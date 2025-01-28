@@ -231,6 +231,9 @@ if ($usu_autentico != "SI") {
 	for ($i = 1; $i <= 12; $i++) {
 		$serie1_bar[$i] = "0"; //Crear un array ingreso
 		$serie2_bar[$i] = "0"; //egreso
+
+		$serie1_finanza[$i] = "0"; //Crear un array ingreso
+		$serie2_finanza[$i] = "0"; //egreso
 	}
 
 	$total_ingreso = 0;
@@ -252,6 +255,31 @@ if ($usu_autentico != "SI") {
 			$serie2_bar[$row[2]] = "$row[1]"; //egreso
 			$total_ingreso = $total_ingreso + $row[0];
 			$total_egreso = $total_egreso + $row[1];
+		}
+	} else {
+		fun_error(1, $li_id_conex, $ls_sql, $_SERVER['PHP_SELF'], __LINE__);
+	}
+
+
+	$total_venta = 0;
+	$total_gasto = 0;
+
+	$ls_sql = "SELECT SUM(venta), SUM(gasto), EXTRACT(month FROM fecha) AS MES 
+			FROM v09_resumen 
+			WHERE EXTRACT(YEAR FROM fecha) = $CURRENT_YEAR and in_pedido='N'
+			GROUP BY EXTRACT(month FROM fecha)  ORDER BY EXTRACT(month FROM fecha)  asc";
+
+	//echo $ls_sql;
+	$ls_resultado =  $obj_miconexion->fun_consult($ls_sql);
+
+	if ($ls_resultado != 0) {
+
+		while ($row = pg_fetch_row($obj_miconexion->li_idconsult)) {
+			//$timestamp = strtotime($row[2])*1000; // Convierte la Fecha en Formato UNIX	en milisegundos
+			$serie1_finanza[$row[2]] = "$row[0]"; //Crear un array ingreso
+			$serie2_finanza[$row[2]] = "$row[1]"; //egreso
+			$total_venta = $total_venta + $row[0];
+			$total_gasto = $total_gasto + $row[1];
 		}
 	} else {
 		fun_error(1, $li_id_conex, $ls_sql, $_SERVER['PHP_SELF'], __LINE__);
@@ -852,6 +880,38 @@ if ($usu_autentico != "SI") {
 
 						<div class="space-6"></div>
 
+
+						<!-- CONTAINER FINANZAS -->
+						<div class="row">
+							<div class="widget-box transparent ">
+								<div class="widget-header widget-header-flat">
+									<h4 class="widget-title lighter">
+										<i class="ace-icon fa fa-star orange"></i>
+										Gráfica Ventas vs Compras Mensual
+									</h4>
+
+									<div class="widget-toolbar">
+										<a href="#" data-action="collapse">
+											<i class="ace-icon fa fa-chevron-up"></i>
+										</a>
+									</div>
+								</div>
+								<div class="widget-body no-padding">
+									<div class="widget-main ">
+										<div class="col-sm-12">
+											<div id="container_3" style="height: 400px; min-width: 310px"></div>
+										</div>
+									</div><!-- /.widget-main -->
+								</div><!-- /.widget-body -->
+							</div><!-- /.widget-box -->
+						</div><!-- /.ROW -->
+
+						<div class="space-6"></div>
+
+
+
+
+
 						<!-- GASTOS DETALLE -->
 						<!-- <div class="row">
 							<div class="widget-box transparent ">
@@ -1181,9 +1241,77 @@ if ($usu_autentico != "SI") {
 			});
 
 
+			Highcharts.chart('container_3', {
+
+				chart: {
+					type: 'column',
+					options3d: {
+						enabled: true,
+						alpha: 15,
+						beta: 15,
+						viewDistance: 25,
+						depth: 60
+					}
+				},
+
+				title: {
+					text: 'Ventas vs Compras por Mes'
+				},
+
+				subtitle: {
+					text: ''
+				},
+
+				xAxis: {
+					categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+					crosshair: true
+				},
+
+				yAxis: {
+					min: 0,
+					title: {
+						text: 'Monto (Bs)'
+					}
+				},
+
+				tooltip: {
+					headerFormat: '<b>{point.key}</b><br>',
+					pointFormat: '<span style="color:{series.color}">\u25CF</span> {series.name}: {point.y}  {point.stackTotal}'
+				},
+
+				plotOptions: {
+					column: {
+						pointPadding: 0.2,
+						borderWidth: 0
+					}
+				},
+				series: [{
+						color: color_bar1,
+						name: 'Ventas',
+						data: [<?php echo join(',', $serie1_finanza) ?>] /* Convierte un array en una cadena*/
+						//data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+
+					},
+					{
+						color: color_bar2,
+						name: 'Compras',
+						data: [<?php echo join(',', $serie2_finanza) ?>] /* Convierte un array en una cadena*/
+						//data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+
+					}
+
+				]
+
+				});
+
+
+
+
+
+
 			/*********************** Gastos por Categoria *******************************/
 
-			Highcharts.chart('container_2', {
+			/* Highcharts.chart('container_2', {
 				chart: {
 					plotBackgroundColor: null,
 					plotBorderWidth: null,
@@ -1211,7 +1339,7 @@ if ($usu_autentico != "SI") {
 					colorByPoint: true,
 					data: [<?php echo join(',', $data4); ?>]
 				}]
-			});
+			}); */
 
 
 			/*********************** Gastos por Clasificacion *******************************/
