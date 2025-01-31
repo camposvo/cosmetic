@@ -113,6 +113,13 @@ $top = 10;
 $pdf= new FPDF('P', 'mm', 'A4', 'UTF-8');
 $pdf->AddPage(); 
 
+  // Posicionamos a 1.5 cm del final
+
+  // Arial italic 8
+  $pdf->SetFont('Arial','I',8);
+  // Número de página
+  $pdf->Cell(0,10,'Pag. '.$pdf->PageNo(),0,0,'C');
+
 //HEADER
 $pdf->SetFont('Courier', 'B', 10); 
 $pdf->SetXY(150, $top += 5);
@@ -224,6 +231,88 @@ while($fila = pg_fetch_row($ls_resultado_1)){
 	$pdf->Cell($w4, $h1, $subtotal, 1, 1, 'C');
 
 	$total += $fila[3];
+
+	if($top >= 200) { 
+		$pdf->AddPage();
+		  $pdf->SetFont('Arial','I',8);
+	    $pdf->Cell(0,10,'Pag. '.$pdf->PageNo(),0,0,'C');
+		$top = 10;
+
+		$pdf->SetFont('Courier', 'B', 10); 
+			$pdf->SetXY(150, $top += 5);
+			$pdf->SetTextColor(255, 0, 0); // Rojo (R, G, B)
+			$pdf->SetFont('Courier', 'B', 12); 
+			$pdf->SetXY(150, $top += 10);
+			$pdf->Cell(50, 10, 'NOTA NRO .'.$x_nota, 0, 0,'R');
+
+			$pdf->SetTextColor(0, 0, 0); // Rojo (0, 0, 0)
+			$pdf->SetFont('Courier', 'B', 10); 
+			$pdf->SetXY(150, $top += 5);
+			$pdf->Cell(50, 10, fix_texto('Fecha de Emisión:').$o_fecha, 0, 0,'R');
+
+			//CLIENT TITLE
+			$top += 15;
+
+			$pdf->SetFont('Courier', '', 9); 
+			$pdf->SetXY(20, $top);
+			$pdf->Cell(120, 5, fix_texto('Nombre o Razón Social:'), 'LTR', 1, 'L');
+
+			$pdf->SetXY(20, $top + 10);
+			$pdf->Cell(120, 5, 'Domicilio Fiscal:', 'LR', 1, 'L');
+
+			$pdf->SetXY(140, $top);
+			$pdf->Cell(60, 5, fix_texto('RIF o CI:'), 'LTR', 1, 'L');
+
+			$pdf->SetXY(140, $top + 10);
+			$pdf->Cell(60, 5, fix_texto('Teléfono:'), 'LR', 1, 'L');
+
+			//CLIENT DATA 
+
+			$pdf->SetFont('Courier', 'B', 11); 
+			$pdf->SetXY(20, $top + 5);
+			$pdf->Cell(120, 5, fix_texto(strtoupper($o_cliente)),'LBR', 1, 'L');
+
+			$pdf->SetXY(20, $top + 15);
+			$pdf->MultiCell(120, 5, fix_texto($o_direccion), 'LBR', 'L');
+
+			$pdf->SetXY(140, $top + 5);
+			$pdf->Cell(60, 5, strtoupper($o_cedula),'LBR', 1, 'L');
+
+			$pdf->SetXY(140, $top + 15);
+			$pdf->Cell(60, 10, strtoupper($o_telefono),'LBR', 1, 'L');
+
+			//ITEMS DATA
+
+
+
+			$top += 30;
+			$ma = 20;
+			$h1 = 7;
+
+			$w1 = 20;
+			$w2 = 110;
+			$w3 = 25;
+			$w4 = 25;
+
+
+
+			$pdf->SetFillColor(198,217,241); 
+
+			$pdf->SetFont('Courier', 'B', 10); 
+			//$pdf->SetTextColor(255, 255, 255); // Rojo (0, 0, 0)
+
+			$pdf->SetXY($ma, $top);
+			$pdf->Cell($w1, $h1, 'Cant.', 1, 1, 'C',true);
+
+			$pdf->SetXY($ma+20, $top);
+			$pdf->Cell($w2, $h1, 'Concepto', 1, 1, 'C', true);
+
+			$pdf->SetXY($ma+130, $top);
+			$pdf->Cell($w3, $h1, 'Precio', 1, 1, 'C',true);
+
+			$pdf->SetXY($ma+155, $top);
+			$pdf->Cell($w4, $h1, 'Total', 1, 1, 'C',true);
+	}
 
 	
 }
