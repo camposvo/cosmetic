@@ -7,7 +7,7 @@
     	echo"<script language='JavaScript' type='text/JavaScript'>top.location.href='../../html/fin_sesion.html'</script>";
 		exit();
 	}
-	
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -41,6 +41,7 @@
 	$o_cantidad2 = 0;
 	$mostrar_rs = false;
 	$x_pedido = "S";
+	$o_fecha =date("d/m/Y");
 	
 	if (!$_GET)	{
 		foreach($_POST as $nombre_campo => $valor){
@@ -202,6 +203,8 @@
 			fk_proyecto         = $o_proyecto,
 			in_pedido			= '$x_pedido'
 		WHERE pk_factura   	  	= $id_factura;";
+
+		echo $ls_sql;
 
 								
 		if($obj_miconexion->fun_consult("BEGIN TRANSACTION; ".$ls_sql) == 0){

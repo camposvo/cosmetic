@@ -177,8 +177,7 @@ RUTINAS: Consulta  datos resumen
 				pk_factura
 			FROM t20_factura
 			INNER JOIN s01_persona ON s01_persona.co_persona = t20_factura.fk_cliente
-			WHERE t20_factura.tx_tipo='VENTA'  ".$ls_criterio.
-			"order by  fe_fecha_factura asc ;";	
+			WHERE t20_factura.tx_tipo='VENTA'  ".$ls_criterio." order by  fe_fecha_factura asc ;";	
 
 	//echo $ls_sql;
 	$ls_resultado =  $obj_miconexion->fun_consult($ls_sql);
