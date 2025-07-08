@@ -1,0 +1,9 @@
+SELECT 
+tx_nombre, sum(nu_total) as total, count(tx_nombre) as ventas
+FROM s02_persona_rol INNER JOIN s01_persona ON s02_persona_rol.co_persona = s01_persona.co_persona 
+inner join t20_factura ON t20_factura.fk_cliente = s01_persona.co_persona
+WHERE co_rol = '39' and t20_factura.tx_tipo = 'VENTA' and 
+(fe_fecha_factura >= '2025-06-01' and fe_fecha_factura <= '2025-06-30')
+group by  
+tx_nombre
+ORDER BY ventas  desc

@@ -71,7 +71,7 @@
 		$row = pg_fetch_row($ls_resultado,0);
 		$ls_nombre_rol = $row[0];
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);
 	}
 	
 /*-------------------------------------------------------------------------------------------
@@ -95,6 +95,7 @@
 							FROM s02_persona_rol 
 							INNER JOIN s01_persona ON s02_persona_rol.co_persona = s01_persona.co_persona "
 							.$criterio."	ORDER BY tx_cedula";
+							echo $ls_sql;
 				
 				$ls_resultado =  $obj_miconexion->fun_consult($ls_sql);
 				$li_inicio = $obj_miconexion->fun_tampagina($li_pagina, $li_tampag); 
@@ -106,7 +107,7 @@
 				}
 				$li_totpag  = $obj_miconexion->fun_calcpag( $li_totreg, $li_tampag);
 				if ($ls_resultado == 0){
-					fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);
+					fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);
 				}
 	
 	

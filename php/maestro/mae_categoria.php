@@ -1,5 +1,9 @@
 <?php 
 
+/*  ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);  */
+
 	session_start();
 	include_once ("mae_utilidad.php");
 	$usu_autentico= isset($_SESSION['autentificado'])?$_SESSION['autentificado']:'';
@@ -26,6 +30,10 @@
 </head>
 <body>
 <?php 
+
+$o_nombre ="";
+$pk_categoria ="";
+
 /*-------------------------------------------------------------------------------------------|
 |				Rutina: Se Utiliza Para Recibir Las Variables Por La URL. 					 |
 |-------------------------------------------------------------------------------------------*/

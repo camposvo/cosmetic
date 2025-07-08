@@ -164,6 +164,9 @@ if ($usu_autentico != "SI") {
 	$chek_venta = $x_venta == 'on' ? 'checked' : 'unchecked';
 	$chek_gasto = $x_gasto == 'on' ? 'checked' : 'unchecked';
 
+	if($x_precio_compra <> 0)
+		$x_gain =  round(((($x_precio_venta - $x_precio_compra) / $x_precio_compra) * 100),2);
+
 	?>
 
 	<!-- Content Header (Page header) -->
