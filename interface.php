@@ -180,7 +180,7 @@
 					<a href="index.html" class="navbar-brand">
 						<small>
 							<i class="fa fa-leaf"></i>
-							Bellinghieri
+							Dist. Bellinghieri
 						</small>
 					</a>
 				</div>
@@ -189,7 +189,7 @@
 					<ul class="nav ace-nav">
 						
 
-						<li class="purple">
+						<!-- <li class="purple">
 							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
 								<i class="ace-icon fa fa-bell icon-animated-bell"></i>
 								<span class="badge badge-important">8</span>
@@ -247,7 +247,7 @@
 								</li>
 							</ul>
 						</li>
-
+ -->
 						<li class="light-blue">
 							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
 								<img class="nav-user-photo" src="<?php echo 'php/foto/'.$foto; ?>" alt="Photo" />
@@ -270,7 +270,7 @@
 								<li class="divider"></li>
 
 								<li>
-									<a href="html/fin_sesion.html">
+									<a href="index.php">
 										<i class="ace-icon fa fa-power-off"></i>
 										Salir
 									</a>

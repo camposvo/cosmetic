@@ -28,7 +28,7 @@
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta charset="UTF-8" />
-<title>BellingieriCosmetic</title>
+<title>Distribuidora Bellingieri</title>
 <meta name="description" content="User login page" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
@@ -91,9 +91,9 @@ DESCRIPCIN: VERIFICA SI LOS CAMPOS ESTAN COMPLETOS Y MANDA A LA PAGINA SESION.PH
 							<div class="center">
 								<h1>
 								
-									<span class="red">Bellingieri</span>
+									<span class="red">distribuidorabellinghieri</span>
 								</h1>
-								<h4 class="blue" id="id-company-text">@cosm.eticsca</h4>
+								<h4 class="blue" id="id-company-text">@gmail.com</h4>
 							</div>
 
 							<div class="space-6"></div>

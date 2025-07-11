@@ -6,9 +6,32 @@ include_once("adm_utilidad.php");
 /* 	ini_set('display_errors', 1);
     error_reporting(E_ALL);  */
 
+	
+	function fix_texto($texto) {	
+		$texto_normalizado = iconv('UTF-8', 'windows-1252', $texto);					
 
-	function fix_texto($texto) {
-		$texto_normalizado = iconv('UTF-8', 'windows-1252', $texto);	
+		return $texto_normalizado;
+	}
+
+
+
+	function fix_texto_tabla($texto) {
+
+		$longitud_maxima = 50;
+
+		$puntos_suspensivos = '...';
+
+		  if (mb_strlen($texto, 'UTF-8') > $longitud_maxima) {
+        // Recorta el texto y añade los puntos suspensivos
+        $texto_recortado = mb_substr($texto, 0, $longitud_maxima, 'UTF-8');
+    } else {
+        // Si no excede la longitud, usa el texto original
+        $texto_recortado = $texto;
+    }
+
+		//$texto = substr($texto, 0, 46);
+		$texto_normalizado = iconv('UTF-8', 'windows-1252', $texto_recortado);					
+
 		return $texto_normalizado;
 	}
 
@@ -214,13 +237,14 @@ $total = 0;
 $pdf->SetFont('Courier', '', 9); 
 while($fila = pg_fetch_row($ls_resultado_1)){	
 
+	$pdf->SetFont('Courier', '', 10); 
 	$top += 7;	
 	
 	$pdf->SetXY($ma, $top);
 	$pdf->Cell($w1, $h1, $fila[0], 1, 1, 'C');
 
 	$pdf->SetXY($ma+20, $top);
-	$pdf->Cell($w2, $h1,strtoupper(fix_texto($arr_articulo[$fila[1]])), 1, 1, 'L');
+	$pdf->Cell($w2, $h1,strtoupper(fix_texto_tabla($arr_articulo[$fila[1]])), 1, 1, 'L');
 
 	$precio = number_format($fila[2],2,",",".");
 	$pdf->SetXY($ma+130, $top);
@@ -232,7 +256,7 @@ while($fila = pg_fetch_row($ls_resultado_1)){
 
 	$total += $fila[3];
 
-	if($top >= 200) { 
+	if($top >= 230) { 
 		$pdf->AddPage();
 		  $pdf->SetFont('Arial','I',8);
 	    $pdf->Cell(0,10,'Pag. '.$pdf->PageNo(),0,0,'C');
