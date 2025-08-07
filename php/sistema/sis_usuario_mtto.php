@@ -5,7 +5,7 @@
 	$usu_autentico = isset($_SESSION['autentificado'])?$_SESSION['autentificado']:'';
 	if ($usu_autentico != "SI"){
 		session_destroy();
-		echo"<script language='JavaScript' type='text/JavaScript'>top.location.href='../../html/fin_sesion.html'</script>";
+		echo"<script language='JavaScript' type='text/JavaScript'>top.location.href='../../index.php'</script>";
 		exit();
 	}
 
@@ -210,7 +210,7 @@
 					VALUES('$o_cedula', '$o_nombre','$x_apellido','','$x_telefono_otro', 
 						 '$x_email', '$o_indicador','$o_activo', '$x_direccion', '$chk_tipo' )";
 					
-				//echo $ls_sql;
+				echo $ls_sql;
 				
 				if($obj_miconexion->fun_consult($ls_sql) == 0){
 					$error_sql = true;

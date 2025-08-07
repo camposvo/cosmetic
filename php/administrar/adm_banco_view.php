@@ -5,7 +5,7 @@
 	$usu_autentico= isset($_SESSION['autentificado'])?$_SESSION['autentificado']:'';
 	if ($usu_autentico != "SI") {
 		session_destroy();
-    	echo"<script language='JavaScript' type='text/JavaScript'>top.location.href='../../html/fin_sesion.html'</script>";
+    	echo"<script language='JavaScript' type='text/JavaScript'>top.location.href='../../index.php'</script>";
 		exit();
 	}
 ?>

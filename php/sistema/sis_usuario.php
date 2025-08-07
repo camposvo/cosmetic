@@ -213,11 +213,7 @@
 				$('#input_filtro').val(table.search());
 			} );
 	
-			//or change it into a date range picker
-			$('.input-daterange').datepicker({				
-				autoclose:true,
-				format: "dd/mm/yyyy"				
-			});
+		
 			
 			//  Tooltip
 			$( ".open-event" ).tooltip({
