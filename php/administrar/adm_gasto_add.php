@@ -8,6 +8,7 @@
 		exit();
 	}
 
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -34,31 +35,34 @@
 </head>
 <body>
 <?php 
-/*-------------------------------------------------------------------------------------------
-	RUTINA: Se utiliza para recibir las variables por la url.
--------------------------------------------------------------------------------------------*/
+	$fechaFinal = new DateTime(); // Fecha actual
+	$fechaInicial = (new DateTime())->modify('-1 month'); // Hace un mes
+	$x_fecha = ""; 
+	$x_fecha_ini = 0;
+	$x_fecha_fin = 0;
+
+
 	$o_cantidad  = 0;
 	$o_cantidad2 = 0;
 	$mostrar_rs = false;
 	$x_pedido = "S";
-	$o_fecha =date("d/m/Y");
+	$o_fecha =date("Y-m-d");
+	$x_referencia = "";
+	$x_descuento = 0;
+	$x_subtotal = 0 ;
+	$x_total = 0;
+	$input_filtro ="";
+	$id_factura = '';
 	
-	if (!$_GET)	{
-		foreach($_POST as $nombre_campo => $valor){
-			$asignacion = "\$" . $nombre_campo . "='" . $valor . "';";
-			eval($asignacion);
-		}
-		$modo = isset($_POST['modo'])?$_POST['modo']:'Insertar Nuevo Registro';
-	}else{
-		foreach($_GET as $nombre_campo => $valor){
-			$asignacion = "\$" . $nombre_campo . "='" . $valor . "';";
-			eval($asignacion);
-		}
-		$modo = isset($_GET['modo'])?$_GET['modo']:'Insertar Nuevo Registro';
+	$datos = !empty($_POST) ? $_POST : $_GET;
+	foreach ($datos as $nombre_campo => $valor) {
+		$$nombre_campo = $valor;
 	}
-	
-	
-	if ($_POST['det_Articulo'])	{ // Recibe el detalle de la Factura
+
+
+	$modo = $datos['modo'] ?? 'Insertar Nuevo Registro';
+
+	if (!empty($_POST['det_Articulo'])) { // Recibe el detalle de la Factura
 		$a_precio 	= $_POST['det_Precio'];
 		$a_articulo	= $_POST['det_Articulo'];
 		$a_cantidad	= $_POST['det_Cantidad'];
@@ -97,7 +101,8 @@
 			tx_concepto,
             nu_total,
 			fk_proyecto,
-			in_pedido
+			in_pedido,
+			nu_descuento		
 			)
 		VALUES (
 			$co_usuario, 
@@ -109,7 +114,8 @@
 			'$x_referencia',
 			$x_total,
 			$o_proyecto,
-			'$x_pedido'
+			'$x_pedido',
+			$x_descuento
 		);";
 						
 		//echo $ls_sql;
@@ -201,10 +207,10 @@
 			tx_concepto         ='$x_referencia',
 			nu_total		  	= $x_total,
 			fk_proyecto         = $o_proyecto,
-			in_pedido			= '$x_pedido'
+			in_pedido			= '$x_pedido',
+			nu_descuento        = $x_descuento
 		WHERE pk_factura   	  	= $id_factura;";
 
-		echo $ls_sql;
 
 								
 		if($obj_miconexion->fun_consult("BEGIN TRANSACTION; ".$ls_sql) == 0){
@@ -279,8 +285,8 @@
 	LEE DATOS DE UN GASTO
 -------------------------------------------------------------------------------------------*/
 	if ($tarea == "M"){		
-		$ls_sql ="SELECT pk_factura, fk_responsable, fk_cliente, to_char(fe_fecha_factura, 'dd/mm/yyyy'),  tx_factura, 
-					nu_total, nu_subtotal, nu_abono, tx_concepto, fk_proyecto, in_pedido
+		$ls_sql ="SELECT pk_factura, fk_responsable, fk_cliente, to_char(fe_fecha_factura, 'yyyy-mm-dd'),  tx_factura, 
+					f_calcular_factura($x_movimiento), nu_abono, tx_concepto, fk_proyecto, in_pedido, nu_descuento
 					FROM t20_factura
 					WHERE pk_factura = $x_movimiento";
 		
@@ -292,12 +298,15 @@
 			$o_proveedor  	 = $row[2];	
 			$o_fecha         = $row[3];
 			$o_factura      = $row[4];			
-			$x_total        = $row[5];
-			$x_subtotal     = $row[6];
-			$x_abono    	= $row[7];
-			$x_referencia   = $row[8];
-			$o_proyecto     = $row[9];
-			$x_pedido     = $row[10];
+			$x_subtotal        = $row[5];
+			
+			$x_abono    	= $row[6];
+			$x_referencia   = $row[7];
+			$o_proyecto     = $row[8];
+			$x_pedido     = $row[9];
+			$x_descuento  = $row[10];
+			$x_total  = $x_subtotal  - $x_descuento;
+
 			
 			// Extrae el detalle de la factura
 			$ls_sql ="SELECT fk_articulo, nu_cantidad, nu_precio,  
@@ -328,6 +337,8 @@
 		$modo= 'Ingresar Nuevo Gasto';
 	}
 
+	$modo= $modo . ' (' . $id_factura . ')';
+
 	$x_fecha_registro = date('d/m/Y H:i');
 
 ?>
@@ -351,7 +362,7 @@
 								<label class="col-sm-3 control-label no-padding-right" for="id-date-picker-1" >Fecha Fact.</label>
 								<div class="col-sm-4" >	
 									<div class="input-group">
-										<input name="o_fecha" value="<?php echo $o_fecha;?>" class="col-xs-10 col-sm-6 form-control date-picker" id="id-date-picker-1" type="text" data-date-format="dd/mm/yyyy" readonly data-date-end-date="0d"/>
+										<input name="o_fecha" value="<?php echo $o_fecha;?>" class="col-xs-10 col-sm-6 form-control date-picker" id="id-date-picker-1" type="text" data-date-format="yyyy-mm-dd" readonly data-date-end-date="0d"/>
 										<span class="input-group-addon">
 											<i class="fa fa-calendar bigger-110"></i>
 										</span>
@@ -542,7 +553,7 @@
 					<input type="hidden" name="x_proyecto" value="<?php echo $x_proyecto;?>">
 					<input type="hidden" name="x_fecha_ini" value="<?php echo $x_fecha_ini;?>">
 					<input type="hidden" name="x_fecha_fin" value="<?php echo $x_fecha_fin;?>">
-					<input type="hidden" id = "input_filtro" name="input_filtro" 		 value="<?php echo $input_filtro;?>">		
+					<input type="hidden" id = "input_filtro" name="input_filtro" 	value="<?php echo $input_filtro;?>">		
 					<input type="hidden" name="check" value="<?php echo $check;?>">	
 					<input type="hidden" name="x_pedido" value="<?php echo $x_pedido; ?>">		
 				</form>
@@ -881,6 +892,7 @@
 	}	    
 
 	function Atras(parametros){
+
 		document.formulario.tarea.value = "X";
 		document.formulario.action = "adm_gasto_view.php";
 		document.formulario.method = "POST";

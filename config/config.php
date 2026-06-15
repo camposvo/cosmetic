@@ -29,6 +29,7 @@ function Combo_Asignacion(){
 function Combo_Almacen(){
 	$obj_miconexion = fun_crear_objeto_conexion();
 	$li_id_conex = fun_conexion($obj_miconexion);
+	$arr = [];
 									
 	 $ls_sql = "SELECT pk_almacen, nb_almacen FROM t09_almacen ORDER BY nb_almacen ASC";    
 
@@ -259,6 +260,7 @@ function Combo_Clase_Proyecto(){
 function Combo_Clasificacion(){
 	$obj_miconexion = fun_crear_objeto_conexion();
 	$li_id_conex = fun_conexion($obj_miconexion);
+	$arr = [];
 									
 	 $ls_sql = "SELECT pk_clase, nb_clase
 				FROM t05_clase
@@ -786,4 +788,28 @@ function dia_letras($numero)
 		$dias 	= abs($dias); $dias = floor($dias);		
 		return $dias;
 	}
+
+	function extraerFechasPostgres($texto) {
+    // Expresión regular para buscar el patrón DD/MM/YYYY
+    $patron = '/(\d{2}\/\d{2}\/\d{4})/';
+    
+    if (preg_match_all($patron, $texto, $coincidencias)) {
+        $fechasFormateadas = [];
+
+        foreach ($coincidencias[0] as $fechaStr) {
+            // Creamos el objeto fecha desde el formato original
+            $objetoFecha = DateTime::createFromFormat('d/m/Y', $fechaStr);
+            
+            if ($objetoFecha) {
+                // Convertimos al formato de Postgres (Año-Mes-Día)
+                $fechasFormateadas[] = $objetoFecha->format('Y-m-d');
+            }
+        }
+
+        return $fechasFormateadas;
+    }
+
+    return []; // Retorna array vacío si no encuentra nada
+}
+
 	?>

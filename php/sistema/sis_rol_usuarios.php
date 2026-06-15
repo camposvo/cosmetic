@@ -37,22 +37,18 @@
 <body>
 <?php 
 
-/*-------------------------------------------------------------------------------------------
-	RUTINA: Se utiliza para recibir las variables por la url.
--------------------------------------------------------------------------------------------*/
-	if (!$_GET){
-		foreach($_POST as $nombre_campo => $valor){ 
-			$asignacion = "\$" . $nombre_campo . "='" . $valor . "';";
-			eval($asignacion);
-		}
+	$tarea = "X";
+
+	$datos = !empty($_POST) ? $_POST : $_GET;
+	foreach ($datos as $nombre_campo => $valor) {
+		$$nombre_campo = $valor;
+	}
+
+	if (!$_GET){		
 		$li_pagina=1;
 		$li_totpag = isset($_POST['li_totpag'])?$_POST['']:'';
 		$li_totreg = isset($_POST['li_totreg'])?$_POST['']:'';	
-	}else{
-		foreach($_GET as $nombre_campo => $valor){ 
-			$asignacion = "\$" . $nombre_campo . "='" . $valor . "';";
-			eval($asignacion);
-		}
+	}else{		
 		$li_pagina = isset($_GET['li_pagina'])?$_GET['li_pagina']:'';
 		$li_totpag = isset($_GET['li_totpag'])?$_GET['']:'';
 		$li_totreg = isset($_GET['li_totreg '])?$_GET['li_totreg ']:'';

@@ -36,6 +36,10 @@
 	$Disponible  = 0;
 	$Banco       = 0;
 	$sw = 0;
+	$x_tipo = "";
+	$x_fecha = ""; 
+	$x_fecha_ini = 0;
+	$x_fecha_fin = 0;
 	
 	if (!$_GET)	{
 		foreach($_POST as $nombre_campo => $valor){
@@ -58,22 +62,24 @@
 	$arr_tipo =     Combo_TipoMovimiento();
 	
 	// Carga variables con los ultimos 30 DIAS POR DEFECTO
-	$x_fecha_actual        =  date('d/m/Y');
-	$x_fecha_mespasado 	   =  date('d/m/Y', strtotime('-29 day')) ;   
+	$x_fecha_actual        =  date('Y-m-d');
+	$x_fecha_mespasado 	   =  date('Y-m-d', strtotime('-29 day')) ;   
 
 	// Asigna criterio dependiendo del valor de la fecha 
-	if (!empty($x_fecha)){
-		 $sw =1;
-		$arr_fecha = explode('-',$x_fecha,2);
+
+	$arr_fecha = extraerFechasPostgres($x_fecha);
+
+	if(!empty($arr_fecha)){
+		$sw =1;
 		$x_fecha_ini = $arr_fecha[0];
 		$x_fecha_fin = $arr_fecha[1];
-
-
 	}else{
 		$x_fecha_ini = $x_fecha_mespasado;
 		$x_fecha_fin = $x_fecha_actual;
 	}
 
+		
+	
 /*-------------------------------------------------------------------------------------------
 	INVOCA FUNCION DE B.D. PARA REFRESCAR VISTA MATERIALIZADA
 ----------------------------------------------------------------------------------------------*/	

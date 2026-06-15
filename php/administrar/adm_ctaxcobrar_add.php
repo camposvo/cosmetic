@@ -34,32 +34,26 @@
 	$o_cantidad  = 0;
 	$o_cantidad2 = 0;
 	$mostrar_rs = false;
+	$x_observacion = "";
 	
-	if (!$_GET)	{
-		foreach($_POST as $nombre_campo => $valor){
-			$asignacion = "\$" . $nombre_campo . "='" . $valor . "';";
-			eval($asignacion);
-		}
-		$modo = isset($_POST['modo'])?$_POST['modo']:'Insertar Nuevo Registro';
-	}else{
-		foreach($_GET as $nombre_campo => $valor){
-			$asignacion = "\$" . $nombre_campo . "='" . $valor . "';";
-			eval($asignacion);
-		}
-		$modo = isset($_GET['modo'])?$_GET['modo']:'Insertar Nuevo Registro';
+	$datos = !empty($_POST) ? $_POST : $_GET;
+	foreach ($datos as $nombre_campo => $valor) {
+		$$nombre_campo = $valor;
 	}
+	$modo = $datos['modo'] ?? 'Insertar Nuevo Registro';
 	
 	//var_dump($_POST['det_Proyecto']);
 	//var_dump($_POST['det_Precio']);
-	
-	if ($_POST['det_Proyecto'])	{ // Recibe el detalle de la Factura
+
+	if(!empty($_POST['det_Proyecto'])){
 		$a_proyecto	= $_POST['det_Proyecto'];
 		$a_precio 	= $_POST['det_Precio'];
 		$a_item		= $_POST['det_Item'];
 		$a_cantidad	= $_POST['det_Cantidad'];
-		$a_und		= $_POST['det_Und'];			
+		$a_und		= $_POST['det_Und'];
 	}
 	
+		
 	
 	$obj_miconexion = fun_crear_objeto_conexion();
 	$li_id_conex = fun_conexion($obj_miconexion);
@@ -74,6 +68,8 @@
 	RUTINAS: para AGREGAR una  Factura
 -------------------------------------------------------------------------------------------*/
 	$x_fecha_actual = date('Y/m/d');
+
+	$o_fecha = date('Y/m/d');
 	
 	if ($tarea == "I"){
 		$error_sql = false;
@@ -158,6 +154,9 @@
 			$x_total        = $row[5];
 			$x_subtotal     = $row[6];
 			$x_abono    	= $row[7];
+
+			$fecha = new DateTime($o_fecha);
+			$o_fecha =  $fecha->format('d/m/Y');
 			
 			// Extrae el detalle de la factura
 			$ls_sql ="SELECT fk_rubro, nu_cant_item,nu_cantidad, tx_unidad, nu_precio,  

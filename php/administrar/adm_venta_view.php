@@ -27,22 +27,27 @@
 </head>
 <body>
 <?php 
-/*-------------------------------------------------------------------------------------------
-	RUTINA: Se utiliza para recibir las variables por la url.
--------------------------------------------------------------------------------------------*/
-	if (!$_GET)	{
-		foreach($_POST as $nombre_campo => $valor){
-			$asignacion = "\$" . $nombre_campo . "='" . $valor . "';";
-			eval($asignacion);
-		}
-		$filtro = isset($filtro)?$filtro:'NO_ALL';
-	}else{
-		foreach($_GET as $nombre_campo => $valor){
-			$asignacion = "\$" . $nombre_campo . "='" . $valor . "';";
-			eval($asignacion);
-		}
-		$filtro = isset($filtro)?$filtro:'NO_ALL';
+
+// 1. Creamos los objetos de fecha
+$fechaFinal = new DateTime(); // Fecha actual
+$fechaInicial = (new DateTime())->modify('-1 month'); // Hace un mes
+
+// 2. Formateamos al estilo DD/MM/YYYY para que coincida con tu entrada
+$x_fecha = ""; //$fechaInicial->format('d/m/Y') . " - " . $fechaFinal->format('d/m/Y');
+$x_fecha_ini = 0;
+$x_fecha_fin = 0;
+
+$tarea ="X";
+$ls_criterio ="";
+$input_filtro ="";
+
+
+	$datos = !empty($_POST) ? $_POST : $_GET;
+	foreach ($datos as $nombre_campo => $valor) {
+		$$nombre_campo = $valor;
 	}
+	$filtro = isset($filtro)?$filtro:'NO_ALL';
+	
 	
 	$obj_miconexion = fun_crear_objeto_conexion();
 	$li_id_conex = fun_conexion($obj_miconexion);
@@ -52,10 +57,15 @@
 	$arr_vendedor=  Combo_Vendedor();
 	$arr_rubro   =  Combo_Rubro();
 	$arr_abono   =  Combo_Abono();
+
+	//echo $x_fecha;
 	
-	$arr_fecha = explode('-',$x_fecha,2);
-	$x_fecha_ini = $arr_fecha[0];
-	$x_fecha_fin = $arr_fecha[1];
+	$arr_fecha = extraerFechasPostgres($x_fecha);
+	if(!empty($arr_fecha)){
+		$x_fecha_ini = $arr_fecha[0];
+		$x_fecha_fin = $arr_fecha[1];
+	}
+	
 	
 	$x_vendedor = isset($x_vendedor)?$x_vendedor:$co_usuario;
 	$x_cliente   = isset($x_cliente)?$x_cliente:0;
@@ -179,7 +189,7 @@ RUTINAS: Consulta  datos resumen
 			INNER JOIN s01_persona ON s01_persona.co_persona = t20_factura.fk_cliente
 			WHERE t20_factura.tx_tipo='VENTA'  ".$ls_criterio." order by  fe_fecha_factura asc ;";	
 
-	//echo $ls_sql;
+	echo $ls_sql;
 	$ls_resultado =  $obj_miconexion->fun_consult($ls_sql);
 			
 	if($ls_resultado != 0){
@@ -602,8 +612,7 @@ RUTINAS: Consulta  datos resumen
 		});
 	</script>
 
-	<script type="text/javascript"> 
-
+	<script type="text/javascript">
 
 		function Mostrar_Info(identificador){
 			document.formulario.x_movimiento.value = identificador;

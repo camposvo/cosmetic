@@ -38,6 +38,7 @@ function fun_dibujar_tabla($rs,$li_totcampos,$li_indice,$operacion){
 			echo "<td class=''>" . $row[$i++] . "</td>"; 
 			echo "<td class='hidden-480'>" . $row[$i++] . "</td>";		
 			echo "<td class='hidden-480'>" . $row[$i++] . "</td>"; 
+			echo "<td class='hidden-480'>" . $row[$i++] . "</td>"; 
 			
 			if($ls_cod2=="S"){ // Esta en la  lista de mensajes
 				echo '<td>

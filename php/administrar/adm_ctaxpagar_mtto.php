@@ -42,17 +42,11 @@
 	$tipo_pago = '';
 
 
-	if (!$_GET)	{
-		foreach($_POST as $nombre_campo => $valor){
-			$asignacion = "\$" . $nombre_campo . "='" . $valor . "';";
-			eval($asignacion);
-		}
-	}else{
-		foreach($_GET as $nombre_campo => $valor){
-			$asignacion = "\$" . $nombre_campo . "='" . $valor . "';";
-			eval($asignacion);
-		}
+	$datos = !empty($_POST) ? $_POST : $_GET;
+	foreach ($datos as $nombre_campo => $valor) {
+		$$nombre_campo = $valor;
 	}
+
 	
 	$obj_miconexion = fun_crear_objeto_conexion();
 	$li_id_conex = fun_conexion($obj_miconexion);
@@ -111,7 +105,7 @@
 						
 			$ls_resultado =  $obj_miconexion->fun_consult($ls_sql);
 			if($ls_resultado == 0){
-				fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);
+				fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);
 			}else{
 				echo "<script language='javascript' type='text/javascript'>alert('Transaccion Exitosa');</script>";
 				$x_debe = $x_debe - $o_PagMonto;

@@ -27,19 +27,18 @@
 </head>
 <body>
 <?php 
-/*-------------------------------------------------------------------------------------------
-	RUTINA: Se utiliza para recibir las variables por la url.
--------------------------------------------------------------------------------------------*/
-	if (!$_GET){
-		foreach($_POST as $nombre_campo => $valor){ 
-			$asignacion = "\$" . $nombre_campo . "='" . $valor . "';";
-			eval($asignacion);
-		}
-	}else{
-		foreach($_GET as $nombre_campo => $valor){ 
-			$asignacion = "\$" . $nombre_campo . "='" . $valor . "';";
-			eval($asignacion);
-		}
+	$o_nombre = "";
+	$o_cedula = "";
+	$o_indicador = "";
+	$x_email = "";
+	$x_direccion = "";
+	$input_filtro = "";
+	$ls_sq_conv = "";
+	$error_sql  = false;
+
+	$datos = !empty($_POST) ? $_POST : $_GET;
+	foreach ($datos as $nombre_campo => $valor) {
+		$$nombre_campo = $valor;
 	}
 	
 /*-------------------------------------------------------------------------------------------
@@ -113,10 +112,7 @@
 								tx_nombre	        = '$o_nombre',           
 								tx_apellido	        = '$x_apellido',								
 								tx_telefono_hab     = '$x_telefono_hab',  
-								tx_telefono_otro     = '$x_telefono_otro',  
-								tx_email            = '$x_email',
-								in_activo           = '$o_activo',
-								tx_indicador        = '$o_indicador',
+								tx_email            = '$x_email',							
 								tx_direccion_hab    =  '$x_direccion',								
 								in_tipo_persona     = '$chk_tipo'
 							WHERE co_persona = '$co_usuario'";
@@ -138,7 +134,7 @@
 				
 				if(!$error_sql){
 					$ls_resultado =  $obj_miconexion->fun_consult(" COMMIT ");
-					$parametros = "tarea=B&co_usuario=$co_usuario";
+					$parametros = "tarea=B&co_usuario=$co_usuario&input_filtro=$input_filtro";
 					echo "<script language='JavaScript' type='text/JavaScript'>alert('Datos Actualizados Satisfactoriamente');location.href='sis_usuario.php?$parametros';</script>";
 				}else{
 					$ls_resultado =  $obj_miconexion->fun_consult(" ROLLBACK ");
@@ -191,8 +187,7 @@
 	INSERTAR UN USUARIO A LA BD
 --------------------------------------------------------------------------------------------*/
 	if($tarea == "A"){
-		$x_nacimiento = $x_nacimiento==''?'null':"'".$x_nacimiento."'";
-		
+	
 		
 		$ls_sql ="SELECT co_persona FROM s01_persona WHERE tx_cedula='$o_cedula' or UPPER(tx_indicador) = '".strtoupper($o_indicador)."'";
 		
@@ -205,12 +200,10 @@
 					$error_sql = true;
 				}  
 
-				$ls_sql = "INSERT INTO s01_persona(tx_cedula, tx_nombre, tx_apellido, tx_telefono_hab,tx_telefono_otro, 
-							tx_email, tx_indicador, in_activo, tx_direccion_hab, in_tipo_persona) 
-					VALUES('$o_cedula', '$o_nombre','$x_apellido','','$x_telefono_otro', 
-						 '$x_email', '$o_indicador','$o_activo', '$x_direccion', '$chk_tipo' )";
+				$ls_sql = "INSERT INTO s01_persona(tx_cedula, tx_nombre, tx_telefono_hab, 
+							tx_email,  tx_direccion_hab, in_tipo_persona) 
+					VALUES('$o_cedula', '$o_nombre','$x_telefono_hab','$x_email', '$x_direccion', '$chk_tipo' )";
 					
-				echo $ls_sql;
 				
 				if($obj_miconexion->fun_consult($ls_sql) == 0){
 					$error_sql = true;
@@ -227,7 +220,7 @@
 									
 				if(!$error_sql){
 					$ls_resultado =  $obj_miconexion->fun_consult(" COMMIT ");
-					$parametros = "tarea=X";
+					$parametros = "tarea=X&input_filtro=$input_filtro";
 					echo "<script language='JavaScript' type='text/JavaScript'>alert('Usuario Ingresado Satisfactoriamente');location.href='sis_usuario_mtto.php?$parametros';</script>";										
 				}else{
 					$ls_resultado =  $obj_miconexion->fun_consult(" ROLLBACK ");
@@ -294,14 +287,8 @@
 										</div>
 									</div>
 																		
-									<div class="form-group">
-										<label  class="col-sm-3 control-label no-padding-right"  >Indicador</label>
-										<div class="col-sm-9" >
-											<input class="col-xs-10 col-sm-5" name="o_indicador" value="<?php echo $o_indicador;?>" id="o_indicador" type="text"  placeholder="Indicador">
-										</div>
-									</div>
 																																				
-									<div class="form-group">
+								<!-- 	<div class="form-group">
 										<label  class="col-sm-3 control-label no-padding-right" >Activo</label>
 										<div class="col-sm-9" >	
 											<select name="o_activo" type="select-one" class="col-xs-10 col-sm-5" id="o_activo">
@@ -317,11 +304,11 @@
 												?>
 											</select>
 										</div>
-									</div>
+									</div> -->
 
 									
 									<div class="form-group">
-										<label class="col-sm-3 control-label no-padding-right" for="form-field-phone">Telefono 1</label>
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-phone">Telefono</label>
 
 										<div class="col-sm-9">
 											<span class="input-icon input-icon-right">
@@ -331,17 +318,7 @@
 										</div>
 									</div>
 									
-									<div class="form-group">
-										<label class="col-sm-3 control-label no-padding-right" for="form-field-phone">Telefono 2</label>
-
-										<div class="col-sm-9">
-											<span class="input-icon input-icon-right">
-												<input class="input-medium input-mask-phone" name="x_telefono_otro" value="<?php echo $x_telefono_otro;?>" type="text" id="form-field-phone1" />
-												<i class="ace-icon fa fa-phone fa-flip-horizontal"></i>
-											</span>
-										</div>
-									</div>
-																			
+																												
 							
 									<div class="form-group">
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-email">Email</label>

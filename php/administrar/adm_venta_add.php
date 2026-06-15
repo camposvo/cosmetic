@@ -55,26 +55,27 @@ if ($usu_autentico != "SI") {
 	$o_proyecto = "";
 	$x_pedido = "S";
 	$x_descuento = 0;
+	$x_subtotal = 0;
+	$x_total = 0;
+	$o_precio = 0;
+	$a_und = "";
+	$fecha = new DateTime(); // Fecha actual
+	$o_fecha = $fecha->format('Y-m-d');
 
-	if (!$_GET) {
-		foreach ($_POST as $nombre_campo => $valor) {
-			$asignacion = "\$" . $nombre_campo . "='" . $valor . "';";
-			eval($asignacion);
-		}
-		$modo = isset($_POST['modo']) ? $_POST['modo'] : 'Insertar Nuevo Registro';
-	} else {
-		foreach ($_GET as $nombre_campo => $valor) {
-			$asignacion = "\$" . $nombre_campo . "='" . $valor . "';";
-			eval($asignacion);
-		}
-		$modo = isset($_GET['modo']) ? $_GET['modo'] : 'Insertar Nuevo Registro';
+	// Determinamos la fuente de datos (POST o GET)
+	$datos = !empty($_POST) ? $_POST : $_GET;
+	foreach ($datos as $nombre_campo => $valor) {
+		$$nombre_campo = $valor;
 	}
+	$modo = $datos['modo'] ?? 'Insertar Nuevo Registro';
+	
 
-	if ($_POST['det_Articulo']) { // Recibe el detalle de la Factura
+	if (!empty($_POST['det_Articulo'])) { // Recibe el detalle de la Factura
 		$a_precio 	= $_POST['det_Precio'];
 		$a_cantidad	= $_POST['det_Cantidad'];
 		$a_articulo	= $_POST['det_Articulo'];
 	}
+
 
 
 	$obj_miconexion = fun_crear_objeto_conexion();
@@ -156,7 +157,7 @@ if ($usu_autentico != "SI") {
 						$a_articulo[$k],
 						$a_cantidad[$k],
 						$a_precio[$k],
-						'$a_und[$k]',
+						'UND',
 						0,
 						'$o_fecha' 				
 						);";
@@ -231,7 +232,7 @@ if ($usu_autentico != "SI") {
 					$a_articulo[$k],
 					$a_cantidad[$k],
 					$a_precio[$k],
-					'$a_und[$k]',
+					'UND',
 					0,
 					'$o_fecha'				
 					);";
@@ -254,7 +255,7 @@ if ($usu_autentico != "SI") {
 	RUTINAS: MOSTRAR DATOS
 	-------------------------------------------------------------------------------------------*/
 	if ($tarea == "M") {
-		$ls_sql = "SELECT pk_factura, fk_responsable, fk_cliente, to_char(fe_fecha_factura, 'dd/mm/yyyy'),  tx_nota,
+		$ls_sql = "SELECT pk_factura, fk_responsable, fk_cliente, to_char(fe_fecha_factura, 'yyyy-mm-dd'),  tx_nota,
 					tx_concepto,  nu_total, nu_abono, fk_proyecto, in_pedido, nu_descuento
 					FROM t20_factura
 					WHERE pk_factura = $x_movimiento";
@@ -273,6 +274,7 @@ if ($usu_autentico != "SI") {
 			$o_proyecto        = $row[8];
 			$x_pedido       = $row[9];
 			$x_descuento      = $row[10];
+			$x_subtotal      = $x_total  + $x_descuento;
 
 			// Extrae el detalle de la factura
 			$ls_sql = "SELECT fk_articulo, nu_cantidad, nu_precio,  
@@ -327,7 +329,7 @@ if ($usu_autentico != "SI") {
 									<div class="input-group">
 										<input name="o_fecha" value="<?php echo $o_fecha; ?>"
 											class="col-xs-10 col-sm-6 form-control date-picker" id="id-date-picker-1"
-											type="text" data-date-format="dd/mm/yyyy" readonly />
+											type="text" data-date-format="yyyy-mm-dd" readonly />
 										<span class="input-group-addon">
 											<i class="fa fa-calendar bigger-110"></i>
 										</span>
@@ -738,7 +740,6 @@ Se invoka en tiempo de ejecucion para activar la clase select multiple
 		sele.name = 'det_Articulo[]';
 
 		sele.setAttribute("class", "chosen-select  chosen-select-width");
-		//sele.setAttribute("id", "form_field");
 
 
 		for (var p in articulo) {
@@ -753,7 +754,6 @@ Se invoka en tiempo de ejecucion para activar la clase select multiple
 		}
 		td.appendChild(sele);
 		tr.appendChild(td);
-
 
 		tr.appendChild(crearCampo('det_Cantidad[]', false, 'calcular()', cantidad));
 		tr.appendChild(crearPrecio('det_Precio[]', false, 'calcular()', precio));
@@ -803,7 +803,11 @@ Se invoka en tiempo de ejecucion para activar la clase select multiple
 	--------------------------------------------------------------------------------------------*/
 	function Guardar(Identificador, pedido) {
 
-		if (document.getElementById('x_total').value > 0) { //Hay elementos en el detalle
+		miTabla = document.getElementById('tblDetalle');
+		const filas = miTabla.rows.length;
+
+
+		if (filas > 0) { 
 			if (campos_blancos(document.formulario) == false) {
 				if (confirm('Esta conforme con los Datos Ingresados?') == true) {
 					document.formulario.tarea.value = Identificador;

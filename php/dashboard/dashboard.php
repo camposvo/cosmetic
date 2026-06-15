@@ -1,7 +1,7 @@
 <?php
 
-/* ini_set('display_errors', 1);
-error_reporting(E_ALL);   */
+ ini_set('display_errors', 1);
+error_reporting(E_ALL);   
 
 session_start();
 include_once("utilidad.php");
@@ -50,18 +50,11 @@ if ($usu_autentico != "SI") {
 	$Disponible  = 0;
 	$Banco       = 0;
 	$sw = 1;
-	$CURRENT_YEAR = '2025';
+	$CURRENT_YEAR = '2026';
 
-	if (!$_GET) {
-		foreach ($_POST as $nombre_campo => $valor) {
-			$asignacion = "\$" . $nombre_campo . "='" . $valor . "';";
-			eval($asignacion);
-		}
-	} else {
-		foreach ($_GET as $nombre_campo => $valor) {
-			$asignacion = "\$" . $nombre_campo . "='" . $valor . "';";
-			eval($asignacion);
-		}
+	$datos = !empty($_POST) ? $_POST : $_GET;
+	foreach ($datos as $nombre_campo => $valor) {
+		$$nombre_campo = $valor;
 	}
 
 
@@ -544,12 +537,8 @@ if ($usu_autentico != "SI") {
 									<div class="infobox-data">
 										<span class="infobox-data-number"><?php echo number_format($CtxCob, 2, ",", "."); ?></span>
 										<div class="infobox-content">Dinero Prestado</div>
-									</div>
-
-																	
-								</div>
-
-								
+									</div>																	
+								</div>								
 
 								<div class="space-6"></div>
 
@@ -1116,6 +1105,8 @@ if ($usu_autentico != "SI") {
 				]
 			});
 
+			
+
 			// Add event listener for opening and closing details
 			$('#example tbody').on('click', 'td.details-control', function() {
 				var tr = $(this).closest('tr');
@@ -1311,38 +1302,9 @@ if ($usu_autentico != "SI") {
 
 			/*********************** Gastos por Categoria *******************************/
 
-			/* Highcharts.chart('container_2', {
-				chart: {
-					plotBackgroundColor: null,
-					plotBorderWidth: null,
-					plotShadow: false,
-					type: 'pie'
-				},
-				title: {
-					text: 'Egresos por Categoria'
-				},
-				tooltip: {
-					pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-				},
-				plotOptions: {
-					pie: {
-						allowPointSelect: true,
-						cursor: 'pointer',
-						dataLabels: {
-							enabled: false
-						},
-						showInLegend: true
-					}
-				},
-				series: [{
-					name: 'Brands',
-					colorByPoint: true,
-					data: [<?php echo join(',', $data4); ?>]
-				}]
-			}); */
+			
 
 
-			/*********************** Gastos por Clasificacion *******************************/
 
 
 		});

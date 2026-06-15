@@ -27,17 +27,14 @@
 	RUTINA: Se utiliza para recibir las variables por la url.
 -------------------------------------------------------------------------------------------*/
 	$encontrado = false;
-	if (!$_GET){
-		foreach($_POST as $nombre_campo => $valor){ 
-			$asignacion = "\$" . $nombre_campo . "='" . $valor . "';";
-			eval($asignacion);
-		}
-	}else{
-		foreach($_GET as $nombre_campo => $valor){ 
-			$asignacion = "\$" . $nombre_campo . "='" . $valor . "';";
-			eval($asignacion);
-		}
+	$tarea = "X";
+	$input_filtro = "";
+
+	$datos = !empty($_POST) ? $_POST : $_GET;
+	foreach ($datos as $nombre_campo => $valor) {
+		$$nombre_campo = $valor;
 	}
+
 
 	$obj_miconexion = fun_crear_objeto_conexion();
 	$li_id_conex = fun_conexion($obj_miconexion);
@@ -86,7 +83,7 @@
 /*-------------------------------------------------------------------------------------------
 	LEE LISTA DE USUARIOS
 --------------------------------------------------------------------------------------------*/	
-	$ls_sql = "SELECT to_char(co_persona,'000000'), UPPER(tx_nombre)||' ' ||UPPER(tx_apellido), tx_telefono_hab, UPPER(tx_indicador), in_grupo_correo, co_password, co_persona 
+	$ls_sql = "SELECT to_char(co_persona,'000000'), UPPER(tx_nombre), tx_telefono_hab, UPPER(tx_indicador), UPPER(tx_cedula),in_grupo_correo, co_password, co_persona 
 				FROM  s01_persona where in_activo = 'S' ORDER BY tx_nombre ";
 	
 	$ls_resultado =  $obj_miconexion->fun_consult($ls_sql);
@@ -142,6 +139,7 @@
 											<th class='' >Nombre</th>
 											<th class='hidden-480'>Telefono</th>
 											<th class='hidden-480' >Indicador</th>
+											<th class='hidden-480' >Cedula/Rif</th>
 											<th >Msg</th>
 											<th >Pass</th>
 											<th ></th>
@@ -197,6 +195,7 @@
 				},
 				
 				"columns": [
+					null,
 					null,
 					null,
 					null,

@@ -25,20 +25,14 @@
 <body>
 
 <?php 
-/*-------------------------------------------------------------------------------------------|
-|				Rutina: Se Utiliza Para Recibir Las Variables Por La URL. 					 |
-|-------------------------------------------------------------------------------------------*/
-	if (!$_GET)	{
-		foreach($_POST as $nombre_campo => $valor){
-			$asignacion = "\$" . $nombre_campo . "='" . $valor . "';";
-			eval($asignacion);
-		}
-	}else{
-		foreach($_GET as $nombre_campo => $valor){
-			$asignacion = "\$" . $nombre_campo . "='" . $valor . "';";
-			eval($asignacion);
-		}
+ 	$tarea = "X";
+
+	$datos = !empty($_POST) ? $_POST : $_GET;
+	foreach ($datos as $nombre_campo => $valor) {
+		$$nombre_campo = $valor;
 	}
+	
+
 	$obj_miconexion = fun_crear_objeto_conexion();
 	$li_id_conex = fun_conexion($obj_miconexion);
 	

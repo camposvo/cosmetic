@@ -26,12 +26,23 @@
 </head>
 <body>
 <?php 
-/*-------------------------------------------------------------------------------------------
-	RUTINA: Se utiliza para recibir las variables por la url.
--------------------------------------------------------------------------------------------*/
+	$fechaFinal = new DateTime(); // Fecha actual
+	$fechaInicial = (new DateTime())->modify('-1 month'); // Hace un mes
+
+	$x_fecha = ""; 
+	$x_fecha_ini = 0;
+	$x_fecha_fin = 0;
+
+	$tarea ="X";
+	$ls_criterio ="";
+	$input_filtro ="";
 	$o_cantidad  = 0;
 	$o_cantidad2 = 0;
 	$x_proyecto     = 0;
+	$x_unidad ="";
+	$x_cliente  = 0;
+	$x_factura = 0;
+	$x_vendedor  = 0;
 	
 	if (!$_GET)	{
 		foreach($_POST as $nombre_campo => $valor){
@@ -57,6 +68,12 @@
 	$arr_vendedor=  Combo_Cliente();
 	$arr_rubro   =  Combo_Rubro();
 	$arr_abono   =  Combo_Abono();
+
+	$arr_fecha = extraerFechasPostgres($x_fecha);
+	if(!empty($arr_fecha)){
+		$x_fecha_ini = $arr_fecha[0];
+		$x_fecha_fin = $arr_fecha[1];
+	}
 	
 	//$marcar_check = $check=='check'?'checked':'unchecked';
 	
@@ -89,13 +106,7 @@
 /*-------------------------------------------------------------------------------------------
 	RUTINAS: para AGREGAR una actividad Factura
 -------------------------------------------------------------------------------------------*/
-	$i=0; /*Banderar para cantidad de reglas */
-	if($x_unidad!='')$arr_criterio[$i++]=" UPPER(t20_factura.tx_unidad) = '".strtoupper($x_unidad)."' ";
-	//if($check==0)$arr_criterio[$i++]=" (f_calcular_abono(pk_factura) < nu_total) "; /* solo los que deben*/
-	if($x_cliente!=0)$arr_criterio[$i++]=" t20_factura.fk_cliente = ".$x_cliente;
-	if($x_factura!=0)$arr_criterio[$i++]=" UPPER(t20_factura.tx_factura) = '".strtoupper($x_factura)."' ";
-	if($x_fecha_ini !=0 and $x_fecha_fin !=0)$arr_criterio[$i++]=" t20_factura.fe_fecha_factura >= '".strtoupper($x_fecha_ini)."' and t20_factura.fe_fecha_factura <= '".strtoupper($x_fecha_fin)."' ";
-	if($x_vendedor !=0)$arr_criterio[$i++]=" t20_factura.fk_responsable = ".$x_vendedor;
+	$i=0; 
 		
 	for($j=0;$j<$i;$j++)$ls_criterio = $ls_criterio.($ls_criterio==""?"":" and ").$arr_criterio[$j];
 	

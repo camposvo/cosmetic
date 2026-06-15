@@ -28,6 +28,17 @@
 <body>
 <?php 
 
+	$fechaFinal = new DateTime(); // Fecha actual
+	$fechaInicial = (new DateTime())->modify('-1 month'); // Hace un mes
+
+	$x_fecha = ""; 
+	$x_fecha_ini = 0;
+	$x_fecha_fin = 0;
+
+	$tarea ="X";
+	$ls_criterio ="";
+	$input_filtro ="";
+
 
 	if (!$_GET)	{
 		foreach($_POST as $nombre_campo => $valor){
@@ -52,9 +63,11 @@
 	$arr_rubro   =  Combo_Rubro();
 	$arr_abono   =  Combo_Abono();
 	
-	$arr_fecha = explode('-',$x_fecha,2);
-	$x_fecha_ini = $arr_fecha[0];
-	$x_fecha_fin = $arr_fecha[1];	
+	$arr_fecha = extraerFechasPostgres($x_fecha);
+	if(!empty($arr_fecha)){
+		$x_fecha_ini = $arr_fecha[0];
+		$x_fecha_fin = $arr_fecha[1];
+	}
 	
 /*-------------------------------------------------------------------------------------------
 	RUTINAS: para ELIMINAR una actividad 
@@ -123,7 +136,7 @@
 			WHERE t20_factura.tx_tipo='CTAXPAGAR'
             ORDER BY debe DESC			";
 		
-	//echo $ls_sql;
+
 	$ls_resultado =  $obj_miconexion->fun_consult($ls_sql);
 			
 	if($ls_resultado != 0){

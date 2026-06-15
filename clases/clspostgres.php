@@ -57,18 +57,21 @@ Objetivo: Ejecutar una consulta en Postgresql
 Entradas: $ls_sql: es un string que contiene la consulta a ejecutar.
 Salida: $li_idconsult:  identificador de la consulta
 ------------------------------------------------------------------------------------*/
+
+
+
 	function fun_consult($ls_sql = ""){
          if ($ls_sql == ""){
              return 0;
          }
          	// ejecutamos la consulta
-         $this->li_idconsult = pg_query($ls_sql);
+         $this->li_idconsult = pg_query($this->li_idconex, $ls_sql);
          if (!$this->li_idconsult){
              return 0;      // ha fallado la consulta
          }else {
          	return $this->li_idconsult;
          }
-	}
+	} 
 
 /*----------------------------------------------------------------------------
 Objetivo: Devolver el n�mero de campos de una consulta o tabla

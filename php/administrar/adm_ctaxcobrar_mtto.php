@@ -26,24 +26,18 @@
 </head>
 <body>
 <?php 
-/*-------------------------------------------------------------------------------------------
-	RUTINA: Se utiliza para recibir las variables por la url.
--------------------------------------------------------------------------------------------*/
+
+	$o_PagMonto =0;
 	$o_cantidad  = 0;
 	$o_cantidad2 = 0;
-	if (!$_GET)	{
-		foreach($_POST as $nombre_campo => $valor){
-			$asignacion = "\$" . $nombre_campo . "='" . $valor . "';";
-			eval($asignacion);
-		}
-		$modo = isset($_POST['modo'])?$_POST['modo']:'Insertar Nuevo Registro';
-	}else{
-		foreach($_GET as $nombre_campo => $valor){
-			$asignacion = "\$" . $nombre_campo . "='" . $valor . "';";
-			eval($asignacion);
-		}
-		$modo = isset($_GET['modo'])?$_GET['modo']:'Insertar Nuevo Registro';
+	$x_observacion = "";
+	$o_total = 0;
+
+	$datos = !empty($_POST) ? $_POST : $_GET;
+	foreach ($datos as $nombre_campo => $valor) {
+		$$nombre_campo = $valor;
 	}
+	$modo = $datos['modo'] ?? 'Insertar Nuevo Registro';
 	
 	$obj_miconexion = fun_crear_objeto_conexion();
 	$li_id_conex = fun_conexion($obj_miconexion);
@@ -77,7 +71,7 @@
 		
 		$ls_resultado =  $obj_miconexion->fun_consult($ls_sql);
 		if($ls_resultado == 0){
-			fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);
+			fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);
 		}
 	}	
 	
@@ -284,12 +278,10 @@
 											</tbody>
 										</table>
 									</div>
-								</div>
-								
+								</div>							
 									
 							</div>
-						</div><!-- /.span -->
-						
+						</div>						
 						
 					</div>
 					

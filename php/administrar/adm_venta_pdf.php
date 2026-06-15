@@ -3,7 +3,7 @@
 include("../../clases/fpdf/fpdf.php");
 include_once("adm_utilidad.php");
 
-/* 	ini_set('display_errors', 1);
+ 	/*ini_set('display_errors', 1);
     error_reporting(E_ALL);  */
 
 class PDF extends FPDF

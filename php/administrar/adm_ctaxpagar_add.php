@@ -33,19 +33,11 @@
 	$o_cantidad2 = 0;
 	$mostrar_rs = false;
 	
-	if (!$_GET)	{
-		foreach($_POST as $nombre_campo => $valor){
-			$asignacion = "\$" . $nombre_campo . "='" . $valor . "';";
-			eval($asignacion);
-		}
-		$modo = isset($_POST['modo'])?$_POST['modo']:'Insertar Nuevo Registro';
-	}else{
-		foreach($_GET as $nombre_campo => $valor){
-			$asignacion = "\$" . $nombre_campo . "='" . $valor . "';";
-			eval($asignacion);
-		}
-		$modo = isset($_GET['modo'])?$_GET['modo']:'Insertar Nuevo Registro';
+	$datos = !empty($_POST) ? $_POST : $_GET;
+	foreach ($datos as $nombre_campo => $valor) {
+		$$nombre_campo = $valor;
 	}
+	$modo = $datos['modo'] ?? 'Insertar Nuevo Registro';
 	
 	//var_dump($_POST['det_Proyecto']);
 	//var_dump($_POST['det_Precio']);
@@ -143,7 +135,7 @@
 					//echo $ls_sql;
 						
 					if($obj_miconexion->fun_consult($ls_sql) == 0){
-						fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);
+						fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);
 					}else{
 						$msg = "Cuenta Actualizada Exitosamente";
 						$parametros = "tarea=A&input_filtro=$input_filtro";

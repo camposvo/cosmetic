@@ -29,34 +29,32 @@ if ($usu_autentico != "SI") {
 
 <body>
 	<?php
-	/*-------------------------------------------------------------------------------------------
-	RUTINA: Se utiliza para recibir las variables por la url.
--------------------------------------------------------------------------------------------*/
+	$fechaFinal = new DateTime(); // Fecha actual
+	$fechaInicial = (new DateTime())->modify('-1 month'); // Hace un mes
+	$x_fecha = ""; 
+	$x_fecha_ini = 0;
+	$x_fecha_fin = 0;
+
 	$o_cantidad  = 0;
 	$o_cantidad2 = 0;
 	$x_proyecto     = 0;
+	$tarea = "X";
+	$ls_criterio = "";
+	$input_filtro ="";
 
-	if (!$_GET) {
-		foreach ($_POST as $nombre_campo => $valor) {
-			$asignacion = "\$" . $nombre_campo . "='" . $valor . "';";
-			eval($asignacion);
-		}
-		$modo = isset($_POST['modo']) ? $_POST['modo'] : 'Insertar Nuevo Registro';
-		$filtro = isset($filtro) ? $filtro : 'NO_ALL';
-	} else {
-		foreach ($_GET as $nombre_campo => $valor) {
-			$asignacion = "\$" . $nombre_campo . "='" . $valor . "';";
-			eval($asignacion);
-		}
-		$modo = isset($_GET['modo']) ? $_GET['modo'] : 'Insertar Nuevo Registro';
-		$filtro = isset($filtro) ? $filtro : 'NO_ALL';
+	$datos = !empty($_POST) ? $_POST : $_GET;
+	foreach ($datos as $nombre_campo => $valor) {
+		$$nombre_campo = $valor;
 	}
+	$modo = isset($_POST['modo']) ? $_POST['modo'] : 'Insertar Nuevo Registro';
+	$filtro = isset($filtro) ? $filtro : 'NO_ALL';
+
 
 	$obj_miconexion = fun_crear_objeto_conexion();
 	$li_id_conex = fun_conexion($obj_miconexion);
 
-	$x_fecha_actual        =  date('d/m/Y');
-	$x_fecha_mespasado 	   =  date('d/m/Y', strtotime('-29 day'));
+	$x_fecha_actual        =  date('Y-m-d');
+	$x_fecha_mespasado 	   =  date('Y-m-d', strtotime('-29 day'));
 
 	$co_usuario        =  $_SESSION["li_cod_usuario"];
 	$arr_proveedor     =  Combo_Proveedor();
@@ -68,23 +66,12 @@ if ($usu_autentico != "SI") {
 	$x_mes_actual = date('m');
 	$x_ano_actual = date('Y');
 
-
-	// Coloca por defecto los ultimos 30 dias como fecha inicial
-	if (!empty($x_fecha)) { // Seleccion de una Fecha
-		
-		$arr_fecha = explode('-', $x_fecha, 2);
+	$arr_fecha = extraerFechasPostgres($x_fecha);
+	if(!empty($arr_fecha)){
 		$x_fecha_ini = $arr_fecha[0];
 		$x_fecha_fin = $arr_fecha[1];
-	} else { // No hay seleccion de Fecha  y Carga variables con los ultimos 30 DIAS POR DEFECTO
-		
-		$x_fecha_ini  = !empty($x_fecha_ini) ? $x_fecha_ini : $x_fecha_mespasado;
-		$x_fecha_fin  = !empty($x_fecha_fin) ? $x_fecha_fin : $x_fecha_actual;
+	} else 
 
-	}
-
-	/*-------------------------------------------------------------------------------------------
-	LEE DATOS DEL PROVEEDOR
--------------------------------------------------------------------------------------------*/
 
 	$x_proveedor = isset($x_proveedor) ? $x_proveedor : 0;
 
@@ -106,9 +93,7 @@ if ($usu_autentico != "SI") {
 		}
 	}
 
-	/*-------------------------------------------------------------------------------------------
-	RUTINAS: para ELIMINAR una actividad 
--------------------------------------------------------------------------------------------*/
+
 	if ($tarea == "E") {
 		$ls_sql = "SELECT f_borrar_factura($x_movimiento )";
 		$ls_resultado =  $obj_miconexion->fun_consult($ls_sql);
@@ -129,9 +114,7 @@ if ($usu_autentico != "SI") {
 		echo "<script language='javascript' type='text/javascript'>alert('$msg');location.href='adm_gasto_view.php'</script>";
 	}
 
-	/*-------------------------------------------------------------------------------------------
-	RUTINAS: para AGREGAR una actividad Factura
--------------------------------------------------------------------------------------------*/
+
 	$i = 0; /*Banderar para cantidad de reglas */
 	$sw = 0; // Bandera para indicar si hay filtros
 
@@ -142,10 +125,10 @@ if ($usu_autentico != "SI") {
 		$arr_criterio[$i++] = " t20_factura.fk_cliente = " . $x_proveedor;
 		$sw = 1;
 	}
-	if (!empty($x_factura)) {
+	/* if (!empty($x_factura)) {
 		$arr_criterio[$i++] = " UPPER(t20_factura.tx_factura) = '" . strtoupper($x_factura) . "' ";
 		$sw = 1;
-	}
+	} */
 	if ($x_fecha_ini != 0 and $x_fecha_fin != 0) {
 		$arr_criterio[$i++] = " t20_factura.fe_fecha_factura >= '" . strtoupper($x_fecha_ini) . "' and t20_factura.fe_fecha_factura <= '" . strtoupper($x_fecha_fin) . "' ";
 		$sw = 1;
@@ -169,7 +152,7 @@ if ($usu_autentico != "SI") {
 				ELSE 'EN PROCESO'
 			END AS nombre_status,
 		tx_concepto,
-		f_calcular_factura(pk_factura) as total, f_calcular_abono(pk_factura) AS abono, (f_calcular_factura(pk_factura) - f_calcular_abono(pk_factura)) as debe,
+		f_calcular_factura(pk_factura) - nu_descuento as total, f_calcular_abono(pk_factura) AS abono, ((f_calcular_factura(pk_factura)- nu_descuento)  - f_calcular_abono(pk_factura)) as debe,
 		pk_factura
 		FROM t20_factura
 		INNER JOIN s01_persona ON s01_persona.co_persona = t20_factura.fk_cliente
