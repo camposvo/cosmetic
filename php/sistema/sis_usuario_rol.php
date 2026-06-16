@@ -34,6 +34,7 @@
 </head>
 <body>
 <?php 
+$n_rol = 0;
 /*-------------------------------------------------------------------------------------------
 	RUTINA: Se utiliza para recibir las variables por la url.
 -------------------------------------------------------------------------------------------*/
@@ -88,6 +89,7 @@
 		while($fila = pg_fetch_row($ls_resultado)){
 			$roles[$i][0] = $fila[0];
 			$roles[$i][1] = $fila[1];
+			$roles[$i][2] = "unchecked";
 			$i++;
 		}
 		$n_rol = $i;
