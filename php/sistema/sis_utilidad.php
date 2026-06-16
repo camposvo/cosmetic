@@ -21,7 +21,7 @@ function fun_dibujar_tabla($rs,$li_totcampos,$li_indice,$operacion){
 		// BOTONES DE ENLACE 
      	$ls_cod = $row[$li_indice]; // Campo que identifica el registro clave
 		$ls_cod1 = $row[$li_indice-1];
-		$ls_cod2 = $row[$li_indice-2];
+	
 
 		
 		//PAGINA: no implementado
@@ -34,6 +34,7 @@ function fun_dibujar_tabla($rs,$li_totcampos,$li_indice,$operacion){
 		
 		//PAGINA: sis_usuario.php
 		if(strtoupper($operacion)=='BUSCAR_USUARIO'){
+			$ls_cod2 = $row[$li_indice-2];
 			echo "<td class='hidden-480'>" . $row[$i++] . "</td>";		
 			echo "<td class=''>" . $row[$i++] . "</td>"; 
 			echo "<td class='hidden-480'>" . $row[$i++] . "</td>";		
@@ -91,10 +92,7 @@ function fun_dibujar_tabla($rs,$li_totcampos,$li_indice,$operacion){
 						<a class="green tooltip-success open-event" href="#" title="Privilegios"  onClick=\'Asignar_privilegios("'.$ls_cod.'");return false;\'>
 							<i class="ace-icon fa fa-bookmark  bigger-130"></i>
 						</a>
-
-						<a class="red tooltip-error open-event" href="#" title="Borrar" onClick=\'Eliminar("'.$ls_cod.'");return false;\'>
-							<i class="ace-icon fa fa-trash-o bigger-130"></i>
-						</a>
+				
 						
 						
 						
@@ -131,13 +129,7 @@ function fun_dibujar_tabla($rs,$li_totcampos,$li_indice,$operacion){
 									</a>
 								</li>
 								
-								<li>
-									<a href="#" class="tooltip-error" data-rel="tooltip" title="Borrar" onClick=\'Eliminar("'.$ls_cod.'");return false;\'>
-										<span class="red">
-											<i class="ace-icon fa fa-trash-o bigger-120"></i>
-										</span>
-									</a>
-								</li>
+								
 
 								
 							</ul>

@@ -34,6 +34,10 @@
 
 <body>
 <?php 
+$tarea = 'X';
+$o_password = '';
+$co_usuario = '';
+
 /*------------------------------------------------------------------------------------------
 	RUTINA: Se utiliza para recibir las variables por la url.
 -------------------------------------------------------------------------------------------*/
@@ -68,7 +72,7 @@
 				echo "<script language='JavaScript' type='text/JavaScript'>alert('$msg');location.href='sis_usuario.php?$parametros';</script>";
 				$obj_miconexion->fun_closepg($li_id_conex); 
 			}else{
-				fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);
+				fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);
 			}
 		}else{
 			$msg = "Verifique el Password Ingresado";
@@ -91,7 +95,7 @@
 		$o_nombre_repr          = $fila[1];
 
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);
 	}
 	
 	$obj_miconexion->fun_closepg($li_id_conex); 

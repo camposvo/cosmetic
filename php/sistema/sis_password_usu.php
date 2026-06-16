@@ -45,6 +45,10 @@
 </head>
 <body>
 <?php 
+$tarea = 'X';
+$o_password = '';
+$o_confirm = '' ;
+$modo = '';
 /*-------------------------------------------------------------------------------------------
 	RUTINA: Se utiliza para recibir las variables por la url.
 -------------------------------------------------------------------------------------------*/
@@ -79,7 +83,7 @@
 				$parametros = "tarea=X";
 				echo "<script language='JavaScript' type='text/JavaScript'>alert('$msg');</script>";
 			}else{
-				fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);
+				fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);
 			}
 		}else{
 			$msg = "Verifique el Password Ingresado";
@@ -101,7 +105,7 @@
 		$o_cedula_repr          = $fila[0];
 		$o_nombre_repr          = $fila[1];
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);
 	}
 	
 	$obj_miconexion->fun_closepg($li_id_conex);
@@ -173,8 +177,7 @@
 											
 										</div>	
 										<input type="hidden" name="tarea" value="<?php echo $tarea; ?>">
-										<input type="hidden" name="co_representante" value="<?php echo $co_representante; ?>">
-											
+										
 										</form>
 									</div>
 								</div>

@@ -201,8 +201,8 @@
 				}  
 
 				$ls_sql = "INSERT INTO s01_persona(tx_cedula, tx_nombre, tx_telefono_hab, 
-							tx_email,  tx_direccion_hab, in_tipo_persona) 
-					VALUES('$o_cedula', '$o_nombre','$x_telefono_hab','$x_email', '$x_direccion', '$chk_tipo' )";
+							tx_email,  tx_direccion_hab, in_tipo_persona, in_activo) 
+					VALUES('$o_cedula', '$o_nombre','$x_telefono_hab','$x_email', '$x_direccion', '$chk_tipo', 'S')";
 					
 				
 				if($obj_miconexion->fun_consult($ls_sql) == 0){
