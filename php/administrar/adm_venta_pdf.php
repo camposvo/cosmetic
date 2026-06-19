@@ -6,6 +6,8 @@ include_once("adm_utilidad.php");
  	/*ini_set('display_errors', 1);
     error_reporting(E_ALL);  */
 
+
+
 class PDF extends FPDF
 {
 
@@ -16,75 +18,75 @@ class PDF extends FPDF
 
         $top = 10; // Initial top position for the header elements
         $x_header = 45; // Initial X position for the text elements
+		$font = 'Helvetica';
 
         // Logo
         // Adjust the path to your logo image as needed
-        $this->Image('../../img/logo1.png', 20, 14, 23, 20);
+        $this->Image('../../img/logo1.png', 19, 12, 23, 20);
 
         // Company Name
         $this->SetXY($x_header, $top += 1);
-        $this->SetFont('Courier', 'B', 12);
+        $this->SetFont($font, 'B', 12);
         $this->SetTextColor(0, 51, 102);
         $this->Cell(50, 10, 'DISTRIBUIDORA BELLINGHIERI, F.P', 0, 0, 'L');
+
+		        // Nota NRO.
+        $this->SetTextColor(255, 0, 0); // Red
+        $this->SetFont($font, 'B', 12);
+        $this->SetXY(150, $top);
+        $this->Cell(50, 10, 'NOTA NRO .' . $x_nota, 0, 0, 'R');
 
         // RIF
         $this->SetXY($x_header, $top += 5);
         $this->SetTextColor(0, 0, 0);
-        $this->SetFont('Courier', 'B', 10);
+        $this->SetFont($font, 'B', 10);
         $this->Cell(50, 10, 'RIF: V-189835180', 0, 0, 'L');
+
+		 // Fecha de Emisión
+        $this->SetTextColor(0, 0, 0); // Black
+        $this->SetFont($font, 'B', 10);
+        $this->SetXY(150, $top);
+        $this->Cell(50, 10, fix_texto('Emisión:') . $o_fecha, 0, 0, 'R');
 
         // Address Line 1
         $this->SetXY($x_header, $top += 5);
-        $this->SetFont('Courier', '', 10);
+        $this->SetFont($font, '', 10);
         $this->Cell(50, 10, 'CALLE 8 CASA NRO 478 URB DON IGNACIO', 0, 0, 'L');
 
         // Address Line 2 / Phone
         $this->SetXY($x_header, $top += 5);
         $this->Cell(50, 10, 'EL TIGRE ANZOATEGUI, TLF: 0424-8891559', 0, 0, 'L');
+      
 
-        // Nota NRO.
-        $this->SetTextColor(255, 0, 0); // Red
-        $this->SetFont('Courier', 'B', 12);
-        $this->SetXY(150, $top += 10);
-        // Ensure $x_nota is defined and accessible (e.g., passed to the class or as a global)
-        $this->Cell(50, 10, 'NOTA NRO .' . $x_nota, 0, 0, 'R');
+		$top += 20;
 
-        // Fecha de Emisión
-        $this->SetTextColor(0, 0, 0); // Black
-        $this->SetFont('Courier', 'B', 10);
-        $this->SetXY(150, $top += 5);
-        // Ensure fix_texto() and $o_fecha are defined and accessible
-        $this->Cell(50, 10, fix_texto('Fecha de Emisión:') . $o_fecha, 0, 0, 'R');
-
-		$top += 10;
-
-		$this->SetFont('Courier', '', 9);
+		$this->SetFont($font, '', 9);
 		$this->SetXY(20, $top);
-		$this->Cell(120, 5, fix_texto('Nombre o Razón Social:'), 'LTR', 1, 'L');
+		$this->Cell(120, 5, fix_texto('Razón Social:'), 0, 1, 'L');
 
 		$this->SetXY(20, $top + 10);
-		$this->Cell(120, 5, 'Domicilio Fiscal:', 'LR', 1, 'L');
+		$this->Cell(120, 5, 'Domicilio:', 0, 1, 'L');
 
-		$this->SetXY(140, $top);
-		$this->Cell(60, 5, fix_texto('RIF o CI:'), 'LTR', 1, 'L');
+		$this->SetXY(160, $top);
+		$this->Cell(60, 5, fix_texto('RIF/CI:'), 0, 1, 'L');
 
-		$this->SetXY(140, $top + 10);
-		$this->Cell(60, 5, fix_texto('Teléfono:'), 'LR', 1, 'L');
+		$this->SetXY(160, $top + 10);
+		$this->Cell(60, 5, fix_texto('Teléfono:'), 0, 1, 'L');
 
 		//CLIENT DATA 
 
-		$this->SetFont('Courier', 'B', 11);
+		$this->SetFont($font, 'B', 10);
 		$this->SetXY(20, $top + 5);
-		$this->Cell(120, 5, fix_texto(strtoupper($o_cliente)), 'LBR', 1, 'L');
+		$this->Cell(120, 5, fix_texto(strtoupper($o_cliente)), 0, 1, 'L');
 
 		$this->SetXY(20, $top + 15);
-		$this->MultiCell(120, 5, fix_texto($o_direccion), 'LBR', 'L');
+		$this->MultiCell(135, 5, fix_texto($o_direccion), 0, 'L');
 
-		$this->SetXY(140, $top + 5);
-		$this->Cell(60, 5, strtoupper($o_cedula), 'LBR', 1, 'L');
+		$this->SetXY(160, $top + 5);
+		$this->Cell(60, 5, strtoupper($o_cedula), 0, 1, 'L');
 
-		$this->SetXY(140, $top + 15);
-		$this->Cell(60, 10, strtoupper($o_telefono), 'LBR', 1, 'L');
+		$this->SetXY(160, $top + 15);
+		$this->Cell(60, 5, strtoupper($o_telefono), 0, 1, 'L');
 
 
         // Line break
@@ -94,14 +96,16 @@ class PDF extends FPDF
 	// Page footer
 	function Footer()
 	{
+		$font = 'Helvetica';
 		$this->SetY(-15);
-		$this->SetFont('Arial', 'I', 8);
+		$this->SetFont($font, '', 8);
 		$this->Cell(0, 10, 'Pag. ' . $this->PageNo() . ' de {nb}', 0, 0, 'C');
 	}
 }
 
 function fix_texto($texto)
 {
+	$texto_limpio = trim($texto);
 	$texto_normalizado = iconv('UTF-8', 'windows-1252', $texto);
 
 	return $texto_normalizado;
@@ -112,7 +116,7 @@ function fix_texto($texto)
 function fix_texto_tabla($texto)
 {
 
-	$longitud_maxima = 50;
+	$longitud_maxima = 45;
 
 	$puntos_suspensivos = '...';
 
@@ -128,7 +132,7 @@ function fix_texto_tabla($texto)
 }
 
 $max = 110; // el max se usa para el N� de caracteres que permite pdf
-
+$x_movimiento =0;
 if (!$_GET) {
 	foreach ($_POST as $nombre_campo => $valor) {
 		$asignacion = "\$" . $nombre_campo . "='" . $valor . "';";
@@ -221,94 +225,95 @@ if ($ls_resultado_1) {
 	PDF
 -------------------------------------------------------------------------------------------*/
 
-
+$font = 'Helvetica';
 $pdf = new PDF('P', 'mm', 'A4', 'UTF-8');
 $pdf->AliasNbPages();
 $pdf->AddPage();
-$pdf->SetFont('Arial', 'I', 8);
+$pdf->SetFont($font, 'I', 8);
 
 $top = 80;
 $ma = 20;
-$h1 = 7;
+$h1 = 6;
 $w1 = 20;
 $w2 = 110;
 $w3 = 25;
 $w4 = 25;
 
 
-$pdf->SetFillColor(198, 217, 241);
-$pdf->SetFont('Courier', 'B', 10);
+//$pdf->SetFillColor(198, 217, 241);
+$pdf->SetFillColor(230, 230, 230);
+$pdf->SetFont($font, 'B', 10);
 $pdf->SetXY($ma, $top);
 $pdf->Cell($w1, $h1, 'Cant.', 1, 1, 'C', true);
 
 $pdf->SetXY($ma + 20, $top);
-$pdf->Cell($w2, $h1, 'Concepto', 1, 1, 'C', true);
+$pdf->Cell($w2, $h1, 'Concepto', 1, 1, 'L', true);
 
 $pdf->SetXY($ma + 130, $top);
-$pdf->Cell($w3, $h1, 'Precio', 1, 1, 'C', true);
+$pdf->Cell($w3, $h1, 'Precio', 1, 1, 'R', true);
 
 $pdf->SetXY($ma + 155, $top);
-$pdf->Cell($w4, $h1, 'Total', 1, 1, 'C', true);
+$pdf->Cell($w4, $h1, 'Total', 1, 1, 'R', true);
 
 
 //$pdf->SetDash(1,1);
 $total = 0;
-$pdf->SetFont('Courier', '', 9);
+$pdf->SetFont($font, '', 9);
 while ($fila = pg_fetch_row($ls_resultado_1)) {
 
-	$pdf->SetFont('Courier', '', 10);
-	$top += 7;
+	$pdf->SetFont($font, '', 10);
+	$top += 6;
 
 	$pdf->SetXY($ma, $top);
-	$pdf->Cell($w1, $h1, $fila[0], 1, 1, 'C');
+	$pdf->Cell($w1, $h1, $fila[0], 'LR', 1, 'C');
 
 	$pdf->SetXY($ma + 20, $top);
-	$pdf->Cell($w2, $h1, strtoupper(fix_texto_tabla($arr_articulo[$fila[1]])), 1, 1, 'L');
+	$pdf->Cell($w2, $h1, strtoupper(fix_texto_tabla($arr_articulo[$fila[1]])), 'R', 1, 'L');
 
 	$precio = number_format($fila[2], 2, ",", ".");
 	$pdf->SetXY($ma + 130, $top);
-	$pdf->Cell($w3, $h1, $precio, 1, 1, 'C');
+	$pdf->Cell($w3, $h1, $precio, 'R', 1, 'R');
 
 	$subtotal = number_format($fila[3], 2, ",", ".");
 	$pdf->SetXY($ma + 155, $top);
-	$pdf->Cell($w4, $h1, $subtotal, 1, 1, 'C');
+	$pdf->Cell($w4, $h1, $subtotal, 'R', 1, 'R');
 
 	$total += $fila[3];
 
-	if ($top >= 200) {
+	if ($top >= 240) {
 		$pdf->AddPage();
 		$pdf->SetFont('Arial', 'I', 8);		
 	    $top = 80;    	
 		$ma = 20;
-		$h1 = 7;
+		$h1 = 6;
 		$w1 = 20;
 		$w2 = 110;
 		$w3 = 25;
 		$w4 = 25;
 
-		$pdf->SetFont('Courier', 'B', 10);
+		$pdf->SetFont($font, 'B', 10);
 		$pdf->SetXY($ma, $top);
 		$pdf->Cell($w1, $h1, 'Cant.', 1, 1, 'C', true);
 		$pdf->SetXY($ma + 20, $top);
 		$pdf->Cell($w2, $h1, 'Concepto', 1, 1, 'C', true);
 		$pdf->SetXY($ma + 130, $top);
-		$pdf->Cell($w3, $h1, 'Precio', 1, 1, 'C', true);
+		$pdf->Cell($w3, $h1, 'Precio', 1, 1, 'R', true);
 		$pdf->SetXY($ma + 155, $top);
-		$pdf->Cell($w4, $h1, 'Total', 1, 1, 'C', true);
+		$pdf->Cell($w4, $h1, 'Total', 1, 1, 'R', true);
 	}
 }
 
-$top += 7;
-$pdf->SetFont('Courier', 'B', 11);
+$top += 6;
+$pdf->SetFont($font, 'B', 11);
 $pdf->SetXY($ma, $top);
 $pdf->Cell($w1, $h1, '', 1, 1, 'C');
 $pdf->SetXY($ma + 20, $top);
 $pdf->Cell($w2, $h1, '', 1, 1, 'L');
 $pdf->SetXY($ma + 130, $top);
-$pdf->Cell($w3, $h1, 'Total:', 1, 1, 'C');
+$pdf->Cell($w3, $h1, 'Total', 1, 1, 'R');
 $temp = number_format($total, 2, ",", ".");
 $pdf->SetXY($ma + 155, $top);
-$pdf->Cell($w4, $h1, $temp, 1, 1, 'C');
+$pdf->Cell($w4, $h1, $temp, 1, 1, 'R');
 
 
 
