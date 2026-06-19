@@ -11,6 +11,15 @@ include_once("adm_utilidad.php");
 class PDF extends FPDF
 {
 
+function SetDash($black = null, $white = null) {
+    if ($black !== null) {
+        $s = sprintf('[%.3F %.3F] 0 d', $black * $this->k, $white * $this->k);
+    } else {
+        $s = '[] 0 d';
+    }
+    $this->_out($s);
+}
+
 	 // Page header
     function Header()
     {
@@ -20,75 +29,72 @@ class PDF extends FPDF
         $x_header = 45; // Initial X position for the text elements
 		$font = 'Helvetica';
 
-        // Logo
-        // Adjust the path to your logo image as needed
+		// DATOS DE LA EMPRESA
         $this->Image('../../img/logo1.png', 19, 12, 23, 20);
 
-        // Company Name
         $this->SetXY($x_header, $top += 1);
         $this->SetFont($font, 'B', 12);
         $this->SetTextColor(0, 51, 102);
         $this->Cell(50, 10, 'DISTRIBUIDORA BELLINGHIERI, F.P', 0, 0, 'L');
 
-		        // Nota NRO.
-        $this->SetTextColor(255, 0, 0); // Red
+        $this->SetTextColor(0, 51, 102);
         $this->SetFont($font, 'B', 12);
         $this->SetXY(150, $top);
         $this->Cell(50, 10, 'NOTA NRO .' . $x_nota, 0, 0, 'R');
 
-        // RIF
         $this->SetXY($x_header, $top += 5);
         $this->SetTextColor(0, 0, 0);
         $this->SetFont($font, 'B', 10);
         $this->Cell(50, 10, 'RIF: V-189835180', 0, 0, 'L');
 
-		 // Fecha de Emisión
         $this->SetTextColor(0, 0, 0); // Black
         $this->SetFont($font, 'B', 10);
         $this->SetXY(150, $top);
         $this->Cell(50, 10, fix_texto('Emisión:') . $o_fecha, 0, 0, 'R');
 
-        // Address Line 1
         $this->SetXY($x_header, $top += 5);
         $this->SetFont($font, '', 10);
         $this->Cell(50, 10, 'CALLE 8 CASA NRO 478 URB DON IGNACIO', 0, 0, 'L');
 
-        // Address Line 2 / Phone
         $this->SetXY($x_header, $top += 5);
         $this->Cell(50, 10, 'EL TIGRE ANZOATEGUI, TLF: 0424-8891559', 0, 0, 'L');
       
 
+		// DATOS DEL CLIENTE
 		$top += 20;
-
+		$this->SetDash(1, 1);
 		$this->SetFont($font, '', 9);
-		$this->SetXY(20, $top);
-		$this->Cell(120, 5, fix_texto('Razón Social:'), 0, 1, 'L');
 
-		$this->SetXY(20, $top + 10);
-		$this->Cell(120, 5, 'Domicilio:', 0, 1, 'L');
+		$this->SetXY(20, $top);
+		$this->Cell(100, 5, fix_texto('Razón Social:'), 'LTR', 1, 'L');		
+
+		$this->SetXY(120, $top);
+		$this->Cell(40, 5, fix_texto('RIF/CI:'), 'TR', 1, 'L');
 
 		$this->SetXY(160, $top);
-		$this->Cell(60, 5, fix_texto('RIF/CI:'), 0, 1, 'L');
+		$this->Cell(40, 5, fix_texto('Teléfono:'), 'RT', 1, 'L');
 
-		$this->SetXY(160, $top + 10);
-		$this->Cell(60, 5, fix_texto('Teléfono:'), 0, 1, 'L');
-
+		$this->SetXY(20, $top + 10);
+		$this->Cell(180, 5, 'Domicilio:', 'LR', 1, 'L');
+		
 		//CLIENT DATA 
+
+		
 
 		$this->SetFont($font, 'B', 10);
 		$this->SetXY(20, $top + 5);
-		$this->Cell(120, 5, fix_texto(strtoupper($o_cliente)), 0, 1, 'L');
+		$this->Cell(100, 5, fix_texto(strtoupper($o_cliente)), 'LBR', 1, 'L');
 
-		$this->SetXY(20, $top + 15);
-		$this->MultiCell(135, 5, fix_texto($o_direccion), 0, 'L');
+		$this->SetXY(120, $top + 5);
+		$this->Cell(40, 5, strtoupper($o_cedula), 'RB', 1, 'L');
 
 		$this->SetXY(160, $top + 5);
-		$this->Cell(60, 5, strtoupper($o_cedula), 0, 1, 'L');
+		$this->Cell(40, 5, strtoupper($o_telefono), 'RB', 1, 'L');
 
-		$this->SetXY(160, $top + 15);
-		$this->Cell(60, 5, strtoupper($o_telefono), 0, 1, 'L');
+		$this->SetXY(20, $top + 15);
+		$this->MultiCell(180, 5, fix_texto($o_direccion), 'LBR', 'L');
 
-
+		$this->SetDash();
         // Line break
         //$this->Ln(20); // Add a line break after the header to give space for content
     }
