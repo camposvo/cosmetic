@@ -127,7 +127,7 @@ function fix_texto($texto)
 function fix_texto_tabla($texto)
 {
 
-	$longitud_maxima = 45;
+	$longitud_maxima = 50;
 
 	$puntos_suspensivos = '...';
 
@@ -142,8 +142,9 @@ function fix_texto_tabla($texto)
 	return $texto_normalizado;
 }
 
-$max = 110; // el max se usa para el N� de caracteres que permite pdf
+$max = 110; 
 $x_movimiento = 0;
+
 if (!$_GET) {
 	foreach ($_POST as $nombre_campo => $valor) {
 		$asignacion = "\$" . $nombre_campo . "='" . $valor . "';";
@@ -213,7 +214,6 @@ if ($ls_resultado != 0) {
 	$o_telefono    = $row[3];
 }
 
-//echo $o_cliente;
 
 $ls_sql = "SELECT nu_cantidad, fk_articulo, nu_precio,  
 			  nu_cantidad * nu_precio as total
@@ -230,9 +230,8 @@ if ($ls_resultado_1) {
 
 
 // GENERA BODY DE MI REPORTE PDF
-
 $font = 'Helvetica';
-$pdf = new PDF('P', 'mm', 'Letter', 'UTF-8');
+$pdf = new PDF('P', 'mm', 'Letter');
 $pdf->AliasNbPages();
 $pdf->AddPage();
 $pdf->SetFont($font, 'I', 8);
@@ -240,6 +239,7 @@ $pdf->SetFont($font, 'I', 8);
 $top = 75;
 $ma = 20;
 $h1 = 6;
+$maxHight = 245;
 
 // Anchos de columnas en un array para facilitar el manejo de posiciones
 $widths = [15, 115, 25, 25]; 
@@ -261,15 +261,15 @@ $printHeader = function($pdf, $font, $ma, $top, $h1, $widths) {
 $printHeader($pdf, $font, $ma, $top, $h1, $widths);
 
 $total = 0;
-$pdf->SetFont($font, '', 10);
+$pdf->SetFont($font, '', 9);
 
 while ($fila = pg_fetch_row($ls_resultado_1)) {
-    $top += 6;
-    $B = ($top >= 240) ? 'B' : '';
+    $top += $h1;
+    $B = ($top >= $maxHight) ? 'B' : '';
 
     $pdf->SetXY($ma, $top);
     
-    // Renderizado de la fila actual a
+    // Renderizado de la fila actual
     $pdf->Cell($widths[0], $h1, $fila[0], $B . 'LR', 0, 'C');
     
     $concepto = strtoupper(fix_texto_tabla($arr_articulo[$fila[1]]));
@@ -284,7 +284,7 @@ while ($fila = pg_fetch_row($ls_resultado_1)) {
     $total += $fila[3];
 
     // Control de salto de página 
-    if ($top >= 240) {
+    if ($top >= $maxHight) {
         $pdf->AddPage();
         $pdf->SetFont('Arial', 'I', 8); // Mantiene el comportamiento original
         
@@ -295,7 +295,8 @@ while ($fila = pg_fetch_row($ls_resultado_1)) {
 }
 
 // Fila de Totales
-$top += 6;
+
+$top += $h1;
 $pdf->SetFont($font, 'B', 10);
 $pdf->SetXY($ma, $top);
 
