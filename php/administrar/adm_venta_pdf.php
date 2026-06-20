@@ -69,7 +69,7 @@ class PDF extends FPDF
 
 		// DATOS DEL CLIENTE
 		$top += 20;
-		$this->SetDash(1, 1);
+		//$this->SetDash(1, 1);
 		$this->SetFont($font, '', 9);
 
 		$this->SetXY(20, $top);
@@ -101,7 +101,7 @@ class PDF extends FPDF
 		$this->SetXY(20, $top + 15);
 		$this->MultiCell(180, 5, fix_texto($o_direccion), 'LBR', 'L');
 
-		$this->SetDash();
+		//$this->SetDash();
 	}
 
 	// Page footer
