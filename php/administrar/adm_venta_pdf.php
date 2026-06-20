@@ -175,8 +175,6 @@ $ls_sql = "SELECT pk_factura, fk_responsable, fk_cliente, to_char(fe_fecha_factu
 
 
 
-
-
 $ls_resultado =  $obj_miconexion->fun_consult($ls_sql);
 if ($ls_resultado != 0) {
 	$row = pg_fetch_row($ls_resultado, 0);
@@ -226,15 +224,12 @@ $ls_sql = "SELECT nu_cantidad, fk_articulo, nu_precio,
 $ls_resultado_1 =  $obj_miconexion->fun_consult($ls_sql);
 if ($ls_resultado_1) {
 	$mostrar_rs = true;
-	// Consulta exitosa					
 } else {
 	fun_error(1, $li_id_conex, $ls_sql, $_SERVER['PHP_SELF'], __LINE__);
 }
 
 
-/*-------------------------------------------------------------------------------------------
-	PDF
--------------------------------------------------------------------------------------------*/
+// GENERA BODY DE MI REPORTE PDF
 
 $font = 'Helvetica';
 $pdf = new PDF('P', 'mm', 'Letter', 'UTF-8');
@@ -245,83 +240,70 @@ $pdf->SetFont($font, 'I', 8);
 $top = 75;
 $ma = 20;
 $h1 = 6;
-$w1 = 15;
-$w2 = 115;
-$w3 = 25;
-$w4 = 25;
 
+// Anchos de columnas en un array para facilitar el manejo de posiciones
+$widths = [15, 115, 25, 25]; 
 
-//$pdf->SetFillColor(198, 217, 241);
 $pdf->SetFillColor(230, 230, 230);
-$pdf->SetFont($font, 'B', 10);
-$pdf->SetXY($ma, $top);
-$pdf->Cell($w1, $h1, 'Cant.', 1, 1, 'C', true);
 
-$pdf->SetXY($ma + $w1, $top);
-$pdf->Cell($w2, $h1, 'Concepto', 1, 1, 'L', true);
+// Función anónima para renderizar la cabecera de la tabla sin duplicar código
+$printHeader = function($pdf, $font, $ma, $top, $h1, $widths) {
+    $pdf->SetFont($font, 'B', 10);
+    $pdf->SetXY($ma, $top);
+    
+    $pdf->Cell($widths[0], $h1, 'Cant.', 1, 0, 'C', true);
+    $pdf->Cell($widths[1], $h1, 'Concepto', 1, 0, 'L', true);
+    $pdf->Cell($widths[2], $h1, 'Precio', 1, 0, 'R', true);
+    $pdf->Cell($widths[3], $h1, 'Total', 1, 1, 'R', true); // ln=1 para bajar de línea
+};
 
-$pdf->SetXY($ma + $w1 + $w2, $top);
-$pdf->Cell($w3, $h1, 'Precio', 1, 1, 'R', true);
+// Primera cabecera
+$printHeader($pdf, $font, $ma, $top, $h1, $widths);
 
-$pdf->SetXY($ma + $w1 + $w2 + $w3, $top);
-$pdf->Cell($w4, $h1, 'Total', 1, 1, 'R', true);
-
-
-//$pdf->SetDash(1,1);
 $total = 0;
-$pdf->SetFont($font, '', 9);
+$pdf->SetFont($font, '', 10);
+
 while ($fila = pg_fetch_row($ls_resultado_1)) {
+    $top += 6;
+    $B = ($top >= 240) ? 'B' : '';
 
-	$pdf->SetFont($font, '', 10);
-	$top += 6;
+    $pdf->SetXY($ma, $top);
+    
+    // Renderizado de la fila actual a
+    $pdf->Cell($widths[0], $h1, $fila[0], $B . 'LR', 0, 'C');
+    
+    $concepto = strtoupper(fix_texto_tabla($arr_articulo[$fila[1]]));
+    $pdf->Cell($widths[1], $h1, $concepto, $B . 'R', 0, 'L');
+    
+    $precio = number_format($fila[2], 2, ",", ".");
+    $pdf->Cell($widths[2], $h1, $precio, $B . 'R', 0, 'R');
+    
+    $subtotal = number_format($fila[3], 2, ",", ".");
+    $pdf->Cell($widths[3], $h1, $subtotal, $B . 'R', 1, 'R');
 
-	$B = ($top >= 240)?'B':'';
+    $total += $fila[3];
 
-	$pdf->SetXY($ma, $top);
-	$pdf->Cell($w1, $h1, $fila[0], $B.'LR', 1, 'C');
-
-	$pdf->SetXY($ma + $w1, $top);
-	$pdf->Cell($w2, $h1, strtoupper(fix_texto_tabla($arr_articulo[$fila[1]])), $B.'R', 1, 'L');
-
-	$precio = number_format($fila[2], 2, ",", ".");
-	$pdf->SetXY($ma + $w1 + $w2, $top);
-	$pdf->Cell($w3, $h1, $precio, $B.'R', 1, 'R');
-
-	$subtotal = number_format($fila[3], 2, ",", ".");
-	$pdf->SetXY($ma + $w1 + $w2 + $w3, $top);
-	$pdf->Cell($w4, $h1, $subtotal, $B.'R', 1, 'R');
-
-	$total += $fila[3];
-
-	if ($top >= 240) {
-		$pdf->AddPage();
-		$pdf->SetFont('Arial', 'I', 8);
-		$top = 80;
-
-		$pdf->SetFont($font, 'B', 10);
-		$pdf->SetXY($ma, $top);
-		$pdf->Cell($w1, $h1, 'Cant.', 1, 1, 'C', true);
-		$pdf->SetXY($ma + $w1, $top);
-		$pdf->Cell($w2, $h1, 'Concepto', 1, 1, 'C', true);
-		$pdf->SetXY($ma + $w1 + $w2, $top);
-		$pdf->Cell($w3, $h1, 'Precio', 1, 1, 'R', true);
-		$pdf->SetXY($ma + $w1 + $w2 + $w3, $top);
-		$pdf->Cell($w4, $h1, 'Total', 1, 1, 'R', true);
-	}
+    // Control de salto de página 
+    if ($top >= 240) {
+        $pdf->AddPage();
+        $pdf->SetFont('Arial', 'I', 8); // Mantiene el comportamiento original
+        
+        $top = 80;
+        $printHeader($pdf, $font, $ma, $top, $h1, $widths);
+        $pdf->SetFont($font, '', 10); // Restaura la fuente para el contenido
+    }
 }
 
+// Fila de Totales
 $top += 6;
 $pdf->SetFont($font, 'B', 10);
 $pdf->SetXY($ma, $top);
-$pdf->Cell($w1, $h1, '', 1, 1, 'C');
-$pdf->SetXY($ma + $w1, $top);
-$pdf->Cell($w2, $h1, '', 1, 1, 'L');
-$pdf->SetXY($ma + $w1 + $w2, $top);
-$pdf->Cell($w3, $h1, 'Total', 1, 1, 'R');
-$temp = number_format($total, 2, ",", ".");
-$pdf->SetXY($ma + $w1 + $w2 + $w3, $top);
-$pdf->Cell($w4, $h1, $temp, 1, 1, 'R');
 
+$pdf->Cell($widths[0], $h1, '', 1, 0, 'C');
+$pdf->Cell($widths[1], $h1, '', 1, 0, 'L');
+$pdf->Cell($widths[2], $h1, 'Total', 1, 0, 'R');
 
+$total_formateado = number_format($total, 2, ",", ".");
+$pdf->Cell($widths[3], $h1, $total_formateado, 1, 1, 'R');
 
-$pdf->Output(); //cierra el archivo
+$pdf->Output();
