@@ -181,7 +181,7 @@ RUTINAS: Consulta  datos resumen
 				ELSE 'EN PROCESO'
 			END AS nombre_status,
 				f_calcular_factura(pk_factura), f_calcular_abono(pk_factura) AS abono, (f_calcular_factura(pk_factura) - f_calcular_abono(pk_factura)) as debe,
-				CASE WHEN fe_fecha_factura <= CURRENT_DATE - INTERVAL '10 days' THEN 'VENCIDA'
+				CASE WHEN fe_fecha_factura <= CURRENT_DATE - INTERVAL '30 days' THEN 'VENCIDA'
          ELSE 'EN CURSO'
     		END AS antiguedad,
 				pk_factura

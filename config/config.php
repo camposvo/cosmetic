@@ -516,7 +516,7 @@ function Combo_Proveedor(){
 	$obj_miconexion = fun_crear_objeto_conexion();
 	$li_id_conex = fun_conexion($obj_miconexion);
 									
-	$ls_sql ="SELECT  s01_persona.co_persona,  UPPER(tx_nombre) || ' ' || UPPER(tx_apellido)
+	$ls_sql ="SELECT  s01_persona.co_persona,  UPPER(tx_nombre)
 			FROM s02_persona_rol
 			INNER JOIN s01_persona ON s02_persona_rol.co_persona = s01_persona.co_persona
 			WHERE co_rol = 47

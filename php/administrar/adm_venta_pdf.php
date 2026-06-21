@@ -108,6 +108,17 @@ class PDF extends FPDF
 	function Footer()
 	{
 		$font = 'Helvetica';
+		$ma = 20;
+		$ancho_cuadro = 180;
+
+		$this->SetXY($ma, -40);
+		$this->SetFont($font, 'B', 9);
+		// 1. Línea superior con el texto (el texto queda arriba de forma natural)
+		$this->Cell($ancho_cuadro, 5, ' NOTA:', 'LTR', 1, 'L');
+		$this->SetX($ma);
+		$this->Cell($ancho_cuadro, 15, '', 'LBR', 1, 'L');
+
+
 		$this->SetY(-15);
 		$this->SetFont($font, '', 8);
 		$this->Cell(0, 10, 'Pag. ' . $this->PageNo() . ' de {nb}', 0, 0, 'C');
@@ -127,7 +138,7 @@ function fix_texto($texto)
 function fix_texto_tabla($texto)
 {
 
-	$longitud_maxima = 50;
+	$longitud_maxima = 55;
 
 	$puntos_suspensivos = '...';
 
@@ -238,8 +249,8 @@ $pdf->SetFont($font, 'I', 8);
 
 $top = 75;
 $ma = 20;
-$h1 = 6;
-$maxHight = 245;
+$h1 = 5;
+$maxHight = 230;
 
 // Anchos de columnas en un array para facilitar el manejo de posiciones
 $widths = [15, 115, 25, 25]; 
@@ -300,8 +311,8 @@ $top += $h1;
 $pdf->SetFont($font, 'B', 10);
 $pdf->SetXY($ma, $top);
 
-$pdf->Cell($widths[0], $h1, '', 1, 0, 'C');
-$pdf->Cell($widths[1], $h1, '', 1, 0, 'L');
+$pdf->Cell($widths[0], $h1, '', 'T', 0, 'C');
+$pdf->Cell($widths[1], $h1, '', 'T', 0, 'L');
 $pdf->Cell($widths[2], $h1, 'Total', 1, 0, 'R');
 
 $total_formateado = number_format($total, 2, ",", ".");

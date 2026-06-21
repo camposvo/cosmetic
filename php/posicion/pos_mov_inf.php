@@ -59,7 +59,7 @@
 	RUTINAS: MOSTRAR DATOS
 -------------------------------------------------------------------------------------------*/
 	$ls_sql ="SELECT 	tx_tipo,  
-				UPPER(CLIENTE.tx_nombre)||' '||UPPER(CLIENTE.tx_apellido) as Clien, 
+				UPPER(CLIENTE.tx_nombre) as Clien, 
 				UPPER(RESPONSABLE.tx_indicador) as Respon, 
 				UPPER(nb_proveedor), 
 				to_char(fe_fecha_factura, 'dd/mm/yyyy'),
@@ -89,7 +89,7 @@
 		$x_id			   = $row[9];
 		
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);// enviar mensaje de error de consulta
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);// enviar mensaje de error de consulta
 	}
 
 	// Extrae el detalle de la factura
