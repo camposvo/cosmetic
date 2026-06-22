@@ -176,15 +176,10 @@ function fun_dibujar_tabla($rs,$li_totcampos,$li_indice,$operacion){
 			echo "<td class='hidden-480'>" . $row[$i++] . "</td>"; 
 			echo "<td class='hidden-480'>" . $row[$i++] . "</td>"; 
 			echo "<td class='hidden-480'>" . $row[$i++] . "</td>"; 
-			echo "<td class='hidden-480'>" . $row[$i++] . "</td>"; 
-			echo "<td class='hidden-480'>" . $row[$i++] . "</td>"; 
 			
 			echo '<td>
-					<div class="hidden-sm hidden-xs action-buttons">
-						
-						<a class="blue  tooltip-info open-event" href="#" title="Ver"  onClick=\'VerPago("'.$ls_cod.'");return false;\'>
-							<i class="ace-icon fa  fa-search-plus bigger-130"></i>
-						</a>
+					<div class="hidden-sm hidden-xs action-buttons">					
+					
 
 						<a class="red tooltip-error open-event" href="#" title="Borrar" onClick=\'EliminarPago("'.$ls_cod.'");return false;\'>
 							<i class="ace-icon fa fa-trash-o bigger-130"></i>
@@ -199,13 +194,7 @@ function fun_dibujar_tabla($rs,$li_totcampos,$li_indice,$operacion){
 							</button>
 
 							<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-								<li>
-									<a href="#" class="tooltip-success" data-rel="tooltip" title="Editar" onClick=\'VerPago("'.$ls_cod.'");return false;\'>
-										<span class="orange">
-											<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
-										</span>
-									</a>
-								</li>
+								
 								
 								<li>
 									<a href="#" class="tooltip-error" data-rel="tooltip" title="Borrar" onClick=\'EliminarPago("'.$ls_cod.'");return false;\'>

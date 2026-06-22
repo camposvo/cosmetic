@@ -29,6 +29,9 @@
 -------------------------------------------------------------------------------------------*/
 	$o_cantidad  = 0;
 	$o_cantidad2 = 0;
+	 $li_hidden = 0;
+	 $x_movimiento = 0;
+
 	if (!$_GET)	{
 		foreach($_POST as $nombre_campo => $valor){
 			$asignacion = "\$" . $nombre_campo . "='" . $valor . "';";
@@ -93,11 +96,11 @@
 	}
 
 	// Extrae el detalle de la factura
-	$ls_sql ="SELECT t02_proyecto.tx_nombre, nb_articulo, t01_detalle.nu_cantidad, nu_precio,  
-		  t01_detalle.nu_cantidad * nu_precio as total, fk_articulo
-		  FROM t01_detalle
-		  LEFT JOIN t02_proyecto ON t01_detalle.fk_rubro = t02_proyecto.pk_proyecto		
-		  LEFT JOIN t13_articulo ON t01_detalle.fk_articulo = t13_articulo.pk_articulo	
+	$ls_sql ="SELECT pk_articulo, nb_articulo, t01_detalle.nu_cantidad, nu_precio, t01_detalle.nu_cantidad * nu_precio as total, fk_articulo 
+		FROM t01_detalle 
+		inner JOIN t20_factura ON t20_factura.pk_factura = t01_detalle.fk_factura 
+		inner JOIN t02_proyecto ON t02_proyecto.pk_proyecto = t20_factura.fk_proyecto 
+		LEFT JOIN t13_articulo ON t13_articulo.pk_articulo = t01_detalle.fk_articulo 	
 		  WHERE fk_factura = $x_movimiento ;";
 	//echo $ls_sql;
 	
@@ -106,7 +109,7 @@
 		$mostrar_rs = true;
 		// Consulta exitosa					
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);
 	}
 	
 	

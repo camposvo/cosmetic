@@ -40,6 +40,8 @@
 	$Banco       = 0;
 	$SelectMes   = "checked";
 	$SelectRango = "unchecked";
+	$ingreso1 = 0;
+	$egreso1 =0;
 	
 	if (!$_GET)	{
 		foreach($_POST as $nombre_campo => $valor){
@@ -73,7 +75,7 @@
 		if($ls_resultado != 0){
 			
 		}else{
-			fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);// enviar mensaje de error de consulta
+			fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);// enviar mensaje de error de consulta
 		}
 
 	
@@ -91,7 +93,7 @@
 		$row = pg_fetch_row($ls_resultado,0);
 		$Banco    = $row[0];
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);// enviar mensaje de error de consulta
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);// enviar mensaje de error de consulta
 	}
 	  
 /*-------------------------------------------------------------------------------------------
@@ -112,7 +114,7 @@
 		$TotalCtxCob    = $row[1];
 		$DebeCtxCob     = $row[1] - $row[0];
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);// enviar mensaje de error de consulta
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);// enviar mensaje de error de consulta
 	}
 	
 /*-------------------------------------------------------------------------------------------
@@ -134,7 +136,7 @@
 		$TotalCtxPag    = $row[1];
 		$DebeCtxPag     = $row[1] - $row[0];
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);// enviar mensaje de error de consulta
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);// enviar mensaje de error de consulta
 	}
 	
 /***************************************************************	
@@ -151,7 +153,7 @@
 			$Disponible    = $row[0];
 		}	
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);// enviar mensaje de error de consulta
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);// enviar mensaje de error de consulta
 	}
 	
 	$Caja = $Disponible - $Banco;
@@ -199,7 +201,7 @@
 		$Ingreso   = $row[0];
 		$Egreso    = $row[1];
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);// enviar mensaje de error de consulta
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);// enviar mensaje de error de consulta
 	}		
 	
 
@@ -230,7 +232,7 @@
 	if($ls_resultado != 0){
 		$tarea = "M";
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);
 	}
 	
 

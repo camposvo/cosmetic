@@ -26,9 +26,13 @@
 
 <?php 
 
-/*-------------------------------------------------------------------------------------------
-	RUTINA: Se utiliza para recibir las variables por la url.
--------------------------------------------------------------------------------------------*/
+$cedula = '';
+$nombre = '';
+$apellido = '';
+$ls_criterio = '';
+$co_usuario = '';
+
+
 	$encontrado = false;
 	if (!$_GET){
 		foreach($_POST as $nombre_campo => $valor){ 
@@ -71,7 +75,7 @@
 		if($ls_resultado != 0){
 			$tarea = "M";
 		}else{
-			fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);
+			fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);
 		}
 		
 /*-------------------------------------------------------------------------------------------
@@ -86,7 +90,7 @@
 			
 			<div class="page-header">
 				<h1>
-					Trabajdores
+					Trabajadores
 				</h1>
 			</div><!-- /.page-header -->
 			
@@ -214,8 +218,7 @@
 			document.formulario.tarea.value = "M";
 			document.formulario.method = "post";
 			document.formulario.submit();
-		}
-		
+		}	
 		
 		
 		function validar(e){

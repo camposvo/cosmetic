@@ -40,6 +40,7 @@
 	$x_fecha = ""; 
 	$x_fecha_ini = 0;
 	$x_fecha_fin = 0;
+	 $li_hidden = false;
 	
 	if (!$_GET)	{
 		foreach($_POST as $nombre_campo => $valor){
