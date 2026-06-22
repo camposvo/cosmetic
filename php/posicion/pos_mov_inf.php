@@ -123,10 +123,15 @@
 		<div class="page-content">
 			
 			<div class="page-header">
-				<h1>
-					Detalle de Movimiento
-				</h1>
+				<button class="btn btn-danger btn-sm pull-left" onclick="Atras()">
+					<i class="ace-icon fa fa-reply align-top bigger-125 "></i>
+					Regresar
+				</button>
+			
+
 			</div><!-- /.page-header -->
+
+			<br>
 			
 			<div class="row">
 				<div class="col-xs-12"> <!-- ROW CONTENT BEGINS -->
@@ -175,14 +180,6 @@
 									
 								</div>
 								
-														
-								<div class="profile-info-row">
-									<div class="profile-info-name">Factura</div>
-									<div class="profile-info-value">
-										<span class="blue" id="age"><?php echo $x_factura;?></span>
-									</div>
-								</div>
-								
 								<div class="profile-info-row">
 									<div class="profile-info-name">Total</div>
 									<div class="profile-info-value">
@@ -206,7 +203,7 @@
 							<table id="simple-table" class="table table-striped table-bordered table-hover">
 								<thead>
 									<tr class="bg-primary" >
-										<th>Proyecto</th>
+										<th>ID</th>
 										<th>Articulo</th>
 										<th>Cantidad</th>
 										<th>Precio</th>
@@ -216,9 +213,9 @@
 								<tbody id="tblDetalle">	
 								<?php
 									if($mostrar_rs){
-										$li_numcampo = $obj_miconexion->fun_numcampos()-1; // Columnas que se muestran en la Tabla
+										$li_numcampo = 0; // Columnas que se muestran en la Tabla
 										$li_indicecampo = $obj_miconexion->fun_numcampos()-1; // Referencia al indice de la columna clave
-										fun_dibujar_tabla($obj_miconexion,$li_numcampo,$li_indicecampo, '', $li_hidden); // Dibuja la Tabla de Datos
+										fun_dibujar_tabla($obj_miconexion,$li_numcampo,$li_indicecampo, 'LISTAR_ARTICULO', $li_hidden); // Dibuja la Tabla de Datos
 										$obj_miconexion->fun_closepg($li_id_conex,$ls_resultado);										
 									}
 								?>
@@ -231,20 +228,7 @@
 								
 					
 					
-					<div class="row">
 					
-						<h3 class="header blue lighter smaller">
-								<i class="ace-icon fa"></i>
-						</h3>
-						
-						<div class="col-xs-12">
-							<button class="btn btn-danger btn-sm pull-left" onclick="Atras()">
-								<i class="ace-icon fa fa-reply align-top bigger-125 "></i>
-								Regresar
-							</button>
-						</div>
-							
-					</div>
 				
 				
 			</div> <!-- ROW CONTENT END -->

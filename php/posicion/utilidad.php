@@ -61,6 +61,18 @@ function fun_dibujar_tabla($rs,$li_columnas,$li_indice, $operacion){
 			
 			//echo "<td style=\"CURSOR: hand\" onClick=\"Mostrar_Info('".$ls_cod."','".$ingreso."','".$egreso."');\"><div align=\"center\" title=\"Detalle de la Operacion \"><img src=\"../../img/iconos_pagina/ficha.png\" width=\"25\" border=\"0\" ></div></td>";
 		}		
+
+		if(strtoupper($operacion)=='LISTAR_ARTICULO'){
+			
+			echo "<td class=''>" . $row[$i++] . "</td>"; 
+			echo "<td class='hidden-480'>" . $row[$i++] . "</td>"; 
+			echo "<td>" . number_format($row[$i++], 2, ",", ".") . "</td>";
+			echo "<td>" . number_format($row[$i++], 2, ",", ".") . "</td>";
+			echo "<td>" . number_format($row[$i++], 2, ",", ".") . "</td>";
+			
+		}	
+
+
 		echo "</tr>";
     }
 	

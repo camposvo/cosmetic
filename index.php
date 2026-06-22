@@ -91,9 +91,9 @@ DESCRIPCIN: VERIFICA SI LOS CAMPOS ESTAN COMPLETOS Y MANDA A LA PAGINA SESION.PH
 							<div class="center">
 								<h1>
 								
-									<span class="red">distribuidorabellinghieri</span>
+									<span class="red">Bellinghieri Store</span>
 								</h1>
-								<h4 class="blue" id="id-company-text">@gmail.com</h4>
+								
 							</div>
 
 							<div class="space-6"></div>
@@ -102,8 +102,7 @@ DESCRIPCIN: VERIFICA SI LOS CAMPOS ESTAN COMPLETOS Y MANDA A LA PAGINA SESION.PH
 								<div id="login-box" class="login-box visible widget-box no-border">
 									<div class="widget-body">
 										<div class="widget-main">
-											<h4 class="header blue lighter bigger">
-												<i class="ace-icon fa fa-coffee green"></i>
+											<h4 class="header blue lighter bigger">												
 												Ingrese sus Datos
 											</h4>
 
