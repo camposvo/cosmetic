@@ -27,22 +27,37 @@
 </head>
 <body>
 <?php 
-/*-------------------------------------------------------------------------------------------
-	RUTINA: Se utiliza para recibir las variables por la url.
--------------------------------------------------------------------------------------------*/
-	$o_cantidad  = 0;
-	$o_cantidad2 = 0;
-	if (!$_GET)	{
-		foreach($_POST as $nombre_campo => $valor){
-			$asignacion = "\$" . $nombre_campo . "='" . $valor . "';";
-			eval($asignacion);
-		}
-	}else{
-		foreach($_GET as $nombre_campo => $valor){
-			$asignacion = "\$" . $nombre_campo . "='" . $valor . "';";
-			eval($asignacion);
-		}
-	}
+// Inicialización explícita para evitar "Undefined variable"
+	$o_cantidad      = 0;
+	$o_cantidad2     = 0;
+	$msg             = "";
+	$existAbono      = false;
+	$co_usuario      = $_SESSION["li_cod_usuario"] ?? 0;
+	$x_fecha_actual  = date('d/m/Y h:i');
+
+	// Captura segura de parámetros GET/POST prioritarios
+	$tarea         = $_POST['tarea'] ?? $_GET['tarea'] ?? '';
+	$x_movimiento  = intval($_POST['x_movimiento'] ?? $_GET['x_movimiento'] ?? 0);
+	$x_pagar       = intval($_POST['x_pagar'] ?? $_GET['x_pagar'] ?? 0);
+	
+	$o_PagMonto    = floatval($_POST['o_PagMonto'] ?? 0);
+	$x_referencia  = htmlspecialchars(trim($_POST['x_referencia'] ?? ''), ENT_QUOTES, 'UTF-8');
+
+	// Variables de acarreo de inputs hidden
+	$x_debe        = floatval($_POST['x_debe'] ?? 0);
+	$x_vendedor    = htmlspecialchars($_POST['x_vendedor'] ?? '', ENT_QUOTES, 'UTF-8');
+	$x_cliente     = htmlspecialchars($_POST['x_cliente'] ?? '', ENT_QUOTES, 'UTF-8');
+	$x_fecha       = htmlspecialchars($_POST['x_fecha'] ?? '', ENT_QUOTES, 'UTF-8');
+	$input_filtro  = htmlspecialchars($_POST['input_filtro'] ?? '', ENT_QUOTES, 'UTF-8');
+	$filtro        = htmlspecialchars($_POST['filtro'] ?? '', ENT_QUOTES, 'UTF-8');
+
+	// Variables que se llenan desde la Base de Datos
+	$o_cliente     = "";
+	$o_fecha       = "";
+	$o_factura     = "";
+	$o_total       = 0;
+	$o_observacion = "";
+	$SumaAbono     = 0;
 	
 	$obj_miconexion = fun_crear_objeto_conexion();
 	$li_id_conex = fun_conexion($obj_miconexion);

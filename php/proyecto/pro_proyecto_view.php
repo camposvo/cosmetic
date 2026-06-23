@@ -34,6 +34,16 @@
 	$o_cantidad  = 0;
 	$o_cantidad2 = 0;
 	$x_rubro     = 0;
+	$tarea = '';
+	$filtro  = '';
+	$x_fecha_ini = 0;
+	$x_fecha_fin = 0;
+	$ls_criterio  = '';
+	$TotalGasto = 0;
+	$sw = 0;
+	$pk_proyecto = -1;
+	$TotalGanancia = 0;
+	$x_fecha = '';
 	
 	
 	if (!$_GET)	{

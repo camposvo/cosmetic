@@ -814,11 +814,17 @@ function fun_dibujar_tabla($rs, $li_columnas, $li_indice, $operacion, $variable)
 				</td>';
 		}
 
-		if (strtoupper($operacion) == 'VER_FACTURA') {
+		if (strtoupper($operacion) == 'VER_FACTURA_INFO') {
+			echo "<td> (" . $row[$i++] .") ". $row[$i++] . "</td>";
+			echo "<td>" . $row[$i++] . "</td>";
+			echo "<td>" . number_format($row[$i++], 2, ",", ".") . "</td>";
+		}
+
+		if (strtoupper($operacion) == 'VER_ABONO_INFO') {
 			echo "<td class=''>" . $row[$i++] . "</td>";
-			echo "<td class=''>" . $row[$i++] . "</td>";
-			echo "<td class='hidden-480'>" . number_format($row[$i++], 2, ",", ".") . "</td>";
-			echo "<td class='hidden-480'>" . number_format($row[$i++], 2, ",", ".") . "</td>";
+			echo "<td class='hidden-480'>" . $row[$i++] . "</td>";
+			echo "<td class='hidden-480'>" . $row[$i++] . "</td>";
+			echo "<td>" . number_format($row[$i++], 2, ",", ".") . "</td>";
 		}
 
 		echo "</tr>";

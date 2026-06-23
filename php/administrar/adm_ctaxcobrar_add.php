@@ -42,8 +42,6 @@
 	}
 	$modo = $datos['modo'] ?? 'Insertar Nuevo Registro';
 	
-	//var_dump($_POST['det_Proyecto']);
-	//var_dump($_POST['det_Precio']);
 
 	if(!empty($_POST['det_Proyecto'])){
 		$a_proyecto	= $_POST['det_Proyecto'];

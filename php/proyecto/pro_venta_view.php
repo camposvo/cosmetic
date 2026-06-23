@@ -30,6 +30,8 @@
 /*-------------------------------------------------------------------------------------------
 	RUTINA: Se utiliza para recibir las variables por la url.
 -------------------------------------------------------------------------------------------*/
+	$x_factura = -1;
+
 	if (!$_GET)	{
 		foreach($_POST as $nombre_campo => $valor){
 			$asignacion = "\$" . $nombre_campo . "='" . $valor . "';";
@@ -52,8 +54,8 @@
 /*-------------------------------------------------------------------------------------------
 	RUTINAS: permite MOSTRAR LOS DATOS
 -------------------------------------------------------------------------------------------*/
-	$ls_sql ="SELECT tx_nombre, to_char(fe_inicial, 'dd/mm/yyyy') , nu_cantidad, fk_responsable, 
-				t02_proyecto.tx_descripcion, fk_tipo_rubro, nu_muerte, t08_tipo_proyecto.nb_tipo_rubro
+	$ls_sql ="SELECT tx_nombre, to_char(fe_inicial, 'dd/mm/yyyy') , fk_responsable, 
+				t02_proyecto.tx_descripcion, fk_tipo_rubro, t08_tipo_proyecto.nb_tipo_rubro
 		FROM t02_proyecto
 		LEFT JOIN t08_tipo_proyecto ON t02_proyecto.fk_tipo_rubro = t08_tipo_proyecto.pk_tipo_rubro
 		WHERE pk_proyecto = $pk_proyecto";
@@ -64,30 +66,13 @@
 		$row = pg_fetch_row($ls_resultado,0);
 		$o_nombre        = $row[0];
 		$x_fecha	     = $row[1];
-		$o_cantidad  	 = $row[2];	
 		$x_responsable   = $row[3];
-		$o_descripcion   = $row[4];
 		$o_tipo_rubro    = $row[5];
-		$x_muerte        = $row[6];
 		$x_tipo_rubro  = $row[7];
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);// enviar mensaje de error de consulta
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);// enviar mensaje de error de consulta
 	}
 
-/*-------------------------------------------------------------------------------------------
-	RUTINAS: para AGREGAR una actividad Factura
--------------------------------------------------------------------------------------------*/
-	$i=0; /*Banderar para cantidad de reglas */
-	$sw = 0; // Bandera para indicar si hay filtros
-
-	if($filtro =='NO_ALL')$arr_criterio[$i++]=" (f_calcular_abono(pk_factura) < nu_total) "; /* solo los que deben*/
-	if($x_cliente!=0){ $arr_criterio[$i++]=" t20_factura.fk_cliente = ".$x_cliente; $sw = 1;}
-	if($x_factura!=0){ $arr_criterio[$i++]=" UPPER(t20_factura.tx_factura) = '".strtoupper($x_factura)."' "; $sw = 1; }
-	if($x_fecha_ini !=0 and $x_fecha_fin !=0){ $arr_criterio[$i++]=" t20_factura.fe_fecha_factura >= '".strtoupper($x_fecha_ini)."' and t20_factura.fe_fecha_factura <= '".strtoupper($x_fecha_fin)."' "; $sw =1; }
-	if($x_vendedor !=0){ $arr_criterio[$i++]=" t20_factura.fk_responsable = ".$x_vendedor; $sw =1; }
-		
-	for($j=0;$j<$i;$j++)$ls_criterio = $ls_criterio.($ls_criterio==""?"":" and ").$arr_criterio[$j];	
-	$ls_criterio = $ls_criterio==""?"":" and ".$ls_criterio;	
 
 /*-------------------------------------------------------------------------------------------
 RUTINAS: Consulta  de registros de la busqueda
@@ -110,7 +95,7 @@ RUTINAS: Consulta  de registros de la busqueda
 	if($ls_resultado != 0){
 		$tarea = "M";
 	}else{
-		fun_error(1,$li_id_conex,$ls_sql,$_SERVER[PHP_SELF], __LINE__);
+		fun_error(1,$li_id_conex,$ls_sql,$_SERVER['PHP_SELF'], __LINE__);
 	}
 	
 
@@ -132,66 +117,8 @@ RUTINAS: Consulta  de registros de la busqueda
 			</div><!-- /.page-header -->
 			
 			<div class="row">
-				<div class="col-xs-12">
-				
-					
-				<div class="row">
-					<div class="col-xs-12 ">
-							<div class="alert alert-block alert-success">							
-								<i class="ace-icon fa fa-check green"></i>							
-								<strong class="green">
-									<?php echo 'Proyecto: '.strtoupper($o_nombre);?> ( <?php echo $x_fecha;?> )
-								</strong>,
-								<?php echo $o_descripcion;?>.
-							</div>
-					</div>
-				</div>
-
-				
-
-				
-					<div class="row">
-						<div class="col-xs-12 col-sm-12 widget-container-col">
-							<div class="widget-box ">
-								<div class="widget-body">
-									<div class="widget-main no-padding">
-										<table id="" class="table table-striped table-bordered ">
-											<thead>
-												<tr class="success">
-													<th>Item</th>
-													<th>Cantidad</th>
-													<th>Total</th>
-												</tr>
-											</thead>
-											<tbody>	
-												<tr>
-													<td >
-														<input id= 'x_sum_item' class="input-sm form-control" name="x_sum_item"  type="text" readonly />
-													</td>
-													<td >
-														<input id= 'x_sum_cantidad' class="input-sm form-control" name="x_sum_cantidad"  type="text" readonly />
-													</td>
-													<td >
-														<input id= 'x_sum_total' class="input-sm form-control" name="x_sum_total"  type="text" readonly />
-													</td>													
-												</tr>																		
-											</tbody>
-										</table>
-									</div>
-									
-									<form class="form-horizontal" name="formulario">											
-											
-											<input type="hidden" name="x_movimiento" value="<?php echo $x_movimiento;?>">
-											<input type="hidden" name="tarea" 		 value="<?php echo $tarea;?>">
-											<input type="hidden" name="modo" 		 value="<?php echo $modo;?>">
-											<input type="hidden" name="filtro" 		 value="<?php echo $filtro;?>">		
-											<input type="hidden" id = "input_filtro" name="input_filtro" 		 value="<?php echo $input_filtro;?>">		
-										</form>
-									
-								</div>
-							</div>
-						</div>	
-					</div>	<!-- /.row totales -->
+				<div class="col-xs-12">						
+						
 					
 					
 							

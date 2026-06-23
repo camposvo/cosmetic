@@ -32,6 +32,9 @@ if ($usu_autentico != "SI") {
 
 	$o_cantidad  = 0;
 	$o_cantidad2 = 0;
+
+	$x_movimiento = 0;
+
 	if (!$_GET) {
 		foreach ($_POST as $nombre_campo => $valor) {
 			$asignacion = "\$" . $nombre_campo . "='" . $valor . "';";
@@ -48,7 +51,7 @@ if ($usu_autentico != "SI") {
 	$li_id_conex = fun_conexion($obj_miconexion);
 
 	$obj_miconexion_1 = fun_crear_objeto_conexion();
-	$li_id_conex_1 = fun_conexion($obj_miconexion);
+	$li_id_conex_1 = fun_conexion($obj_miconexion_1);
 
 	$co_usuario  =  $_SESSION["li_cod_usuario"];
 	$arr_cliente =  Combo_Cliente();
@@ -56,9 +59,7 @@ if ($usu_autentico != "SI") {
 	$x_fecha_actual = date('d/m/Y h:i');
 
 
-	/*-------------------------------------------------------------------------------------------
-		RUTINAS: MOSTRAR DATOS
-	-------------------------------------------------------------------------------------------*/
+
 	$ls_sql = "SELECT pk_factura, fk_responsable, UPPER(s01_persona.tx_nombre), to_char(fe_fecha_factura,'DD/MM/YYYY') ,  
 				tx_nota, tx_concepto,  nu_total, nu_subtotal, f_calcular_abono($x_movimiento),
 				(nu_total - f_calcular_abono($x_movimiento)) as Debe,
@@ -66,6 +67,8 @@ if ($usu_autentico != "SI") {
 				FROM t20_factura
 				INNER JOIN s01_persona ON s01_persona.co_persona = t20_factura.fk_cliente
 				WHERE pk_factura = $x_movimiento";
+
+	// echo $ls_sql;
 
 	$ls_resultado =  $obj_miconexion->fun_consult($ls_sql);
 	if ($ls_resultado != 0) {
@@ -83,8 +86,8 @@ if ($usu_autentico != "SI") {
 		$x_nro    	= $row[10];
 
 		// Extrae el detalle de la factura
-		$ls_sql = "SELECT CONCAT(LPAD(ca.pk_categoria::text, 3, '0'), '-', LPAD(a.pk_articulo::text, 3, '0'), ' ', a.nb_articulo, ' (', a.nb_presentacion,')') AS articulo, 
-				nu_cantidad, a.nu_precio_venta,  
+		$ls_sql = "SELECT nu_cantidad , a.nb_articulo AS articulo, 
+				a.nu_precio_venta,  
 				nu_cantidad * nu_precio as total
 				FROM t01_detalle
 				inner join t13_articulo as a ON t01_detalle.fk_articulo = a.pk_articulo
@@ -108,68 +111,70 @@ if ($usu_autentico != "SI") {
 		RUTINAS: Muestra la lista de ABONOS realizados
 	-------------------------------------------------------------------------------------------*/
 	$i = 0;
-	$ls_sql = "SELECT to_char(fe_fecha,'DD/MM/YYYY'), UPPER(s01_persona.tx_nombre||' '||s01_persona.tx_apellido), tx_observacion, nu_monto, pk_abono
+	$ls_sql = "SELECT to_char(fe_fecha,'DD/MM/YYYY'), UPPER(s01_persona.tx_nombre), tx_observacion, nu_monto, pk_abono
 					FROM t04_abono
 					INNER JOIN s01_persona ON s01_persona.co_persona = t04_abono.fk_indicador
 					WHERE fk_factura= $x_movimiento";
 
-	//echo $ls_sql;	
+	$existAbono = false;
 	$ls_resultado_1 =  $obj_miconexion_1->fun_consult($ls_sql);
+
 	if ($ls_resultado_1 != 0) {
 		$tarea = "M";
+
+		if ($obj_miconexion_1->fun_numregistros() > 0) {
+			$tarea = "M";
+			$existAbono = true; // ¡Bandera en true! Encontró datos.
+		} else {
+			// La consulta fue exitosa pero volvió VACÍA
+			$tarea = "N"; // O la acción que desees para consultas vacías
+			$existAbono = false;
+		}
 	} else {
 		fun_error(1, $li_id_conex_1, $ls_sql, $_SERVER['PHP_SELF']);
 	}
 
 	?>
 	<div class="main-content">
-		<div class="main-content-inner">
-			<div class="page-content">
-
+		<div class="main-content-inner">			
 
 				<div class="row">
-					<div class="col-12 ">
+					<div class="col-xs-12">
 
-						<div class="col-sm-6">
-							<div>
-								<ul class="list-unstyled spaced">
-									<li>
-										<i class="ace-icon fa fa-caret-right blue"></i>
-										<b class="blue"><?php echo $o_cliente; ?></b>
-									</li>
+						<div class="well well-sm" style="background-color: transparent; margin-bottom: 10px;">
+							<div class="row">
 
-									<li>
-										<i class="ace-icon fa fa-caret-right blue"></i>
-										Factura:
-										<b class="black"><?php echo $x_nro; ?></b>
-									</li>
+								<div class="col-xs-4 col-sm-4" style="margin-bottom: 5px;">
+									<b class="blue"><?php echo $o_cliente; ?></b>
+								</div>
 
-									<li>
-										<i class="ace-icon fa fa-caret-right blue"></i>
-										Fecha:
-										<b class="black"><?php echo $o_fecha; ?></b>
-									</li>
+								<div class="col-xs-4 col-sm-2" style="margin-bottom: 5px;">
+									<i class="ace-icon fa fa-caret-right blue"></i> Factura:
+									<b class="black"><?php echo $x_nro; ?></b>
+								</div>
 
-									<li>
-										<i class="ace-icon fa fa-caret-right blue"></i>
-										Abono:
-										<b class="black"><?php echo number_format($x_abono, 2, ",", "."); ?></b>
-									</li>
+								<div class="col-xs-4 col-sm-2" style="margin-bottom: 5px;">
+									<i class="ace-icon fa fa-caret-right blue"></i> Fecha:
+									<b class="black"><?php echo $o_fecha; ?></b>
+								</div>
 
-									<li>
-										<i class="ace-icon fa fa-caret-right blue"></i>
-										Debe:
-										<b class="black"><?php echo number_format($x_debe, 2, ",", "."); ?></b>
-									</li>
-									<li>
-										<i class="ace-icon fa fa-caret-right blue"></i>
-										Total:
-										<b class="black"><?php echo number_format($x_total, 2, ",", "."); ?></b>
-									</li>
+								<div class="col-xs-4 col-sm-1" style="margin-bottom: 5px;">
+									<i class="ace-icon fa fa-caret-right blue"></i> Total:
+									<b class="black"><?php echo number_format($x_total, 2, ",", "."); ?></b>
+								</div>
 
-								</ul>
+								<div class="col-xs-4 col-sm-1" style="margin-bottom: 5px;">
+									<i class="ace-icon fa fa-caret-right blue"></i> Abono:
+									<b class="black"><?php echo number_format($x_abono, 2, ",", "."); ?></b>
+								</div>
+
+								<div class="col-xs-4 col-sm-2" style="margin-bottom: 5px;">
+									<i class="ace-icon fa fa-caret-right blue"></i> Debe:
+									<b class="black"><?php echo number_format($x_debe, 2, ",", "."); ?></b>
+								</div>
+
 							</div>
-						</div><!-- /.col -->
+						</div>
 
 						<div class="space-6"></div>
 
@@ -180,37 +185,27 @@ if ($usu_autentico != "SI") {
 										<thead>
 											<tr class="info">
 												<th class="">Item</th>
-												<th class="">Cantidad</th>
 												<th class="">Precio</th>
 												<th class="">Total</th>
 											</tr>
 										</thead>
 										<tbody>
 											<?php
-											$li_numcampo = $obj_miconexion->fun_numcampos() - 7; // Columnas que se muestran en la Tabla
-											$li_indicecampo = $obj_miconexion->fun_numcampos() - 1; // Referencia al indice de la columna clave
-											fun_dibujar_tabla($obj_miconexion, $li_numcampo, $li_indicecampo, 'VER_FACTURA', 0); // Dibuja la Tabla de Datos
+											$li_numcampo = $obj_miconexion->fun_numcampos() - 7;
+											$li_indicecampo = $obj_miconexion->fun_numcampos() - 1;
+											fun_dibujar_tabla($obj_miconexion, $li_numcampo, $li_indicecampo, 'VER_FACTURA_INFO', 0);
 											$obj_miconexion->fun_closepg($li_id_conex, $ls_resultado);
 											?>
 										</tbody>
 									</table>
-									<input type="hidden" name="x_movimiento" value="<?php echo $x_movimiento; ?>">
-									<input type="hidden" name="x_pagar" value="<?php echo $x_pagar; ?>">
-									<input type="hidden" name="tarea" value="<?php echo $tarea; ?>">
-									<input type="hidden" name="x_vendedor" value="<?php echo $x_vendedor; ?>">
-									<input type="hidden" name="x_cliente" value="<?php echo $x_cliente; ?>">
-									<input type="hidden" name="x_fecha" value="<?php echo $x_fecha; ?>">
-									<input type="hidden" name="input_filtro" value="<?php echo $input_filtro; ?>">
-									<input type="hidden" name="filtro" value="<?php echo $filtro; ?>">
 								</form>
 							</div>
-						</div> <!-- /.row tabla dealle -->
+						</div>
 
 						<div class="row">
 							<div class="col-sm-5 pull-left">
 								<h4 class="pull-left">
-									
-									<span class="blue">Pagos</span>
+									<span class="blue">Historial de Pagos</span>
 								</h4>
 							</div>
 						</div>
@@ -221,29 +216,30 @@ if ($usu_autentico != "SI") {
 									<thead>
 										<tr class="info">
 											<th>Fecha</th>
-											<th>Responsable</th>
-											<th>Referencia</th>
+											<th class='hidden-480' >Responsable</th>
+											<th class='hidden-480' >Referencia</th>
 											<th>Abono</th>
 										</tr>
 									</thead>
 									<tbody>
 										<?php
-										$li_numcampo = $obj_miconexion_1->fun_numcampos() - 1; // Columnas que se muestran en la Tabla
-										$li_indicecampo = $obj_miconexion_1->fun_numcampos() - 1; // Referencia al indice de la columna clave
-										fun_dibujar_tabla($obj_miconexion_1, $li_numcampo, $li_indicecampo, 'NO_LISTAR_ABONO', 0); // Dibuja la Tabla de Datos
-										$obj_miconexion->fun_closepg($li_id_conex_1, $ls_resultado_1);
+										if ($existAbono) {
+											$li_numcampo =0;
+											$li_indicecampo = $obj_miconexion_1->fun_numcampos() - 1;
+											fun_dibujar_tabla($obj_miconexion_1, $li_numcampo, $li_indicecampo, 'VER_ABONO_INFO', 0);
+											$obj_miconexion->fun_closepg($li_id_conex_1, $ls_resultado_1);
+										}
 										?>
 									</tbody>
 								</table>
 							</div>
-						</div> <!-- /.row tabla abonos -->
-
-						
+						</div>
 
 					</div>
 				</div>
-			</div> <!-- ROW CONTENT END -->
-		</div> <!-- /.page-content -->
+			
+		</div> 
+		</div>
 
 		<script src="../../assets/js/jquery.2.1.1.min.js"></script>
 		<script src="../../assets/js/bootstrap.min.js"></script>
