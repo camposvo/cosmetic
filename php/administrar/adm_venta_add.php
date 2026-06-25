@@ -68,13 +68,15 @@ if ($usu_autentico != "SI") {
 		$$nombre_campo = $valor;
 	}
 	$modo = $datos['modo'] ?? 'Insertar Nuevo Registro';
-	
+
 
 	if (!empty($_POST['det_Articulo'])) { // Recibe el detalle de la Factura
 		$a_precio 	= $_POST['det_Precio'];
 		$a_cantidad	= $_POST['det_Cantidad'];
 		$a_articulo	= $_POST['det_Articulo'];
 	}
+
+	$o_proyecto = $_SESSION["id_proyecto"];
 
 
 
@@ -271,7 +273,7 @@ if ($usu_autentico != "SI") {
 			$x_observacion  = $row[5];
 			$x_total        = $row[6];
 			$x_abono        = $row[7];
-			$o_proyecto        = $row[8];
+			$o_proyecto     = $row[8];
 			$x_pedido       = $row[9];
 			$x_descuento      = $row[10];
 			$x_subtotal      = $x_total  + $x_descuento;
@@ -353,29 +355,11 @@ if ($usu_autentico != "SI") {
 											echo "<option value='$k' $ls_cadenasel>$v</option>";
 										}
 										?>
-									</select>
+									</select><!--  -->
 								</div>
 							</div>
 
-							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right">Proyecto</label>
-								<div class="col-sm-7">
-									<select type="select-one" name="o_proyecto"
-										class="col-xs-10 col-sm-7 chosen-select " data-placeholder="Seleccionar">
-										<?php
-										if ($o_proyecto == "") {
-											echo "<option value='0' selected>Seleccionar</option>";
-										} else {
-											echo "<option value='0'></option>";
-										}
-										foreach ($arr_rubro as $k => $v) {
-											$ls_cadenasel = ($k == $o_proyecto) ? 'selected' : '';
-											echo "<option value='$k' $ls_cadenasel>$v</option>";
-										}
-										?>
-									</select>
-								</div>
-							</div>
+
 						</div>
 
 						<div class="col-xs-12 col-sm-6 widget-container-col">
@@ -436,7 +420,46 @@ if ($usu_autentico != "SI") {
 
 					<div class="space-4"></div>
 
-					<div class="row">
+					<div class="row g-3 align-items-end">
+						<div class="col-12 col-md-5">
+							<label for="id_articulo" class="form-label font-weight-bold">Artículo</label>
+							<select id="id_articulo" name="articulo" class="form-control chosen-select" onchange="findPrice()">
+								<?php
+								$o_articulo = '';
+								if ($o_articulo == "") {
+									echo "<option value='0' selected></option>";
+								} else {
+									echo "<option value='0'></option>";
+								}
+								foreach ($arr_articulo as $k => $v) {
+									$ls_cadenasel = ($k == $o_articulo) ? 'selected' : '';
+									echo "<option value='$k' $ls_cadenasel>$v</option>";
+								}
+								?>
+							</select>
+						</div>
+
+						<div class="col-12 col-md-1">
+							<label for="id_cantidad" class="form-label font-weight-bold">Cantidad</label>
+							<input id="id_cantidad" name="cantidad" onkeyup="calcularSubtotal();" onkeypress="return validardec(event);" class="form-control" type="text">
+						</div>
+
+						<div class="col-12 col-md-2">
+							<label for="id_precio" class="form-label font-weight-bold">Precio</label>
+							<input id="id_precio" name="precio" onkeyup="calcularSubtotal();" onkeypress="return validardec(event);" class="form-control" type="text">
+						</div>
+
+						<div class="col-12 col-md-2">
+							<label for="id_subtotal" class="form-label font-weight-bold">SubTotal</label>
+							<input id="id_subtotal" name="subtotal" class="form-control" type="text" readonly>
+						</div>
+
+						<div class="col-12 col-md-2 d-grid">
+							<button type="button" onClick="nuevoArticulo();" class="btn btn-success btn-block">Agregar</button>
+						</div>
+					</div>
+
+					<!-- <div class="row">
 						<div class="col-xs-12 col-sm-12">
 							<table id="simple-table-new" class="table table-striped table-bordered">
 								<thead>
@@ -472,7 +495,9 @@ if ($usu_autentico != "SI") {
 								</tbody>
 							</table>
 						</div>
-					</div>
+					</div> -->
+
+					<div class="space-4"></div>
 
 					<div class="row">
 						<div class="col-xs-12 col-sm-12">
@@ -807,7 +832,7 @@ Se invoka en tiempo de ejecucion para activar la clase select multiple
 		const filas = miTabla.rows.length;
 
 
-		if (filas > 0) { 
+		if (filas > 0) {
 			if (campos_blancos(document.formulario) == false) {
 				if (confirm('Esta conforme con los Datos Ingresados?') == true) {
 					document.formulario.tarea.value = Identificador;

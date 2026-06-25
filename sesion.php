@@ -18,6 +18,7 @@ $_SESSION["menu"]           = array(); // Inicializar como array limpio
 $_SESSION["gs_usuario"]     = "";   
 $_SESSION["usuario"]        = "";   
 $_SESSION["num_mensaje"]    = 0;   
+$_SESSION["id_proyecto"]    = 2;   
 
 // Captura segura de credenciales (evitamos eval por completo)
 $o_usuario = isset($_POST['o_usuario']) ? trim($_POST['o_usuario']) : '';
